@@ -261,3 +261,19 @@ h4 {
     font-size: 17px;
   }
 }
+
+/* Fade-in al hacer scroll. Las secciones se ven visibles por defecto (sin
+   JS, o mientras carga); el componente ScrollReveal marca con
+   .js-reveal-hidden solo las que aún no están en pantalla al cargar la
+   página, y la quita cuando entran en el viewport para disparar la
+   transición. Sin animación si el sistema pide prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  section {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  section.js-reveal-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
