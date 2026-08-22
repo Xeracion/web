@@ -1,6 +1,7 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { LivePreview } from '@/components/LivePreview'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
 import { getSiteSettings } from '@/sanity/lib/queries'
 
@@ -16,6 +17,7 @@ export default async function EnLayout({ children }: { children: React.ReactNode
       </main>
       <Footer siteSettings={siteSettings} locale="en" />
       <LivePreview />
+      <ScrollReveal />
     </div>
   )
 }
