@@ -1,0 +1,78 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-block: 16px 64px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.photoWrap {
+  position: relative;
+}
+
+.photo {
+  --card-aspect: 16 / 9;
+}
+
+@media (min-width: 768px) {
+  .photo {
+    --card-aspect: 4 / 3;
+  }
+}
+
+.badge {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: 18px;
+}
+
+@media (max-width: 768px) {
+  .body {
+    padding: 16px;
+  }
+}
+
+.body h3 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.18;
+}
+
+@media (max-width: 768px) {
+  .body h3 {
+    font-size: 16px;
+  }
+}
+
+.text {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-xs);
+  padding-top: 12px;
+  border-top: 0.5px solid var(--color-border);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent-text);
+}

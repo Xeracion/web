@@ -1,0 +1,13 @@
+.link {
+  position: fixed;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 200;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}

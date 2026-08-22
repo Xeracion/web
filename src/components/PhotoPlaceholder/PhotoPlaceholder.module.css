@@ -1,0 +1,41 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-accent-grad-1), var(--color-accent-grad-2));
+  padding: var(--space-sm);
+}
+
+.radiusXl {
+  border-radius: var(--radius-xl);
+}
+
+.hero {
+  background: linear-gradient(135deg, #b4b2a9 0%, #888780 50%, #5f5e5a 100%);
+}
+
+.neutral {
+  background: linear-gradient(135deg, #d3d1c7 0%, #b4b2a9 100%);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  max-width: 80%;
+  text-align: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

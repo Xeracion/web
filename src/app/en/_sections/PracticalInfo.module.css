@@ -1,0 +1,23 @@
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.text {
+  margin-top: var(--space-xs);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}

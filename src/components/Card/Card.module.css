@@ -1,0 +1,16 @@
+.card {
+  display: block;
+  background: var(--color-white);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -16px rgba(44, 44, 42, 0.15);
+}

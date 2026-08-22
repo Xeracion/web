@@ -1,0 +1,133 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+  padding-block: var(--space-3xl) var(--space-4xl);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-lg);
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.sectionHeading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sectionNote {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  max-width: 560px;
+}
+
+.caption {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-tertiary);
+}
+
+.typeRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-block: var(--space-sm);
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.typeRow:last-child {
+  border-bottom: none;
+}
+
+.swatchRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.gradientBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #b4b2a9, #5f5e5a);
+}
+
+.containerDemo {
+  outline: 1px dashed var(--color-border-strong);
+  outline-offset: -1px;
+}
+
+.containerDemoInner {
+  padding-block: var(--space-md);
+  background: var(--color-bg-warm);
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: 18px;
+}
+
+.cardText {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+.cardFooter {
+  margin-top: var(--space-xs);
+  padding-top: 12px;
+  border-top: 0.5px solid var(--color-border);
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.photoItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+@media (max-width: 768px) {
+  .cardGrid,
+  .photoGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,29 @@
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.text {
+  margin-top: var(--space-xs);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
