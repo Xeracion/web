@@ -261,3 +261,29 @@ h4 {
     font-size: 17px;
   }
 }
+
+/* Fade-in al hacer scroll — CSS puro (scroll-driven animations), sin JS.
+   Se aplica a cada <section> de página (el bloque de contenido de cada
+   componente de sección). En navegadores sin animation-timeline el
+   @supports no entra y las secciones se ven normales, sin animación. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    section {
+      animation: reveal-fade-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+
+    @keyframes reveal-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
