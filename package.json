@@ -10,21 +10,21 @@
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
-    "@sanity/vision": "^6.8.0",
+    "@sanity/vision": "^6.10.1",
     "fast-xml-parser": "^5.10.1",
-    "next": "16.2.12",
-    "next-sanity": "^13.2.3",
+    "next": "16.3.2",
+    "next-sanity": "^13.3.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "sanity": "^6.8.0",
-    "styled-components": "^6.4.4"
+    "sanity": "^6.10.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.12",
+    "eslint-config-next": "16.3.2",
     "tsx": "^4.23.1",
     "typescript": "^5"
   }
