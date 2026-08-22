@@ -1,0 +1,40 @@
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.duration {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+.text {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.text strong {
+  color: var(--color-text-primary);
+}
+
+.cta {
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}

@@ -1,0 +1,51 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-block: 32px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 47fr 53fr;
+    align-items: center;
+  }
+}
+
+.text {
+  order: 2;
+  padding: 8px 0 24px 0;
+}
+
+@media (min-width: 768px) {
+  .text {
+    order: 0;
+    padding: 80px 32px 64px 32px;
+  }
+}
+
+.text h1 {
+  margin-top: var(--space-xs);
+}
+
+.intro {
+  max-width: 460px;
+  margin-top: var(--space-sm);
+}
+
+.below {
+  margin-top: var(--space-lg);
+}
+
+.photo {
+  order: 1;
+  --hero-aspect: 4 / 3;
+}
+
+@media (min-width: 768px) {
+  .photo {
+    order: 0;
+    --hero-aspect: 4 / 5;
+    min-height: 460px;
+  }
+}
