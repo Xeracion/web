@@ -148,36 +148,36 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
             />
           </button>
         </div>
-
-        <AnimatePresence initial={false}>
-          {mobileOpen && (
-            <motion.div
-              id="resizable-navbar-mobile-menu"
-              className={styles.mobileMenu}
-              initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0 }}
-              transition={transition}
-            >
-              <nav aria-label="Navegación móvil">
-                <ul className={styles.mobileList}>
-                  {allItems.map((item) => (
-                    <li key={item.link}>
-                      <Link
-                        href={item.link}
-                        className={styles.mobileLink}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
+
+      <AnimatePresence initial={false}>
+        {mobileOpen && (
+          <motion.div
+            id="resizable-navbar-mobile-menu"
+            className={styles.mobileMenu}
+            initial={prefersReducedMotion ? false : { opacity: 0, height: 0, y: -8 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0, y: -8 }}
+            transition={transition}
+          >
+            <nav aria-label="Navegación móvil">
+              <ul className={styles.mobileList}>
+                {allItems.map((item) => (
+                  <li key={item.link}>
+                    <Link
+                      href={item.link}
+                      className={styles.mobileLink}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
