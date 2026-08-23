@@ -1,3 +1,4 @@
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
@@ -39,7 +40,7 @@ export function Hero({ data }: { data: PageNosotrosData }) {
         <div className={styles.stats}>
           {data.heroStats.map((stat, i) => (
             <div key={i} className={styles.stat}>
-              <p className={styles.statValue}>{stat.value}</p>
+              <AnimatedNumber value={stat.value ?? ''} className={styles.statValue} />
               <p className={styles.statLabel}>{stat.label}</p>
             </div>
           ))}

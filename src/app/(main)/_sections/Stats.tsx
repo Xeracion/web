@@ -1,3 +1,4 @@
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import type { HomeData } from '@/sanity/lib/queries'
 
@@ -11,7 +12,7 @@ export function Stats({ data }: { data: HomeData }) {
       <Container className={styles.grid}>
         {data.stats.map((stat, i) => (
           <div key={i}>
-            <p className={styles.number}>{stat.value}</p>
+            <AnimatedNumber value={stat.value ?? ''} className={styles.number} />
             <div className={styles.line} />
             <p className={styles.label}>{stat.label}</p>
           </div>

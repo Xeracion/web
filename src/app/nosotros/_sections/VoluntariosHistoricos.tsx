@@ -1,3 +1,4 @@
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import type { PageNosotrosData, TestimonialData } from '@/sanity/lib/queries'
 
@@ -39,7 +40,7 @@ export function VoluntariosHistoricos({
   return (
     <div className={styles.wrapper}>
       <Container as="section" className={styles.section}>
-        <h2 className={styles.number}>{data.volunteersNumber}</h2>
+        <AnimatedNumber as="h2" value={data.volunteersNumber ?? ''} className={styles.number} />
         {data.volunteersSubtitle && <p className={styles.subtitle}>{data.volunteersSubtitle}</p>}
 
         <svg
