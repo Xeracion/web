@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
@@ -38,8 +40,15 @@ export async function OpportunitiesFeed({ intro, feedUrl }: OpportunitiesFeedPro
           {posts.map((post, i) => (
             <li key={i} className={styles.item}>
               <a href={post.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <h3 className={styles.postTitle}>{post.title}</h3>
-                {post.description && <p className={styles.postText}>{post.description}</p>}
+                {post.image && (
+                  <div className={styles.thumbnail}>
+                    <Image src={post.image} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" />
+                  </div>
+                )}
+                <div className={styles.body}>
+                  <h3 className={styles.postTitle}>{post.title}</h3>
+                  {post.description && <p className={styles.postText}>{post.description}</p>}
+                </div>
               </a>
             </li>
           ))}

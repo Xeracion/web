@@ -44,6 +44,19 @@
 
 .link {
   display: block;
+}
+
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg-warm);
+}
+
+.thumbnail img {
+  object-fit: cover;
+}
+
+.body {
   padding: 20px;
 }
 

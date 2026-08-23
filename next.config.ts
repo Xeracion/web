@@ -20,7 +20,7 @@ const SECURITY_HEADERS = [
 // the baseline headers above — a strict CSP there risks breaking editing.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "img-src 'self' https://cdn.sanity.io data:",
+  "img-src 'self' https://cdn.sanity.io https://substackcdn.com data:",
   "font-src 'self' data:",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
+      },
+      {
+        protocol: "https",
+        hostname: "substackcdn.com",
       },
     ],
     formats: ["image/avif", "image/webp"],
