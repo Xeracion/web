@@ -140,6 +140,7 @@ export interface PageFerrolData {
   fixedProgramsIntro?: SectionIntroData
   agendaIntro?: SectionIntroData
   arrivalHeading?: string
+  arrivalMapEmbedUrl?: string
   arrivalAddressText?: string
   arrivalTransportText?: string
   faqIntro?: SectionIntroData
@@ -167,6 +168,7 @@ const FERROL_QUERY = `{
     fixedProgramsIntro,
     agendaIntro,
     arrivalHeading,
+    arrivalMapEmbedUrl,
     arrivalAddressText,
     arrivalTransportText,
     faqIntro,

@@ -103,6 +103,21 @@ export const pageFerrol = defineType({
       group: 'llegar',
     }),
     defineField({
+      name: 'arrivalMapEmbedUrl',
+      title: 'Mapa de Google (URL insertada)',
+      description:
+        'Ve a Google Maps, busca la ubicación, pulsa Compartir → "Insertar un mapa", y pega aquí la URL que aparece dentro de src="..." en el código que te da. Mientras esté vacío, se muestra un marcador de foto en su lugar.',
+      type: 'url',
+      validation: (Rule) =>
+        Rule.uri({ scheme: ['https'] }).custom((value) => {
+          if (!value) return true
+          return /^https:\/\/(www\.)?google\.com\/maps\/embed/.test(value)
+            ? true
+            : 'Pega la URL del atributo src de un mapa insertado de Google Maps (empieza por https://www.google.com/maps/embed...).'
+        }),
+      group: 'llegar',
+    }),
+    defineField({
       name: 'arrivalAddressText',
       title: 'Texto de la dirección',
       description: 'Dirección completa, planta y horario de apertura.',

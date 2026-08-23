@@ -16,11 +16,22 @@ export function HowToArrive({ data, siteSettings }: HowToArriveProps) {
 
   return (
     <Container as="section" id="visitanos" className={styles.section}>
-      <PhotoPlaceholder
-        variant="ferrol"
-        label={`mapa · ${data.arrivalHeading ?? 'Ferrol'}`}
-        aspectRatio="4 / 3"
-      />
+      {data.arrivalMapEmbedUrl ? (
+        <div className={styles.map}>
+          <iframe
+            src={data.arrivalMapEmbedUrl}
+            title={`Mapa · ${data.arrivalHeading ?? 'Ferrol'}`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      ) : (
+        <PhotoPlaceholder
+          variant="ferrol"
+          label={`mapa · ${data.arrivalHeading ?? 'Ferrol'}`}
+          aspectRatio="4 / 3"
+        />
+      )}
       <div>
         <h3>{data.arrivalHeading}</h3>
         {data.arrivalAddressText && <p className={styles.text}>{data.arrivalAddressText}</p>}

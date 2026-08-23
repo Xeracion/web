@@ -25,7 +25,7 @@ const CONTENT_SECURITY_POLICY = [
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io",
-  "frame-src 'self'",
+  "frame-src 'self' https://www.google.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "object-src 'none'",
