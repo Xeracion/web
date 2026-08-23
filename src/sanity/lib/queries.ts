@@ -15,9 +15,10 @@ export interface SiteSettings {
   email?: string
   whatsapp?: string
   socialLinks?: SocialLinkData[]
+  googleCalendarId?: string
 }
 
-const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{ title, description, address, email, whatsapp, socialLinks }`
+const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{ title, description, address, email, whatsapp, socialLinks, googleCalendarId }`
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings | null> => {
   const { data } = await sanityFetch({ query: SITE_SETTINGS_QUERY })
@@ -77,8 +78,6 @@ export interface HomePageData {
   home: HomeData | null
   testimonialLarge: TestimonialData | null
   testimonialMedium: TestimonialData | null
-  featuredEvent: EventSummary | null
-  upcomingEvents: EventSummary[]
 }
 
 const HOME_QUERY = `{
@@ -104,12 +103,6 @@ const HOME_QUERY = `{
   },
   "testimonialMedium": *[_type == "testimonial" && displaySize == "mediano"] | order(_createdAt asc)[0]{
     quote, name, originCity, destinationCity, program, year, photo
-  },
-  "featuredEvent": *[_type == "event" && featured == true] | order(dateTime asc)[0]{
-    title, dateTime, location, description
-  },
-  "upcomingEvents": *[_type == "event" && featured != true] | order(dateTime asc)[0...3]{
-    title, dateTime
   }
 }`
 
@@ -155,7 +148,6 @@ export interface PageFerrolData {
 export interface FerrolPageData {
   page: PageFerrolData | null
   fixedPrograms: FixedProgramData[]
-  upcomingEvents: EventSummary[]
   faqs: FaqData[]
 }
 
@@ -180,21 +172,13 @@ const FERROL_QUERY = `{
   "fixedPrograms": *[_type == "fixedProgram" && route == "ferrol"] | order(_createdAt asc){
     name, schedule, description
   },
-  "upcomingEvents": *[_type == "event" && route == "ferrol" && dateTime >= $start && dateTime <= $end] | order(dateTime asc){
-    title, dateTime, location, description
-  },
   "faqs": *[_type == "faq" && route == "ferrol"] | order(order asc){
     question, answer
   }
 }`
 
 export const getFerrolPageData = cache(async (): Promise<FerrolPageData> => {
-  const start = new Date()
-  const end = new Date(start.getTime() + 14 * 24 * 60 * 60 * 1000)
-  const { data } = await sanityFetch({
-    query: FERROL_QUERY,
-    params: { start: start.toISOString(), end: end.toISOString() },
-  })
+  const { data } = await sanityFetch({ query: FERROL_QUERY })
   return data as FerrolPageData
 })
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { FaqAccordionSection } from '@/components/FaqAccordionSection'
+import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getFerrolPageData, getSiteSettings } from '@/sanity/lib/queries'
 
@@ -16,12 +17,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function FerrolPage() {
-  const [{ page, fixedPrograms, upcomingEvents, faqs }, siteSettings] = await Promise.all([
+  const [{ page, fixedPrograms, faqs }, siteSettings] = await Promise.all([
     getFerrolPageData(),
     getSiteSettings(),
   ])
 
   if (!page) return null
+
+  const start = new Date()
+  const end = new Date(start.getTime() + 14 * 24 * 60 * 60 * 1000)
+  const upcomingEvents = await getGoogleCalendarEvents(siteSettings?.googleCalendarId, {
+    timeMin: start,
+    timeMax: end,
+    maxResults: 20,
+  })
 
   return (
     <>

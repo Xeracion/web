@@ -180,6 +180,15 @@ Estas reglas son inviolables y se aplican a **todo** texto nuevo que se escriba,
 - **Iconos**: SVG inline sencillos o caracteres Unicode (`→`, `↓`, `·`). Cero librerías de iconos (nada de Font Awesome, Lucide, Heroicons, etc.).
 - **Fotos**: mientras no haya foto real, usar `.photo-placeholder` con el gradiente correspondiente y una etiqueta entre corchetes describiendo qué foto real debería ir ahí. No usar imágenes de stock genéricas.
 
+### 4.1 Agenda de eventos vía Google Calendar
+
+Los eventos de la agenda destacada (portada) y de la agenda de próximas dos semanas (`/ferrol/`) se leen en tiempo real de Google Calendar a través de `src/lib/googleCalendar.ts`, **no** del tipo de documento "Evento" en Sanity (que se mantiene en el esquema sin usar, por si se necesita en el futuro). Configuración:
+
+- `GOOGLE_CALENDAR_API_KEY` (variable de entorno) — clave de la API de Google Calendar, restringida a "Calendar API" en Google Cloud Console.
+- `googleCalendarId` (campo de texto en Sanity Studio → Ajustes generales) — el ID del calendario (Ajustes del calendario de Google → Integrar calendario → ID de calendario). El calendario debe estar marcado como público.
+
+Mientras falte cualquiera de los dos, la agenda no muestra eventos (no rompe la página). `getGoogleCalendarEvents` pide `singleEvents: true` a la API para que Google expanda los eventos recurrentes (ej. Offline Club cada martes) en instancias sueltas — no hay parseo de RRULE en el código.
+
 ## 5. Convención de clases de ruta
 
 Cada layout de sub-home aplica una clase en su elemento raíz que determina qué variables de acento CSS están activas en el scope de esa página:

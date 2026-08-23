@@ -51,6 +51,13 @@ export const siteSettings = defineType({
       type: 'array',
       of: [{ type: 'socialLink' }],
     }),
+    defineField({
+      name: 'googleCalendarId',
+      title: 'ID de Google Calendar',
+      description:
+        'El calendario de Google del que se leen automáticamente los eventos de la agenda (portada y /ferrol). El calendario debe estar configurado como público (Ajustes del calendario → "Permisos de acceso" → "Hacer disponible públicamente"). El ID está en Ajustes del calendario → "Integrar calendario" → "ID de calendario" (algo como xxxxx@group.calendar.google.com). Mientras esté vacío, no se muestra ningún evento.',
+      type: 'string',
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'email', media: 'logo' },

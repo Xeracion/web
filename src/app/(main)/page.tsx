@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getHomePageData, getSiteSettings } from '@/sanity/lib/queries'
 
@@ -16,10 +17,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [{ home, testimonialLarge, testimonialMedium, featuredEvent, upcomingEvents }, siteSettings] =
-    await Promise.all([getHomePageData(), getSiteSettings()])
+  const [{ home, testimonialLarge, testimonialMedium }, siteSettings] = await Promise.all([
+    getHomePageData(),
+    getSiteSettings(),
+  ])
 
   if (!home) return null
+
+  const [featuredEvent = null, ...upcomingEvents] = await getGoogleCalendarEvents(
+    siteSettings?.googleCalendarId,
+    { maxResults: 4 },
+  )
 
   return (
     <>
