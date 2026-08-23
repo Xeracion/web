@@ -1,5 +1,8 @@
+import Image from 'next/image'
+
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Equipo.module.css'
@@ -27,9 +30,19 @@ export function Equipo({ data }: { data: PageNosotrosData }) {
           const name = member.name ?? ''
           const content = (
             <>
-              <span className={styles.avatar} aria-hidden="true">
-                {initials(name)}
-              </span>
+              {member.photo ? (
+                <Image
+                  src={urlFor(member.photo).width(128).height(128).url()}
+                  alt=""
+                  width={64}
+                  height={64}
+                  className={styles.photo}
+                />
+              ) : (
+                <span className={styles.avatar} aria-hidden="true">
+                  {initials(name)}
+                </span>
+              )}
               <p className={styles.name}>{name}</p>
               <p className={styles.role}>{member.role}</p>
             </>

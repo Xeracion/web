@@ -13,10 +13,16 @@ export const teamMember = defineType({
     }),
     defineField({
       name: 'role',
-      title: 'Rol',
+      title: 'Rol / país',
       description: 'Por ejemplo: "Coordinación" o "Voluntaria · Francia".',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'photo',
+      title: 'Foto',
+      description: 'Opcional. Mientras no la subas, se muestra un círculo con sus iniciales.',
+      type: 'imageWithAlt',
     }),
     defineField({
       name: 'linkUrl',
@@ -26,6 +32,6 @@ export const teamMember = defineType({
     }),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'role' },
+    select: { title: 'name', subtitle: 'role', media: 'photo' },
   },
 })

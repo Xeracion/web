@@ -358,6 +358,7 @@ export interface ValueItemData {
 export interface TeamMemberData {
   name?: string
   role?: string
+  photo?: SanityImageSource
   linkUrl?: string
 }
 

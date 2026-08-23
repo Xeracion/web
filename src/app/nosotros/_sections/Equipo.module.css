@@ -45,6 +45,13 @@ a.member:hover {
   font-size: 18px;
 }
 
+.photo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
 .name {
   margin-top: var(--space-sm);
   font-family: var(--font-inter), sans-serif;
