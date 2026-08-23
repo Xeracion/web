@@ -8,7 +8,7 @@ export function ScrollReveal() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const sections = document.querySelectorAll<HTMLElement>('main section')
+    const sections = document.querySelectorAll<HTMLElement>('main section, .site-shell > footer')
     if (sections.length === 0) return
 
     const observer = new IntersectionObserver(
