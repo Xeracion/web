@@ -13,7 +13,7 @@ export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
 
   return (
     <ClosingCtaSection heading={data.closingHeading} text={data.closingText}>
-      <ButtonPrimary href="/irse/">Ver oportunidades</ButtonPrimary>
+      <ButtonPrimary href={data.closingCtaPrimaryHref || '/irse/'}>Ver oportunidades</ButtonPrimary>
       {whatsappHref && <ButtonSecondary href={whatsappHref}>Escríbenos →</ButtonSecondary>}
     </ClosingCtaSection>
   )

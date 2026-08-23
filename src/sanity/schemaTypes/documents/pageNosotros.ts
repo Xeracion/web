@@ -168,6 +168,14 @@ export const pageNosotros = defineType({
       rows: 2,
       group: 'cierre',
     }),
+    defineField({
+      name: 'closingCtaPrimaryHref',
+      title: 'Destino del botón "Ver oportunidades"',
+      description:
+        'A dónde lleva el botón. Puede ser una ruta interna (ej. "/irse/") o una URL completa. Si lo dejas vacío, lleva a "/irse/".',
+      type: 'string',
+      group: 'cierre',
+    }),
   ],
   preview: {
     select: { title: 'heroHeading' },

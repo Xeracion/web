@@ -211,6 +211,7 @@ export interface PageIrseData {
   faqIntro?: SectionIntroData
   closingHeading?: string
   closingText?: string
+  closingCtaPrimaryHref?: string
 }
 
 export interface IrsePageData {
@@ -235,7 +236,8 @@ const IRSE_QUERY = `{
     opportunitiesFeedUrl,
     faqIntro,
     closingHeading,
-    closingText
+    closingText,
+    closingCtaPrimaryHref
   },
   "mobilityPrograms": *[_type == "mobilityProgram" && route == "irse"] | order(_createdAt asc){
     name, duration, idealFor, covers, ctaLabel, ctaUrl
@@ -288,6 +290,7 @@ export interface PageEnData {
   faqIntro?: SectionIntroData
   closingHeading?: string
   closingText?: string
+  closingCtaPrimaryHref?: string
 }
 
 export interface EnPageData {
@@ -319,7 +322,8 @@ const EN_QUERY = `{
     howToApplySteps,
     faqIntro,
     closingHeading,
-    closingText
+    closingText,
+    closingCtaPrimaryHref
   },
   "mobilityPrograms": *[_type == "mobilityProgram" && route == "en"] | order(_createdAt asc){
     name, duration, idealFor, covers, ctaLabel, ctaUrl
@@ -386,6 +390,7 @@ export interface PageNosotrosData {
   partners?: string[]
   closingHeading?: string
   closingText?: string
+  closingCtaPrimaryHref?: string
 }
 
 export interface NosotrosPageData {
@@ -416,7 +421,8 @@ const NOSOTROS_QUERY = `{
     partnersIntro,
     partners,
     closingHeading,
-    closingText
+    closingText,
+    closingCtaPrimaryHref
   },
   "volunteerTestimonials": *[_type == "testimonial" && route == "nosotros"] | order(_createdAt asc){
     quote, name, originCity, destinationCity, program, year, photo

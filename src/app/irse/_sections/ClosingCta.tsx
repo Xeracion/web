@@ -13,7 +13,7 @@ export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
 
   return (
     <ClosingCtaSection heading={data.closingHeading} text={data.closingText}>
-      <ButtonPrimary accent href="#formulario">
+      <ButtonPrimary accent href={data.closingCtaPrimaryHref || '#formulario'}>
         Apúntame
       </ButtonPrimary>
       {emailHref && <ButtonSecondary href={emailHref}>Preguntas antes</ButtonSecondary>}

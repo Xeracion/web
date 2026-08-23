@@ -145,6 +145,14 @@ export const pageIrse = defineType({
       rows: 2,
       group: 'cierre',
     }),
+    defineField({
+      name: 'closingCtaPrimaryHref',
+      title: 'Destino del botón "Apúntame"',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#formulario") o una URL completa. Si lo dejas vacío, lleva a "#formulario".',
+      type: 'string',
+      group: 'cierre',
+    }),
   ],
   preview: {
     select: { title: 'heroHeading', media: 'heroImage' },

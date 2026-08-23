@@ -164,6 +164,14 @@ export const pageEn = defineType({
       rows: 2,
       group: 'cierre',
     }),
+    defineField({
+      name: 'closingCtaPrimaryHref',
+      title: 'Destino del botón "Start application"',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#apply") o una URL completa. Si lo dejas vacío, lleva a "#apply".',
+      type: 'string',
+      group: 'cierre',
+    }),
   ],
   preview: {
     select: { title: 'heroHeading', media: 'heroImage' },
