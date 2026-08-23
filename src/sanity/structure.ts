@@ -24,6 +24,7 @@ export const structure: StructureResolver = (S) =>
               singletonListItem(S, 'pageFerrol'),
               singletonListItem(S, 'pageIrse'),
               singletonListItem(S, 'pageEn'),
+              singletonListItem(S, 'pageSobreNos'),
             ]),
         ),
       S.listItem()

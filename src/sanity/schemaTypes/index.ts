@@ -7,12 +7,17 @@ import { sectionIntro } from './objects/sectionIntro'
 import { lifeInFerrolPhoto } from './objects/lifeInFerrolPhoto'
 import { infoColumn } from './objects/infoColumn'
 import { routeCard } from './objects/routeCard'
+import { timelineMilestone } from './objects/timelineMilestone'
+import { valueItem } from './objects/valueItem'
+import { teamMember } from './objects/teamMember'
+import { initiative } from './objects/initiative'
 
 import { siteSettings } from './documents/siteSettings'
 import { home } from './documents/home'
 import { pageFerrol } from './documents/pageFerrol'
 import { pageIrse } from './documents/pageIrse'
 import { pageEn } from './documents/pageEn'
+import { pageSobreNos } from './documents/pageSobreNos'
 import { event } from './documents/event'
 import { fixedProgram } from './documents/fixedProgram'
 import { testimonial } from './documents/testimonial'
@@ -33,6 +38,10 @@ export const schemaTypes = [
   lifeInFerrolPhoto,
   infoColumn,
   routeCard,
+  timelineMilestone,
+  valueItem,
+  teamMember,
+  initiative,
 
   // Documentos únicos
   siteSettings,
@@ -40,6 +49,7 @@ export const schemaTypes = [
   pageFerrol,
   pageIrse,
   pageEn,
+  pageSobreNos,
 
   // Colecciones
   event,

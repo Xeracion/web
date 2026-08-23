@@ -4,6 +4,7 @@ export const SINGLETON_TYPES = new Set([
   'pageFerrol',
   'pageIrse',
   'pageEn',
+  'pageSobreNos',
 ])
 
 export const SINGLETON_TITLES: Record<string, string> = {
@@ -12,4 +13,5 @@ export const SINGLETON_TITLES: Record<string, string> = {
   pageFerrol: 'Página Ferrol',
   pageIrse: 'Página Irse',
   pageEn: 'Página English',
+  pageSobreNos: 'Página Sobre nós',
 }

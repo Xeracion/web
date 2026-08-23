@@ -340,3 +340,94 @@ export const getEnPageData = cache(async (): Promise<EnPageData> => {
   const { data } = await sanityFetch({ query: EN_QUERY })
   return data as EnPageData
 })
+
+export interface TimelineMilestoneData {
+  year?: string
+  title?: string
+  description?: string
+}
+
+export interface ValueItemData {
+  icon?: string
+  title?: string
+  description?: string
+}
+
+export interface TeamMemberData {
+  name?: string
+  role?: string
+  linkUrl?: string
+}
+
+export interface InitiativeData {
+  icon?: string
+  name?: string
+  description?: string
+  url?: string
+  colorScheme?: 'blue' | 'green' | 'orange'
+}
+
+export interface PageSobreNosData {
+  heroEyebrow?: string
+  heroHeading?: string
+  heroHeadingAccent?: string
+  heroText?: string
+  heroStats?: StatItemData[]
+  historiaIntro?: SectionIntroData
+  historiaParagraphs?: string[]
+  timeline?: TimelineMilestoneData[]
+  valoresIntro?: SectionIntroData
+  values?: ValueItemData[]
+  equipoIntro?: SectionIntroData
+  teamMembers?: TeamMemberData[]
+  volunteersNumber?: string
+  volunteersSubtitle?: string
+  volunteersCtaLabel?: string
+  volunteersCtaUrl?: string
+  iniciativasIntro?: SectionIntroData
+  iniciativas?: InitiativeData[]
+  partnersIntro?: SectionIntroData
+  partners?: string[]
+  closingHeading?: string
+  closingText?: string
+}
+
+export interface SobreNosPageData {
+  page: PageSobreNosData | null
+  volunteerTestimonials: TestimonialData[]
+}
+
+const SOBRE_NOS_QUERY = `{
+  "page": *[_type == "pageSobreNos"][0]{
+    heroEyebrow,
+    heroHeading,
+    heroHeadingAccent,
+    heroText,
+    heroStats,
+    historiaIntro,
+    historiaParagraphs,
+    timeline,
+    valoresIntro,
+    values,
+    equipoIntro,
+    teamMembers,
+    volunteersNumber,
+    volunteersSubtitle,
+    volunteersCtaLabel,
+    volunteersCtaUrl,
+    iniciativasIntro,
+    iniciativas,
+    partnersIntro,
+    partners,
+    closingHeading,
+    closingText
+  },
+  "volunteerTestimonials": *[_type == "testimonial" && route == "sobre-nos"] | order(_createdAt asc){
+    quote, name, originCity, destinationCity, program, year, photo
+  }
+}`
+
+export const getSobreNosPageData = cache(async (): Promise<SobreNosPageData> => {
+  const { data } = await sanityFetch({ query: SOBRE_NOS_QUERY })
+  return data as SobreNosPageData
+})
