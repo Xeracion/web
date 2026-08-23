@@ -21,10 +21,10 @@ export function TeamMemberCard({ member }: { member: TeamMemberData }) {
     <>
       {member.photo ? (
         <Image
-          src={urlFor(member.photo).width(128).height(128).url()}
+          src={urlFor(member.photo).width(224).height(224).url()}
           alt=""
-          width={64}
-          height={64}
+          width={112}
+          height={112}
           className={styles.photo}
         />
       ) : (

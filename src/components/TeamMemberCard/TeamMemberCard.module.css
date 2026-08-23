@@ -16,8 +16,8 @@ a.member:hover {
 }
 
 .avatar {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -25,18 +25,19 @@ a.member:hover {
   background: linear-gradient(135deg, var(--color-border-strong), var(--color-text-tertiary));
   color: var(--color-white);
   font-family: var(--font-heading), sans-serif;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 28px;
 }
 
 .photo {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   border-radius: var(--radius-full);
   object-fit: cover;
 }
 
 .name {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-md);
   font-family: var(--font-inter), sans-serif;
   font-weight: 500;
   font-size: 15px;
