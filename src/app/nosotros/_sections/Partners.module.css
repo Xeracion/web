@@ -22,7 +22,8 @@
 }
 
 .logo {
-  height: 32px;
+  height: 64px;
   width: auto;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }

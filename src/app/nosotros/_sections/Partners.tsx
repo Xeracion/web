@@ -25,8 +25,8 @@ export function Partners({ data }: { data: PageNosotrosData }) {
                 <Image
                   src={urlFor(logo).url()}
                   alt={name ?? ''}
-                  width={120}
-                  height={40}
+                  width={240}
+                  height={80}
                   className={styles.logo}
                 />
               ) : (
