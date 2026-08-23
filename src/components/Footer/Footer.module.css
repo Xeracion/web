@@ -16,9 +16,15 @@
   }
 }
 
-.brandHeading {
-  font-size: 20px;
+.brandLogo {
+  display: inline-flex;
+  align-items: center;
   margin-bottom: var(--space-xs);
+}
+
+.brandLogo img {
+  height: 24px;
+  width: auto;
 }
 
 .brandText {

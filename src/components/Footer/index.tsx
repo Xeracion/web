@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
@@ -90,7 +91,9 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
     <footer className={styles.footer}>
       <Container className={styles.grid}>
         <div>
-          <h4 className={styles.brandHeading}>{siteSettings?.title ?? 'Xeración'}</h4>
+          <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
+            <Image src="/logo.svg" alt="" width={140} height={30} />
+          </Link>
           <p className={styles.brandText}>
             {address}
             <br />

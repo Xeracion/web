@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import {
@@ -68,8 +69,8 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
         transition={transition}
       >
         <div className={cn(styles.bar, scrolled && styles.barScrolled)}>
-          <Link href="/" className={styles.logo}>
-            {siteName}
+          <Link href="/" className={styles.logo} aria-label={siteName}>
+            <Image src="/logo.svg" alt="" width={140} height={30} priority />
           </Link>
 
           <nav className={styles.desktopNav} aria-label="Navegación principal">
