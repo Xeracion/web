@@ -28,13 +28,13 @@ export default async function EnPage() {
   return (
     <>
       <Hero data={page} />
-      <LifeInFerrol intro={page.lifeInFerrolIntro} photos={page.lifeInFerrolPhotos ?? []} />
       <MobilityProgramCards
         id="stays"
         intro={page.whatYouCanDoIntro}
         items={mobilityPrograms}
         locale="en"
       />
+      <LifeInFerrol intro={page.lifeInFerrolIntro} photos={page.lifeInFerrolPhotos ?? []} />
       <PracticalInfo
         columns={[page.practicalInfoGettingHere, page.practicalInfoHousing, page.practicalInfoLanguage]}
       />
