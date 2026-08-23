@@ -159,9 +159,9 @@ export const pageNosotros = defineType({
       name: 'partners',
       title: 'Partners',
       description:
-        'Añade un "Partner" para poder subirle un logo, o un texto simple si solo quieres el nombre. Mientras un partner no tenga logo, se muestra su nombre como texto.',
+        'Cada partner puede llevar su logo. Mientras no se suba, se muestra el nombre como texto.',
       type: 'array',
-      of: [{ type: 'partner' }, { type: 'string' }],
+      of: [{ type: 'partner' }],
       group: 'partners',
     }),
     defineField({
