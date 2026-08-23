@@ -1,3 +1,4 @@
+import { stegaClean } from '@sanity/client/stega'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -160,19 +161,22 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
           </Link>
           {socialLinks.length > 0 && (
             <ul className={styles.socialList}>
-              {socialLinks.map((link, i) => (
-                <li key={i}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label={PLATFORM_LABELS[link.platform ?? 'other'] ?? 'Enlace'}
-                  >
-                    <SocialIcon platform={link.platform} />
-                  </a>
-                </li>
-              ))}
+              {socialLinks.map((link, i) => {
+                const platform = stegaClean(link.platform) ?? 'other'
+                return (
+                  <li key={i}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialLink}
+                      aria-label={PLATFORM_LABELS[platform] ?? 'Enlace'}
+                    >
+                      <SocialIcon platform={platform} />
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           )}
         </div>

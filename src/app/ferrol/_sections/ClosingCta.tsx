@@ -1,3 +1,5 @@
+import { stegaClean } from '@sanity/client/stega'
+
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
@@ -10,7 +12,7 @@ interface ClosingCtaProps {
 
 export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
   const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
-  const instagram = siteSettings?.socialLinks?.find((link) => link.platform === 'instagram')
+  const instagram = siteSettings?.socialLinks?.find((link) => stegaClean(link.platform) === 'instagram')
 
   return (
     <ClosingCtaSection heading={data.closingHeading} text={data.closingText}>
