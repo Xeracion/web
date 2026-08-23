@@ -166,6 +166,15 @@ ol {
 
 .site-main {
   flex: 1;
+  /* ResizableNavbar is position: fixed (no space reserved in flow), so
+     compensate here with its unscrolled height + a little breathing room. */
+  padding-top: 88px;
+}
+
+@media (max-width: 768px) {
+  .site-main {
+    padding-top: 80px;
+  }
 }
 
 /* Base */
