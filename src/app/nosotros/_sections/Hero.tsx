@@ -1,6 +1,9 @@
+import Image from 'next/image'
+
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Hero.module.css'
@@ -20,32 +23,47 @@ export function Hero({ data }: { data: PageNosotrosData }) {
   const parts = splitHeading(heading, data.heroHeadingAccent)
 
   return (
-    <Container as="section" className={styles.hero}>
-      {data.heroEyebrow && (
-        <Eyebrow className={styles.eyebrow}>{data.heroEyebrow}</Eyebrow>
+    <section className={styles.hero}>
+      {data.heroBackgroundImage && (
+        <>
+          <Image
+            src={urlFor(data.heroBackgroundImage).url()}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className={styles.backgroundImage}
+          />
+          <div className={styles.overlay} aria-hidden="true" />
+        </>
       )}
-      <h1 className={styles.heading}>
-        {parts.map((part, i) =>
-          part.accent ? (
-            <span key={i} className={styles.accent}>
-              {part.text}
-            </span>
-          ) : (
-            <span key={i}>{part.text}</span>
-          ),
+      <Container className={styles.content}>
+        {data.heroEyebrow && (
+          <Eyebrow className={styles.eyebrow}>{data.heroEyebrow}</Eyebrow>
         )}
-      </h1>
-      {data.heroText && <p className={styles.text}>{data.heroText}</p>}
-      {data.heroStats && data.heroStats.length > 0 && (
-        <div className={styles.stats}>
-          {data.heroStats.map((stat, i) => (
-            <div key={i} className={styles.stat}>
-              <AnimatedNumber value={stat.value ?? ''} className={styles.statValue} />
-              <p className={styles.statLabel}>{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </Container>
+        <h1 className={styles.heading}>
+          {parts.map((part, i) =>
+            part.accent ? (
+              <span key={i} className={styles.accent}>
+                {part.text}
+              </span>
+            ) : (
+              <span key={i}>{part.text}</span>
+            ),
+          )}
+        </h1>
+        {data.heroText && <p className={styles.text}>{data.heroText}</p>}
+        {data.heroStats && data.heroStats.length > 0 && (
+          <div className={styles.stats}>
+            {data.heroStats.map((stat, i) => (
+              <div key={i} className={styles.stat}>
+                <AnimatedNumber value={stat.value ?? ''} className={styles.statValue} />
+                <p className={styles.statLabel}>{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </Container>
+    </section>
   )
 }

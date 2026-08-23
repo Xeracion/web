@@ -375,6 +375,7 @@ export interface PageNosotrosData {
   heroHeadingAccent?: string
   heroText?: string
   heroStats?: StatItemData[]
+  heroBackgroundImage?: SanityImageSource
   historiaIntro?: SectionIntroData
   historiaParagraphs?: string[]
   timeline?: TimelineMilestoneData[]
@@ -407,6 +408,7 @@ const NOSOTROS_QUERY = `{
     heroHeadingAccent,
     heroText,
     heroStats,
+    heroBackgroundImage,
     historiaIntro,
     historiaParagraphs,
     timeline,

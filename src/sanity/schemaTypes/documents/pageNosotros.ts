@@ -54,6 +54,14 @@ export const pageNosotros = defineType({
       validation: (Rule) => Rule.max(3).error('Como mucho tres números en el hero.'),
     }),
     defineField({
+      name: 'heroBackgroundImage',
+      title: 'Foto de fondo',
+      description:
+        'Opcional. Si la subes, se muestra a pantalla completa detrás del texto con una capa oscura al 20% para que el texto se siga leyendo bien. Mientras esté vacía, el fondo es el color oscuro sólido de siempre.',
+      type: 'imageWithAlt',
+      group: 'hero',
+    }),
+    defineField({
       name: 'historiaIntro',
       title: 'Introducción',
       type: 'sectionIntro',
