@@ -32,7 +32,7 @@ El usuario es el héroe, Xeración es el guía. Esto no es decorativo: condicion
 
 ### Tipografía
 
-- **Fraunces** (400, 500) — todos los titulares H1 a H4.
+- **Manrope** (400, 500) — todos los titulares H1 a H4. Sustituye a Fraunces como alternativa de Google Fonts a Nordea Sans (fuente corporativa con licencia, no disponible para este proyecto).
 - **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos.
 
 Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son: móvil < 768px, tablet 768–1024px, desktop > 1024px.
@@ -143,7 +143,7 @@ Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
 Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver el punto 2.1 más abajo para el detalle del componente. Resumen visual:
 
 - Sticky. Al cargar, fondo transparente y ancho igual al `.container` de la página. Al superar ~100px de scroll, la barra se estrecha (max-width 1200px → 720px), se centra, gana fondo `rgba(250,250,247,0.85)` + `backdrop-filter: blur(12px)` + sombra sutil + esquinas muy redondeadas (efecto "pill" flotante). Transición con spring (`motion`), no lineal.
-- Izquierda: logo texto "Xeración", Fraunces 22px, weight 500, letter-spacing -0.02em.
+- Izquierda: logotipo "Xeración" (imagen del wordmark de marca).
 - Derecha desktop: `Ferrol · Irse · English · [separador] · Sobre nós` — los tres primeros con un "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos; el cuarto en gris suave, sin pill.
 - Derecha móvil (< 768px): hamburguesa → menú desplegable animado (no overlay a pantalla completa), se cierra al pulsar un enlace o Escape.
 - **En cada sub-home**, el enlace de nav de la sección activa lleva el color de acento correspondiente (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.

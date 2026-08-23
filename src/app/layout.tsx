@@ -1,13 +1,13 @@
 import { stegaClean } from "@sanity/client/stega";
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
 import { getSiteSettings } from "@/sanity/lib/queries";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const manrope = Manrope({
+  variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
@@ -60,7 +60,7 @@ export default async function RootLayout({
   const lang = pathname.startsWith("/en") ? "en" : "es";
 
   return (
-    <html lang={lang} className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang={lang} className={`${manrope.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );
