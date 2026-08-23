@@ -24,18 +24,6 @@
   color: var(--color-border-strong);
 }
 
-.map {
-  display: block;
-  width: 100%;
-  max-width: 560px;
-  height: auto;
-  margin: var(--space-2xl) auto 0;
-}
-
-.silhouette {
-  color: rgba(255, 255, 255, 0.08);
-}
-
 .testimonials {
   margin-top: var(--space-2xl);
   display: grid;

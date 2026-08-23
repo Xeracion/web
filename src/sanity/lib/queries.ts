@@ -393,6 +393,8 @@ export interface PageNosotrosData {
   volunteersSubtitle?: string
   volunteersCtaLabel?: string
   volunteersCtaUrl?: string
+  pastVolunteersIntro?: SectionIntroData
+  pastVolunteers?: TeamMemberData[]
   iniciativasIntro?: SectionIntroData
   iniciativas?: InitiativeData[]
   partnersIntro?: SectionIntroData
@@ -426,6 +428,8 @@ const NOSOTROS_QUERY = `{
     volunteersSubtitle,
     volunteersCtaLabel,
     volunteersCtaUrl,
+    pastVolunteersIntro,
+    pastVolunteers,
     iniciativasIntro,
     iniciativas,
     partnersIntro,

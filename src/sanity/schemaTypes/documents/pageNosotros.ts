@@ -137,6 +137,21 @@ export const pageNosotros = defineType({
       initialValue: '/irse/',
     }),
     defineField({
+      name: 'pastVolunteersIntro',
+      title: 'Introducción de "Han estado con nosotros"',
+      type: 'sectionIntro',
+      group: 'voluntarios',
+    }),
+    defineField({
+      name: 'pastVolunteers',
+      title: 'Han estado con nosotros',
+      description:
+        'Fichas con foto, nombre y rol/país, igual que las del equipo. Se muestran en una rejilla de 4 columnas con un botón "Cargar más" a partir de la novena.',
+      type: 'array',
+      of: [{ type: 'teamMember' }],
+      group: 'voluntarios',
+    }),
+    defineField({
       name: 'iniciativasIntro',
       title: 'Introducción',
       type: 'sectionIntro',
