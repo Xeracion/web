@@ -1,8 +1,9 @@
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
 import { LivePreview } from '@/components/LivePreview'
+import { ResizableNavbar } from '@/components/ResizableNavbar'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
+import { NAV_ITEMS, NAV_SECONDARY_ITEM } from '@/lib/nav'
 import { getSiteSettings } from '@/sanity/lib/queries'
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
@@ -11,7 +12,11 @@ export default async function MainLayout({ children }: { children: React.ReactNo
   return (
     <div className="site-shell">
       <SkipLink />
-      <Header siteName={siteSettings?.title ?? 'Xeración'} />
+      <ResizableNavbar
+        siteName={siteSettings?.title ?? 'Xeración'}
+        items={NAV_ITEMS}
+        secondaryItem={NAV_SECONDARY_ITEM}
+      />
       <main className="site-main" id="main-content">
         {children}
       </main>
