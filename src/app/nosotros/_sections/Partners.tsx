@@ -15,21 +15,26 @@ export function Partners({ data }: { data: PageNosotrosData }) {
     <Container as="section" className={styles.section}>
       {data.partnersIntro?.eyebrow && <Eyebrow>{data.partnersIntro.eyebrow}</Eyebrow>}
       <ul className={styles.list}>
-        {partners.map((partner, i) => (
-          <li key={i} className={styles.partner}>
-            {partner.logo ? (
-              <Image
-                src={urlFor(partner.logo).url()}
-                alt={partner.name ?? ''}
-                width={120}
-                height={40}
-                className={styles.logo}
-              />
-            ) : (
-              partner.name
-            )}
-          </li>
-        ))}
+        {partners.map((partner, i) => {
+          const name = typeof partner === 'string' ? partner : partner.name
+          const logo = typeof partner === 'string' ? undefined : partner.logo
+
+          return (
+            <li key={i} className={styles.partner}>
+              {logo ? (
+                <Image
+                  src={urlFor(logo).url()}
+                  alt={name ?? ''}
+                  width={120}
+                  height={40}
+                  className={styles.logo}
+                />
+              ) : (
+                name
+              )}
+            </li>
+          )
+        })}
       </ul>
     </Container>
   )

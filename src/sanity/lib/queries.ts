@@ -395,7 +395,7 @@ export interface PageNosotrosData {
   iniciativasIntro?: SectionIntroData
   iniciativas?: InitiativeData[]
   partnersIntro?: SectionIntroData
-  partners?: PartnerData[]
+  partners?: (PartnerData | string)[]
   closingHeading?: string
   closingText?: string
   closingCtaPrimaryHref?: string
