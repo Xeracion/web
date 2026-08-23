@@ -11,4 +11,4 @@ export const NAV_ITEMS: NavItem[] = [
   { name: 'English', link: '/en/' },
 ]
 
-export const NAV_SECONDARY_ITEM: NavItem = { name: 'Sobre nós', link: '/nosotros/' }
+export const NAV_SECONDARY_ITEM: NavItem = { name: 'Nosotros', link: '/nosotros/' }
