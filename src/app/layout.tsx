@@ -9,7 +9,7 @@ import { getSiteSettings } from "@/sanity/lib/queries";
 const manrope = Manrope({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 

@@ -88,7 +88,7 @@ export default function StyleguidePage() {
           <div className={styles.typeRow}>
             <h4>Offline Club</h4>
             <p className={styles.caption}>
-              H4 · 19 / 18 / 17 px · weight 500 · line-height 1.3 · letter-spacing -0.01em
+              H4 · 19 / 18 / 17 px · weight 600 · line-height 1.3 · letter-spacing -0.01em
             </p>
           </div>
 

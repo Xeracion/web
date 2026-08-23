@@ -32,17 +32,17 @@ El usuario es el héroe, Xeración es el guía. Esto no es decorativo: condicion
 
 ### Tipografía
 
-- **Manrope** (400, 500) — todos los titulares H1 a H4. Sustituye a Fraunces como alternativa de Google Fonts a Nordea Sans (fuente corporativa con licencia, no disponible para este proyecto).
+- **Manrope** (600) — todos los titulares H1 a H4. Sustituye a Fraunces como alternativa de Google Fonts a Nordea Sans (fuente corporativa con licencia, no disponible para este proyecto).
 - **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos.
 
 Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son: móvil < 768px, tablet 768–1024px, desktop > 1024px.
 
 | Nivel | Desktop | Tablet | Móvil | Weight | Line-height | Letter-spacing |
 |---|---|---|---|---|---|---|
-| H1 | 42px | 34px | 24px | 400 | 1.04 | -0.025em |
-| H2 | 34px | 30px | 26px | 400 | 1.15 | -0.02em |
-| H3 | 24px | 22px | 20px | 400 | 1.2 | -0.015em |
-| H4 | 19px | 18px | 17px | 500 | 1.3 | -0.01em |
+| H1 | 42px | 34px | 24px | 600 | 1.04 | -0.025em |
+| H2 | 34px | 30px | 26px | 600 | 1.15 | -0.02em |
+| H3 | 24px | 22px | 20px | 600 | 1.2 | -0.015em |
+| H4 | 19px | 18px | 17px | 600 | 1.3 | -0.01em |
 | Body | 17px | 16px | 16px | 400 | 1.55 | 0 |
 | Eyebrow | 11px | 11px | 11px | 500 | 1.4 | 0.16em uppercase |
 
