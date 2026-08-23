@@ -36,11 +36,26 @@
   width: auto;
 }
 
-.brandText {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 13px;
-  line-height: 1.7;
+.socialList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.socialLink {
+  display: inline-flex;
   color: #d4d2ca;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: #ffffff;
+}
+
+.socialLink svg {
+  width: 20px;
+  height: 20px;
 }
 
 .columnHeading {
