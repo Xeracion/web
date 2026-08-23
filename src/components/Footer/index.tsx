@@ -92,7 +92,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
       <Container className={styles.grid}>
         <div>
           <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
-            <Image src="/logo.svg" alt="" width={140} height={30} />
+            <Image src="/XeracionBlue.png" alt="" width={1811} height={375} />
           </Link>
           <p className={styles.brandText}>
             {address}

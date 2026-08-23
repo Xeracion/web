@@ -70,7 +70,7 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
       >
         <div className={cn(styles.bar, scrolled && styles.barScrolled)}>
           <Link href="/" className={styles.logo} aria-label={siteName}>
-            <Image src="/logo.svg" alt="" width={140} height={30} priority />
+            <Image src="/XeracionBlue.png" alt="" width={1811} height={375} priority />
           </Link>
 
           <nav className={styles.desktopNav} aria-label="Navegación principal">
