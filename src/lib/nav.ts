@@ -9,6 +9,5 @@ export const NAV_ITEMS: NavItem[] = [
   { name: 'Ferrol', link: '/ferrol/' },
   { name: 'Irse', link: '/irse/' },
   { name: 'English', link: '/en/' },
+  { name: 'Nosotros', link: '/nosotros/' },
 ]
-
-export const NAV_SECONDARY_ITEM: NavItem = { name: 'Nosotros', link: '/nosotros/' }

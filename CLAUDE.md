@@ -144,7 +144,7 @@ Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver e
 
 - Sticky. Al cargar, fondo transparente y ancho igual al `.container` de la página. Al superar ~100px de scroll, la barra se estrecha (max-width 1200px → 720px), se centra, gana fondo `rgba(250,250,247,0.85)` + `backdrop-filter: blur(12px)` + sombra sutil + esquinas muy redondeadas (efecto "pill" flotante). Transición con spring (`motion`), no lineal.
 - Izquierda: logotipo "Xeración" (imagen del wordmark de marca).
-- Derecha desktop: `Ferrol · Irse · English · [separador] · Nosotros` — los tres primeros con un "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos; el cuarto en gris suave, sin pill.
+- Derecha desktop: `Ferrol · Irse · English · Nosotros` — los cuatro enlaces reciben el mismo "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos, sin distinción visual entre ellos.
 - Derecha móvil (< 768px): hamburguesa → menú desplegable animado (no overlay a pantalla completa), se cierra al pulsar un enlace o Escape.
 - **En cada sub-home**, el enlace de nav de la sección activa lleva el color de acento correspondiente (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.
 - Respeta `prefers-reduced-motion`: sin pill animado ni transiciones de layout si está activo.
@@ -153,7 +153,7 @@ Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver e
 
 - Ubicación: `src/components/ResizableNavbar/` (`ResizableNavbar.tsx` + `ResizableNavbar.module.css`, con un `index.ts` barrel para poder importarlo como `@/components/ResizableNavbar`, igual que el resto de componentes).
 - Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los cinco layouts que montan navegación: `(main)`, `ferrol`, `irse`, `en`, `nosotros`.
-- Props: `siteName: string`, `items: NavItem[]` (`{ name, link }`, de `src/lib/nav.ts`), `secondaryItem?: NavItem` (el enlace "Nosotros", con su estilo diferenciado), `activeRoute?: 'ferrol' | 'irse' | 'en'`. Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa.
+- Props: `siteName: string`, `items: NavItem[]` (`{ name, link }`, de `src/lib/nav.ts` — incluye "Nosotros" como un enlace más, con el mismo estilo y pill que el resto), `activeRoute?: 'ferrol' | 'irse' | 'en'`. Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa.
 - El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse/.route-en` que ya aplica cada layout — el componente no tiene lógica condicional de color.
 - **Decisión técnica**: usa la librería `motion` (antes `framer-motion`) para las animaciones de scroll (`useScroll` + `useMotionValueEvent`), el spring de resize y el pill con `layoutId`. Está inspirado en el "Resizable Navbar" de Aceternity UI, pero reimplementado desde cero en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
 

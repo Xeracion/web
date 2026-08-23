@@ -100,24 +100,6 @@
   font-weight: 500;
 }
 
-.divider {
-  width: 1px;
-  height: 14px;
-  background: var(--color-border-strong);
-}
-
-.aboutLink {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 14px;
-  color: var(--color-text-tertiary);
-  white-space: nowrap;
-  transition: color 0.2s ease;
-}
-
-.aboutLink:hover {
-  color: var(--color-text-primary);
-}
-
 .mobileToggle {
   display: inline-flex;
   flex-direction: column;

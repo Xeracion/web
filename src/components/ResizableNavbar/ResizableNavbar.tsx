@@ -23,11 +23,10 @@ const INSTANT = { duration: 0 }
 interface ResizableNavbarProps {
   siteName: string
   items: NavItem[]
-  secondaryItem?: NavItem
   activeRoute?: RouteKey
 }
 
-export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }: ResizableNavbarProps) {
+export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavbarProps) {
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [hovered, setHovered] = useState<number | null>(null)
@@ -53,7 +52,6 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [mobileOpen])
 
-  const allItems = secondaryItem ? [...items, secondaryItem] : items
   const transition = prefersReducedMotion ? INSTANT : SPRING
 
   return (
@@ -105,14 +103,6 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
                 )
               })}
             </ul>
-            {secondaryItem && (
-              <>
-                <span className={styles.divider} aria-hidden="true" />
-                <Link href={secondaryItem.link} className={styles.aboutLink}>
-                  {secondaryItem.name}
-                </Link>
-              </>
-            )}
           </nav>
 
           <button
@@ -163,7 +153,7 @@ export function ResizableNavbar({ siteName, items, secondaryItem, activeRoute }:
           >
             <nav aria-label="Navegación móvil">
               <ul className={styles.mobileList}>
-                {allItems.map((item) => (
+                {items.map((item) => (
                   <li key={item.link}>
                     <Link
                       href={item.link}
