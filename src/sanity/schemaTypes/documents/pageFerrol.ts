@@ -59,9 +59,25 @@ export const pageFerrol = defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'heroCtaPrimaryHref',
+      title: 'Destino del botón principal',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#agenda") o una URL completa (ej. "https://..."). Si lo dejas vacío, lleva a "#agenda".',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
       name: 'heroCtaSecondaryLabel',
       title: 'Texto del botón secundario',
       description: 'Por ejemplo: "Cómo llegar".',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroCtaSecondaryHref',
+      title: 'Destino del botón secundario',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#visitanos") o una URL completa. Si lo dejas vacío, lleva a "#visitanos".',
       type: 'string',
       group: 'hero',
     }),

@@ -61,8 +61,24 @@ export const pageEn = defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'heroCtaPrimaryHref',
+      title: 'Destino del botón principal',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#apply") o una URL completa. Si lo dejas vacío, lleva a "#apply".',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
       name: 'heroCtaSecondaryLabel',
       title: 'Texto del botón secundario',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroCtaSecondaryHref',
+      title: 'Destino del botón secundario',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#stays") o una URL completa. Si lo dejas vacío, lleva a "#stays".',
       type: 'string',
       group: 'hero',
     }),

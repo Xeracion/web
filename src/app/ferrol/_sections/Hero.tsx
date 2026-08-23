@@ -19,12 +19,14 @@ export function Hero({ data }: { data: PageFerrolData }) {
         (data.heroCtaPrimaryLabel || data.heroCtaSecondaryLabel) && (
           <div className={styles.buttons}>
             {data.heroCtaPrimaryLabel && (
-              <ButtonPrimary accent href="#agenda">
+              <ButtonPrimary accent href={data.heroCtaPrimaryHref || '#agenda'}>
                 {data.heroCtaPrimaryLabel}
               </ButtonPrimary>
             )}
             {data.heroCtaSecondaryLabel && (
-              <ButtonSecondary href="#visitanos">{data.heroCtaSecondaryLabel}</ButtonSecondary>
+              <ButtonSecondary href={data.heroCtaSecondaryHref || '#visitanos'}>
+                {data.heroCtaSecondaryLabel}
+              </ButtonSecondary>
             )}
           </div>
         )

@@ -60,8 +60,24 @@ export const pageIrse = defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'heroCtaPrimaryHref',
+      title: 'Destino del botón principal',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#formulario") o una URL completa. Si lo dejas vacío, lleva a "#formulario".',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
       name: 'heroCtaSecondaryLabel',
       title: 'Texto del botón secundario',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroCtaSecondaryHref',
+      title: 'Destino del botón secundario',
+      description:
+        'A dónde lleva el botón. Puede ser un ancla dentro de esta misma página (ej. "#programas") o una URL completa. Si lo dejas vacío, lleva a "#programas".',
       type: 'string',
       group: 'hero',
     }),

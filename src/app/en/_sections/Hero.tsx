@@ -19,12 +19,14 @@ export function Hero({ data }: { data: PageEnData }) {
         (data.heroCtaPrimaryLabel || data.heroCtaSecondaryLabel) && (
           <div className={styles.buttons}>
             {data.heroCtaPrimaryLabel && (
-              <ButtonPrimary accent href="#apply">
+              <ButtonPrimary accent href={data.heroCtaPrimaryHref || '#apply'}>
                 {data.heroCtaPrimaryLabel}
               </ButtonPrimary>
             )}
             {data.heroCtaSecondaryLabel && (
-              <ButtonSecondary href="#stays">{data.heroCtaSecondaryLabel}</ButtonSecondary>
+              <ButtonSecondary href={data.heroCtaSecondaryHref || '#stays'}>
+                {data.heroCtaSecondaryLabel}
+              </ButtonSecondary>
             )}
           </div>
         )

@@ -134,7 +134,9 @@ export interface PageFerrolData {
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
+  heroCtaPrimaryHref?: string
   heroCtaSecondaryLabel?: string
+  heroCtaSecondaryHref?: string
   fixedProgramsIntro?: SectionIntroData
   agendaIntro?: SectionIntroData
   arrivalHeading?: string
@@ -159,7 +161,9 @@ const FERROL_QUERY = `{
     heroImage,
     heroImageCaption,
     heroCtaPrimaryLabel,
+    heroCtaPrimaryHref,
     heroCtaSecondaryLabel,
+    heroCtaSecondaryHref,
     fixedProgramsIntro,
     agendaIntro,
     arrivalHeading,
@@ -198,7 +202,9 @@ export interface PageIrseData {
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
+  heroCtaPrimaryHref?: string
   heroCtaSecondaryLabel?: string
+  heroCtaSecondaryHref?: string
   programsIntro?: SectionIntroData
   opportunitiesIntro?: SectionIntroData
   opportunitiesFeedUrl?: string
@@ -221,7 +227,9 @@ const IRSE_QUERY = `{
     heroImage,
     heroImageCaption,
     heroCtaPrimaryLabel,
+    heroCtaPrimaryHref,
     heroCtaSecondaryLabel,
+    heroCtaSecondaryHref,
     programsIntro,
     opportunitiesIntro,
     opportunitiesFeedUrl,
@@ -265,7 +273,9 @@ export interface PageEnData {
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
+  heroCtaPrimaryHref?: string
   heroCtaSecondaryLabel?: string
+  heroCtaSecondaryHref?: string
   lifeInFerrolIntro?: SectionIntroData
   lifeInFerrolPhotos?: LifeInFerrolPhotoData[]
   whatYouCanDoIntro?: SectionIntroData
@@ -295,7 +305,9 @@ const EN_QUERY = `{
     heroImage,
     heroImageCaption,
     heroCtaPrimaryLabel,
+    heroCtaPrimaryHref,
     heroCtaSecondaryLabel,
+    heroCtaSecondaryHref,
     lifeInFerrolIntro,
     lifeInFerrolPhotos,
     whatYouCanDoIntro,

@@ -19,12 +19,14 @@ export function Hero({ data }: { data: PageIrseData }) {
         (data.heroCtaPrimaryLabel || data.heroCtaSecondaryLabel) && (
           <div className={styles.buttons}>
             {data.heroCtaPrimaryLabel && (
-              <ButtonPrimary accent href="#formulario">
+              <ButtonPrimary accent href={data.heroCtaPrimaryHref || '#formulario'}>
                 {data.heroCtaPrimaryLabel}
               </ButtonPrimary>
             )}
             {data.heroCtaSecondaryLabel && (
-              <ButtonSecondary href="#programas">{data.heroCtaSecondaryLabel}</ButtonSecondary>
+              <ButtonSecondary href={data.heroCtaSecondaryHref || '#programas'}>
+                {data.heroCtaSecondaryLabel}
+              </ButtonSecondary>
             )}
           </div>
         )
