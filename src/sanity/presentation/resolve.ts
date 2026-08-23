@@ -33,10 +33,10 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
         locations: [{ title: doc?.heroHeading || 'Página English', href: '/en/' }],
       }),
     }),
-    pageSobreNos: defineLocations({
+    pageNosotros: defineLocations({
       select: { heroHeading: 'heroHeading' },
       resolve: (doc) => ({
-        locations: [{ title: doc?.heroHeading || 'Página Sobre nós', href: '/sobre-nos/' }],
+        locations: [{ title: doc?.heroHeading || 'Página Sobre nós', href: '/nosotros/' }],
       }),
     }),
     event: defineLocations({
@@ -81,8 +81,8 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
         locations: [
           { title: doc?.name || 'Testimonio', href: '/' },
           ...(doc?.route === 'en' ? [{ title: doc?.name || 'Testimonio', href: '/en/' }] : []),
-          ...(doc?.route === 'sobre-nos'
-            ? [{ title: doc?.name || 'Testimonio', href: '/sobre-nos/' }]
+          ...(doc?.route === 'nosotros'
+            ? [{ title: doc?.name || 'Testimonio', href: '/nosotros/' }]
             : []),
         ],
       }),

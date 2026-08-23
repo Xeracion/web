@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import { buildPageMetadata } from '@/lib/metadata'
-import { getSiteSettings, getSobreNosPageData } from '@/sanity/lib/queries'
+import { getSiteSettings, getNosotrosPageData } from '@/sanity/lib/queries'
 
 import { ClosingCta } from './_sections/ClosingCta'
 import { Equipo } from './_sections/Equipo'
@@ -13,13 +13,13 @@ import { Valores } from './_sections/Valores'
 import { VoluntariosHistoricos } from './_sections/VoluntariosHistoricos'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getSobreNosPageData()
+  const { page } = await getNosotrosPageData()
   return buildPageMetadata({ title: 'Sobre nós', description: page?.heroText })
 }
 
-export default async function SobreNosPage() {
+export default async function NosotrosPage() {
   const [{ page, volunteerTestimonials }, siteSettings] = await Promise.all([
-    getSobreNosPageData(),
+    getNosotrosPageData(),
     getSiteSettings(),
   ])
 

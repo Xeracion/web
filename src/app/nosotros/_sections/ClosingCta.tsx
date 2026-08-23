@@ -1,10 +1,10 @@
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
-import type { PageSobreNosData, SiteSettings } from '@/sanity/lib/queries'
+import type { PageNosotrosData, SiteSettings } from '@/sanity/lib/queries'
 
 interface ClosingCtaProps {
-  data: PageSobreNosData
+  data: PageNosotrosData
   siteSettings: SiteSettings | null
 }
 

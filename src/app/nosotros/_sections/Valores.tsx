@@ -1,10 +1,10 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageSobreNosData } from '@/sanity/lib/queries'
+import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Valores.module.css'
 
-export function Valores({ data }: { data: PageSobreNosData }) {
+export function Valores({ data }: { data: PageNosotrosData }) {
   const values = data.values ?? []
   if (values.length === 0) return null
 

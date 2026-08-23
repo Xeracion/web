@@ -1,6 +1,6 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageSobreNosData } from '@/sanity/lib/queries'
+import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Equipo.module.css'
 
@@ -14,7 +14,7 @@ function initials(name: string) {
     .toUpperCase()
 }
 
-export function Equipo({ data }: { data: PageSobreNosData }) {
+export function Equipo({ data }: { data: PageNosotrosData }) {
   const members = data.teamMembers ?? []
   if (members.length === 0) return null
 

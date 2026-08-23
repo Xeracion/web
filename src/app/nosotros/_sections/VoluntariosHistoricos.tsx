@@ -1,5 +1,5 @@
 import { Container } from '@/components/Container'
-import type { PageSobreNosData, TestimonialData } from '@/sanity/lib/queries'
+import type { PageNosotrosData, TestimonialData } from '@/sanity/lib/queries'
 
 import styles from './VoluntariosHistoricos.module.css'
 
@@ -33,7 +33,7 @@ export function VoluntariosHistoricos({
   data,
   testimonials,
 }: {
-  data: PageSobreNosData
+  data: PageNosotrosData
   testimonials: TestimonialData[]
 }) {
   return (

@@ -1,10 +1,10 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageSobreNosData } from '@/sanity/lib/queries'
+import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Partners.module.css'
 
-export function Partners({ data }: { data: PageSobreNosData }) {
+export function Partners({ data }: { data: PageNosotrosData }) {
   const partners = data.partners ?? []
   if (partners.length === 0) return null
 

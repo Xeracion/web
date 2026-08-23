@@ -23,13 +23,13 @@ const client = createClient({
 
 type SanityDoc = { _id: string; _type: string; [key: string]: unknown }
 
-// Solo los documentos nuevos de /sobre-nos. Usa createIfNotExists para no
+// Solo los documentos nuevos de /nosotros. Usa createIfNotExists para no
 // pisar nada si alguno ya existiera (por ejemplo, si ya lo has editado a
 // mano en el Studio).
 const docs: SanityDoc[] = [
   {
-    _id: 'pageSobreNos',
-    _type: 'pageSobreNos',
+    _id: 'pageNosotros',
+    _type: 'pageNosotros',
     heroEyebrow: 'Desde 2013 · Ferrol, Galicia',
     heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
     heroHeadingAccent: 'tu red en Europa',
@@ -93,7 +93,7 @@ const docs: SanityDoc[] = [
     program: 'ESC',
     language: 'es',
     displaySize: 'mediano',
-    route: 'sobre-nos',
+    route: 'nosotros',
   },
   {
     _id: 'testimonial-martina',
@@ -104,7 +104,7 @@ const docs: SanityDoc[] = [
     program: 'ESC',
     language: 'es',
     displaySize: 'mediano',
-    route: 'sobre-nos',
+    route: 'nosotros',
   },
   {
     _id: 'testimonial-linda',
@@ -115,7 +115,7 @@ const docs: SanityDoc[] = [
     program: 'ESC',
     language: 'es',
     displaySize: 'mediano',
-    route: 'sobre-nos',
+    route: 'nosotros',
   },
 ]
 

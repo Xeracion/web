@@ -17,7 +17,7 @@ import { home } from './documents/home'
 import { pageFerrol } from './documents/pageFerrol'
 import { pageIrse } from './documents/pageIrse'
 import { pageEn } from './documents/pageEn'
-import { pageSobreNos } from './documents/pageSobreNos'
+import { pageNosotros } from './documents/pageNosotros'
 import { event } from './documents/event'
 import { fixedProgram } from './documents/fixedProgram'
 import { testimonial } from './documents/testimonial'
@@ -49,7 +49,7 @@ export const schemaTypes = [
   pageFerrol,
   pageIrse,
   pageEn,
-  pageSobreNos,
+  pageNosotros,
 
   // Colecciones
   event,

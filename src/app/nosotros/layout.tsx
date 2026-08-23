@@ -5,7 +5,7 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
 import { getSiteSettings } from '@/sanity/lib/queries'
 
-export default async function SobreNosLayout({ children }: { children: React.ReactNode }) {
+export default async function NosotrosLayout({ children }: { children: React.ReactNode }) {
   const siteSettings = await getSiteSettings()
 
   return (

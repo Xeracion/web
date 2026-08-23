@@ -367,7 +367,7 @@ export interface InitiativeData {
   colorScheme?: 'blue' | 'green' | 'orange'
 }
 
-export interface PageSobreNosData {
+export interface PageNosotrosData {
   heroEyebrow?: string
   heroHeading?: string
   heroHeadingAccent?: string
@@ -392,13 +392,13 @@ export interface PageSobreNosData {
   closingText?: string
 }
 
-export interface SobreNosPageData {
-  page: PageSobreNosData | null
+export interface NosotrosPageData {
+  page: PageNosotrosData | null
   volunteerTestimonials: TestimonialData[]
 }
 
-const SOBRE_NOS_QUERY = `{
-  "page": *[_type == "pageSobreNos"][0]{
+const NOSOTROS_QUERY = `{
+  "page": *[_type == "pageNosotros"][0]{
     heroEyebrow,
     heroHeading,
     heroHeadingAccent,
@@ -422,12 +422,12 @@ const SOBRE_NOS_QUERY = `{
     closingHeading,
     closingText
   },
-  "volunteerTestimonials": *[_type == "testimonial" && route == "sobre-nos"] | order(_createdAt asc){
+  "volunteerTestimonials": *[_type == "testimonial" && route == "nosotros"] | order(_createdAt asc){
     quote, name, originCity, destinationCity, program, year, photo
   }
 }`
 
-export const getSobreNosPageData = cache(async (): Promise<SobreNosPageData> => {
-  const { data } = await sanityFetch({ query: SOBRE_NOS_QUERY })
-  return data as SobreNosPageData
+export const getNosotrosPageData = cache(async (): Promise<NosotrosPageData> => {
+  const { data } = await sanityFetch({ query: NOSOTROS_QUERY })
+  return data as NosotrosPageData
 })

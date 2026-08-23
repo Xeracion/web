@@ -4,7 +4,7 @@ export const ROUTE_OPTIONS = [
   { title: 'Ferrol', value: 'ferrol' },
   { title: 'Irse', value: 'irse' },
   { title: 'English', value: 'en' },
-  { title: 'Sobre nós', value: 'sobre-nos' },
+  { title: 'Sobre nós', value: 'nosotros' },
   { title: 'General', value: 'general' },
 ]
 

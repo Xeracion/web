@@ -1,6 +1,6 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageSobreNosData } from '@/sanity/lib/queries'
+import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Hero.module.css'
 
@@ -14,7 +14,7 @@ function splitHeading(heading: string, accent?: string) {
   ]
 }
 
-export function Hero({ data }: { data: PageSobreNosData }) {
+export function Hero({ data }: { data: PageNosotrosData }) {
   const heading = data.heroHeading ?? ''
   const parts = splitHeading(heading, data.heroHeadingAccent)
 

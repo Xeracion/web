@@ -221,7 +221,7 @@ doc('pageEn', 'pageEn', {
 })
 
 // --- Página Sobre nós --------------------------------------------------
-doc('pageSobreNos', 'pageSobreNos', {
+doc('pageNosotros', 'pageNosotros', {
   heroEyebrow: 'Desde 2013 · Ferrol, Galicia',
   heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
   heroHeadingAccent: 'tu red en Europa',
@@ -284,7 +284,7 @@ doc('testimonial-tasos', 'testimonial', {
   program: 'ESC',
   language: 'es',
   displaySize: 'mediano',
-  route: 'sobre-nos',
+  route: 'nosotros',
 })
 doc('testimonial-martina', 'testimonial', {
   quote: 'Pensé que sería solo un año raro en mi carrera. Fue el año que más aprendí de mí misma.',
@@ -293,7 +293,7 @@ doc('testimonial-martina', 'testimonial', {
   program: 'ESC',
   language: 'es',
   displaySize: 'mediano',
-  route: 'sobre-nos',
+  route: 'nosotros',
 })
 doc('testimonial-linda', 'testimonial', {
   quote: 'Nadie me avisó de que echaría tanto de menos la lluvia de Ferrol al volver a casa.',
@@ -302,7 +302,7 @@ doc('testimonial-linda', 'testimonial', {
   program: 'ESC',
   language: 'es',
   displaySize: 'mediano',
-  route: 'sobre-nos',
+  route: 'nosotros',
 })
 
 // --- Eventos (route: ferrol) -------------------------------------------

@@ -14,7 +14,7 @@ const ROUTE_NAV_ITEMS: Array<{ key: RouteKey; label: string; href: string }> = [
   { key: 'en', label: 'English', href: '/en/' },
 ]
 
-const ABOUT_ITEM = { key: 'about', label: 'Sobre nós', href: '/sobre-nos/' }
+const ABOUT_ITEM = { key: 'about', label: 'Sobre nós', href: '/nosotros/' }
 
 interface HeaderProps {
   siteName: string

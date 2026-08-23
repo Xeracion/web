@@ -1,10 +1,10 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageSobreNosData } from '@/sanity/lib/queries'
+import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Historia.module.css'
 
-export function Historia({ data }: { data: PageSobreNosData }) {
+export function Historia({ data }: { data: PageNosotrosData }) {
   const paragraphs = data.historiaParagraphs ?? []
   const timeline = data.timeline ?? []
 
