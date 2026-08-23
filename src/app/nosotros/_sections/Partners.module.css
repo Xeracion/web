@@ -12,9 +12,17 @@
 }
 
 .partner {
+  display: flex;
+  align-items: center;
   font-family: var(--font-inter), sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--color-text-tertiary);
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }

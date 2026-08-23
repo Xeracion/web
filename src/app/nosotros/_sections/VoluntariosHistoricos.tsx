@@ -1,5 +1,8 @@
+import Image from 'next/image'
+
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
+import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData, TestimonialData } from '@/sanity/lib/queries'
 
 import styles from './VoluntariosHistoricos.module.css'
@@ -72,6 +75,15 @@ export function VoluntariosHistoricos({
           <div className={styles.testimonials}>
             {testimonials.map((testimonial, i) => (
               <div key={i} className={styles.card}>
+                {testimonial.photo && (
+                  <Image
+                    src={urlFor(testimonial.photo).width(96).height(96).url()}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className={styles.photo}
+                  />
+                )}
                 <p className={styles.quote}>“{testimonial.quote}”</p>
                 <p className={styles.attribution}>{attribution(testimonial)}</p>
               </div>

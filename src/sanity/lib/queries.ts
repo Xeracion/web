@@ -361,6 +361,11 @@ export interface TeamMemberData {
   linkUrl?: string
 }
 
+export interface PartnerData {
+  name?: string
+  logo?: SanityImageSource
+}
+
 export interface InitiativeData {
   icon?: string
   name?: string
@@ -390,7 +395,7 @@ export interface PageNosotrosData {
   iniciativasIntro?: SectionIntroData
   iniciativas?: InitiativeData[]
   partnersIntro?: SectionIntroData
-  partners?: string[]
+  partners?: PartnerData[]
   closingHeading?: string
   closingText?: string
   closingCtaPrimaryHref?: string

@@ -1,5 +1,8 @@
+import Image from 'next/image'
+
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Partners.module.css'
@@ -14,7 +17,17 @@ export function Partners({ data }: { data: PageNosotrosData }) {
       <ul className={styles.list}>
         {partners.map((partner, i) => (
           <li key={i} className={styles.partner}>
-            {partner}
+            {partner.logo ? (
+              <Image
+                src={urlFor(partner.logo).url()}
+                alt={partner.name ?? ''}
+                width={120}
+                height={40}
+                className={styles.logo}
+              />
+            ) : (
+              partner.name
+            )}
           </li>
         ))}
       </ul>

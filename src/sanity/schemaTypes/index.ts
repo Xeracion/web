@@ -11,6 +11,7 @@ import { timelineMilestone } from './objects/timelineMilestone'
 import { valueItem } from './objects/valueItem'
 import { teamMember } from './objects/teamMember'
 import { initiative } from './objects/initiative'
+import { partner } from './objects/partner'
 
 import { siteSettings } from './documents/siteSettings'
 import { home } from './documents/home'
@@ -42,6 +43,7 @@ export const schemaTypes = [
   valueItem,
   teamMember,
   initiative,
+  partner,
 
   // Documentos únicos
   siteSettings,
