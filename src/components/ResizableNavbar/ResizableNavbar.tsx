@@ -20,9 +20,30 @@ const SCROLL_THRESHOLD = 100
 const SPRING = { type: 'spring' as const, stiffness: 260, damping: 32 }
 const INSTANT = { duration: 0 }
 
-const FLAGS: Record<Locale, { flag: string; label: string }> = {
-  es: { flag: '🇪🇸', label: 'Español' },
-  en: { flag: '🇬🇧', label: 'English' },
+const FLAG_LABELS: Record<Locale, string> = {
+  es: 'Español',
+  en: 'English',
+}
+
+function FlagIcon({ locale }: { locale: Locale }) {
+  if (locale === 'en') {
+    return (
+      <svg viewBox="0 0 24 24" className={styles.flagSvg} aria-hidden="true">
+        <rect width="24" height="24" fill="#012169" />
+        <path d="M0 0L24 24M24 0L0 24" stroke="#FFFFFF" strokeWidth="4" />
+        <path d="M0 0L24 24M24 0L0 24" stroke="#C8102E" strokeWidth="1.6" />
+        <path d="M12 0V24M0 12H24" stroke="#FFFFFF" strokeWidth="7" />
+        <path d="M12 0V24M0 12H24" stroke="#C8102E" strokeWidth="4" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className={styles.flagSvg} aria-hidden="true">
+      <rect width="24" height="24" fill="#AA151B" />
+      <rect y="6" width="24" height="12" fill="#F1BF00" />
+    </svg>
+  )
 }
 
 const NAV_COPY: Record<Locale, { primaryNav: string; mobileNav: string; open: string; close: string }> = {
@@ -50,17 +71,17 @@ function LanguageSwitcher({ locale, altLangHref }: LanguageSwitcherProps) {
 
   return (
     <div className={styles.langSwitcher}>
-      <span className={styles.langCurrent} title={FLAGS[locale].label}>
-        <span aria-hidden="true">{FLAGS[locale].flag}</span>
-        <span className={styles.srOnly}>{FLAGS[locale].label}</span>
+      <span className={styles.langCurrent} title={FLAG_LABELS[locale]}>
+        <FlagIcon locale={locale} />
+        <span className={styles.srOnly}>{FLAG_LABELS[locale]}</span>
       </span>
       <Link
         href={altLangHref}
         className={styles.langLink}
-        aria-label={locale === 'es' ? `Cambiar a ${FLAGS.en.label}` : `Switch to ${FLAGS.es.label}`}
-        title={FLAGS[other].label}
+        aria-label={locale === 'es' ? `Cambiar a ${FLAG_LABELS.en}` : `Switch to ${FLAG_LABELS.es}`}
+        title={FLAG_LABELS[other]}
       >
-        <span aria-hidden="true">{FLAGS[other].flag}</span>
+        <FlagIcon locale={other} />
       </Link>
     </div>
   )

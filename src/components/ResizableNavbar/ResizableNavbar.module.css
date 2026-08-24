@@ -115,7 +115,6 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  font-size: 16px;
   opacity: 0.55;
 }
 
@@ -125,7 +124,6 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  font-size: 16px;
   border-radius: var(--radius-full);
   transition: background-color 0.2s ease, opacity 0.2s ease;
   opacity: 0.85;
@@ -135,6 +133,15 @@
 .langLink:focus-visible {
   background: var(--color-accent-bg);
   opacity: 1;
+}
+
+.flagSvg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: 0 0 0 0.5px rgba(44, 44, 42, 0.25);
 }
 
 .srOnly {
@@ -168,7 +175,11 @@
 .mobileLangSwitcher .langLink {
   width: 40px;
   height: 40px;
-  font-size: 22px;
+}
+
+.mobileLangSwitcher .flagSvg {
+  width: 24px;
+  height: 24px;
 }
 
 .mobileToggle {
