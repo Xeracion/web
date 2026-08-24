@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
+import { languageField } from '../fields/language'
 import { routeField } from '../fields/route'
 
 export const faq = defineType({
@@ -21,6 +22,7 @@ export const faq = defineType({
       validation: (Rule) => Rule.required().error('Falta escribir la respuesta.'),
     }),
     routeField(),
+    languageField(),
     defineField({
       name: 'order',
       title: 'Orden',
@@ -36,9 +38,12 @@ export const faq = defineType({
     },
   ],
   preview: {
-    select: { title: 'question', route: 'route', order: 'order' },
-    prepare({ title, route, order }) {
-      return { title, subtitle: [route, order != null ? `orden ${order}` : null].filter(Boolean).join(' · ') }
+    select: { title: 'question', route: 'route', language: 'language', order: 'order' },
+    prepare({ title, route, language, order }) {
+      return {
+        title,
+        subtitle: [route, language, order != null ? `orden ${order}` : null].filter(Boolean).join(' · '),
+      }
     },
   },
 })

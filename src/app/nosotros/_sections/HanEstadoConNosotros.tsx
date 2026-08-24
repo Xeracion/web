@@ -12,13 +12,20 @@ import styles from './HanEstadoConNosotros.module.css'
 
 const VISIBLE_STEP = 8
 
+const COPY = {
+  es: { fallbackHeading: 'Han estado con nosotros', loadMore: 'Cargar más' },
+  en: { fallbackHeading: 'Have been with us', loadMore: 'Load more' },
+}
+
 interface HanEstadoConNosotrosProps {
   intro?: SectionIntroData
   members: TeamMemberData[]
+  locale?: 'es' | 'en'
 }
 
-export function HanEstadoConNosotros({ intro, members }: HanEstadoConNosotrosProps) {
+export function HanEstadoConNosotros({ intro, members, locale = 'es' }: HanEstadoConNosotrosProps) {
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP)
+  const copy = COPY[locale]
 
   if (members.length === 0) return null
 
@@ -28,7 +35,7 @@ export function HanEstadoConNosotros({ intro, members }: HanEstadoConNosotrosPro
   return (
     <Container as="section" className={styles.section}>
       {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
-      <h2>{intro?.heading || 'Han estado con nosotros'}</h2>
+      <h2>{intro?.heading || copy.fallbackHeading}</h2>
       <div className={styles.grid}>
         {visibleMembers.map((member, i) => (
           <TeamMemberCard key={i} member={member} />
@@ -37,7 +44,7 @@ export function HanEstadoConNosotros({ intro, members }: HanEstadoConNosotrosPro
       {hasMore && (
         <div className={styles.loadMore}>
           <ButtonSecondary onClick={() => setVisibleCount((count) => count + VISIBLE_STEP)}>
-            Cargar más
+            {copy.loadMore}
           </ButtonSecondary>
         </div>
       )}

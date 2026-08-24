@@ -20,11 +20,30 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Páginas')
             .items([
-              singletonListItem(S, 'home'),
-              singletonListItem(S, 'pageFerrol'),
-              singletonListItem(S, 'pageIrse'),
-              singletonListItem(S, 'pageEn'),
-              singletonListItem(S, 'pageNosotros'),
+              S.listItem()
+                .title('Español')
+                .child(
+                  S.list()
+                    .title('Español')
+                    .items([
+                      singletonListItem(S, 'home'),
+                      singletonListItem(S, 'pageFerrol'),
+                      singletonListItem(S, 'pageIrse'),
+                      singletonListItem(S, 'pageNosotros'),
+                    ]),
+                ),
+              S.listItem()
+                .title('English')
+                .child(
+                  S.list()
+                    .title('English')
+                    .items([
+                      singletonListItem(S, 'homeEn'),
+                      singletonListItem(S, 'pageFerrolEn'),
+                      singletonListItem(S, 'pageEn'),
+                      singletonListItem(S, 'pageNosotrosEn'),
+                    ]),
+                ),
             ]),
         ),
       S.listItem()

@@ -8,11 +8,18 @@ import styles from './HowToArrive.module.css'
 interface HowToArriveProps {
   data: PageFerrolData
   siteSettings: SiteSettings | null
+  locale?: 'es' | 'en'
 }
 
-export function HowToArrive({ data, siteSettings }: HowToArriveProps) {
+const COPY = {
+  es: { map: 'Mapa', placeholder: 'mapa', gettingHere: 'Cómo venir', contact: 'Contacto' },
+  en: { map: 'Map', placeholder: 'map', gettingHere: 'Getting here', contact: 'Contact' },
+}
+
+export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArriveProps) {
   const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
   const emailHref = siteSettings?.email ? `mailto:${siteSettings.email}` : undefined
+  const copy = COPY[locale]
 
   return (
     <Container as="section" id="visitanos" className={styles.section}>
@@ -20,7 +27,7 @@ export function HowToArrive({ data, siteSettings }: HowToArriveProps) {
         <div className={styles.map}>
           <iframe
             src={data.arrivalMapEmbedUrl}
-            title={`Mapa · ${data.arrivalHeading ?? 'Ferrol'}`}
+            title={`${copy.map} · ${data.arrivalHeading ?? 'Ferrol'}`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
@@ -28,7 +35,7 @@ export function HowToArrive({ data, siteSettings }: HowToArriveProps) {
       ) : (
         <PhotoPlaceholder
           variant="ferrol"
-          label={`mapa · ${data.arrivalHeading ?? 'Ferrol'}`}
+          label={`${copy.placeholder} · ${data.arrivalHeading ?? 'Ferrol'}`}
           aspectRatio="4 / 3"
         />
       )}
@@ -37,13 +44,13 @@ export function HowToArrive({ data, siteSettings }: HowToArriveProps) {
         {data.arrivalAddressText && <p className={styles.text}>{data.arrivalAddressText}</p>}
         {data.arrivalTransportText && (
           <>
-            <p className={styles.label}>Cómo venir</p>
+            <p className={styles.label}>{copy.gettingHere}</p>
             <p className={styles.text}>{data.arrivalTransportText}</p>
           </>
         )}
         {(whatsappHref || emailHref) && (
           <>
-            <p className={styles.label}>Contacto</p>
+            <p className={styles.label}>{copy.contact}</p>
             <div className={styles.contact}>
               {whatsappHref && (
                 <ButtonLink accent href={whatsappHref}>

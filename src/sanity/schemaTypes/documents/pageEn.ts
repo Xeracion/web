@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export const pageEn = defineType({
   name: 'pageEn',
-  title: 'Página English',
+  title: 'Página Volunteering',
   type: 'document',
   groups: [
     { name: 'hero', title: 'Portada', default: true },
@@ -176,7 +176,7 @@ export const pageEn = defineType({
   preview: {
     select: { title: 'heroHeading', media: 'heroImage' },
     prepare({ title, media }) {
-      return { title: title || 'Página English', media }
+      return { title: title || 'Página Volunteering', media }
     },
   },
 })

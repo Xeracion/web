@@ -11,9 +11,18 @@ interface AgendaProps {
   linkLabel?: string
   featured: EventSummary | null
   upcoming: EventSummary[]
+  locale?: 'es' | 'en'
+  ferrolAgendaHref?: string
 }
 
-export function Agenda({ eyebrow, linkLabel, featured, upcoming }: AgendaProps) {
+export function Agenda({
+  eyebrow,
+  linkLabel,
+  featured,
+  upcoming,
+  locale = 'es',
+  ferrolAgendaHref = '/ferrol/#agenda',
+}: AgendaProps) {
   if (!featured && upcoming.length === 0) return null
 
   return (
@@ -24,7 +33,7 @@ export function Agenda({ eyebrow, linkLabel, featured, upcoming }: AgendaProps) 
           <h3 className={styles.featuredTitle}>{featured.title}</h3>
           {featured.dateTime && (
             <p className={styles.meta}>
-              {formatEventWeekdayLong(featured.dateTime)} · {formatEventTime(featured.dateTime)}
+              {formatEventWeekdayLong(featured.dateTime, locale)} · {formatEventTime(featured.dateTime)}
               {featured.location ? ` · ${featured.location.toUpperCase()}` : ''}
             </p>
           )}
@@ -39,14 +48,14 @@ export function Agenda({ eyebrow, linkLabel, featured, upcoming }: AgendaProps) 
               <span className={styles.name}>{event.title}</span>
               {event.dateTime && (
                 <span className={styles.date}>
-                  {formatEventWeekdayShort(event.dateTime)} · {formatEventTime(event.dateTime)}
+                  {formatEventWeekdayShort(event.dateTime, locale)} · {formatEventTime(event.dateTime)}
                 </span>
               )}
             </li>
           ))}
         </ul>
         {linkLabel && (
-          <ButtonLink href="/ferrol/#agenda" className={styles.link}>
+          <ButtonLink href={ferrolAgendaHref} className={styles.link}>
             {linkLabel}
           </ButtonLink>
         )}

@@ -29,7 +29,7 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
             <PhotoPlaceholder
               variant="neutral"
               image={large.photo}
-              label={[large.name, large.destinationCity].filter(Boolean).join(' en ')}
+              label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
               aspectRatio="4 / 3"
             />
             <p className={styles.largeQuote}>“{large.quote}”</p>

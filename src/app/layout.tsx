@@ -57,7 +57,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = (await headers()).get("x-pathname") ?? "";
-  const lang = pathname.startsWith("/en") ? "en" : "es";
+  const lang =
+    pathname.startsWith("/en") ||
+    pathname.startsWith("/about") ||
+    pathname.startsWith("/volunteering")
+      ? "en"
+      : "es";
 
   return (
     <html lang={lang} className={`${manrope.variable} ${inter.variable}`}>

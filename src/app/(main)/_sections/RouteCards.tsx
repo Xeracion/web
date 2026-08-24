@@ -3,26 +3,23 @@ import { Container } from '@/components/Container'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import type { PhotoPlaceholderVariant } from '@/components/PhotoPlaceholder'
-import type { HomeData, RouteCardData } from '@/sanity/lib/queries'
+import type { RouteCardData } from '@/sanity/lib/queries'
 
 import styles from './RouteCards.module.css'
 
-const ROUTES: Array<{
-  key: Extract<PhotoPlaceholderVariant, 'ferrol' | 'irse' | 'en'>
-  routeClass: string
+export interface RouteCardEntry {
+  key: string
+  routeClass?: string
   href: string
-  field: keyof Pick<HomeData, 'routeCardFerrol' | 'routeCardIrse' | 'routeCardEn'>
-}> = [
-  { key: 'ferrol', routeClass: 'route-ferrol', href: '/ferrol/', field: 'routeCardFerrol' },
-  { key: 'irse', routeClass: 'route-irse', href: '/irse/', field: 'routeCardIrse' },
-  { key: 'en', routeClass: 'route-en', href: '/en/', field: 'routeCardEn' },
-]
+  photoVariant: PhotoPlaceholderVariant
+  card?: RouteCardData
+}
 
-export function RouteCards({ data }: { data: HomeData }) {
+export function RouteCards({ items }: { items: RouteCardEntry[] }) {
   return (
     <Container as="section" className={styles.section}>
-      {ROUTES.map((route) => {
-        const card: RouteCardData | undefined = data[route.field]
+      {items.map((route) => {
+        const card = route.card
         if (!card) return null
 
         return (
@@ -30,7 +27,7 @@ export function RouteCards({ data }: { data: HomeData }) {
             <Card href={route.href}>
               <div className={styles.photoWrap}>
                 <PhotoPlaceholder
-                  variant={route.key}
+                  variant={route.photoVariant}
                   image={card.image}
                   label={card.photoLabel ?? ''}
                   className={styles.photo}

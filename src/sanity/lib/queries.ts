@@ -39,22 +39,25 @@ export interface StatItemData {
   label?: string
 }
 
-export interface HomeData {
+export interface HomeBaseData {
   eyebrow?: string
   heading?: string
   intro?: string
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroIndicator?: string
-  routeCardFerrol?: RouteCardData
-  routeCardIrse?: RouteCardData
-  routeCardEn?: RouteCardData
   stats?: StatItemData[]
   testimonialsEyebrow?: string
   agendaEyebrow?: string
   agendaLinkLabel?: string
   closingHeading?: string
   closingText?: string
+}
+
+export interface HomeData extends HomeBaseData {
+  routeCardFerrol?: RouteCardData
+  routeCardIrse?: RouteCardData
+  routeCardEn?: RouteCardData
 }
 
 export interface TestimonialData {
@@ -98,10 +101,10 @@ const HOME_QUERY = `{
     closingHeading,
     closingText
   },
-  "testimonialLarge": *[_type == "testimonial" && displaySize == "grande"] | order(_createdAt asc)[0]{
+  "testimonialLarge": *[_type == "testimonial" && displaySize == "grande" && (!defined(language) || language == "es")] | order(_createdAt asc)[0]{
     quote, name, originCity, destinationCity, program, year, photo
   },
-  "testimonialMedium": *[_type == "testimonial" && displaySize == "mediano"] | order(_createdAt asc)[0]{
+  "testimonialMedium": *[_type == "testimonial" && displaySize == "mediano" && (!defined(language) || language == "es")] | order(_createdAt asc)[0]{
     quote, name, originCity, destinationCity, program, year, photo
   }
 }`
@@ -109,6 +112,49 @@ const HOME_QUERY = `{
 export const getHomePageData = cache(async (): Promise<HomePageData> => {
   const { data } = await sanityFetch({ query: HOME_QUERY })
   return data as HomePageData
+})
+
+export interface HomeEnData extends HomeBaseData {
+  routeCardFerrol?: RouteCardData
+  routeCardVolunteering?: RouteCardData
+  routeCardAbout?: RouteCardData
+}
+
+export interface HomeEnPageData {
+  home: HomeEnData | null
+  testimonialLarge: TestimonialData | null
+  testimonialMedium: TestimonialData | null
+}
+
+const HOME_EN_QUERY = `{
+  "home": *[_type == "homeEn"][0]{
+    eyebrow,
+    heading,
+    intro,
+    heroImage,
+    heroImageCaption,
+    heroIndicator,
+    routeCardFerrol{ badgeLabel, title, text, ctaLabel, image, photoLabel },
+    routeCardVolunteering{ badgeLabel, title, text, ctaLabel, image, photoLabel },
+    routeCardAbout{ badgeLabel, title, text, ctaLabel, image, photoLabel },
+    stats,
+    testimonialsEyebrow,
+    agendaEyebrow,
+    agendaLinkLabel,
+    closingHeading,
+    closingText
+  },
+  "testimonialLarge": *[_type == "testimonial" && displaySize == "grande" && language == "en"] | order(_createdAt asc)[0]{
+    quote, name, originCity, destinationCity, program, year, photo
+  },
+  "testimonialMedium": *[_type == "testimonial" && displaySize == "mediano" && language == "en"] | order(_createdAt asc)[0]{
+    quote, name, originCity, destinationCity, program, year, photo
+  }
+}`
+
+export const getHomeEnPageData = cache(async (): Promise<HomeEnPageData> => {
+  const { data } = await sanityFetch({ query: HOME_EN_QUERY })
+  return data as HomeEnPageData
 })
 
 export interface SectionIntroData {
@@ -175,16 +221,50 @@ const FERROL_QUERY = `{
     closingHeading,
     closingText
   },
-  "fixedPrograms": *[_type == "fixedProgram" && route == "ferrol"] | order(_createdAt asc){
+  "fixedPrograms": *[_type == "fixedProgram" && route == "ferrol" && (!defined(language) || language == "es")] | order(_createdAt asc){
     name, schedule, description
   },
-  "faqs": *[_type == "faq" && route == "ferrol"] | order(order asc){
+  "faqs": *[_type == "faq" && route == "ferrol" && (!defined(language) || language == "es")] | order(order asc){
     question, answer
   }
 }`
 
 export const getFerrolPageData = cache(async (): Promise<FerrolPageData> => {
   const { data } = await sanityFetch({ query: FERROL_QUERY })
+  return data as FerrolPageData
+})
+
+const FERROL_EN_QUERY = `{
+  "page": *[_type == "pageFerrolEn"][0]{
+    heroEyebrow,
+    heroHeading,
+    heroText,
+    heroImage,
+    heroImageCaption,
+    heroCtaPrimaryLabel,
+    heroCtaPrimaryHref,
+    heroCtaSecondaryLabel,
+    heroCtaSecondaryHref,
+    fixedProgramsIntro,
+    agendaIntro,
+    arrivalHeading,
+    arrivalMapEmbedUrl,
+    arrivalAddressText,
+    arrivalTransportText,
+    faqIntro,
+    closingHeading,
+    closingText
+  },
+  "fixedPrograms": *[_type == "fixedProgram" && route == "ferrol" && language == "en"] | order(_createdAt asc){
+    name, schedule, description
+  },
+  "faqs": *[_type == "faq" && route == "ferrol" && language == "en"] | order(order asc){
+    question, answer
+  }
+}`
+
+export const getFerrolEnPageData = cache(async (): Promise<FerrolPageData> => {
+  const { data } = await sanityFetch({ query: FERROL_EN_QUERY })
   return data as FerrolPageData
 })
 
@@ -438,12 +518,51 @@ const NOSOTROS_QUERY = `{
     closingText,
     closingCtaPrimaryHref
   },
-  "volunteerTestimonials": *[_type == "testimonial" && route == "nosotros"] | order(_createdAt asc){
+  "volunteerTestimonials": *[_type == "testimonial" && route == "nosotros" && (!defined(language) || language == "es")] | order(_createdAt asc){
     quote, name, originCity, destinationCity, program, year, photo
   }
 }`
 
 export const getNosotrosPageData = cache(async (): Promise<NosotrosPageData> => {
   const { data } = await sanityFetch({ query: NOSOTROS_QUERY })
+  return data as NosotrosPageData
+})
+
+const NOSOTROS_EN_QUERY = `{
+  "page": *[_type == "pageNosotrosEn"][0]{
+    heroEyebrow,
+    heroHeading,
+    heroHeadingAccent,
+    heroText,
+    heroStats,
+    heroBackgroundImage,
+    historiaIntro,
+    historiaParagraphs,
+    timeline,
+    valoresIntro,
+    values,
+    equipoIntro,
+    teamMembers,
+    volunteersNumber,
+    volunteersSubtitle,
+    volunteersCtaLabel,
+    volunteersCtaUrl,
+    pastVolunteersIntro,
+    pastVolunteers,
+    iniciativasIntro,
+    iniciativas,
+    partnersIntro,
+    partners,
+    closingHeading,
+    closingText,
+    closingCtaPrimaryHref
+  },
+  "volunteerTestimonials": *[_type == "testimonial" && route == "nosotros" && language == "en"] | order(_createdAt asc){
+    quote, name, originCity, destinationCity, program, year, photo
+  }
+}`
+
+export const getNosotrosEnPageData = cache(async (): Promise<NosotrosPageData> => {
+  const { data } = await sanityFetch({ query: NOSOTROS_EN_QUERY })
   return data as NosotrosPageData
 })

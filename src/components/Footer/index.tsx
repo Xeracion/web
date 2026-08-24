@@ -37,11 +37,11 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
         ],
       },
       {
-        heading: 'English',
+        heading: 'Volunteering',
         links: [
-          { label: 'Volunteering', href: '/en/#volunteering' },
-          { label: 'Life in Ferrol', href: '/en/#life' },
-          { label: 'Apply', href: '/en/#apply' },
+          { label: 'Volunteering', href: '/volunteering/#volunteering' },
+          { label: 'Life in Ferrol', href: '/volunteering/#life' },
+          { label: 'Apply', href: '/volunteering/#apply' },
         ],
       },
     ],
@@ -52,25 +52,17 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
       {
         heading: 'Ferrol',
         links: [
-          { label: 'Schedule', href: '/ferrol/#agenda' },
-          { label: 'Offline Club', href: '/ferrol/#offline-club' },
-          { label: 'Getting here', href: '/ferrol/#visitanos' },
+          { label: 'Schedule', href: '/en/ferrol/#agenda' },
+          { label: 'Offline Club', href: '/en/ferrol/#offline-club' },
+          { label: 'Getting here', href: '/en/ferrol/#visitanos' },
         ],
       },
       {
-        heading: 'Go',
+        heading: 'Volunteering',
         links: [
-          { label: 'European volunteering', href: '/irse/#voluntariado' },
-          { label: 'Exchanges', href: '/irse/#intercambios' },
-          { label: 'Open projects', href: '/irse/#proyectos' },
-        ],
-      },
-      {
-        heading: 'English',
-        links: [
-          { label: 'Volunteering', href: '/en/#volunteering' },
-          { label: 'Life in Ferrol', href: '/en/#life' },
-          { label: 'Apply', href: '/en/#apply' },
+          { label: 'Volunteering', href: '/volunteering/#volunteering' },
+          { label: 'Life in Ferrol', href: '/volunteering/#life' },
+          { label: 'Apply', href: '/volunteering/#apply' },
         ],
       },
     ],
@@ -151,12 +143,13 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
   const copy = COPY[locale]
   const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
+  const homeHref = locale === 'en' ? '/en/' : '/'
 
   return (
     <footer className={styles.footer}>
       <Container className={styles.grid}>
         <div>
-          <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
+          <Link href={homeHref} className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
             <Image src="/XeracionWhite.png" alt="" width={1811} height={375} />
           </Link>
           {socialLinks.length > 0 && (

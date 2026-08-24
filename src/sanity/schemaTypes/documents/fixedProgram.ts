@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
+import { languageField } from '../fields/language'
 import { routeField } from '../fields/route'
 
 export const fixedProgram = defineType({
@@ -28,11 +29,12 @@ export const fixedProgram = defineType({
       validation: (Rule) => Rule.required().error('El programa necesita una descripción.'),
     }),
     routeField(),
+    languageField(),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'schedule', route: 'route' },
-    prepare({ title, subtitle, route }) {
-      return { title, subtitle: [subtitle, route].filter(Boolean).join(' · ') }
+    select: { title: 'name', subtitle: 'schedule', route: 'route', language: 'language' },
+    prepare({ title, subtitle, route, language }) {
+      return { title, subtitle: [subtitle, route, language].filter(Boolean).join(' · ') }
     },
   },
 })

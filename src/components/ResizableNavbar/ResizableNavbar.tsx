@@ -12,7 +12,7 @@ import {
 } from 'motion/react'
 
 import { cn } from '@/lib/cn'
-import type { NavItem, RouteKey } from '@/lib/nav'
+import type { Locale, NavItem, RouteKey } from '@/lib/nav'
 
 import styles from './ResizableNavbar.module.css'
 
@@ -20,13 +20,67 @@ const SCROLL_THRESHOLD = 100
 const SPRING = { type: 'spring' as const, stiffness: 260, damping: 32 }
 const INSTANT = { duration: 0 }
 
+const FLAGS: Record<Locale, { flag: string; label: string }> = {
+  es: { flag: '🇪🇸', label: 'Español' },
+  en: { flag: '🇬🇧', label: 'English' },
+}
+
+const NAV_COPY: Record<Locale, { primaryNav: string; mobileNav: string; open: string; close: string }> = {
+  es: {
+    primaryNav: 'Navegación principal',
+    mobileNav: 'Navegación móvil',
+    open: 'Abrir menú',
+    close: 'Cerrar menú',
+  },
+  en: {
+    primaryNav: 'Main navigation',
+    mobileNav: 'Mobile navigation',
+    open: 'Open menu',
+    close: 'Close menu',
+  },
+}
+
+interface LanguageSwitcherProps {
+  locale: Locale
+  altLangHref: string
+}
+
+function LanguageSwitcher({ locale, altLangHref }: LanguageSwitcherProps) {
+  const other: Locale = locale === 'es' ? 'en' : 'es'
+
+  return (
+    <div className={styles.langSwitcher}>
+      <span className={styles.langCurrent} title={FLAGS[locale].label}>
+        <span aria-hidden="true">{FLAGS[locale].flag}</span>
+        <span className={styles.srOnly}>{FLAGS[locale].label}</span>
+      </span>
+      <Link
+        href={altLangHref}
+        className={styles.langLink}
+        aria-label={locale === 'es' ? `Cambiar a ${FLAGS.en.label}` : `Switch to ${FLAGS.es.label}`}
+        title={FLAGS[other].label}
+      >
+        <span aria-hidden="true">{FLAGS[other].flag}</span>
+      </Link>
+    </div>
+  )
+}
+
 interface ResizableNavbarProps {
   siteName: string
   items: NavItem[]
   activeRoute?: RouteKey
+  locale?: Locale
+  altLangHref?: string
 }
 
-export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavbarProps) {
+export function ResizableNavbar({
+  siteName,
+  items,
+  activeRoute,
+  locale = 'es',
+  altLangHref = '/en/',
+}: ResizableNavbarProps) {
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [hovered, setHovered] = useState<number | null>(null)
@@ -53,6 +107,8 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
   }, [mobileOpen])
 
   const transition = prefersReducedMotion ? INSTANT : SPRING
+  const copy = NAV_COPY[locale]
+  const homeHref = locale === 'en' ? '/en/' : '/'
 
   return (
     <div className={styles.wrapper}>
@@ -67,15 +123,14 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
         transition={transition}
       >
         <div className={cn(styles.bar, scrolled && styles.barScrolled)}>
-          <Link href="/" className={styles.logo} aria-label={siteName}>
+          <Link href={homeHref} className={styles.logo} aria-label={siteName}>
             <Image src="/XeracionBlue.png" alt="" width={1811} height={375} priority />
           </Link>
 
-          <nav className={styles.desktopNav} aria-label="Navegación principal">
+          <nav className={styles.desktopNav} aria-label={copy.primaryNav}>
             <ul className={styles.navList} onMouseLeave={() => setHovered(null)}>
               {items.map((item, i) => {
-                const isActive =
-                  activeRoute && item.link === `/${activeRoute}/`
+                const isActive = activeRoute === item.key
 
                 return (
                   <li
@@ -103,6 +158,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
                 )
               })}
             </ul>
+            <LanguageSwitcher locale={locale} altLangHref={altLangHref} />
           </nav>
 
           <button
@@ -111,7 +167,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
             className={styles.mobileToggle}
             aria-expanded={mobileOpen}
             aria-controls="resizable-navbar-mobile-menu"
-            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={mobileOpen ? copy.close : copy.open}
             onClick={() => setMobileOpen((value) => !value)}
           >
             <motion.span
@@ -151,7 +207,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
             exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0, y: -8 }}
             transition={transition}
           >
-            <nav aria-label="Navegación móvil">
+            <nav aria-label={copy.mobileNav}>
               <ul className={styles.mobileList}>
                 {items.map((item) => (
                   <li key={item.link}>
@@ -165,6 +221,9 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
                   </li>
                 ))}
               </ul>
+              <div className={styles.mobileLangSwitcher}>
+                <LanguageSwitcher locale={locale} altLangHref={altLangHref} />
+              </div>
             </nav>
           </motion.div>
         )}

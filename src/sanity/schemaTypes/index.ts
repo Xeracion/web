@@ -15,10 +15,13 @@ import { partner } from './objects/partner'
 
 import { siteSettings } from './documents/siteSettings'
 import { home } from './documents/home'
+import { homeEn } from './documents/homeEn'
 import { pageFerrol } from './documents/pageFerrol'
+import { pageFerrolEn } from './documents/pageFerrolEn'
 import { pageIrse } from './documents/pageIrse'
 import { pageEn } from './documents/pageEn'
 import { pageNosotros } from './documents/pageNosotros'
+import { pageNosotrosEn } from './documents/pageNosotrosEn'
 import { event } from './documents/event'
 import { fixedProgram } from './documents/fixedProgram'
 import { testimonial } from './documents/testimonial'
@@ -48,10 +51,13 @@ export const schemaTypes = [
   // Documentos únicos
   siteSettings,
   home,
+  homeEn,
   pageFerrol,
+  pageFerrolEn,
   pageIrse,
   pageEn,
   pageNosotros,
+  pageNosotrosEn,
 
   // Colecciones
   event,

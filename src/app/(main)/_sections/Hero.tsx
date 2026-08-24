@@ -1,9 +1,9 @@
 import { HeroSplit } from '@/components/HeroSplit'
-import type { HomeData } from '@/sanity/lib/queries'
+import type { HomeBaseData } from '@/sanity/lib/queries'
 
 import styles from './Hero.module.css'
 
-export function Hero({ data }: { data: HomeData }) {
+export function Hero({ data }: { data: HomeBaseData }) {
   return (
     <HeroSplit
       eyebrow={data.eyebrow}

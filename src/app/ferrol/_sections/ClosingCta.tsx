@@ -8,9 +8,12 @@ import type { PageFerrolData, SiteSettings } from '@/sanity/lib/queries'
 interface ClosingCtaProps {
   data: PageFerrolData
   siteSettings: SiteSettings | null
+  locale?: 'es' | 'en'
 }
 
-export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
+const WHATSAPP_LABEL = { es: 'Hablar por WhatsApp', en: 'Chat on WhatsApp' }
+
+export function ClosingCta({ data, siteSettings, locale = 'es' }: ClosingCtaProps) {
   const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
   const instagram = siteSettings?.socialLinks?.find((link) => stegaClean(link.platform) === 'instagram')
 
@@ -18,7 +21,7 @@ export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
     <ClosingCtaSection heading={data.closingHeading} text={data.closingText}>
       {whatsappHref && (
         <ButtonPrimary accent href={whatsappHref}>
-          Hablar por WhatsApp
+          {WHATSAPP_LABEL[locale]}
         </ButtonPrimary>
       )}
       {instagram?.url && <ButtonSecondary href={instagram.url}>Instagram</ButtonSecondary>}

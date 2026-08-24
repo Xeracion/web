@@ -1,47 +1,56 @@
 import type { Metadata } from 'next'
 
-import { FaqAccordionSection } from '@/components/FaqAccordionSection'
-import { MobilityProgramCards } from '@/components/MobilityProgramCards'
+import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getEnPageData, getSiteSettings } from '@/sanity/lib/queries'
+import { getHomeEnPageData, getSiteSettings } from '@/sanity/lib/queries'
 
-import { ClosingCta } from './_sections/ClosingCta'
-import { Hero } from './_sections/Hero'
-import { HowToApply } from './_sections/HowToApply'
-import { LifeInFerrol } from './_sections/LifeInFerrol'
-import { PracticalInfo } from './_sections/PracticalInfo'
-import { Voices } from './_sections/Voices'
+import { Agenda } from '../(main)/_sections/Agenda'
+import { ClosingCta } from '../(main)/_sections/ClosingCta'
+import { Hero } from '../(main)/_sections/Hero'
+import { RouteCards } from '../(main)/_sections/RouteCards'
+import type { RouteCardEntry } from '../(main)/_sections/RouteCards'
+import { Stats } from '../(main)/_sections/Stats'
+import { Testimonials } from '../(main)/_sections/Testimonials'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getEnPageData()
-  return buildPageMetadata({ title: 'English', description: page?.heroText, locale: 'en_US' })
+  const { home } = await getHomeEnPageData()
+  return buildPageMetadata({ description: home?.intro, locale: 'en_US' })
 }
 
-export default async function EnPage() {
-  const [{ page, mobilityPrograms, testimonials, faqs }, siteSettings] = await Promise.all([
-    getEnPageData(),
+export default async function EnHomePage() {
+  const [{ home, testimonialLarge, testimonialMedium }, siteSettings] = await Promise.all([
+    getHomeEnPageData(),
     getSiteSettings(),
   ])
 
-  if (!page) return null
+  if (!home) return null
+
+  const [featuredEvent = null, ...upcomingEvents] = await getGoogleCalendarEvents(
+    siteSettings?.googleCalendarId,
+    { maxResults: 4 },
+  )
+
+  const routeCardItems: RouteCardEntry[] = [
+    { key: 'ferrol', routeClass: 'route-ferrol', href: '/en/ferrol/', photoVariant: 'ferrol', card: home.routeCardFerrol },
+    { key: 'volunteering', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardVolunteering },
+    { key: 'about', href: '/about/', photoVariant: 'neutral', card: home.routeCardAbout },
+  ]
 
   return (
     <>
-      <Hero data={page} />
-      <MobilityProgramCards
-        id="stays"
-        intro={page.whatYouCanDoIntro}
-        items={mobilityPrograms}
+      <Hero data={home} />
+      <RouteCards items={routeCardItems} />
+      <Stats data={home} />
+      <Testimonials eyebrow={home.testimonialsEyebrow} large={testimonialLarge} small={testimonialMedium} />
+      <Agenda
+        eyebrow={home.agendaEyebrow}
+        linkLabel={home.agendaLinkLabel}
+        featured={featuredEvent}
+        upcoming={upcomingEvents}
         locale="en"
+        ferrolAgendaHref="/en/ferrol/#agenda"
       />
-      <LifeInFerrol intro={page.lifeInFerrolIntro} photos={page.lifeInFerrolPhotos ?? []} />
-      <PracticalInfo
-        columns={[page.practicalInfoGettingHere, page.practicalInfoHousing, page.practicalInfoLanguage]}
-      />
-      <Voices intro={page.voicesIntro} items={testimonials} />
-      <HowToApply id="apply" intro={page.howToApplyIntro} steps={page.howToApplySteps ?? []} />
-      <FaqAccordionSection intro={page.faqIntro} items={faqs} />
-      <ClosingCta data={page} siteSettings={siteSettings} />
+      <ClosingCta home={home} siteSettings={siteSettings} locale="en" />
     </>
   )
 }

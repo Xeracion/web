@@ -1,10 +1,10 @@
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
-import type { HomeData } from '@/sanity/lib/queries'
+import type { HomeBaseData } from '@/sanity/lib/queries'
 
 import styles from './Stats.module.css'
 
-export function Stats({ data }: { data: HomeData }) {
+export function Stats({ data }: { data: HomeBaseData }) {
   if (!data.stats || data.stats.length === 0) return null
 
   return (

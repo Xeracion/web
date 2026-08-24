@@ -8,6 +8,7 @@ import { Agenda } from './_sections/Agenda'
 import { ClosingCta } from './_sections/ClosingCta'
 import { Hero } from './_sections/Hero'
 import { RouteCards } from './_sections/RouteCards'
+import type { RouteCardEntry } from './_sections/RouteCards'
 import { Stats } from './_sections/Stats'
 import { Testimonials } from './_sections/Testimonials'
 
@@ -29,10 +30,16 @@ export default async function HomePage() {
     { maxResults: 4 },
   )
 
+  const routeCardItems: RouteCardEntry[] = [
+    { key: 'ferrol', routeClass: 'route-ferrol', href: '/ferrol/', photoVariant: 'ferrol', card: home.routeCardFerrol },
+    { key: 'irse', routeClass: 'route-irse', href: '/irse/', photoVariant: 'irse', card: home.routeCardIrse },
+    { key: 'en', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardEn },
+  ]
+
   return (
     <>
       <Hero data={home} />
-      <RouteCards data={home} />
+      <RouteCards items={routeCardItems} />
       <Stats data={home} />
       <Testimonials eyebrow={home.testimonialsEyebrow} large={testimonialLarge} small={testimonialMedium} />
       <Agenda
