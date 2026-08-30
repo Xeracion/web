@@ -1,6 +1,7 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
+import { RichText } from '@/components/RichText'
 import type { SectionIntroData, TestimonialData } from '@/sanity/lib/queries'
 
 import styles from './Voices.module.css'
@@ -34,7 +35,7 @@ export function Voices({ intro, items }: VoicesProps) {
             aspectRatio="4 / 3"
           />
           <div>
-            <p className={styles.featuredQuote}>“{featured.quote}”</p>
+            <RichText value={featured.quote} className={styles.featuredQuote} />
             <p className={styles.attribution}>{attribution(featured)}</p>
           </div>
         </div>
@@ -47,7 +48,7 @@ export function Voices({ intro, items }: VoicesProps) {
               aspectRatio="1 / 1"
               style={{ maxWidth: 220 }}
             />
-            <p className={styles.quote}>“{testimonial.quote}”</p>
+            <RichText value={testimonial.quote} className={styles.quote} />
             <p className={styles.attribution}>{attribution(testimonial)}</p>
           </div>
         ))}

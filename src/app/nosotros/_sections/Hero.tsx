@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { RichText } from '@/components/RichText'
 import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
 
@@ -52,7 +53,7 @@ export function Hero({ data }: { data: PageNosotrosData }) {
             ),
           )}
         </h1>
-        {data.heroText && <p className={styles.text}>{data.heroText}</p>}
+        <RichText value={data.heroText} className={styles.text} />
         {data.heroStats && data.heroStats.length > 0 && (
           <div className={styles.stats}>
             {data.heroStats.map((stat, i) => (

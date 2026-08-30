@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
+import { RichText } from '@/components/RichText'
 import { urlFor } from '@/sanity/lib/image'
 import type { PageNosotrosData, TestimonialData } from '@/sanity/lib/queries'
 
@@ -37,7 +38,7 @@ export function VoluntariosHistoricos({
                     className={styles.photo}
                   />
                 )}
-                <p className={styles.quote}>“{testimonial.quote}”</p>
+                <RichText value={testimonial.quote} className={styles.quote} />
                 <p className={styles.attribution}>{attribution(testimonial)}</p>
               </div>
             ))}

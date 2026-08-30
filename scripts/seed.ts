@@ -2,6 +2,7 @@ import { config } from 'dotenv'
 config({ path: '.env.local' })
 
 import { createClient } from '@sanity/client'
+import { randomUUID } from 'crypto'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
@@ -29,6 +30,16 @@ function doc(_id: string, _type: string, fields: Record<string, unknown>) {
   docs.push({ _id, _type, ...fields })
 }
 
+function toBlock(text: string) {
+  return {
+    _type: 'block',
+    _key: randomUUID(),
+    style: 'normal',
+    markDefs: [],
+    children: [{ _type: 'span', _key: randomUUID(), text, marks: [] }],
+  }
+}
+
 // --- Ajustes generales -------------------------------------------------
 doc('siteSettings', 'siteSettings', {
   title: 'Xeración',
@@ -42,8 +53,11 @@ doc('siteSettings', 'siteSettings', {
 doc('home', 'home', {
   eyebrow: 'Asociación juvenil · Ferrol · desde 2013',
   heading: 'Doce años abriendo puertas a Europa desde Galicia.',
-  intro:
-    'Llevamos a jóvenes gallegos de voluntariado por toda Europa, traemos a jóvenes europeos a Ferrol y montamos cosas para la peña que vive aquí.',
+  intro: [
+    toBlock(
+      'Llevamos a jóvenes gallegos de voluntariado por toda Europa, traemos a jóvenes europeos a Ferrol y montamos cosas para la peña que vive aquí.',
+    ),
+  ],
   heroImageCaption: 'foto editorial · grupo en muelle de Ferrol',
   heroIndicator: 'Elige por dónde entras',
   routeCardFerrol: {
@@ -80,34 +94,46 @@ doc('home', 'home', {
   agendaEyebrow: 'Esta semana en Ferrol',
   agendaLinkLabel: 'Toda la agenda',
   closingHeading: 'Si dudas, escríbenos.',
-  closingText: 'Sin formularios largos. WhatsApp, email o pásate por la Almendra 9 cualquier tarde.',
+  closingText: [
+    toBlock('Sin formularios largos. WhatsApp, email o pásate por la Almendra 9 cualquier tarde.'),
+  ],
 })
 
 // --- Página Ferrol ---------------------------------------------------------
 doc('pageFerrol', 'pageFerrol', {
   heroEyebrow: 'Ruta 1 · Casa da Xuventude · Ferrol',
   heroHeading: 'Un sitio en la Almendra donde pasan cosas cada semana.',
-  heroText:
-    'Talleres, clubes, conciertos, encuentros. Casi todo gratis. Rúa Almendra 9 — abierto de lunes a sábado.',
+  heroText: [
+    toBlock(
+      'Talleres, clubes, conciertos, encuentros. Casi todo gratis. Rúa Almendra 9 — abierto de lunes a sábado.',
+    ),
+  ],
   heroImageCaption: 'foto editorial · Offline Club en la Almendra 9',
   heroCtaPrimaryLabel: 'Ver agenda de la semana',
   heroCtaSecondaryLabel: 'Cómo llegar',
   fixedProgramsIntro: { _type: 'sectionIntro', eyebrow: 'Programas fijos', heading: 'Cuatro cosas que hacemos siempre.' },
   agendaIntro: { _type: 'sectionIntro', eyebrow: 'Agenda', heading: 'Qué hay esta semana y la que viene.' },
   arrivalHeading: 'Casa da Xuventude',
-  arrivalAddressText: 'Rúa Almendra 9, 15401 Ferrol. Planta baja y primera. Abierto de lunes a sábado, tardes.',
-  arrivalTransportText: 'Estación de tren a 10 min andando. Autobús urbano líneas 1, 5, 7 (parada Cantón).',
+  arrivalAddressText: [
+    toBlock('Rúa Almendra 9, 15401 Ferrol. Planta baja y primera. Abierto de lunes a sábado, tardes.'),
+  ],
+  arrivalTransportText: [
+    toBlock('Estación de tren a 10 min andando. Autobús urbano líneas 1, 5, 7 (parada Cantón).'),
+  ],
   faqIntro: { _type: 'sectionIntro', heading: 'Preguntas rápidas' },
   closingHeading: 'Pásate cualquier tarde.',
-  closingText: 'No hace falta avisar. Estamos en la Almendra 9.',
+  closingText: [toBlock('No hace falta avisar. Estamos en la Almendra 9.')],
 })
 
 // --- Página Irse -----------------------------------------------------------
 doc('pageIrse', 'pageIrse', {
   heroEyebrow: 'Ruta 2 · Voluntariado y Erasmus+',
   heroHeading: 'Vete unos meses a Europa. Con todo pagado.',
-  heroText:
-    'Entre 18 y 30. Te buscamos un proyecto de voluntariado o intercambio en Europa. Alojamiento, comida, transporte y dinero de bolsillo cubiertos por la UE. Tú solo tienes que decir que sí.',
+  heroText: [
+    toBlock(
+      'Entre 18 y 30. Te buscamos un proyecto de voluntariado o intercambio en Europa. Alojamiento, comida, transporte y dinero de bolsillo cubiertos por la UE. Tú solo tienes que decir que sí.',
+    ),
+  ],
   heroImageCaption: 'foto editorial · voluntaria despidiéndose en el aeropuerto',
   heroCtaPrimaryLabel: 'Apúntame a la base de datos',
   heroCtaSecondaryLabel: 'Cómo funciona',
@@ -138,15 +164,20 @@ doc('pageIrse', 'pageIrse', {
   testimonialsIntro: { _type: 'sectionIntro', heading: 'Historias de gente que se fue' },
   faqIntro: { _type: 'sectionIntro', heading: 'Preguntas frecuentes' },
   closingHeading: '¿Te apuntas?',
-  closingText: 'Rellena el formulario. Sin compromiso. Te llamamos en menos de una semana.',
+  closingText: [
+    toBlock('Rellena el formulario. Sin compromiso. Te llamamos en menos de una semana.'),
+  ],
 })
 
 // --- Página English ----------------------------------------------------------
 doc('pageEn', 'pageEn', {
   heroEyebrow: 'Route 3 · Come to Galicia',
   heroHeading: 'Live in Galicia for a few months. All expenses covered.',
-  heroText:
-    'We host young Europeans in Ferrol as ESC volunteers or Erasmus+ interns. Atlantic coast, real Spanish life, no need to speak Spanish when you arrive. 2 to 12 months. All covered by the EU.',
+  heroText: [
+    toBlock(
+      'We host young Europeans in Ferrol as ESC volunteers or Erasmus+ interns. Atlantic coast, real Spanish life, no need to speak Spanish when you arrive. 2 to 12 months. All covered by the EU.',
+    ),
+  ],
   heroImageCaption: 'editorial photo · volunteer group at the Cantábrico coast',
   heroCtaPrimaryLabel: 'Apply now',
   heroCtaSecondaryLabel: 'See open projects',
@@ -217,7 +248,7 @@ doc('pageEn', 'pageEn', {
   ],
   faqIntro: { _type: 'sectionIntro', heading: 'FAQ' },
   closingHeading: 'Ready to apply?',
-  closingText: 'We usually reply within a week.',
+  closingText: [toBlock('We usually reply within a week.')],
 })
 
 // --- Página Sobre nós --------------------------------------------------
@@ -225,8 +256,11 @@ doc('pageNosotros', 'pageNosotros', {
   heroEyebrow: 'Desde 2013 · Ferrol, Galicia',
   heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
   heroHeadingAccent: 'tu red en Europa',
-  heroText:
-    'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
+  heroText: [
+    toBlock(
+      'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
+    ),
+  ],
   heroStats: [
     { _type: 'statItem', _key: 'hero-stat-1', value: '500+', label: 'jóvenes participantes' },
     { _type: 'statItem', _key: 'hero-stat-2', value: '13', label: 'años activos' },
@@ -237,7 +271,7 @@ doc('pageNosotros', 'pageNosotros', {
     'Xeración nació en 2013 en Ferrol, cuando un grupo de amigos volvió de sus propios voluntariados europeos y se dio cuenta de que en la ciudad no había forma fácil de repetir la experiencia — ni de traer a nadie de fuera.',
     'El problema era simple: la información sobre programas europeos existía, pero estaba dispersa, en inglés técnico, y sin nadie cercano que acompañara el proceso paso a paso. Decidimos ser esa persona cercana.',
     'Trece años después seguimos con la misma idea: quitar de en medio el papeleo y la incertidumbre para que decir «me voy» sea lo más fácil de todo el viaje.',
-  ],
+  ].map(toBlock),
   timeline: [
     { _type: 'timelineMilestone', _key: 'milestone-1', year: '2013', title: 'Fundación', description: 'Un grupo de amigos en Ferrol decide montar Xeración.' },
     { _type: 'timelineMilestone', _key: 'milestone-2', year: '2015', title: 'Primeros voluntarios europeos', description: 'Llegan a Ferrol los primeros jóvenes de fuera acogidos por la asociación.' },
@@ -274,11 +308,13 @@ doc('pageNosotros', 'pageNosotros', {
   partnersIntro: { _type: 'sectionIntro', eyebrow: 'Con quién trabajamos' },
   partners: ['ERASMUS+', 'Cuerpo Europeo de Solidaridad', 'Eurodesk', 'Xunta de Galicia', 'Concello de Ferrol', 'Google for Nonprofits'],
   closingHeading: '¿Listo para vivir tu aventura europea?',
-  closingText: 'Todas nuestras oportunidades están financiadas. El único requisito es querer.',
+  closingText: [
+    toBlock('Todas nuestras oportunidades están financiadas. El único requisito es querer.'),
+  ],
 })
 
 doc('testimonial-tasos', 'testimonial', {
-  quote: 'Vine a Ferrol sin conocer a nadie. Salí con una segunda familia repartida por media Europa.',
+  quote: [toBlock('Vine a Ferrol sin conocer a nadie. Salí con una segunda familia repartida por media Europa.')],
   name: 'Tasos Batzonis',
   originCity: 'Grecia',
   program: 'ESC',
@@ -287,7 +323,7 @@ doc('testimonial-tasos', 'testimonial', {
   route: 'nosotros',
 })
 doc('testimonial-martina', 'testimonial', {
-  quote: 'Pensé que sería solo un año raro en mi carrera. Fue el año que más aprendí de mí misma.',
+  quote: [toBlock('Pensé que sería solo un año raro en mi carrera. Fue el año que más aprendí de mí misma.')],
   name: 'Martina Aramini',
   originCity: 'Italia',
   program: 'ESC',
@@ -296,7 +332,7 @@ doc('testimonial-martina', 'testimonial', {
   route: 'nosotros',
 })
 doc('testimonial-linda', 'testimonial', {
-  quote: 'Nadie me avisó de que echaría tanto de menos la lluvia de Ferrol al volver a casa.',
+  quote: [toBlock('Nadie me avisó de que echaría tanto de menos la lluvia de Ferrol al volver a casa.')],
   name: 'Linda Pūdāne',
   originCity: 'Letonia',
   program: 'ESC',
@@ -382,8 +418,11 @@ doc('fixedProgram-conciertazo', 'fixedProgram', {
 
 // --- Testimonios ---------------------------------------------------------
 doc('testimonial-nicolas', 'testimonial', {
-  quote:
-    'Llegué a Cracovia sin saber polaco. Volví con currículum, novia y una idea clara de a qué quiero dedicarme.',
+  quote: [
+    toBlock(
+      'Llegué a Cracovia sin saber polaco. Volví con currículum, novia y una idea clara de a qué quiero dedicarme.',
+    ),
+  ],
   name: 'Nicolás',
   originCity: 'Ferrol',
   destinationCity: 'Cracovia',
@@ -394,7 +433,7 @@ doc('testimonial-nicolas', 'testimonial', {
   route: 'irse',
 })
 doc('testimonial-amelie', 'testimonial', {
-  quote: 'I came to Ferrol for six months. I stayed almost a year. The sea, the food, the people.',
+  quote: [toBlock('I came to Ferrol for six months. I stayed almost a year. The sea, the food, the people.')],
   name: 'Amélie',
   originCity: 'Lyon',
   destinationCity: 'Ferrol',
@@ -405,7 +444,7 @@ doc('testimonial-amelie', 'testimonial', {
   route: 'en',
 })
 doc('testimonial-sara', 'testimonial', {
-  quote: 'Fui a un YE de 10 días sobre cambio climático y me quedé enganchada. Ya llevo tres.',
+  quote: [toBlock('Fui a un YE de 10 días sobre cambio climático y me quedé enganchada. Ya llevo tres.')],
   name: 'Sara',
   originCity: 'A Coruña',
   destinationCity: 'Sofía',
@@ -416,7 +455,7 @@ doc('testimonial-sara', 'testimonial', {
   route: 'irse',
 })
 doc('testimonial-marcos', 'testimonial', {
-  quote: 'El CES me pagó Alemania un año. Ahora curro allí.',
+  quote: [toBlock('El CES me pagó Alemania un año. Ahora curro allí.')],
   name: 'Marcos',
   originCity: 'Vigo',
   destinationCity: 'Leipzig',
@@ -427,7 +466,7 @@ doc('testimonial-marcos', 'testimonial', {
   route: 'irse',
 })
 doc('testimonial-kamilla', 'testimonial', {
-  quote: "Ferrol is small, but you feel like you're at the edge of Europe. It changed how I think about work.",
+  quote: [toBlock("Ferrol is small, but you feel like you're at the edge of Europe. It changed how I think about work.")],
   name: 'Kamilla',
   originCity: 'Warsaw',
   destinationCity: 'Ferrol',
@@ -438,7 +477,7 @@ doc('testimonial-kamilla', 'testimonial', {
   route: 'en',
 })
 doc('testimonial-jonas', 'testimonial', {
-  quote: 'Best decision of my gap year. I still miss the empanada.',
+  quote: [toBlock('Best decision of my gap year. I still miss the empanada.')],
   name: 'Jonas',
   originCity: 'Berlin',
   destinationCity: 'Ferrol',
@@ -505,7 +544,7 @@ const ferrolFaqs: Array<[string, string]> = [
   ['¿Puedo proponer una actividad?', 'Sí. Pásate un martes por Offline Club y coméntalo, o escríbenos por Instagram.'],
 ]
 ferrolFaqs.forEach(([question, answer], i) => {
-  doc(`faq-ferrol-${i + 1}`, 'faq', { question, answer, route: 'ferrol', order: i + 1 })
+  doc(`faq-ferrol-${i + 1}`, 'faq', { question, answer: [toBlock(answer)], route: 'ferrol', order: i + 1 })
 })
 
 // --- Preguntas frecuentes (route: irse) -----------------------------------
@@ -544,7 +583,7 @@ const irseFaqs: Array<[string, string]> = [
   ],
 ]
 irseFaqs.forEach(([question, answer], i) => {
-  doc(`faq-irse-${i + 1}`, 'faq', { question, answer, route: 'irse', order: i + 1 })
+  doc(`faq-irse-${i + 1}`, 'faq', { question, answer: [toBlock(answer)], route: 'irse', order: i + 1 })
 })
 
 // --- Preguntas frecuentes (route: en) -------------------------------------
@@ -575,7 +614,7 @@ const enFaqs: Array<[string, string]> = [
   ],
 ]
 enFaqs.forEach(([question, answer], i) => {
-  doc(`faq-en-${i + 1}`, 'faq', { question, answer, route: 'en', order: i + 1 })
+  doc(`faq-en-${i + 1}`, 'faq', { question, answer: [toBlock(answer)], route: 'en', order: i + 1 })
 })
 
 async function run() {

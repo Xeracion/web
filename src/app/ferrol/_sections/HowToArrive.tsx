@@ -1,6 +1,7 @@
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
+import { RichText } from '@/components/RichText'
 import type { PageFerrolData, SiteSettings } from '@/sanity/lib/queries'
 
 import styles from './HowToArrive.module.css'
@@ -41,11 +42,11 @@ export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArrivePr
       )}
       <div>
         <h3>{data.arrivalHeading}</h3>
-        {data.arrivalAddressText && <p className={styles.text}>{data.arrivalAddressText}</p>}
+        <RichText value={data.arrivalAddressText} className={styles.text} />
         {data.arrivalTransportText && (
           <>
             <p className={styles.label}>{copy.gettingHere}</p>
-            <p className={styles.text}>{data.arrivalTransportText}</p>
+            <RichText value={data.arrivalTransportText} className={styles.text} />
           </>
         )}
         {(whatsappHref || emailHref) && (

@@ -59,6 +59,14 @@
   line-height: 1.4;
 }
 
+.quote::before {
+  content: '\201C';
+}
+
+.quote::after {
+  content: '\201D';
+}
+
 .attribution {
   margin-top: var(--space-sm);
   font-family: var(--font-inter), sans-serif;

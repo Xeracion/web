@@ -1,5 +1,6 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { RichText } from '@/components/RichText'
 import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Historia.module.css'
@@ -16,9 +17,7 @@ export function Historia({ data }: { data: PageNosotrosData }) {
       {data.historiaIntro?.heading && <h2>{data.historiaIntro.heading}</h2>}
       <div className={styles.grid}>
         <div className={styles.text}>
-          {paragraphs.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
+          <RichText value={data.historiaParagraphs} paragraphSpacing={false} />
         </div>
         {timeline.length > 0 && (
           <ol className={styles.timeline}>

@@ -2,6 +2,7 @@ import { config } from 'dotenv'
 config({ path: '.env.local' })
 
 import { createClient } from '@sanity/client'
+import { randomUUID } from 'crypto'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
@@ -23,6 +24,16 @@ const client = createClient({
 
 type SanityDoc = { _id: string; _type: string; [key: string]: unknown }
 
+function toBlock(text: string) {
+  return {
+    _type: 'block',
+    _key: randomUUID(),
+    style: 'normal',
+    markDefs: [],
+    children: [{ _type: 'span', _key: randomUUID(), text, marks: [] }],
+  }
+}
+
 // Solo los documentos nuevos de /nosotros. Usa createIfNotExists para no
 // pisar nada si alguno ya existiera (por ejemplo, si ya lo has editado a
 // mano en el Studio).
@@ -33,8 +44,11 @@ const docs: SanityDoc[] = [
     heroEyebrow: 'Desde 2013 · Ferrol, Galicia',
     heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
     heroHeadingAccent: 'tu red en Europa',
-    heroText:
-      'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
+    heroText: [
+      toBlock(
+        'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
+      ),
+    ],
     heroStats: [
       { _type: 'statItem', _key: 'hero-stat-1', value: '500+', label: 'jóvenes participantes' },
       { _type: 'statItem', _key: 'hero-stat-2', value: '13', label: 'años activos' },
@@ -45,7 +59,7 @@ const docs: SanityDoc[] = [
       'Xeración nació en 2013 en Ferrol, cuando un grupo de amigos volvió de sus propios voluntariados europeos y se dio cuenta de que en la ciudad no había forma fácil de repetir la experiencia — ni de traer a nadie de fuera.',
       'El problema era simple: la información sobre programas europeos existía, pero estaba dispersa, en inglés técnico, y sin nadie cercano que acompañara el proceso paso a paso. Decidimos ser esa persona cercana.',
       'Trece años después seguimos con la misma idea: quitar de en medio el papeleo y la incertidumbre para que decir «me voy» sea lo más fácil de todo el viaje.',
-    ],
+    ].map(toBlock),
     timeline: [
       { _type: 'timelineMilestone', _key: 'milestone-1', year: '2013', title: 'Fundación', description: 'Un grupo de amigos en Ferrol decide montar Xeración.' },
       { _type: 'timelineMilestone', _key: 'milestone-2', year: '2015', title: 'Primeros voluntarios europeos', description: 'Llegan a Ferrol los primeros jóvenes de fuera acogidos por la asociación.' },
@@ -82,12 +96,14 @@ const docs: SanityDoc[] = [
     partnersIntro: { _type: 'sectionIntro', eyebrow: 'Con quién trabajamos' },
     partners: ['ERASMUS+', 'Cuerpo Europeo de Solidaridad', 'Eurodesk', 'Xunta de Galicia', 'Concello de Ferrol', 'Google for Nonprofits'],
     closingHeading: '¿Listo para vivir tu aventura europea?',
-    closingText: 'Todas nuestras oportunidades están financiadas. El único requisito es querer.',
+    closingText: [
+      toBlock('Todas nuestras oportunidades están financiadas. El único requisito es querer.'),
+    ],
   },
   {
     _id: 'testimonial-tasos',
     _type: 'testimonial',
-    quote: 'Vine a Ferrol sin conocer a nadie. Salí con una segunda familia repartida por media Europa.',
+    quote: [toBlock('Vine a Ferrol sin conocer a nadie. Salí con una segunda familia repartida por media Europa.')],
     name: 'Tasos Batzonis',
     originCity: 'Grecia',
     program: 'ESC',
@@ -98,7 +114,7 @@ const docs: SanityDoc[] = [
   {
     _id: 'testimonial-martina',
     _type: 'testimonial',
-    quote: 'Pensé que sería solo un año raro en mi carrera. Fue el año que más aprendí de mí misma.',
+    quote: [toBlock('Pensé que sería solo un año raro en mi carrera. Fue el año que más aprendí de mí misma.')],
     name: 'Martina Aramini',
     originCity: 'Italia',
     program: 'ESC',
@@ -109,7 +125,7 @@ const docs: SanityDoc[] = [
   {
     _id: 'testimonial-linda',
     _type: 'testimonial',
-    quote: 'Nadie me avisó de que echaría tanto de menos la lluvia de Ferrol al volver a casa.',
+    quote: [toBlock('Nadie me avisó de que echaría tanto de menos la lluvia de Ferrol al volver a casa.')],
     name: 'Linda Pūdāne',
     originCity: 'Letonia',
     program: 'ESC',

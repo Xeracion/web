@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
 import { languageField } from '../fields/language'
+import { richTextField } from '../fields/richText'
 import { routeField } from '../fields/route'
 
 export const faq = defineType({
@@ -14,12 +15,10 @@ export const faq = defineType({
       type: 'string',
       validation: (Rule) => Rule.required().error('Falta escribir la pregunta.'),
     }),
-    defineField({
+    richTextField({
       name: 'answer',
       title: 'Respuesta',
-      type: 'text',
-      rows: 4,
-      validation: (Rule) => Rule.required().error('Falta escribir la respuesta.'),
+      validation: (Rule) => Rule.required().min(1).error('Falta escribir la respuesta.'),
     }),
     routeField(),
     languageField(),

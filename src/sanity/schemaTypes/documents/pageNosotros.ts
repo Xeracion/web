@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
+import { richTextField } from '../fields/richText'
+
 export const pageNosotros = defineType({
   name: 'pageNosotros',
   title: 'Página Sobre nós',
@@ -38,11 +40,9 @@ export const pageNosotros = defineType({
       type: 'string',
       group: 'hero',
     }),
-    defineField({
+    richTextField({
       name: 'heroText',
       title: 'Texto de la portada',
-      type: 'text',
-      rows: 3,
       group: 'hero',
     }),
     defineField({
@@ -67,12 +67,11 @@ export const pageNosotros = defineType({
       type: 'sectionIntro',
       group: 'historia',
     }),
-    defineField({
+    richTextField({
       name: 'historiaParagraphs',
       title: 'Párrafos de la historia',
-      description: 'El origen de Xeración: por qué nació, qué problema resuelve.',
-      type: 'array',
-      of: [{ type: 'text', rows: 3 }],
+      description:
+        'El origen de Xeración: por qué nació, qué problema resuelve. Cada párrafo nuevo (Intro) se muestra separado; admite negrita.',
       group: 'historia',
     }),
     defineField({
@@ -185,11 +184,9 @@ export const pageNosotros = defineType({
       type: 'string',
       group: 'cierre',
     }),
-    defineField({
+    richTextField({
       name: 'closingText',
       title: 'Texto del cierre',
-      type: 'text',
-      rows: 2,
       group: 'cierre',
     }),
     defineField({

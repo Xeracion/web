@@ -26,6 +26,16 @@ type SanityDoc = { _id: string; _type: string; [key: string]: unknown }
 
 const docs: SanityDoc[] = []
 
+function toBlock(text: string) {
+  return {
+    _type: 'block',
+    _key: randomUUID(),
+    style: 'normal',
+    markDefs: [],
+    children: [{ _type: 'span', _key: randomUUID(), text, marks: [] }],
+  }
+}
+
 function doc(_id: string, _type: string, fields: Record<string, unknown>) {
   docs.push({ _id, _type, ...fields })
 }
@@ -34,8 +44,11 @@ function doc(_id: string, _type: string, fields: Record<string, unknown>) {
 doc('homeEn', 'homeEn', {
   eyebrow: 'Youth association · Ferrol · since 2013',
   heading: 'Twelve years opening doors to Europe from Galicia.',
-  intro:
-    'We send young Galicians volunteering across Europe, bring young Europeans to Ferrol, and put together things for the people who live here.',
+  intro: [
+    toBlock(
+      'We send young Galicians volunteering across Europe, bring young Europeans to Ferrol, and put together things for the people who live here.',
+    ),
+  ],
   heroImageCaption: "editorial photo · group at Ferrol's quay",
   heroIndicator: "Choose where you're coming from",
   routeCardFerrol: {
@@ -72,26 +85,31 @@ doc('homeEn', 'homeEn', {
   agendaEyebrow: 'This week in Ferrol',
   agendaLinkLabel: 'Full schedule',
   closingHeading: "If you're unsure, just write to us.",
-  closingText: 'No long forms. WhatsApp, email, or drop by Almendra 9 any afternoon.',
+  closingText: [toBlock('No long forms. WhatsApp, email, or drop by Almendra 9 any afternoon.')],
 })
 
 // --- Página Ferrol (English) -------------------------------------------------
 doc('pageFerrolEn', 'pageFerrolEn', {
   heroEyebrow: 'Route 1 · Casa da Xuventude · Ferrol',
   heroHeading: 'A place on Almendra where things happen every week.',
-  heroText:
-    'Workshops, clubs, concerts, get-togethers. Almost all of it free. Rúa Almendra 9 — open Monday to Saturday.',
+  heroText: [
+    toBlock(
+      'Workshops, clubs, concerts, get-togethers. Almost all of it free. Rúa Almendra 9 — open Monday to Saturday.',
+    ),
+  ],
   heroImageCaption: 'editorial photo · Offline Club at Almendra 9',
   heroCtaPrimaryLabel: "See this week's schedule",
   heroCtaSecondaryLabel: 'Getting here',
   fixedProgramsIntro: { _type: 'sectionIntro', eyebrow: 'Fixed programmes', heading: 'Four things we always do.' },
   agendaIntro: { _type: 'sectionIntro', eyebrow: 'Schedule', heading: "What's on this week and next." },
   arrivalHeading: 'Casa da Xuventude',
-  arrivalAddressText: 'Rúa Almendra 9, 15401 Ferrol. Ground and first floor. Open Monday to Saturday, afternoons.',
-  arrivalTransportText: 'Train station 10 minutes on foot. City bus lines 1, 5, 7 (Cantón stop).',
+  arrivalAddressText: [
+    toBlock('Rúa Almendra 9, 15401 Ferrol. Ground and first floor. Open Monday to Saturday, afternoons.'),
+  ],
+  arrivalTransportText: [toBlock('Train station 10 minutes on foot. City bus lines 1, 5, 7 (Cantón stop).')],
   faqIntro: { _type: 'sectionIntro', heading: 'Quick questions' },
   closingHeading: 'Drop by any afternoon.',
-  closingText: "No need to call ahead. We're at Almendra 9.",
+  closingText: [toBlock("No need to call ahead. We're at Almendra 9.")],
 })
 
 // --- Página Sobre nós (English / About) --------------------------------
@@ -99,8 +117,11 @@ doc('pageNosotrosEn', 'pageNosotrosEn', {
   heroEyebrow: 'Since 2013 · Ferrol, Galicia',
   heroHeading: "We're not just another NGO. We're your network in Europe.",
   heroHeadingAccent: 'your network in Europe',
-  heroText:
-    "We're young people helping other young people live their European adventure. No red tape, no endless paperwork — with more than a decade of experience doing this.",
+  heroText: [
+    toBlock(
+      "We're young people helping other young people live their European adventure. No red tape, no endless paperwork — with more than a decade of experience doing this.",
+    ),
+  ],
   heroStats: [
     { _type: 'statItem', _key: randomUUID(), value: '500+', label: 'young participants' },
     { _type: 'statItem', _key: randomUUID(), value: '13', label: 'years active' },
@@ -115,7 +136,7 @@ doc('pageNosotrosEn', 'pageNosotrosEn', {
     'Xeración was born in 2013 in Ferrol, when a group of friends came back from their own volunteering placements in Europe and realised there was no easy way to repeat the experience in their city — or to bring anyone over from abroad.',
     'The problem was simple: information about European programmes existed, but it was scattered, written in technical English, and there was no one nearby to walk you through the process step by step. We decided to be that person.',
     "Thirteen years later we're still working from the same idea: clear the paperwork and uncertainty out of the way so that saying \"I'm going\" is the easiest part of the whole trip.",
-  ],
+  ].map(toBlock),
   timeline: [
     { _type: 'timelineMilestone', _key: randomUUID(), year: '2013', title: 'Founded', description: 'A group of friends in Ferrol decides to set up Xeración.' },
     { _type: 'timelineMilestone', _key: randomUUID(), year: '2015', title: 'First European volunteers', description: 'The first young people from abroad arrive in Ferrol, hosted by the association.' },
@@ -159,12 +180,12 @@ doc('pageNosotrosEn', 'pageNosotrosEn', {
     { _type: 'partner', _key: randomUUID(), name: 'Google for Nonprofits' },
   ],
   closingHeading: 'Ready to live your European adventure?',
-  closingText: 'All our opportunities are fully funded. The only requirement is wanting to.',
+  closingText: [toBlock('All our opportunities are fully funded. The only requirement is wanting to.')],
 })
 
 // --- Testimonios de "Sobre nós" (English) -----------------------------------
 doc('testimonial-tasos-en', 'testimonial', {
-  quote: 'I came to Ferrol not knowing anyone. I left with a second family scattered across half of Europe.',
+  quote: [toBlock('I came to Ferrol not knowing anyone. I left with a second family scattered across half of Europe.')],
   name: 'Tasos Batzonis',
   originCity: 'Greece',
   program: 'ESC',
@@ -173,7 +194,7 @@ doc('testimonial-tasos-en', 'testimonial', {
   route: 'nosotros',
 })
 doc('testimonial-martina-en', 'testimonial', {
-  quote: 'I thought it would just be an odd year in my career. It was the year I learned the most about myself.',
+  quote: [toBlock('I thought it would just be an odd year in my career. It was the year I learned the most about myself.')],
   name: 'Martina Aramini',
   originCity: 'Italy',
   program: 'ESC',
@@ -182,7 +203,7 @@ doc('testimonial-martina-en', 'testimonial', {
   route: 'nosotros',
 })
 doc('testimonial-linda-en', 'testimonial', {
-  quote: "No one warned me I'd miss Ferrol's rain so much once I got home.",
+  quote: [toBlock("No one warned me I'd miss Ferrol's rain so much once I got home.")],
   name: 'Linda Pūdāne',
   originCity: 'Latvia',
   program: 'ESC',
@@ -228,7 +249,13 @@ const ferrolFaqsEn: Array<[string, string]> = [
   ['Can I suggest an activity?', 'Yes. Drop by Offline Club on a Tuesday and mention it, or message us on Instagram.'],
 ]
 ferrolFaqsEn.forEach(([question, answer], i) => {
-  doc(`faq-ferrol-en-${i + 1}`, 'faq', { question, answer, route: 'ferrol', language: 'en', order: i + 1 })
+  doc(`faq-ferrol-en-${i + 1}`, 'faq', {
+    question,
+    answer: [toBlock(answer)],
+    route: 'ferrol',
+    language: 'en',
+    order: i + 1,
+  })
 })
 
 async function run() {

@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
+import { richTextField } from '../fields/richText'
+
 export const home = defineType({
   name: 'home',
   title: 'Home',
@@ -28,14 +30,12 @@ export const home = defineType({
       group: 'hero',
       validation: (Rule) => Rule.required().error('La portada necesita un titular.'),
     }),
-    defineField({
+    richTextField({
       name: 'intro',
       title: 'Entradilla',
-      description: 'El párrafo corto que va justo debajo del titular, explicando qué hacéis.',
-      type: 'text',
-      rows: 3,
+      description: 'El párrafo corto que va justo debajo del titular, explicando qué hacéis. Admite negrita y varios párrafos.',
       group: 'hero',
-      validation: (Rule) => Rule.required().error('La portada necesita una entradilla.'),
+      validation: (Rule) => Rule.required().min(1).error('La portada necesita una entradilla.'),
     }),
     defineField({
       name: 'heroImage',
@@ -116,11 +116,9 @@ export const home = defineType({
       type: 'string',
       group: 'closing',
     }),
-    defineField({
+    richTextField({
       name: 'closingText',
       title: 'Texto del cierre',
-      type: 'text',
-      rows: 2,
       group: 'closing',
     }),
   ],

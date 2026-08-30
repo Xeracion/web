@@ -1,7 +1,10 @@
 import { cache } from 'react'
+import type { PortableTextBlock } from '@portabletext/react'
 import type { SanityImageSource } from '@sanity/image-url'
 
 import { sanityFetch } from './live'
+
+export type RichTextValue = PortableTextBlock[]
 
 export interface SocialLinkData {
   platform?: string
@@ -42,7 +45,7 @@ export interface StatItemData {
 export interface HomeBaseData {
   eyebrow?: string
   heading?: string
-  intro?: string
+  intro?: RichTextValue
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroIndicator?: string
@@ -51,7 +54,7 @@ export interface HomeBaseData {
   agendaEyebrow?: string
   agendaLinkLabel?: string
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
 }
 
 export interface HomeData extends HomeBaseData {
@@ -61,7 +64,7 @@ export interface HomeData extends HomeBaseData {
 }
 
 export interface TestimonialData {
-  quote?: string
+  quote?: RichTextValue
   name?: string
   originCity?: string
   destinationCity?: string
@@ -170,13 +173,13 @@ export interface FixedProgramData {
 
 export interface FaqData {
   question?: string
-  answer?: string
+  answer?: RichTextValue
 }
 
 export interface PageFerrolData {
   heroEyebrow?: string
   heroHeading?: string
-  heroText?: string
+  heroText?: RichTextValue
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
@@ -187,11 +190,11 @@ export interface PageFerrolData {
   agendaIntro?: SectionIntroData
   arrivalHeading?: string
   arrivalMapEmbedUrl?: string
-  arrivalAddressText?: string
-  arrivalTransportText?: string
+  arrivalAddressText?: RichTextValue
+  arrivalTransportText?: RichTextValue
   faqIntro?: SectionIntroData
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
 }
 
 export interface FerrolPageData {
@@ -280,7 +283,7 @@ export interface MobilityProgramData {
 export interface PageIrseData {
   heroEyebrow?: string
   heroHeading?: string
-  heroText?: string
+  heroText?: RichTextValue
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
@@ -292,7 +295,7 @@ export interface PageIrseData {
   opportunitiesFeedUrl?: string
   faqIntro?: SectionIntroData
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
   closingCtaPrimaryHref?: string
 }
 
@@ -353,7 +356,7 @@ export interface ProcessStepData {
 export interface PageEnData {
   heroEyebrow?: string
   heroHeading?: string
-  heroText?: string
+  heroText?: RichTextValue
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
@@ -371,7 +374,7 @@ export interface PageEnData {
   howToApplySteps?: ProcessStepData[]
   faqIntro?: SectionIntroData
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
   closingCtaPrimaryHref?: string
 }
 
@@ -459,11 +462,11 @@ export interface PageNosotrosData {
   heroEyebrow?: string
   heroHeading?: string
   heroHeadingAccent?: string
-  heroText?: string
+  heroText?: RichTextValue
   heroStats?: StatItemData[]
   heroBackgroundImage?: SanityImageSource
   historiaIntro?: SectionIntroData
-  historiaParagraphs?: string[]
+  historiaParagraphs?: RichTextValue
   timeline?: TimelineMilestoneData[]
   valoresIntro?: SectionIntroData
   values?: ValueItemData[]
@@ -480,7 +483,7 @@ export interface PageNosotrosData {
   partnersIntro?: SectionIntroData
   partners?: (PartnerData | string)[]
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
   closingCtaPrimaryHref?: string
 }
 
@@ -570,19 +573,19 @@ export const getNosotrosEnPageData = cache(async (): Promise<NosotrosPageData> =
 export interface PageMentoresData {
   heroEyebrow?: string
   heroHeading?: string
-  heroText?: string
+  heroText?: RichTextValue
   heroImage?: SanityImageSource
   heroImageCaption?: string
   heroCtaLabel?: string
   heroCtaHref?: string
   whyIntro?: SectionIntroData
-  whyText?: string
+  whyText?: RichTextValue
   beneficiosIntro?: SectionIntroData
   beneficios?: ValueItemData[]
   stats?: StatItemData[]
   testimoniosIntro?: SectionIntroData
   closingHeading?: string
-  closingText?: string
+  closingText?: RichTextValue
 }
 
 export interface MentoresPageData {

@@ -5,6 +5,8 @@ import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import type { PhotoPlaceholderVariant } from '@/components/PhotoPlaceholder'
+import { RichText } from '@/components/RichText'
+import type { RichTextValue } from '@/sanity/lib/queries'
 
 import styles from './HeroSplit.module.css'
 
@@ -12,7 +14,7 @@ interface HeroSplitProps {
   eyebrow?: string
   eyebrowAccent?: boolean
   heading?: string
-  text?: string
+  text?: RichTextValue
   image?: SanityImageSource
   imageLabel: string
   imageVariant: PhotoPlaceholderVariant
@@ -34,7 +36,7 @@ export function HeroSplit({
       <div className={styles.text}>
         {eyebrow && <Eyebrow accent={eyebrowAccent}>{eyebrow}</Eyebrow>}
         <h1>{heading}</h1>
-        {text && <p className={styles.intro}>{text}</p>}
+        <RichText value={text} className={styles.intro} />
         {below && <div className={styles.below}>{below}</div>}
       </div>
       <PhotoPlaceholder

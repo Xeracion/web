@@ -30,6 +30,14 @@
   letter-spacing: -0.01em;
 }
 
+.quote::before {
+  content: '\201C';
+}
+
+.quote::after {
+  content: '\201D';
+}
+
 .attribution {
   margin-top: var(--space-sm);
   font-family: var(--font-inter), sans-serif;

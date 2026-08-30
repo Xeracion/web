@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
+import { richTextField } from '../fields/richText'
+
 export const pageFerrol = defineType({
   name: 'pageFerrol',
   title: 'Página Ferrol',
@@ -27,13 +29,11 @@ export const pageFerrol = defineType({
       group: 'hero',
       validation: (Rule) => Rule.required().error('Esta página necesita un titular.'),
     }),
-    defineField({
+    richTextField({
       name: 'heroText',
       title: 'Texto de la portada',
-      type: 'text',
-      rows: 3,
       group: 'hero',
-      validation: (Rule) => Rule.required().error('Esta página necesita un texto introductorio.'),
+      validation: (Rule) => Rule.required().min(1).error('Esta página necesita un texto introductorio.'),
     }),
     defineField({
       name: 'heroImage',
@@ -117,19 +117,15 @@ export const pageFerrol = defineType({
         }),
       group: 'llegar',
     }),
-    defineField({
+    richTextField({
       name: 'arrivalAddressText',
       title: 'Texto de la dirección',
       description: 'Dirección completa, planta y horario de apertura.',
-      type: 'text',
-      rows: 2,
       group: 'llegar',
     }),
-    defineField({
+    richTextField({
       name: 'arrivalTransportText',
       title: 'Cómo venir en transporte',
-      type: 'text',
-      rows: 2,
       group: 'llegar',
     }),
     defineField({
@@ -145,11 +141,9 @@ export const pageFerrol = defineType({
       type: 'string',
       group: 'cierre',
     }),
-    defineField({
+    richTextField({
       name: 'closingText',
       title: 'Texto del cierre',
-      type: 'text',
-      rows: 2,
       group: 'cierre',
     }),
   ],

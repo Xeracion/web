@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
+import { richTextField } from '../fields/richText'
+
 export const pageIrse = defineType({
   name: 'pageIrse',
   title: 'Página Irse',
@@ -28,13 +30,11 @@ export const pageIrse = defineType({
       group: 'hero',
       validation: (Rule) => Rule.required().error('Esta página necesita un titular.'),
     }),
-    defineField({
+    richTextField({
       name: 'heroText',
       title: 'Texto de la portada',
-      type: 'text',
-      rows: 4,
       group: 'hero',
-      validation: (Rule) => Rule.required().error('Esta página necesita un texto introductorio.'),
+      validation: (Rule) => Rule.required().min(1).error('Esta página necesita un texto introductorio.'),
     }),
     defineField({
       name: 'heroImage',
@@ -138,11 +138,9 @@ export const pageIrse = defineType({
       type: 'string',
       group: 'cierre',
     }),
-    defineField({
+    richTextField({
       name: 'closingText',
       title: 'Texto del cierre',
-      type: 'text',
-      rows: 2,
       group: 'cierre',
     }),
     defineField({

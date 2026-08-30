@@ -24,6 +24,16 @@ const client = createClient({
 
 type SanityDoc = { _id: string; _type: string; [key: string]: unknown }
 
+function toBlock(text: string) {
+  return {
+    _type: 'block',
+    _key: randomUUID(),
+    style: 'normal',
+    markDefs: [],
+    children: [{ _type: 'span', _key: randomUUID(), text, marks: [] }],
+  }
+}
+
 // Contenido adaptado de https://xeracion.org/mentores/ al sistema de diseño
 // actual (mismos componentes que /ferrol/, acento teal). Usa createIfNotExists
 // para no pisar nada si ya lo hubieras editado a mano en el Studio.
@@ -33,8 +43,11 @@ const docs: SanityDoc[] = [
     _type: 'pageMentores',
     heroEyebrow: 'Adopta un extranjero',
     heroHeading: 'Viaja sin salir de casa: hazte mentor de un voluntario europeo en Ferrol.',
-    heroText:
-      'Durante todo el año recibimos voluntarios europeos en Ferrol, gente joven que se queda entre 2 y 10 meses desarrollando su Voluntariado Europeo. Adaptarse a una ciudad y una cultura nuevas no es fácil — hasta ir al banco se convierte en una aventura. Queremos que ese proceso sea lo más sencillo posible, y para eso hace falta gente de aquí.',
+    heroText: [
+      toBlock(
+        'Durante todo el año recibimos voluntarios europeos en Ferrol, gente joven que se queda entre 2 y 10 meses desarrollando su Voluntariado Europeo. Adaptarse a una ciudad y una cultura nuevas no es fácil — hasta ir al banco se convierte en una aventura. Queremos que ese proceso sea lo más sencillo posible, y para eso hace falta gente de aquí.',
+      ),
+    ],
     heroImageCaption: 'foto editorial · mentor y voluntaria paseando por Ferrol Vello',
     heroCtaLabel: 'Apúntame',
     heroCtaHref: 'mailto:info@xeracion.org',
@@ -43,8 +56,11 @@ const docs: SanityDoc[] = [
       eyebrow: 'A quién buscamos',
       heading: 'Gente activa con ganas de enseñar su ciudad.',
     },
-    whyText:
-      'Buscamos personas con algo de tiempo libre, capaces de comunicarse en inglés y con ganas de unirse al club de los mejores embajadores que puede tener Ferrol. Tu trabajo: ayudar a los voluntarios a integrarse en la ciudad, descubrirla, disfrutarla y sentirse como en casa.',
+    whyText: [
+      toBlock(
+        'Buscamos personas con algo de tiempo libre, capaces de comunicarse en inglés y con ganas de unirse al club de los mejores embajadores que puede tener Ferrol. Tu trabajo: ayudar a los voluntarios a integrarse en la ciudad, descubrirla, disfrutarla y sentirse como en casa.',
+      ),
+    ],
     beneficiosIntro: {
       _type: 'sectionIntro',
       eyebrow: 'Qué vas a ganar',
@@ -82,12 +98,14 @@ const docs: SanityDoc[] = [
     ],
     testimoniosIntro: { _type: 'sectionIntro', eyebrow: 'Voces de mentores', heading: 'Experiencias de mentores.' },
     closingHeading: '¿Te apuntas de mentor?',
-    closingText: 'Sin curso previo ni compromiso largo. Solo hace falta tener ganas de enseñar tu ciudad.',
+    closingText: [
+      toBlock('Sin curso previo ni compromiso largo. Solo hace falta tener ganas de enseñar tu ciudad.'),
+    ],
   },
   {
     _id: 'testimonial-mentores-barbara',
     _type: 'testimonial',
-    quote: 'He practicado inglés sin salir de casa.',
+    quote: [toBlock('He practicado inglés sin salir de casa.')],
     name: 'Barbara',
     originCity: 'Italia',
     language: 'es',
@@ -97,7 +115,7 @@ const docs: SanityDoc[] = [
   {
     _id: 'testimonial-mentores-laura',
     _type: 'testimonial',
-    quote: 'É unha experiencia que como persoa che fai medrar e aprender moito.',
+    quote: [toBlock('É unha experiencia que como persoa che fai medrar e aprender moito.')],
     name: 'Laura',
     originCity: 'Italia',
     language: 'gl',
@@ -107,7 +125,7 @@ const docs: SanityDoc[] = [
   {
     _id: 'testimonial-mentores-miguel',
     _type: 'testimonial',
-    quote: 'Nunca pensé que podría ver la ciudad con otros ojos.',
+    quote: [toBlock('Nunca pensé que podría ver la ciudad con otros ojos.')],
     name: 'Miguel',
     originCity: 'Italia',
     language: 'es',

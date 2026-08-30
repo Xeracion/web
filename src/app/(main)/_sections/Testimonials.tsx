@@ -1,6 +1,7 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
+import { RichText } from '@/components/RichText'
 import type { TestimonialData } from '@/sanity/lib/queries'
 
 import styles from './Testimonials.module.css'
@@ -32,7 +33,7 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
               label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
               aspectRatio="4 / 3"
             />
-            <p className={styles.largeQuote}>“{large.quote}”</p>
+            <RichText value={large.quote} className={styles.largeQuote} />
             <p className={styles.attribution}>{attribution(large)}</p>
           </div>
         )}
@@ -45,7 +46,7 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
               aspectRatio="1 / 1"
               className={styles.smallPhoto}
             />
-            <p className={styles.smallQuote}>“{small.quote}”</p>
+            <RichText value={small.quote} className={styles.smallQuote} />
             <p className={styles.smallAttribution}>{attribution(small)}</p>
           </div>
         )}

@@ -1,5 +1,6 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import { RichText } from '@/components/RichText'
 import type { SectionIntroData, TestimonialData } from '@/sanity/lib/queries'
 
 import styles from './Testimonios.module.css'
@@ -19,7 +20,7 @@ export function Testimonios({ intro, items }: TestimoniosProps) {
       <div className={styles.grid}>
         {items.map((item, i) => (
           <div key={i} className={styles.card}>
-            <p className={styles.quote}>&ldquo;{item.quote}&rdquo;</p>
+            <RichText value={item.quote} className={styles.quote} />
             <p className={styles.attribution}>
               {[item.name, item.originCity].filter(Boolean).join(' · ')}
             </p>

@@ -1,20 +1,19 @@
 import { defineField, defineType } from 'sanity'
 
-import { routeField } from '../fields/route'
 import { languageField } from '../fields/language'
+import { richTextField } from '../fields/richText'
+import { routeField } from '../fields/route'
 
 export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonio',
   type: 'document',
   fields: [
-    defineField({
+    richTextField({
       name: 'quote',
       title: 'Cita',
       description: 'Lo que dijo la persona, tal cual. Se mostrará entre comillas.',
-      type: 'text',
-      rows: 3,
-      validation: (Rule) => Rule.required().error('El testimonio necesita una cita.'),
+      validation: (Rule) => Rule.required().min(1).error('El testimonio necesita una cita.'),
     }),
     defineField({
       name: 'name',
