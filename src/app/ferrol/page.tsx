@@ -10,6 +10,7 @@ import { ClosingCta } from './_sections/ClosingCta'
 import { FixedPrograms } from './_sections/FixedPrograms'
 import { Hero } from './_sections/Hero'
 import { HowToArrive } from './_sections/HowToArrive'
+import { MentoresCallout } from './_sections/MentoresCallout'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { page } = await getFerrolPageData()
@@ -39,6 +40,7 @@ export default async function FerrolPage() {
       <AgendaTimeline intro={page.agendaIntro} events={upcomingEvents} />
       <HowToArrive data={page} siteSettings={siteSettings} />
       <FaqAccordionSection intro={page.faqIntro} items={faqs} />
+      <MentoresCallout />
       <ClosingCta data={page} siteSettings={siteSettings} />
     </>
   )
