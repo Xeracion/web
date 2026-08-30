@@ -22,6 +22,7 @@ import { pageIrse } from './documents/pageIrse'
 import { pageEn } from './documents/pageEn'
 import { pageNosotros } from './documents/pageNosotros'
 import { pageNosotrosEn } from './documents/pageNosotrosEn'
+import { pageMentores } from './documents/pageMentores'
 import { event } from './documents/event'
 import { fixedProgram } from './documents/fixedProgram'
 import { testimonial } from './documents/testimonial'
@@ -58,6 +59,7 @@ export const schemaTypes = [
   pageEn,
   pageNosotros,
   pageNosotrosEn,
+  pageMentores,
 
   // Colecciones
   event,

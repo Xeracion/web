@@ -566,3 +566,54 @@ export const getNosotrosEnPageData = cache(async (): Promise<NosotrosPageData> =
   const { data } = await sanityFetch({ query: NOSOTROS_EN_QUERY })
   return data as NosotrosPageData
 })
+
+export interface PageMentoresData {
+  heroEyebrow?: string
+  heroHeading?: string
+  heroText?: string
+  heroImage?: SanityImageSource
+  heroImageCaption?: string
+  heroCtaLabel?: string
+  heroCtaHref?: string
+  whyIntro?: SectionIntroData
+  whyText?: string
+  beneficiosIntro?: SectionIntroData
+  beneficios?: ValueItemData[]
+  stats?: StatItemData[]
+  testimoniosIntro?: SectionIntroData
+  closingHeading?: string
+  closingText?: string
+}
+
+export interface MentoresPageData {
+  page: PageMentoresData | null
+  testimonials: TestimonialData[]
+}
+
+const MENTORES_QUERY = `{
+  "page": *[_type == "pageMentores"][0]{
+    heroEyebrow,
+    heroHeading,
+    heroText,
+    heroImage,
+    heroImageCaption,
+    heroCtaLabel,
+    heroCtaHref,
+    whyIntro,
+    whyText,
+    beneficiosIntro,
+    beneficios,
+    stats,
+    testimoniosIntro,
+    closingHeading,
+    closingText
+  },
+  "testimonials": *[_type == "testimonial" && route == "mentores"] | order(_createdAt asc){
+    quote, name, originCity, destinationCity, program, year, photo
+  }
+}`
+
+export const getMentoresPageData = cache(async (): Promise<MentoresPageData> => {
+  const { data } = await sanityFetch({ query: MENTORES_QUERY })
+  return data as MentoresPageData
+})
