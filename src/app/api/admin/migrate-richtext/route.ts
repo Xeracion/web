@@ -77,17 +77,23 @@ function buildPatch(doc: SanityDoc) {
 }
 
 export async function GET(request: Request) {
-  const writeToken = process.env.SANITY_API_WRITE_TOKEN
+  const writeToken = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_API_WRITE_TOKEN_2
   if (!writeToken) {
     return NextResponse.json(
-      { error: 'Falta SANITY_API_WRITE_TOKEN en las variables de entorno de este despliegue.' },
+      {
+        error:
+          'Falta SANITY_API_WRITE_TOKEN (o SANITY_API_WRITE_TOKEN_2) en las variables de entorno de este despliegue.',
+      },
       { status: 500 },
     )
   }
 
   const providedToken = new URL(request.url).searchParams.get('token')
   if (providedToken !== writeToken) {
-    return NextResponse.json({ error: 'No autorizado. Añade ?token=tu SANITY_API_WRITE_TOKEN a la URL.' }, { status: 401 })
+    return NextResponse.json(
+      { error: 'No autorizado. Añade ?token=el valor de SANITY_API_WRITE_TOKEN (o _2) a la URL.' },
+      { status: 401 },
+    )
   }
 
   const client = createClient({ projectId, dataset, apiVersion, token: writeToken, useCdn: false })
