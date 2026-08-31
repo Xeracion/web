@@ -14,14 +14,27 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 2fr repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-lg);
+}
+
+.grid > * {
+  flex: 1 1 140px;
+}
+
+.grid > :first-child {
+  flex: 2 1 240px;
 }
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .grid > *,
+  .grid > :first-child {
+    flex: 1 1 auto;
   }
 }
 
