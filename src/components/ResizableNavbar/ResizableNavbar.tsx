@@ -71,10 +71,6 @@ function LanguageSwitcher({ locale, altLangHref }: LanguageSwitcherProps) {
 
   return (
     <div className={styles.langSwitcher}>
-      <span className={styles.langCurrent} title={FLAG_LABELS[locale]}>
-        <FlagIcon locale={locale} />
-        <span className={styles.srOnly}>{FLAG_LABELS[locale]}</span>
-      </span>
       <Link
         href={altLangHref}
         className={styles.langLink}
