@@ -96,21 +96,43 @@ export async function GET(request: Request) {
     )
   }
 
+  const debug = new URL(request.url).searchParams.get('debug') === '1'
   const client = createClient({ projectId, dataset, apiVersion, token: writeToken, useCdn: false })
   const migrated: string[] = []
+  const diagnostics: Record<string, unknown> = { projectId, dataset }
 
   try {
+    const singletonsFound: Record<string, string> = {}
     for (const id of SINGLETON_IDS) {
       const doc = await client.getDocument<SanityDoc>(id)
-      if (!doc) continue
+      if (!doc) {
+        singletonsFound[id] = 'no existe'
+        continue
+      }
+
+      if (debug) {
+        const fields = [...(SINGLE_TEXT_FIELDS[doc._type] ?? []), ...(PARAGRAPH_ARRAY_FIELDS[doc._type] ?? [])]
+        singletonsFound[id] = fields
+          .map((f) => {
+            const v = doc[f]
+            if (v === undefined) return `${f}=undefined`
+            if (typeof v === 'string') return `${f}=string("${v.slice(0, 30)}...")`
+            if (Array.isArray(v)) return `${f}=array(${v.length})`
+            return `${f}=${typeof v}`
+          })
+          .join(' · ')
+      }
+
       const patch = buildPatch(doc)
       if (Object.keys(patch).length === 0) continue
       await client.patch(id).set(patch).commit()
       migrated.push(`${id} (${doc._type}): ${Object.keys(patch).join(', ')}`)
     }
+    if (debug) diagnostics.singletons = singletonsFound
 
     for (const type of ['faq', 'testimonial']) {
       const docs = await client.fetch<SanityDoc[]>(`*[_type == $type]`, { type })
+      if (debug) diagnostics[`${type}Count`] = docs.length
       for (const doc of docs) {
         const patch = buildPatch(doc)
         if (Object.keys(patch).length === 0) continue
@@ -120,7 +142,7 @@ export async function GET(request: Request) {
     }
   } catch (err) {
     return NextResponse.json(
-      { error: String(err instanceof Error ? err.message : err), migratedSoFar: migrated },
+      { error: String(err instanceof Error ? err.message : err), migratedSoFar: migrated, diagnostics },
       { status: 500 },
     )
   }
@@ -129,6 +151,7 @@ export async function GET(request: Request) {
     done: true,
     count: migrated.length,
     migrated,
+    ...(debug ? { diagnostics } : {}),
     message:
       migrated.length === 0
         ? 'Nada que migrar (o ya estaba todo migrado). Recuerda borrar esta ruta.'
