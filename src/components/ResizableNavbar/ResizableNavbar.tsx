@@ -130,12 +130,14 @@ export function ResizableNavbar({
   return (
     <div className={styles.wrapper}>
       <motion.div
-        className={styles.inner}
+        className={cn(styles.inner, scrolled && styles.innerScrolled)}
         animate={{
           maxWidth: scrolled ? 720 : 1200,
           marginTop: scrolled ? 12 : 0,
           borderRadius: scrolled ? 999 : 0,
-          boxShadow: scrolled ? '0 12px 32px -16px rgba(44,44,42,0.25)' : '0 0 0 0 rgba(44,44,42,0)',
+          boxShadow: scrolled
+            ? '0 12px 32px -16px rgba(44,44,42,0.25), inset 0 1px 0 rgba(255,255,255,0.6)'
+            : '0 0 0 0 rgba(44,44,42,0), inset 0 0 0 0 rgba(255,255,255,0)',
         }}
         transition={transition}
       >
