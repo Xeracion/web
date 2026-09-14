@@ -21,9 +21,9 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
   es: {
     columns: [
       {
-        heading: 'Ferrol',
+        heading: 'Agenda',
         links: [
-          { label: 'Agenda', href: '/ferrol/#agenda' },
+          { label: 'Próximos eventos', href: '/ferrol/#agenda' },
           { label: 'Offline Club', href: '/ferrol/#offline-club' },
           { label: 'Cómo llegar', href: '/ferrol/#visitanos' },
         ],
@@ -50,9 +50,9 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
   en: {
     columns: [
       {
-        heading: 'Ferrol',
+        heading: 'Schedule',
         links: [
-          { label: 'Schedule', href: '/en/ferrol/#agenda' },
+          { label: 'Upcoming events', href: '/en/ferrol/#agenda' },
           { label: 'Offline Club', href: '/en/ferrol/#offline-club' },
           { label: 'Getting here', href: '/en/ferrol/#visitanos' },
         ],

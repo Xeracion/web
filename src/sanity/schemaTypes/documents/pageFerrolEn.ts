@@ -4,7 +4,7 @@ import { richTextField } from '../fields/richText'
 
 export const pageFerrolEn = defineType({
   name: 'pageFerrolEn',
-  title: 'Página Ferrol (English)',
+  title: 'Página Agenda (English)',
   type: 'document',
   groups: [
     { name: 'hero', title: 'Portada', default: true },

@@ -14,7 +14,7 @@ import { MentoresCallout } from './_sections/MentoresCallout'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { page } = await getFerrolPageData()
-  return buildPageMetadata({ title: 'Ferrol', description: page?.heroText })
+  return buildPageMetadata({ title: 'Agenda', description: page?.heroText })
 }
 
 export default async function FerrolPage() {

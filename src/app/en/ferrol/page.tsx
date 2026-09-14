@@ -13,7 +13,7 @@ import { HowToArrive } from '../../ferrol/_sections/HowToArrive'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { page } = await getFerrolEnPageData()
-  return buildPageMetadata({ title: 'Ferrol', description: page?.heroText, locale: 'en_US' })
+  return buildPageMetadata({ title: 'Schedule', description: page?.heroText, locale: 'en_US' })
 }
 
 export default async function EnFerrolPage() {
