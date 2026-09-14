@@ -35,7 +35,7 @@ function toBlock(text: string) {
 }
 
 // Contenido adaptado de https://xeracion.org/mentores/ al sistema de diseño
-// actual (mismos componentes que /ferrol/, acento teal). Usa createIfNotExists
+// actual (mismos componentes que /agenda/, acento teal). Usa createIfNotExists
 // para no pisar nada si ya lo hubieras editado a mano en el Studio.
 const docs: SanityDoc[] = [
   {

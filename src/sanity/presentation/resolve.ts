@@ -18,7 +18,7 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
     pageFerrol: defineLocations({
       select: { heroHeading: 'heroHeading' },
       resolve: (doc) => ({
-        locations: [{ title: doc?.heroHeading || 'Página Ferrol', href: '/ferrol/' }],
+        locations: [{ title: doc?.heroHeading || 'Página Agenda', href: '/agenda/' }],
       }),
     }),
     pageIrse: defineLocations({
@@ -44,7 +44,7 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
       resolve: (doc) => ({
         locations: [
           ...(doc?.route === 'ferrol'
-            ? [{ title: doc?.title || 'Evento', href: '/ferrol/' }]
+            ? [{ title: doc?.title || 'Evento', href: '/agenda/' }]
             : []),
           { title: doc?.title || 'Evento', href: '/' },
         ],
@@ -54,7 +54,7 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
       select: { name: 'name', route: 'route' },
       resolve: (doc) => ({
         locations:
-          doc?.route === 'ferrol' ? [{ title: doc?.name || 'Programa fijo', href: '/ferrol/' }] : [],
+          doc?.route === 'ferrol' ? [{ title: doc?.name || 'Programa fijo', href: '/agenda/' }] : [],
       }),
     }),
     mobilityProgram: defineLocations({
@@ -70,9 +70,11 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
       select: { question: 'question', route: 'route' },
       resolve: (doc) => ({
         locations:
-          doc?.route === 'ferrol' || doc?.route === 'irse' || doc?.route === 'en'
-            ? [{ title: doc?.question || 'Pregunta frecuente', href: `/${doc.route}/` }]
-            : [],
+          doc?.route === 'ferrol'
+            ? [{ title: doc?.question || 'Pregunta frecuente', href: '/agenda/' }]
+            : doc?.route === 'irse' || doc?.route === 'en'
+              ? [{ title: doc?.question || 'Pregunta frecuente', href: `/${doc.route}/` }]
+              : [],
       }),
     }),
     testimonial: defineLocations({

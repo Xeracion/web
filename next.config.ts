@@ -63,6 +63,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // La página antigua /ferrol/ (y su versión en inglés) se renombró a /agenda/.
+  // Redirige las URLs antiguas para no romper enlaces ya indexados o guardados.
+  async redirects() {
+    return [
+      { source: "/ferrol", destination: "/agenda/", permanent: true },
+      { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
+      { source: "/en/ferrol", destination: "/en/agenda/", permanent: true },
+      { source: "/en/ferrol/:path*", destination: "/en/agenda/:path*", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

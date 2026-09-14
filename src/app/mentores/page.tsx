@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getMentoresPageData, getSiteSettings } from '@/sanity/lib/queries'
 
-import { ClosingCta } from '../ferrol/_sections/ClosingCta'
+import { ClosingCta } from '../agenda/_sections/ClosingCta'
 import { Beneficios } from './_sections/Beneficios'
 import { Hero } from './_sections/Hero'
 import { Stats } from './_sections/Stats'

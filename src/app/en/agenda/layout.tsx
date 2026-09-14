@@ -17,7 +17,7 @@ export default async function EnFerrolLayout({ children }: { children: React.Rea
         items={NAV_ITEMS_EN}
         activeRoute="ferrol"
         locale="en"
-        altLangHref="/ferrol/"
+        altLangHref="/agenda/"
       />
       <main className="site-main" id="main-content">
         {children}

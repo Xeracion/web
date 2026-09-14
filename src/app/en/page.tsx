@@ -31,7 +31,7 @@ export default async function EnHomePage() {
   )
 
   const routeCardItems: RouteCardEntry[] = [
-    { key: 'ferrol', routeClass: 'route-ferrol', href: '/en/ferrol/', photoVariant: 'ferrol', card: home.routeCardFerrol },
+    { key: 'ferrol', routeClass: 'route-ferrol', href: '/en/agenda/', photoVariant: 'ferrol', card: home.routeCardFerrol },
     { key: 'volunteering', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardVolunteering },
     { key: 'about', href: '/about/', photoVariant: 'neutral', card: home.routeCardAbout },
   ]
@@ -48,7 +48,7 @@ export default async function EnHomePage() {
         featured={featuredEvent}
         upcoming={upcomingEvents}
         locale="en"
-        ferrolAgendaHref="/en/ferrol/#agenda"
+        ferrolAgendaHref="/en/agenda/#agenda"
       />
       <ClosingCta home={home} siteSettings={siteSettings} locale="en" />
     </>

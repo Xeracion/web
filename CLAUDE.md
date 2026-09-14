@@ -14,18 +14,18 @@ Contacto: `info@xeracion.org`. Email del usuario propietario de este proyecto: `
 
 ### Las tres rutas por audiencia — y el sitio bilingüe (es/en)
 
-El sitio no tiene una home única: tiene tres sub-homes según quién es el visitante, cada una con su propio color de acento que actúa como identidad visual persistente en toda la sección. Además, la portada, `/ferrol/` y `/nosotros/` existen en dos idiomas — español (rutas sin prefijo) e inglés (bajo `/en/`, salvo dos excepciones señaladas abajo). `/irse/` e "inglés/volunteering" NO son traducciones la una de la otra: son la 4ª ruta propia de cada idioma, con audiencias distintas.
+El sitio no tiene una home única: tiene tres sub-homes según quién es el visitante, cada una con su propio color de acento que actúa como identidad visual persistente en toda la sección. Además, la portada, `/agenda/` y `/nosotros/` existen en dos idiomas — español (rutas sin prefijo) e inglés (bajo `/en/`, salvo dos excepciones señaladas abajo). `/irse/` e "inglés/volunteering" NO son traducciones la una de la otra: son la 4ª ruta propia de cada idioma, con audiencias distintas.
 
 | Ruta ES | Ruta EN | Audiencia | Acento |
 |---|---|---|---|
 | `/` | `/en/` | Portada neutra: hero genérico + tarjetas que enlazan a las otras rutas del mismo idioma | Neutro (sin clase `route-*`) |
-| `/ferrol/` | `/en/ferrol/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Teal / verde (proximidad, ría, mar) |
-| `/irse/` | — | Jóvenes españoles (18-30) que quieren irse de voluntariado o Erasmus+ a Europa. Solo existe en español; es el 4º ítem del nav en `/`, `/ferrol/` y `/nosotros/`. | Coral / naranja (salida, calidez) |
-| — | `/volunteering/` | Jóvenes europeos que quieren venir de voluntariado/prácticas a Ferrol. Solo existe en inglés (antes vivía en `/en/`); es el 4º ítem del nav en `/en/`, `/en/ferrol/` y `/about/`. **Todo el contenido en inglés**, incluidos header, footer y CTAs. | Púrpura (Europa, llegada) |
+| `/agenda/` | `/en/agenda/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Teal / verde (proximidad, ría, mar) |
+| `/irse/` | — | Jóvenes españoles (18-30) que quieren irse de voluntariado o Erasmus+ a Europa. Solo existe en español; es el 4º ítem del nav en `/`, `/agenda/` y `/nosotros/`. | Coral / naranja (salida, calidez) |
+| — | `/volunteering/` | Jóvenes europeos que quieren venir de voluntariado/prácticas a Ferrol. Solo existe en inglés (antes vivía en `/en/`); es el 4º ítem del nav en `/en/`, `/en/agenda/` y `/about/`. **Todo el contenido en inglés**, incluidos header, footer y CTAs. | Púrpura (Europa, llegada) |
 | `/nosotros/` | `/about/` | Quiénes somos, equipo, historia, partners | Neutro (sin clase `route-*`) |
 
 Notas de la arquitectura bilingüe:
-- `/ferrol/` ↔ `/en/ferrol/` y `/nosotros/` ↔ `/about/` son pares de traducción real: mismos componentes de sección (`_sections/`), mismos nombres de campo en Sanity, alimentados por un documento Sanity distinto por idioma (ver más abajo). Los componentes de sección viven físicamente bajo `src/app/ferrol/_sections/` y `src/app/nosotros/_sections/` y se **reimportan** (no se duplican) desde `src/app/en/ferrol/page.tsx` y `src/app/about/page.tsx`.
+- `/agenda/` ↔ `/en/agenda/` y `/nosotros/` ↔ `/about/` son pares de traducción real: mismos componentes de sección (`_sections/`), mismos nombres de campo en Sanity, alimentados por un documento Sanity distinto por idioma (ver más abajo). Los componentes de sección viven físicamente bajo `src/app/agenda/_sections/` y `src/app/nosotros/_sections/` y se **reimportan** (no se duplican) desde `src/app/en/agenda/page.tsx` y `src/app/about/page.tsx`.
 - `/irse/` y `/volunteering/` NO tienen contraparte en el otro idioma — son conceptualmente páginas distintas (irse de España vs. venir a Ferrol), no una traducción.
 - Selector de idioma con banderas (🇪🇸 / 🇬🇧) integrado en `ResizableNavbar` (props `locale` y `altLangHref`). Cada layout pasa el `altLangHref` explícito de la página equivalente en el otro idioma (o al home de ese idioma si no hay equivalente directo, como en `/irse/` → `/en/` o `/volunteering/` → `/`).
 - **Detección de idioma del navegador**: `src/middleware.ts` redirige `/` → `/en/` si el header `Accept-Language` del visitante no es español ni gallego (`es`/`gl`), y recuerda la elección (explícita o detectada) en la cookie `xeracion_lang` durante un año para no volver a redirigir en visitas siguientes a `/`.
@@ -159,8 +159,8 @@ Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver e
 #### 2.1 Componente `ResizableNavbar`
 
 - Ubicación: `src/components/ResizableNavbar/` (`ResizableNavbar.tsx` + `ResizableNavbar.module.css`, con un `index.ts` barrel para poder importarlo como `@/components/ResizableNavbar`, igual que el resto de componentes).
-- Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los nueve layouts que montan navegación: `(main)`, `ferrol`, `irse`, `volunteering`, `nosotros`, `en`, `en/ferrol`, `about`.
-- Props: `siteName: string`, `items: NavItem[]` (`{ name, link, key }`, de `src/lib/nav.ts` — hay un array por idioma, `NAV_ITEMS_ES`/`NAV_ITEMS_EN`; incluye "Inicio/Home" y "Nosotros/About Us" como enlaces más, con el mismo estilo y pill que el resto), `activeRoute?: RouteKey` (`'home' | 'ferrol' | 'irse' | 'nosotros' | 'volunteering' | 'about'` — se compara contra `item.key`, no se reconstruye a partir de la URL, precisamente porque `/en/ferrol/` no cuelga de `/ferrol/`), `locale?: 'es' | 'en'` (por defecto `'es'`) y `altLangHref?: string` (el destino del selector de idioma; cada layout pasa la URL de la página equivalente en el otro idioma). Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa.
+- Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los nueve layouts que montan navegación: `(main)`, `agenda`, `irse`, `volunteering`, `nosotros`, `en`, `en/agenda`, `about`.
+- Props: `siteName: string`, `items: NavItem[]` (`{ name, link, key }`, de `src/lib/nav.ts` — hay un array por idioma, `NAV_ITEMS_ES`/`NAV_ITEMS_EN`; incluye "Inicio/Home" y "Nosotros/About Us" como enlaces más, con el mismo estilo y pill que el resto), `activeRoute?: RouteKey` (`'home' | 'ferrol' | 'irse' | 'nosotros' | 'volunteering' | 'about'` — el valor sigue llamándose `ferrol` internamente aunque la página pública sea `/agenda/` — se compara contra `item.key`, no se reconstruye a partir de la URL, precisamente porque `/en/agenda/` no cuelga de `/agenda/`), `locale?: 'es' | 'en'` (por defecto `'es'`) y `altLangHref?: string` (el destino del selector de idioma; cada layout pasa la URL de la página equivalente en el otro idioma). Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa.
 - El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse/.route-en` que ya aplica cada layout — el componente no tiene lógica condicional de color.
 - **Decisión técnica**: usa la librería `motion` (antes `framer-motion`) para las animaciones de scroll (`useScroll` + `useMotionValueEvent`), el spring de resize y el pill con `layoutId`. Está inspirado en el "Resizable Navbar" de Aceternity UI, pero reimplementado desde cero en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
 
@@ -189,7 +189,7 @@ Estas reglas son inviolables y se aplican a **todo** texto nuevo que se escriba,
 
 ### 4.1 Agenda de eventos vía Google Calendar
 
-Los eventos de la agenda destacada (portada) y de la agenda de próximas dos semanas (`/ferrol/`) se leen en tiempo real de Google Calendar a través de `src/lib/googleCalendar.ts`, **no** del tipo de documento "Evento" en Sanity (que se mantiene en el esquema sin usar, por si se necesita en el futuro). Configuración:
+Los eventos de la agenda destacada (portada) y de la agenda de próximas dos semanas (`/agenda/`) se leen en tiempo real de Google Calendar a través de `src/lib/googleCalendar.ts`, **no** del tipo de documento "Evento" en Sanity (que se mantiene en el esquema sin usar, por si se necesita en el futuro). Configuración:
 
 - `GOOGLE_CALENDAR_API_KEY` (variable de entorno) — clave de la API de Google Calendar, restringida a "Calendar API" en Google Cloud Console.
 - `googleCalendarId` (campo de texto en Sanity Studio → Ajustes generales) — el ID del calendario (Ajustes del calendario de Google → Integrar calendario → ID de calendario). El calendario debe estar marcado como público.
@@ -198,19 +198,21 @@ Mientras falte cualquiera de los dos, la agenda no muestra eventos (no rompe la 
 
 ### 4.2 Contenido bilingüe en Sanity
 
-Cada página que existe en los dos idiomas tiene un **documento singleton propio por idioma** en Sanity (mismo patrón que ya existía entre `pageIrse` y `pageEn`, ahora extendido a portada y Ferrol):
+Cada página que existe en los dos idiomas tiene un **documento singleton propio por idioma** en Sanity (mismo patrón que ya existía entre `pageIrse` y `pageEn`, ahora extendido a portada y Agenda):
 
 | Español | Inglés | Ruta que alimenta |
 |---|---|---|
 | `home` | `homeEn` | `/` · `/en/` |
-| `pageFerrol` | `pageFerrolEn` | `/ferrol/` · `/en/ferrol/` |
+| `pageFerrol` | `pageFerrolEn` | `/agenda/` · `/en/agenda/` |
 | `pageNosotros` | `pageNosotrosEn` | `/nosotros/` · `/about/` |
 | — | `pageEn` | `/volunteering/` (sin equivalente en español) |
 | — | `pageIrse` | `/irse/` (sin equivalente en inglés) |
 
-`homeEn` usa los mismos nombres de campo que `home` salvo en las tarjetas de ruta, donde `routeCardIrse`/`routeCardEn` (ES) se sustituyen por `routeCardVolunteering`/`routeCardAbout` (EN), ya que la portada inglesa enlaza a `/volunteering/` y `/about/` en vez de a `/irse/` y `/en/`. `pageFerrolEn` y `pageNosotrosEn` son mirrors exactos campo a campo de `pageFerrol`/`pageNosotros` — por eso las páginas `/en/ferrol/` y `/about/` reimportan literalmente los componentes de `_sections/` de `/ferrol/` y `/nosotros/` en vez de duplicarlos.
+Los tipos de documento Sanity (`pageFerrol`/`pageFerrolEn`), el `RouteKey` interno (`'ferrol'`), la clase de acento CSS (`route-ferrol`) y el valor `route: "ferrol"` de las colecciones asociadas conservan ese nombre histórico aunque la página pública se llame "Agenda"/`/agenda/` — solo cambió la URL y las etiquetas visibles (nav, footer, `<title>`, labels de Studio), no los identificadores internos.
 
-Las colecciones referenciadas por `route` (`fixedProgram`, `faq` — ambas con `route: "ferrol"` para esta página) llevan además un campo `language` (`es`/`en`, por defecto `es` si no está definido, para no romper documentos antiguos sin el campo) que las separa entre la versión española e inglesa de `/ferrol/`. `testimonial` ya tenía este campo de antes. Al añadir contenido nuevo en Studio para `/en/ferrol/`, recuerda marcar `language: English` — si no, no aparecerá filtrado en esa página ni en la española.
+`homeEn` usa los mismos nombres de campo que `home` salvo en las tarjetas de ruta, donde `routeCardIrse`/`routeCardEn` (ES) se sustituyen por `routeCardVolunteering`/`routeCardAbout` (EN), ya que la portada inglesa enlaza a `/volunteering/` y `/about/` en vez de a `/irse/` y `/en/`. `pageFerrolEn` y `pageNosotrosEn` son mirrors exactos campo a campo de `pageFerrol`/`pageNosotros` — por eso las páginas `/en/agenda/` y `/about/` reimportan literalmente los componentes de `_sections/` de `/agenda/` y `/nosotros/` en vez de duplicarlos.
+
+Las colecciones referenciadas por `route` (`fixedProgram`, `faq` — ambas con `route: "ferrol"` para esta página) llevan además un campo `language` (`es`/`en`, por defecto `es` si no está definido, para no romper documentos antiguos sin el campo) que las separa entre la versión española e inglesa de `/agenda/`. `testimonial` ya tenía este campo de antes. Al añadir contenido nuevo en Studio para `/en/agenda/`, recuerda marcar `language: English` — si no, no aparecerá filtrado en esa página ni en la española.
 
 El seed inicial de todo este contenido en inglés (traducción fiel del contenido español sembrado por `scripts/seed.ts` y `scripts/seed-nosotros.ts`) vive en `scripts/seed-en-content.ts` — mismo patrón de ejecución que el resto de scripts de `scripts/` (`npx tsx scripts/seed-en-content.ts` con `SANITY_API_WRITE_TOKEN` en `.env.local`), usa `createIfNotExists` así que no pisa nada si ya existiera. Ese seed **no** rellena `pastVolunteers`/`pastVolunteersIntro` de `pageNosotrosEn` ni los logos de partners — son contenido que solo existe hoy dentro del Studio en español y hay que traducir/duplicar ahí a mano.
 
@@ -228,22 +230,22 @@ Los campos de texto largo de verdad —entradillas de hero, textos de cierre, re
 
 Cada layout de sub-home aplica una clase en su elemento raíz que determina qué variables de acento CSS están activas en el scope de esa página:
 
-- `route-ferrol` → activa el acento teal (en `/ferrol/`, `/en/ferrol/` y `/mentores/`)
+- `route-ferrol` → activa el acento teal (en `/agenda/`, `/en/agenda/` y `/mentores/`)
 - `route-irse` → activa el acento coral (solo en `/irse/`, no tiene equivalente en inglés)
 - `route-en` → activa el acento púrpura (solo en `/volunteering/`, no tiene equivalente en español)
 
-Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte teal en `/ferrol/` y `/en/ferrol/`, coral en `/irse/` y púrpura en `/volunteering/` sin lógica condicional en el componente.
+Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte teal en `/agenda/` y `/en/agenda/`, coral en `/irse/` y púrpura en `/volunteering/` sin lógica condicional en el componente.
 
 Ni la portada (`/`, `/en/`) ni `/nosotros/`/`/about/` llevan ninguna de estas tres clases — usan solo la paleta neutra. En la portada, las tarjetas de ruta aplican sus gradientes de acento de forma local (inline o vía modifier class), no heredado del layout — así la tarjeta "About us" de `/en/` puede quedar neutra mientras las de Ferrol/Volunteering llevan su acento.
 
 ## 6. Estructura de páginas (resumen — detalle completo en ESPECIFICACION.md)
 
 - **Portada `/` y `/en/`**: hero asimétrico → 3 tarjetas de ruta → tira de números → testimonios asimétricos → agenda destacada → CTA de cierre → footer. En `/` las tarjetas llevan a Ferrol/Irse/Volunteering; en `/en/`, a Ferrol/Volunteering/About — mismos componentes de sección, datos de `homeEn`.
-- **`/ferrol/` y `/en/ferrol/`**: hero teal → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre. `/en/ferrol/` reimporta literalmente los componentes de `src/app/ferrol/_sections/`, alimentados por `pageFerrolEn`.
+- **`/agenda/` y `/en/agenda/`** (antes `/ferrol/` y `/en/ferrol/`; la URL se renombró pero el tipo de documento Sanity sigue llamándose `pageFerrol`/`pageFerrolEn`): hero teal → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre. `/en/agenda/` reimporta literalmente los componentes de `src/app/agenda/_sections/`, alimentados por `pageFerrolEn`.
 - **`/irse/`**: hero coral → cómo funciona en 3 pasos → programas disponibles (CES/ESC, Erasmus+ YE, TC) → testimonios → FAQ extenso (acordeón) → CTA de cierre con formulario. Solo en español.
 - **`/volunteering/`**: hero púrpura → life in Ferrol (4 fotos) → what you can do here (ESC + traineeship) → practical info (3 columnas) → voices from past volunteers → how to apply (3 pasos) → FAQ → CTA de cierre. Footer adaptado al inglés. Solo en inglés (antes vivía en `/en/`, alimentada por el documento Sanity `pageEn`, que conserva ese nombre de tipo aunque la URL cambió).
 - **`/nosotros/` y `/about/`**: hero (con foto de fondo opcional) → historia → valores → equipo → voluntarios históricos + testimonios → "han estado con nosotros" (rejilla + cargar más) → iniciativas → partners → CTA de cierre. `/about/` reimporta los componentes de `src/app/nosotros/_sections/`, alimentados por `pageNosotrosEn`.
-- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero teal → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `valueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3, reutiliza el tipo `testimonial` con `route: "mentores"`) → CTA de cierre, reimportado literalmente de `src/app/ferrol/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). Solo en español; no está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/ferrol/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentores`, adaptado del texto original de la página equivalente en el sitio anterior.
+- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero teal → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `valueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3, reutiliza el tipo `testimonial` con `route: "mentores"`) → CTA de cierre, reimportado literalmente de `src/app/agenda/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). Solo en español; no está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/agenda/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentores`, adaptado del texto original de la página equivalente en el sitio anterior.
 
 Para el contenido literal exacto de cada sección en español (textos, testimonios, preguntas de FAQ, eventos de agenda, etc.) consultar siempre [ESPECIFICACION.md](ESPECIFICACION.md) — no reescribir de memoria. ESPECIFICACION.md es anterior a la página `/nosotros/` y a varias secciones añadidas después (agenda vía Google Calendar, "han estado con nosotros", etc.); para esas partes la referencia de contenido real son los scripts `scripts/seed*.ts`, no el documento.
 

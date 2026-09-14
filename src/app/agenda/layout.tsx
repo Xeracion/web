@@ -17,7 +17,7 @@ export default async function FerrolLayout({ children }: { children: React.React
         items={NAV_ITEMS_ES}
         activeRoute="ferrol"
         locale="es"
-        altLangHref="/en/ferrol/"
+        altLangHref="/en/agenda/"
       />
       <main className="site-main" id="main-content">
         {children}

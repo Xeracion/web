@@ -21,7 +21,7 @@ export function Agenda({
   featured,
   upcoming,
   locale = 'es',
-  ferrolAgendaHref = '/ferrol/#agenda',
+  ferrolAgendaHref = '/agenda/#agenda',
 }: AgendaProps) {
   if (!featured && upcoming.length === 0) return null
 

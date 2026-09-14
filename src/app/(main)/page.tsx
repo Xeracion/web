@@ -31,7 +31,7 @@ export default async function HomePage() {
   )
 
   const routeCardItems: RouteCardEntry[] = [
-    { key: 'ferrol', routeClass: 'route-ferrol', href: '/ferrol/', photoVariant: 'ferrol', card: home.routeCardFerrol },
+    { key: 'ferrol', routeClass: 'route-ferrol', href: '/agenda/', photoVariant: 'ferrol', card: home.routeCardFerrol },
     { key: 'irse', routeClass: 'route-irse', href: '/irse/', photoVariant: 'irse', card: home.routeCardIrse },
     { key: 'en', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardEn },
   ]

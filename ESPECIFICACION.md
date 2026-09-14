@@ -10,7 +10,7 @@ Documento de referencia del rediseño. Contiene el sistema de diseño, la estruc
 
 - **Tono editorial limpio**: mucho blanco, tipografía Fraunces para titulares, Inter para cuerpo, fotos grandes con bordes redondeados, jerarquía tipográfica marcada.
 - **Sistema de tres rutas por audiencia**: cada sub-home tiene un color de acento propio que persiste como identidad visual:
-  - `/ferrol/` → teal / verde (proximidad, ría, mar)
+  - `/agenda/` (antes `/ferrol/`) → teal / verde (proximidad, ría, mar)
   - `/irse/` → coral / naranja (salida, calidez)
   - `/en/` → púrpura (Europa, llegada)
 - **Marco StoryBrand aplicado al copy**: el usuario es el héroe, Xeración es el guía. Los CTAs son directos, sin jerga institucional.
@@ -175,7 +175,7 @@ Cada tarjeta:
 
 Contenido literal por tarjeta:
 
-**Tarjeta Ferrol** (URL: `/ferrol/`):
+**Tarjeta Ferrol** (URL: `/agenda/`):
 - H3: `Vivo en Ferrol y quiero hacer algo esta semana.`
 - Párrafo: `Casa da Xuventude na Almendra. Clubs, talleres, encuentros. Casi todo gratis.`
 - CTA: `Ver agenda →`
@@ -274,12 +274,12 @@ Eventos:
   info@xeracion.org
   ```
 
-**Columna 2 · Ferrol**:
-- H5 Inter 13 px weight 500 color texto primario `Ferrol`
+**Columna 2 · Agenda** (antes "Ferrol"):
+- H5 Inter 13 px weight 500 color texto primario `Agenda`
 - Lista (line-height 1.9, Inter 13 px, color terciario):
-  - `Agenda` → `/ferrol/#agenda`
-  - `Offline Club` → `/ferrol/#offline-club`
-  - `Cómo llegar` → `/ferrol/#visitanos`
+  - `Próximos eventos` → `/agenda/#agenda`
+  - `Offline Club` → `/agenda/#offline-club`
+  - `Cómo llegar` → `/agenda/#visitanos`
 
 **Columna 3 · Irse**:
 - H5 `Irse`
@@ -299,7 +299,7 @@ Debajo de las 4 columnas, línea de créditos:
 - Border-top 0.5 px `#D3D1C7`, padding 16 px arriba, margin-top 32 px.
 - Texto centrado Inter 12 px color muted: `© 2026 Asociación Xeración · Casa da Xuventude, Ferrol`
 
-## Página 2 · `/ferrol/`
+## Página 2 · `/agenda/` (antes `/ferrol/`)
 
 Sub-home para jóvenes de la comarca de Ferrol. Acento visual: teal.
 

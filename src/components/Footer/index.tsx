@@ -23,9 +23,9 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
       {
         heading: 'Agenda',
         links: [
-          { label: 'Próximos eventos', href: '/ferrol/#agenda' },
-          { label: 'Offline Club', href: '/ferrol/#offline-club' },
-          { label: 'Cómo llegar', href: '/ferrol/#visitanos' },
+          { label: 'Próximos eventos', href: '/agenda/#agenda' },
+          { label: 'Offline Club', href: '/agenda/#offline-club' },
+          { label: 'Cómo llegar', href: '/agenda/#visitanos' },
         ],
       },
       {
@@ -52,9 +52,9 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
       {
         heading: 'Schedule',
         links: [
-          { label: 'Upcoming events', href: '/en/ferrol/#agenda' },
-          { label: 'Offline Club', href: '/en/ferrol/#offline-club' },
-          { label: 'Getting here', href: '/en/ferrol/#visitanos' },
+          { label: 'Upcoming events', href: '/en/agenda/#agenda' },
+          { label: 'Offline Club', href: '/en/agenda/#offline-club' },
+          { label: 'Getting here', href: '/en/agenda/#visitanos' },
         ],
       },
       {

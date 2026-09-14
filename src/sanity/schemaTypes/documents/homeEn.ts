@@ -64,7 +64,7 @@ export const homeEn = defineType({
     defineField({
       name: 'routeCardFerrol',
       title: 'Tarjeta · Ferrol',
-      description: 'Enlaza a /en/ferrol/.',
+      description: 'Enlaza a /en/agenda/.',
       type: 'routeCard',
       group: 'routeCards',
     }),
