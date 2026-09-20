@@ -1,10 +1,7 @@
-// Antes vivía en el singleton `siteSettings` de Sanity. `whatsapp`,
-// `socialLinks` y `googleCalendarId` nunca se llegaron a sembrar por script
-// (se habrían añadido a mano en el Studio, si es que los rellenaste) —
-// mientras estén vacíos aquí, los componentes que los usan simplemente no
-// muestran ese botón/enlace, igual que hacían antes cuando el campo estaba
-// vacío en Sanity. Si los tenías rellenados en el Studio, dime los valores
-// reales y los pongo.
+// Antes vivía en el singleton `siteSettings` de Sanity. `googleCalendarId`
+// nunca se llegó a sembrar por script (se habría añadido a mano en el
+// Studio) — mientras esté vacío aquí, la agenda simplemente no muestra
+// eventos, igual que hacía antes cuando el campo estaba vacío en Sanity.
 
 export interface SocialLink {
   platform: string
@@ -17,8 +14,12 @@ export const siteSettings = {
     'Xeración es una asociación juvenil gallega activa desde 2013 con sede en Ferrol (Casa da Xuventude, Rúa Almendra 9). Coordina intercambios juveniles Erasmus+, voluntariados del Cuerpo Europeo de Solidaridad (CES/ESC), cursos de formación y actividades locales.',
   address: 'Casa da Xuventude, Rúa Almendra 9, 15401 Ferrol',
   email: 'info@xeracion.org',
-  whatsapp: undefined as string | undefined,
-  socialLinks: [] as SocialLink[],
+  whatsapp: '34644523505',
+  socialLinks: [
+    { platform: 'instagram', url: 'https://instagram.com/xeracion' },
+    { platform: 'tiktok', url: 'https://tiktok.com/@xeracion' },
+    { platform: 'facebook', url: 'https://facebook.com/xeracion.org' },
+  ] satisfies SocialLink[],
   googleCalendarId: undefined as string | undefined,
 }
 
