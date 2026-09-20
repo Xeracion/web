@@ -24,6 +24,10 @@ import {
 
 import styles from './page.module.css'
 
+// Ver (main)/page.tsx: evita quedarse con una ficha vacía/404 hasta el
+// siguiente deploy si Sanity falla justo en el build.
+export const revalidate = 300
+
 export async function generateStaticParams() {
   const slugs = await getExperienciaSlugs()
   return slugs.map((slug) => ({ slug }))

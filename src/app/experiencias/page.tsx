@@ -9,6 +9,10 @@ import { getExperiencias } from '@/sanity/lib/queries'
 
 import styles from './page.module.css'
 
+// Ver (main)/page.tsx: evita que un fallo puntual de Sanity en build time
+// deje el catálogo vacío hasta el siguiente deploy.
+export const revalidate = 300
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     title: 'Experiencias',

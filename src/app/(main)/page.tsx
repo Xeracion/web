@@ -15,6 +15,14 @@ import { InstitutionalStrip } from './_sections/InstitutionalStrip'
 import { Logos } from './_sections/Logos'
 import { Testimonials } from './_sections/Testimonials'
 
+// Sin esto, la página se genera estática en build time y, si esa única
+// llamada a Sanity falla (red, límite de tasa, lo que sea), el catálogo se
+// queda vacío para siempre hasta el próximo deploy — getExperienciasDestacadas
+// ya degrada a [] en vez de romper el build, pero eso no evita quedarse
+// pillado en ese estado. Con revalidate, Next reintenta en segundo plano
+// cada 5 minutos y se autocorrige solo.
+export const revalidate = 300
+
 export function generateMetadata(): Metadata {
   return buildPageMetadata({ description: homeEs.intro })
 }
