@@ -32,13 +32,15 @@ function toBlock(text: string) {
 // createIfNotExists y nunca tocan nada publicado), este script SÍ sobrescribe
 // campos concretos a propósito — es la actualización de contenido que exige
 // el pivote, no solo sembrar contenido nuevo. Asume que `home`, `pageFerrol`,
-// `pageFerrolEn`, `pageNosotros` y `pageNosotrosEn` ya existen (los creó
-// scripts/seed.ts hace tiempo). Es seguro ejecutarlo más de una vez.
+// `pageFerrolEn`, `pageNosotros`, `pageNosotrosEn` y `pageEn` ya existen (los
+// creó scripts/seed.ts hace tiempo). Es seguro ejecutarlo más de una vez.
 //
-// Los campos legales de pageNosotros/pageNosotrosEn (CIF, OID, PIC...) y los
-// de pageEn (tarjetas "for organisations", estadísticas) se dejan vacíos
-// aquí a propósito — son datos reales de la asociación que hay que rellenar
-// a mano en el Studio, no inventarlos en un script.
+// orgStatsProjects, orgStatsCountries, orgProfilePdf y memoriaAnualUrl se
+// dejan vacíos a propósito: son afirmaciones cuantitativas o un archivo real
+// que no me invento — hay que rellenarlos a mano en el Studio cuando tengas
+// las cifras/el PDF. orgStatsYears sí se calcula (activos desde 2013), y
+// legalOid/legalPic/orgStatsOid/orgStatsPic reutilizan el OID/PIC real que
+// diste (son el mismo identificador de organización en las dos páginas).
 
 async function patchHome() {
   await client
@@ -106,19 +108,82 @@ async function patchNosotrosLegal() {
     legalOid: 'E10060426',
     legalPic: '948920640',
   }
+  const accreditationsEs = [
+    { _type: 'partner', _key: randomUUID(), name: 'Acreditación Erasmus+ (envío, acogida y coordinación)' },
+    { _type: 'partner', _key: randomUUID(), name: 'Acreditación Cuerpo Europeo de Solidaridad' },
+  ]
+  const accreditationsEn = [
+    { _type: 'partner', _key: randomUUID(), name: 'Erasmus+ accreditation (sending, hosting & coordinating)' },
+    { _type: 'partner', _key: randomUUID(), name: 'European Solidarity Corps accreditation' },
+  ]
 
-  await client.patch('pageNosotros').setIfMissing(shared).commit()
-  console.log('pageNosotros: datos legales rellenados (solo los campos vacíos).')
+  await client
+    .patch('pageNosotros')
+    .setIfMissing({ ...shared, accreditations: accreditationsEs })
+    .commit({ autoGenerateArrayKeys: true })
+  console.log('pageNosotros: datos legales y acreditaciones rellenados (solo los campos vacíos).')
 
-  await client.patch('pageNosotrosEn').setIfMissing(shared).commit()
-  console.log('pageNosotrosEn: datos legales rellenados (solo los campos vacíos).')
+  await client
+    .patch('pageNosotrosEn')
+    .setIfMissing({ ...shared, accreditations: accreditationsEn })
+    .commit({ autoGenerateArrayKeys: true })
+  console.log('pageNosotrosEn: datos legales y acreditaciones rellenados (solo los campos vacíos).')
+}
+
+async function patchVolunteeringOrgs() {
+  await client
+    .patch('pageEn')
+    .setIfMissing({
+      forOrgsIntro: {
+        _type: 'sectionIntro',
+        eyebrow: 'For organisations',
+        heading: 'Partner with Xeración.',
+      },
+      orgCardVolunteers: {
+        _type: 'orgCard',
+        title: 'Send us your volunteers',
+        text: 'We host European Solidarity Corps volunteers in Ferrol for 2 to 12 months, with accommodation, a local mentor and a structured onboarding from day one.',
+        ctaLabel: 'Talk to our team',
+        ctaHref: 'mailto:info@xeracion.org?subject=ESC%20volunteers',
+      },
+      orgCardVetInterns: {
+        _type: 'orgCard',
+        title: 'Send us your VET interns',
+        text: 'We welcome vocational training placements with the same support structure as our ESC volunteers: housing guidance, a local contact and a placement that matches their field.',
+        ctaLabel: 'Talk to our team',
+        ctaHref: 'mailto:info@xeracion.org?subject=VET%20interns',
+      },
+      orgCardHostOurs: {
+        _type: 'orgCard',
+        title: 'Host ours',
+        text: 'We send volunteers and youth groups to partner projects across Europe. Tell us about your organisation and we’ll see where it fits.',
+        ctaLabel: 'Propose a project',
+        ctaHref: 'mailto:info@xeracion.org?subject=Host%20our%20volunteers',
+      },
+      orgCardPartnerships: {
+        _type: 'orgCard',
+        title: 'Strategic partnerships',
+        text: 'KA2 cooperation, long-term networks, joint training courses. We’re open to multi-year partnerships that go beyond a single mobility.',
+        ctaLabel: 'Start a conversation',
+        ctaHref: 'mailto:info@xeracion.org?subject=Strategic%20partnership',
+      },
+      orgStatsYears: String(new Date().getFullYear() - 2013),
+      orgStatsOid: 'E10060426',
+      orgStatsPic: '948920640',
+    })
+    .commit()
+  console.log(
+    'pageEn: tarjetas "for organisations" y estadísticas rellenadas (solo los campos vacíos). ' +
+      'orgStatsProjects, orgStatsCountries y orgProfilePdf siguen vacíos a propósito: rellénalos en el Studio cuando tengas las cifras reales y el PDF.',
+  )
 }
 
 async function run() {
   await patchHome()
   await patchAgenda()
   await patchNosotrosLegal()
-  console.log('Listo. Revisa en el Studio: logos institucionales, acreditaciones y memoria anual siguen sin foto/enlace real — súbelos a mano cuando los tengas.')
+  await patchVolunteeringOrgs()
+  console.log('Listo. Revisa en el Studio: logos institucionales (nombre puesto, falta subir la imagen), número de proyectos/países socios y el PDF de perfil siguen sin dato real — rellénalos a mano cuando los tengas.')
 }
 
 run().catch((err) => {
