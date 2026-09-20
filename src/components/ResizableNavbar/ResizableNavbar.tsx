@@ -12,7 +12,7 @@ import {
 } from 'motion/react'
 
 import { cn } from '@/lib/cn'
-import type { Locale, NavItem, RouteKey } from '@/lib/nav'
+import type { NavItem, RouteKey } from '@/lib/nav'
 
 import styles from './ResizableNavbar.module.css'
 
@@ -20,84 +20,20 @@ const SCROLL_THRESHOLD = 100
 const SPRING = { type: 'spring' as const, stiffness: 260, damping: 32 }
 const INSTANT = { duration: 0 }
 
-const FLAG_LABELS: Record<Locale, string> = {
-  es: 'Español',
-  en: 'English',
-}
-
-function FlagIcon({ locale }: { locale: Locale }) {
-  if (locale === 'en') {
-    return (
-      <svg viewBox="0 0 24 24" className={styles.flagSvg} aria-hidden="true">
-        <rect width="24" height="24" fill="#012169" />
-        <path d="M0 0L24 24M24 0L0 24" stroke="#FFFFFF" strokeWidth="4" />
-        <path d="M0 0L24 24M24 0L0 24" stroke="#C8102E" strokeWidth="1.6" />
-        <path d="M12 0V24M0 12H24" stroke="#FFFFFF" strokeWidth="7" />
-        <path d="M12 0V24M0 12H24" stroke="#C8102E" strokeWidth="4" />
-      </svg>
-    )
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" className={styles.flagSvg} aria-hidden="true">
-      <rect width="24" height="24" fill="#AA151B" />
-      <rect y="6" width="24" height="12" fill="#F1BF00" />
-    </svg>
-  )
-}
-
-const NAV_COPY: Record<Locale, { primaryNav: string; mobileNav: string; open: string; close: string }> = {
-  es: {
-    primaryNav: 'Navegación principal',
-    mobileNav: 'Navegación móvil',
-    open: 'Abrir menú',
-    close: 'Cerrar menú',
-  },
-  en: {
-    primaryNav: 'Main navigation',
-    mobileNav: 'Mobile navigation',
-    open: 'Open menu',
-    close: 'Close menu',
-  },
-}
-
-interface LanguageSwitcherProps {
-  locale: Locale
-  altLangHref: string
-}
-
-function LanguageSwitcher({ locale, altLangHref }: LanguageSwitcherProps) {
-  const other: Locale = locale === 'es' ? 'en' : 'es'
-
-  return (
-    <div className={styles.langSwitcher}>
-      <Link
-        href={altLangHref}
-        className={styles.langLink}
-        aria-label={locale === 'es' ? `Cambiar a ${FLAG_LABELS.en}` : `Switch to ${FLAG_LABELS.es}`}
-        title={FLAG_LABELS[other]}
-      >
-        <FlagIcon locale={other} />
-      </Link>
-    </div>
-  )
+const NAV_COPY = {
+  primaryNav: 'Navegación principal',
+  mobileNav: 'Navegación móvil',
+  open: 'Abrir menú',
+  close: 'Cerrar menú',
 }
 
 interface ResizableNavbarProps {
   siteName: string
   items: NavItem[]
   activeRoute?: RouteKey
-  locale?: Locale
-  altLangHref?: string
 }
 
-export function ResizableNavbar({
-  siteName,
-  items,
-  activeRoute,
-  locale = 'es',
-  altLangHref = '/en/',
-}: ResizableNavbarProps) {
+export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavbarProps) {
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [hovered, setHovered] = useState<number | null>(null)
@@ -124,8 +60,7 @@ export function ResizableNavbar({
   }, [mobileOpen])
 
   const transition = prefersReducedMotion ? INSTANT : SPRING
-  const copy = NAV_COPY[locale]
-  const homeHref = locale === 'en' ? '/en/' : '/'
+  const copy = NAV_COPY
 
   return (
     <div className={styles.wrapper}>
@@ -142,7 +77,7 @@ export function ResizableNavbar({
         transition={transition}
       >
         <div className={cn(styles.bar, scrolled && styles.barScrolled)}>
-          <Link href={homeHref} className={styles.logo} aria-label={siteName}>
+          <Link href="/" className={styles.logo} aria-label={siteName}>
             <Image src="/XeracionBlue.png" alt="" width={1811} height={375} priority />
           </Link>
 
@@ -177,7 +112,6 @@ export function ResizableNavbar({
                 )
               })}
             </ul>
-            <LanguageSwitcher locale={locale} altLangHref={altLangHref} />
           </nav>
 
           <button
@@ -240,9 +174,6 @@ export function ResizableNavbar({
                   </li>
                 ))}
               </ul>
-              <div className={styles.mobileLangSwitcher}>
-                <LanguageSwitcher locale={locale} altLangHref={altLangHref} />
-              </div>
             </nav>
           </motion.div>
         )}

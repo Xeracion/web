@@ -13,13 +13,11 @@ export default function FerrolLayout({ children }: { children: React.ReactNode }
         siteName={siteSettings?.title ?? 'Xeración'}
         items={NAV_ITEMS_ES}
         activeRoute="ferrol"
-        locale="es"
-        altLangHref="/en/agenda/"
       />
       <main className="site-main" id="main-content">
         {children}
       </main>
-      <Footer siteSettings={siteSettings} locale="es" />
+      <Footer siteSettings={siteSettings} />
       <ScrollReveal />
     </div>
   )

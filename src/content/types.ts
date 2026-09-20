@@ -46,38 +46,6 @@ export interface TimelineMilestone {
   description?: string
 }
 
-export interface ProcessStep {
-  title: string
-  description?: string
-}
-
-export interface InfoColumn {
-  heading?: string
-  text?: string
-}
-
-export interface LifeInFerrolPhoto {
-  image?: string
-  caption?: string
-  description?: string
-}
-
-export interface RouteCard {
-  badgeLabel: string
-  title: string
-  text: string
-  ctaLabel: string
-  image?: string
-  photoLabel: string
-}
-
-export interface OrgCard {
-  title: string
-  text: string
-  ctaLabel: string
-  ctaHref: string
-}
-
 export interface Testimonial {
   quote: string | string[]
   name: string
@@ -92,15 +60,6 @@ export interface FixedProgram {
   name: string
   schedule?: string
   description?: string
-}
-
-export interface MobilityProgram {
-  name: string
-  duration?: string
-  idealFor?: string
-  covers?: string
-  ctaLabel?: string
-  ctaUrl?: string
 }
 
 export interface Faq {

@@ -12,24 +12,19 @@ Este archivo es la fuente de verdad permanente para cualquier sesión de trabajo
 
 Contacto: `info@xeracion.org`. Email del usuario propietario de este proyecto: `info@xeracion.org`.
 
-### Las tres rutas por audiencia — y el sitio bilingüe (es/en)
+### Las rutas por audiencia
 
-El sitio no tiene una home única: tiene tres sub-homes según quién es el visitante, cada una con su propio color de acento que actúa como identidad visual persistente en toda la sección. Además, la portada, `/agenda/` y `/nosotros/` existen en dos idiomas — español (rutas sin prefijo) e inglés (bajo `/en/`, salvo dos excepciones señaladas abajo). `/experiencias/` e "inglés/volunteering" NO son traducciones la una de la otra: son la 4ª ruta propia de cada idioma, con audiencias distintas.
+El sitio no tiene una home única: tiene varias sub-homes según quién es el visitante, cada una con su propio color de acento que actúa como identidad visual persistente en toda la sección.
 
-| Ruta ES | Ruta EN | Audiencia | Acento |
-|---|---|---|---|
-| `/` | `/en/` | Portada neutra: hero genérico + catálogo de experiencias (ES) o tarjetas que enlazan a las otras rutas del mismo idioma (EN) | Neutro (sin clase `route-*`) |
-| `/agenda/` | `/en/agenda/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Teal / verde (proximidad, ría, mar) |
-| `/experiencias/`, `/experiencias/[slug]/` | — | Jóvenes españoles (18-30) que buscan un catálogo de experiencias — caminos, aventura, vivir fuera, intercambios, planes locales, naturaleza — sin que el programa de financiación (Erasmus+, CES) sea la categoría madre: es una etiqueta de coste más. Solo existe en español; es el 4º ítem del nav en `/`, `/agenda/` y `/nosotros/`. | Coral / naranja (salida, calidez) |
-| — | `/volunteering/` | Hub de partenariado primero: organizaciones europeas que quieren enviar/acoger voluntarios o socios estratégicos, y solo debajo, movilidad individual. Solo existe en inglés (antes vivía en `/en/`); es el 4º ítem del nav en `/en/`, `/en/agenda/` y `/about/`. **Todo el contenido en inglés**, incluidos header, footer y CTAs. | Púrpura (Europa, llegada) |
-| `/nosotros/` | `/about/` | Quiénes somos, equipo, historia, partners, datos legales | Neutro (sin clase `route-*`) |
+| Ruta | Audiencia | Acento |
+|---|---|---|
+| `/` | Portada: hero + catálogo de experiencias destacadas | Neutro (sin clase `route-*`) |
+| `/agenda/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Teal / verde (proximidad, ría, mar) |
+| `/experiencias/`, `/experiencias/[slug]/` | Jóvenes españoles (18-30) que buscan un catálogo de experiencias — caminos, aventura, vivir fuera, intercambios, planes locales, naturaleza — sin que el programa de financiación (Erasmus+, CES) sea la categoría madre: es una etiqueta de coste más. Es el 4º ítem del nav en `/`, `/agenda/` y `/nosotros/`. | Coral / naranja (salida, calidez) |
+| `/nosotros/` | Quiénes somos, equipo, historia, partners, datos legales | Neutro (sin clase `route-*`) |
+| `/mentores/` | Captación de mentores locales (no está en el nav principal) | Teal / verde |
 
-Notas de la arquitectura bilingüe:
-- `/agenda/` ↔ `/en/agenda/` y `/nosotros/` ↔ `/about/` son pares de traducción real: mismos componentes de sección (`_sections/`), mismos nombres de campo en Sanity, alimentados por un documento Sanity distinto por idioma (ver más abajo). Los componentes de sección viven físicamente bajo `src/app/agenda/_sections/` y `src/app/nosotros/_sections/` y se **reimportan** (no se duplican) desde `src/app/en/agenda/page.tsx` y `src/app/about/page.tsx`.
-- `/experiencias/` y `/volunteering/` NO tienen contraparte en el otro idioma — son conceptualmente páginas distintas (catálogo para irse de España vs. hub de partenariado para venir a Ferrol), no una traducción.
-- Selector de idioma con banderas (🇪🇸 / 🇬🇧) integrado en `ResizableNavbar` (props `locale` y `altLangHref`). Cada layout pasa el `altLangHref` explícito de la página equivalente en el otro idioma (o al home de ese idioma si no hay equivalente directo, como en `/experiencias/` → `/en/` o `/volunteering/` → `/`).
-- **Detección de idioma del navegador**: `src/middleware.ts` redirige `/` → `/en/` si el header `Accept-Language` del visitante no es español ni gallego (`es`/`gl`), y recuerda la elección (explícita o detectada) en la cookie `xeracion_lang` durante un año para no volver a redirigir en visitas siguientes a `/`.
-- Todo texto de interfaz que no sale de Sanity (aria-labels del nav, "Cargar más", "Hablar por WhatsApp", nombres de mes/día de la agenda, etc.) está threadeado con un prop `locale?: 'es' | 'en'` (por defecto `'es'`) en el componente correspondiente — nunca hardcodeado en un solo idioma cuando el componente se reutiliza entre rutas ES y EN.
+**El sitio fue bilingüe (es/en) hasta que se retiró por completo la versión en inglés** — existían `/en/`, `/en/agenda/`, `/volunteering/` y `/about/`, un selector de idioma con banderas en `ResizableNavbar`, detección de idioma por `Accept-Language` en `src/middleware.ts` y una cookie `xeracion_lang`. Todo eso se eliminó: código de esas rutas, sus componentes de sección (`ForOrganisations`, `MobilityProgramCards`, la sección `RouteCards`/`Stats` de la portada inglesa), el contenido en `src/content/` (`homeEn`, `pageFerrolEnContent`, `pageNosotrosEnContent`, `volunteering.ts` entero), el selector de idioma del navbar, `src/middleware.ts`, y los tokens de color `--color-en-*`/`.route-en` (el acento púrpura, exclusivo de `/volunteering/`). No queda rastro funcional de la versión en inglés — si en el futuro se quiere reintroducir, es un proyecto nuevo, no una reactivación de código apagado.
 
 ### Marco StoryBrand
 
@@ -53,7 +48,7 @@ Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son:
 | Body | 17px | 16px | 16px | 400 | 1.55 | 0 |
 | Eyebrow | 11px | 11px | 11px | 500 | 1.4 | 0.16em uppercase |
 
-Notas de tamaños específicos que aparecen en secciones concretas y difieren de la escala base (respetar los de ESPECIFICACION.md en cada caso): la cita del testimonio grande usa 28px/22px/19px; la del testimonio pequeño 19px/17px; el H2 de CTA de cierre usa 36px/28px; el número de la tira de estadísticas usa 44px; los números de pasos en `/en/` (howToApplySteps de `/volunteering/`) usan 56px.
+Notas de tamaños específicos que aparecen en secciones concretas y difieren de la escala base (respetar los de ESPECIFICACION.md en cada caso): la cita del testimonio grande usa 28px/22px/19px; la del testimonio pequeño 19px/17px; el H2 de CTA de cierre usa 36px/28px; el número de la tira de estadísticas usa 44px.
 
 ### Paleta de color (variables CSS)
 
@@ -85,14 +80,6 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
   --color-irse-strong: #4A1B0C;
   --color-irse-grad-1: #F5C4B3;
   --color-irse-grad-2: #F0997B;
-
-  /* Acento English (púrpura) */
-  --color-en-bg: #EEEDFE;
-  --color-en-border: #AFA9EC;
-  --color-en-text: #534AB7;
-  --color-en-strong: #26215C;
-  --color-en-grad-1: #CECBF6;
-  --color-en-grad-2: #AFA9EC;
 
   /* Espaciados */
   --space-xs: 8px;
@@ -126,7 +113,6 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
 Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
 - Ferrol: `linear-gradient(135deg, #9FE1CB 0%, #5DCAA5 100%)`
 - Irse: `linear-gradient(135deg, #F5C4B3 0%, #F0997B 100%)`
-- English: `linear-gradient(135deg, #CECBF6 0%, #AFA9EC 100%)`
 
 ### Radios generosos por contexto
 
@@ -150,18 +136,18 @@ Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
 Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver el punto 2.1 más abajo para el detalle del componente. Resumen visual:
 
 - Sticky. Al cargar, fondo transparente y ancho igual al `.container` de la página. Al superar ~100px de scroll, la barra se estrecha (max-width 1200px → 720px), se centra, gana fondo `rgba(250,250,247,0.85)` + `backdrop-filter: blur(12px)` + sombra sutil + esquinas muy redondeadas (efecto "pill" flotante). Transición con spring (`motion`), no lineal.
-- Izquierda: logotipo "Xeración" (imagen del wordmark de marca), enlaza al home del idioma activo (`/` en español, `/en/` en inglés).
-- Derecha desktop: cuatro enlaces (Inicio/Home, Agenda/Schedule, Irse/Volunteering, Nosotros/About Us — según el idioma, ver `NAV_ITEMS_ES`/`NAV_ITEMS_EN` en `src/lib/nav.ts`) + selector de idioma con banderas (🇪🇸/🇬🇧). Los cuatro enlaces reciben el mismo "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos, sin distinción visual entre ellos; el selector de idioma va separado a la derecha por un divisor sutil.
-- Derecha móvil (< 768px): hamburguesa → menú desplegable animado (no overlay a pantalla completa), con el selector de idioma repetido al final de la lista; se cierra al pulsar un enlace o Escape.
+- Izquierda: logotipo "Xeración" (imagen del wordmark de marca), enlaza a `/`.
+- Derecha desktop: cuatro enlaces (Inicio, Agenda, Experiencias, Nosotros — ver `NAV_ITEMS_ES` en `src/lib/nav.ts`). Reciben el mismo "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos, sin distinción visual entre ellos.
+- Derecha móvil (< 768px): hamburguesa → menú desplegable animado (no overlay a pantalla completa); se cierra al pulsar un enlace o Escape.
 - **En cada sub-home**, el enlace de nav de la sección activa lleva el color de acento correspondiente (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.
 - Respeta `prefers-reduced-motion`: sin pill animado ni transiciones de layout si está activo.
 
 #### 2.1 Componente `ResizableNavbar`
 
 - Ubicación: `src/components/ResizableNavbar/` (`ResizableNavbar.tsx` + `ResizableNavbar.module.css`, con un `index.ts` barrel para poder importarlo como `@/components/ResizableNavbar`, igual que el resto de componentes).
-- Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los nueve layouts que montan navegación: `(main)`, `agenda`, `experiencias`, `volunteering`, `nosotros`, `en`, `en/agenda`, `about`.
-- Props: `siteName: string`, `items: NavItem[]` (`{ name, link, key }`, de `src/lib/nav.ts` — hay un array por idioma, `NAV_ITEMS_ES`/`NAV_ITEMS_EN`; incluye "Inicio/Home" y "Nosotros/About Us" como enlaces más, con el mismo estilo y pill que el resto), `activeRoute?: RouteKey` (`'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'volunteering' | 'about'` — el valor sigue llamándose `ferrol` internamente para la Agenda aunque la página pública sea `/agenda/` — se compara contra `item.key`, no se reconstruye a partir de la URL, precisamente porque `/en/agenda/` no cuelga de `/agenda/`), `locale?: 'es' | 'en'` (por defecto `'es'`) y `altLangHref?: string` (el destino del selector de idioma; cada layout pasa la URL de la página equivalente en el otro idioma). Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa.
-- El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse/.route-en` que ya aplica cada layout — el componente no tiene lógica condicional de color.
+- Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los cinco layouts que montan navegación: `(main)`, `agenda`, `experiencias`, `nosotros`, `mentores`.
+- Props: `siteName: string`, `items: NavItem[]` (`{ name, link, key }`, de `src/lib/nav.ts` — `NAV_ITEMS_ES`), `activeRoute?: RouteKey` (`'home' | 'ferrol' | 'experiencias' | 'nosotros'` — el valor sigue llamándose `ferrol` internamente para la Agenda aunque la página pública sea `/agenda/`, ver 4.2 — se compara contra `item.key`, no se reconstruye a partir de la URL). Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa. **Ya no tiene selector de idioma** (props `locale`/`altLangHref` eliminadas junto con la versión en inglés, ver punto 1).
+- El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse` que ya aplica cada layout — el componente no tiene lógica condicional de color.
 - **Decisión técnica**: usa la librería `motion` (antes `framer-motion`) para las animaciones de scroll (`useScroll` + `useMotionValueEvent`), el spring de resize y el pill con `layoutId`. Está inspirado en el "Resizable Navbar" de Aceternity UI, pero reimplementado desde cero en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
 
 ## 3. Reglas de tono del copy
@@ -174,8 +160,7 @@ Estas reglas son inviolables y se aplican a **todo** texto nuevo que se escriba,
 4. **Comillas tipográficas** en testimonios y citas — `" "`, nunca comillas rectas `" "`.
 5. **Punto medio (`·`) como separador de metadatos**, nunca guiones ni pipes. Ej: `MARTES · 20:00 · ALMENDRA 9`, `Nicolás · Ferrol → Cracovia · CES 2024`.
 6. **Nada de jerga institucional.** Prohibido: "movilidad participativa", "empoderamiento juvenil" y equivalentes. Tono directo, humano, ferrolano cuando cabe.
-7. En `/en/`, todo el copy —incluidos header, footer, CTAs y microcopy— va en inglés. No mezclar idiomas dentro de esa ruta.
-8. **Los nombres de programa de financiación (Erasmus+, Cuerpo Europeo de Solidaridad) no van en titulares ni en nombres de sección.** Solo aparecen en etiquetas de coste (`costeEtiqueta` de `experiencia`, ej. "Te lo paga Europa"), en la ficha de cada experiencia, y en los datos legales/acreditaciones de `/nosotros/` (ver 4.4 y 4.6). El catálogo se organiza por tipo de experiencia, no por programa.
+7. **Los nombres de programa de financiación (Erasmus+, Cuerpo Europeo de Solidaridad) no van en titulares ni en nombres de sección.** Solo aparecen en etiquetas de coste (`costeEtiqueta` de `experiencia`, ej. "Te lo paga Europa"), en la ficha de cada experiencia, y en los datos legales/acreditaciones de `/nosotros/` (ver 4.4 y 4.5). El catálogo se organiza por tipo de experiencia, no por programa.
 
 ## 4. Reglas técnicas
 
@@ -199,20 +184,18 @@ Mientras falte cualquiera de los dos, la agenda no muestra eventos (no rompe la 
 
 ### 4.2 Contenido hardcodeado en `src/content/` (todo excepto el catálogo)
 
-**Sanity dejó de ser el CMS del sitio.** Se mantiene únicamente para el catálogo de experiencias (`experiencia` + `convocatoria`, ver 4.4) — eso es lo único que se sigue editando desde `/studio`. Todo el resto del contenido de todas las páginas (portada ES/EN, `/agenda/`/`/en/agenda/`, `/nosotros/`/`/about/`, `/volunteering/`, `/mentores/`, ajustes generales) vive hardcodeado como objetos TypeScript planos en `src/content/*.ts`, y se edita directamente en el código, en sesiones de Claude Code — no en un Studio. Este es un cambio deliberado: la web es en esencia una landing page que no cambia cada semana, así que no compensa el coste de mantener veinte tipos de documento Sanity solo para editar un titular de vez en cuando.
+**Sanity dejó de ser el CMS del sitio.** Se mantiene únicamente para el catálogo de experiencias (`experiencia` + `convocatoria`, ver 4.4) — eso es lo único que se sigue editando desde `/studio`. Todo el resto del contenido de todas las páginas (portada, `/agenda/`, `/nosotros/`, `/mentores/`, ajustes generales) vive hardcodeado como objetos TypeScript planos en `src/content/*.ts`, y se edita directamente en el código, en sesiones de Claude Code — no en un Studio. Este es un cambio deliberado: la web es en esencia una landing page que no cambia cada semana, así que no compensa el coste de mantener veinte tipos de documento Sanity solo para editar un titular de vez en cuando.
 
 - **Un archivo por página/sección**, con el shape del contenido calcado del antiguo documento Sanity (mismos nombres de campo, sin `_type`/`_key`) para minimizar la reescritura de componentes:
   - `src/content/siteSettings.ts` — `siteSettings` (antes el singleton `siteSettings`): title, description, address, email, whatsapp, socialLinks, googleCalendarId.
-  - `src/content/home.ts` — `homeEs`/`homeEn` + sus testimonios destacados.
-  - `src/content/agenda.ts` — `pageFerrolEs`/`pageFerrolEnContent`, `fixedProgramsEs`/`fixedProgramsEn`, `ferrolFaqsEs`/`ferrolFaqsEn` (siguen usando el nombre histórico `Ferrol`, ver más abajo).
-  - `src/content/nosotros.ts` — `pageNosotrosEs`/`pageNosotrosEnContent` (incluye el bloque legal, ver 4.6) + testimonios.
-  - `src/content/volunteering.ts` — `pageEnContent`, `mobilityProgramsEn`, `testimonialsEn`, `faqsEn`.
+  - `src/content/home.ts` — `homeEs` + sus testimonios destacados.
+  - `src/content/agenda.ts` — `pageFerrolEs`, `fixedProgramsEs`, `ferrolFaqsEs` (sigue usando el nombre histórico `Ferrol`, ver más abajo).
+  - `src/content/nosotros.ts` — `pageNosotrosEs` (incluye el bloque legal, ver 4.5) + testimonios.
   - `src/content/mentores.ts` — `pageMentoresContent` + testimonios.
   - `src/content/types.ts` — las interfaces compartidas (`StatItem`, `SectionIntro`, `TeamMember`, `Partner`, `Testimonial`, `Faq`, etc.) que sustituyen a las de `src/sanity/lib/queries.ts`.
-- Los nombres internos históricos se conservan aunque ya no exista Sanity detrás: `pageFerrolEs`/`pageFerrolEnContent` siguen llamándose así (la página pública es `/agenda/`), igual que el `RouteKey` `'ferrol'` y la clase CSS `route-ferrol` (ver punto 5) — es la misma convención que ya explicaba este documento cuando esas páginas sí eran Sanity, y renombrar identificadores internos que nadie ve no aporta nada.
+- Los nombres internos históricos se conservan aunque ya no exista Sanity detrás: `pageFerrolEs` sigue llamándose así (la página pública es `/agenda/`), igual que el `RouteKey` `'ferrol'` y la clase CSS `route-ferrol` (ver punto 5) — es la misma convención que ya explicaba este documento cuando esas páginas sí eran Sanity, y renombrar identificadores internos que nadie ve no aporta nada.
 - **Cómo editar contenido**: abre el archivo de `src/content/` correspondiente y edita el objeto directamente — es TypeScript con autocompletado y type-checking (`satisfies StatItem[]` etc.), así que un campo mal escrito o un tipo equivocado lo marca el editor al momento, sin esperar a un build. No hay Studio, no hay botón de "Publicar": el cambio se despliega en el siguiente commit/deploy, como cualquier otro cambio de código.
-- **Páginas ES/EN que son pares de traducción** (`/agenda/`↔`/en/agenda/`, `/nosotros/`↔`/about/`) siguen reimportando literalmente los mismos componentes de `_sections/` (ver punto 1) — lo único que cambia es qué objeto de `src/content/` reciben como prop y el `locale` que pasan a los textos de interfaz compartidos.
-- Las páginas ya no hacen `await getXPageData()` a Sanity: importan el objeto de contenido directamente y son, en su mayoría, componentes síncronos (no `async function Page()`) salvo que necesiten datos reales de Sanity (la home, que pide `getExperienciasDestacadas()`) o de Google Calendar (ver 4.1).
+- Las páginas ya no hacen `await getXPageData()` a Sanity: importan el objeto de contenido directamente y son, en su mayoría, componentes síncronos (no `async function Page()`) salvo que necesiten datos reales de Sanity (la home, que pide `getExperienciasDestacadas()`) o de Google Calendar (ver 4.1). `getExperiencias()`/`getExperienciasDestacadas()`/`getExperienciaSlugs()` degradan a `[]` si Sanity no responde (try/catch), para no tirar abajo el build ni el render si el servicio está caído — mismo patrón para las tres.
 
 ### 4.3 Texto con negrita/varios párrafos: componente `Prose`
 
@@ -230,46 +213,35 @@ El pivote estratégico del proyecto: la web dejó de organizarse por programa de
 - **`experiencia`** (`src/sanity/schemaTypes/documents/experiencia.ts`) — colección, no singleton. Campos: `titulo`, `slug` (desde `titulo`), `categoria` (`camino`/`aventura`/`vivirFuera`/`intercambio`/`local`/`naturaleza` — `CATEGORIA_OPTIONS` exportado del propio schema), `lugar`, `resumen` (máx. 140 caracteres, lo que se lee en la tarjeta), `descripcion` (richText, solo para experiencias con página propia), `ambito` (`galicia`/`europa`), `duracion` (`finde`/`semana`/`meses`), `costeTipo` (`gratis`/`financiado`/`pago` — determina el color de la etiqueta: gratis y financiado en verde, pago en color de texto normal), `costeEtiqueta`, `imagen`, `colorBanda` (hex, la banda de color superior de la tarjeta), `enlaceExterno` (si está relleno, la tarjeta enlaza fuera en pestaña nueva y **no** se genera página propia), `destacada` (si aparece en el catálogo reducido de la home), `activa`, `orden`, y `language` (por si algún día hace falta una variante en otro idioma — hoy todas las experiencias son en español, el catálogo solo existe en `/experiencias/`).
 - **`convocatoria`** (`src/sanity/schemaTypes/documents/convocatoria.ts`) — colección con `experiencia` (referencia), `pais`, `fechaInicio`/`fechaFin`/`fechaLimite`, `plazas`, `enlaceInscripcion`, `activa`. En la ficha de una experiencia (`/experiencias/[slug]/`) se listan las convocatorias con `fechaLimite` futura (o sin fecha límite); si no hay ninguna, se muestra un bloque "Avísame cuando salga algo" con un botón a WhatsApp.
 - **Queries** (`src/sanity/lib/queries.ts`): `getExperiencias()` (todas las activas, para `/experiencias/`), `getExperienciasDestacadas()` (solo `destacada == true`, para la home), `getExperienciaBySlug(slug)`, `getExperienciaSlugs()` (para `generateStaticParams` y el sitemap), `getConvocatoriasForExperiencia(id)`.
-- **Componentes**: `BandCard` (`src/components/BandCard/`) — tarjeta genérica con banda de color superior (con `EyebrowPill` encima para garantizar contraste, sea cual sea el hex de la banda), meta opcional, título, texto, pie con etiqueta de precio + CTA; la reutilizan tanto `ExperienciaCard` (`src/components/ExperienciaCard/`) como las tarjetas "for organisations" de `/volunteering/` (punto 4.5). `ExperienciasCatalog` (`src/components/ExperienciasCatalog/`) es un client component con los chips de filtro (Todas · En Galicia · Por Europa · Un finde · Una semana · Meses · Sin coste — filtro único, no acumulativo), filtrado 100% en cliente sobre los datos ya cargados (sin llamadas adicionales a Sanity), buscador de texto opcional (`showSearch`) sobre título+resumen, y persistencia opcional del filtro/búsqueda en la query string (`persistInUrl`, params `filtro`/`q`) para poder compartir un enlace filtrado — se usa con `persistInUrl={false}` en la home (solo destacadas) y `persistInUrl showSearch` en `/experiencias/` (catálogo completo). Como usa `useSearchParams`, cada uso va envuelto en `<Suspense>` en la página que lo monta.
+- **Componentes**: `BandCard` (`src/components/BandCard/`) — tarjeta genérica con banda de color superior (con `EyebrowPill` encima para garantizar contraste, sea cual sea el hex de la banda), meta opcional, título, texto, pie con etiqueta de precio + CTA; la reutiliza `ExperienciaCard` (`src/components/ExperienciaCard/`). `ExperienciasCatalog` (`src/components/ExperienciasCatalog/`) es un client component con los chips de filtro (Todas · En Galicia · Por Europa · Un finde · Una semana · Meses · Sin coste — filtro único, no acumulativo), filtrado 100% en cliente sobre los datos ya cargados (sin llamadas adicionales a Sanity), buscador de texto opcional (`showSearch`) sobre título+resumen, y persistencia opcional del filtro/búsqueda en la query string (`persistInUrl`, params `filtro`/`q`) para poder compartir un enlace filtrado — se usa con `persistInUrl={false}` en la home (solo destacadas) y `persistInUrl showSearch` en `/experiencias/` (catálogo completo). Como usa `useSearchParams`, cada uso va envuelto en `<Suspense>` en la página que lo monta.
 - **`Card`** (`src/components/Card/`) se actualizó para usar `next/link` en hrefs internos y `<a target="_blank">` con `rel="noopener noreferrer"` en hrefs externos (detectados por `target === '_blank'`, `https?://` o `mailto:`) — antes siempre renderizaba un `<a>` plano.
 - **`/experiencias/[slug]/`** solo se genera (`generateStaticParams` desde `getExperienciaSlugs()`) para experiencias sin `enlaceExterno`; si alguien visita la URL de una que sí lo tiene, `notFound()`.
 - **Redirección**: `/irse/` → `/experiencias/` (301 permanente, en `next.config.ts`, mismo patrón que la redirección de `/ferrol/`).
 - **Contenido de ejemplo**: `scripts/seed-experiencias.ts` (ocho experiencias + dos convocatorias, `createIfNotExists`, no pisa nada) — el único script de `scripts/` que sigue siendo relevante, ya que es el único tipo de contenido que sigue viviendo en Sanity (ver 4.2). Ejecútalo con `npx tsx scripts/seed-experiencias.ts` y `SANITY_API_WRITE_TOKEN` en `.env.local`.
 
-### 4.5 Hub inglés "for organisations" (`/volunteering/`)
+### 4.5 Datos legales en `/nosotros/`
 
-`pageEnContent` (`src/content/volunteering.ts`, alimenta `/volunteering/`) tiene dos bloques claramente separados, en ese orden: primero organizaciones, luego individuos — porque el lector objetivo pasó de ser solo el voluntario individual a ser, en primer lugar, un coordinador de otra organización.
-
-- **Bloque 1 · for organisations** (arriba del todo tras el hero): `forOrgsIntro` + cuatro campos fijos de tipo `OrgCard` (`src/content/types.ts`: `title`/`text`/`ctaLabel`/`ctaHref`) — `orgCardVolunteers` ("Send us your volunteers"), `orgCardVetInterns` ("Send us your VET interns"), `orgCardHostOurs` ("Host ours"), `orgCardPartnerships` ("Strategic partnerships") — renderizados como `BandCard` (mismo lenguaje visual que el catálogo de experiencias, por eso comparten componente). Debajo, una franja con `orgStatsYears`/`orgStatsProjects`/`orgStatsCountries`/`orgStatsOid`/`orgStatsPic` y `orgProfilePdfUrl` (mientras esté `undefined` el botón de descarga no se muestra). Sección `src/app/volunteering/_sections/ForOrganisations.tsx`.
-- **Bloque 2 · for individuals**: es la sección "Tipos de estancia" que ya existía (`whatYouCanDoIntro` + `mobilityProgramsEn`) — recolocada debajo del bloque 1. "ESC volunteering" y "Erasmus+ traineeship" son los `MobilityProgram` de siempre.
-- El resto de la página (`LifeInFerrol`, `PracticalInfo`, `Voices`, `HowToApply`, FAQ, cierre) no cambió.
-
-### 4.6 Datos legales en `/nosotros/` y `/about/`
-
-`pageNosotrosEs`/`pageNosotrosEnContent` (`src/content/nosotros.ts`) tienen los campos `legalName`, `legalCif`, `legalAddress`, `legalOid`, `legalPic`, `accreditations` (array de `Partner`, reutilizando el mismo patrón de logo+nombre que ya usaban los partners) y `memoriaAnualUrl`, spreadeados desde un objeto compartido `legalShared` para no duplicarlos entre el objeto ES y el EN — es contenido real de la asociación (CIF `G70385091`, OID `E10060426`, PIC `948920640`), no lo inventes ni lo cambies sin confirmarlo. Se renderizan en `Legal.tsx` (`_sections/`), justo antes del cierre, reimportada en `/about/` igual que el resto.
+`pageNosotrosEs` (`src/content/nosotros.ts`) tiene los campos `legalName`, `legalCif`, `legalAddress`, `legalOid`, `legalPic`, `accreditations` (array de `Partner`, reutilizando el mismo patrón de logo+nombre que ya usaban los partners) y `memoriaAnualUrl` — es contenido real de la asociación (CIF `G70385091`, OID `E10060426`, PIC `948920640`), no lo inventes ni lo cambies sin confirmarlo. Se renderiza en `Legal.tsx` (`_sections/`), justo antes del cierre.
 
 ## 5. Convención de clases de ruta
 
 Cada layout de sub-home aplica una clase en su elemento raíz que determina qué variables de acento CSS están activas en el scope de esa página:
 
-- `route-ferrol` → activa el acento teal (en `/agenda/`, `/en/agenda/` y `/mentores/`)
-- `route-irse` → activa el acento coral (solo en `/experiencias/` y `/experiencias/[slug]/`, no tiene equivalente en inglés — el nombre de la clase quedó como `irse` por continuidad del sistema de diseño, ver 4.2)
-- `route-en` → activa el acento púrpura (solo en `/volunteering/`, no tiene equivalente en español)
+- `route-ferrol` → activa el acento teal (en `/agenda/` y `/mentores/`)
+- `route-irse` → activa el acento coral (solo en `/experiencias/` y `/experiencias/[slug]/` — el nombre de la clase quedó como `irse` por continuidad del sistema de diseño, ver 4.2)
 
-Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte teal en `/agenda/` y `/en/agenda/`, coral en `/experiencias/` y púrpura en `/volunteering/` sin lógica condicional en el componente.
+Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte teal en `/agenda/` y coral en `/experiencias/` sin lógica condicional en el componente.
 
-Ni la portada (`/`, `/en/`) ni `/nosotros/`/`/about/` llevan ninguna de estas tres clases — usan solo la paleta neutra. En la portada, las tarjetas de ruta aplican sus gradientes de acento de forma local (inline o vía modifier class), no heredado del layout — así la tarjeta "About us" de `/en/` puede quedar neutra mientras las de Ferrol/Volunteering llevan su acento.
+Ni la portada (`/`) ni `/nosotros/` llevan ninguna de estas dos clases — usan solo la paleta neutra.
 
 ## 6. Estructura de páginas (resumen — detalle completo en ESPECIFICACION.md)
 
 - **Portada `/`**: hero asimétrico (kicker + H1 + subtítulo, foto editorial) → catálogo filtrable de experiencias destacadas (`ExperienciasCatalog`, ver 4.4) → esta semana en Ferrol (`Agenda`, reutilizado sin cambios) → historias reales (`Testimonials`, sin cambios) → franja institucional discreta (una línea, enlaza a `/nosotros/`) → logos institucionales (Erasmus+, CES, Concello de Ferrol, Xunta de Galicia) → CTA de cierre/contacto (sin cambios) → footer.
-- **`/en/`**: NO se tocó en este pivote — sigue con hero asimétrico → 3 tarjetas de ruta (Ferrol/Volunteering/About) → tira de números → testimonios → agenda destacada → CTA de cierre, mismos componentes de sección de siempre, datos de `homeEn`. El pivote de "catálogo por delante de programa" es una decisión de tono para el público español; el inglés se reestructuró de otra forma (ver `/volunteering/` más abajo y el punto 4.5).
-- **`/agenda/` y `/en/agenda/`** (antes `/ferrol/` y `/en/ferrol/`; la URL se renombró pero los objetos de contenido siguen llamándose `pageFerrolEs`/`pageFerrolEnContent`, ver 4.2): hero teal → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre. `/en/agenda/` reimporta literalmente los componentes de `src/app/agenda/_sections/`, alimentados por `pageFerrolEnContent`.
-- **`/experiencias/`** (antes `/irse/`; reemplazo de modelo de contenido, no solo de URL — ver 4.4): cabecera corta con `<h1>` (copy hardcodeado en la página) → catálogo completo filtrable con buscador de texto y filtros persistidos en la query string (`?filtro=`/`?q=`). Hero coral (`route-irse`). Solo en español. Es la única página cuyo contenido principal sigue viniendo de Sanity en tiempo real (la colección `experiencia`).
+- **`/agenda/`** (antes `/ferrol/`; la URL se renombró pero el objeto de contenido sigue llamándose `pageFerrolEs`, ver 4.2): hero teal → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre.
+- **`/experiencias/`** (antes `/irse/`; reemplazo de modelo de contenido, no solo de URL — ver 4.4): cabecera corta con `<h1>` (copy hardcodeado en la página) → catálogo completo filtrable con buscador de texto y filtros persistidos en la query string (`?filtro=`/`?q=`). Hero coral (`route-irse`). Es la única página cuyo contenido principal sigue viniendo de Sanity en tiempo real (la colección `experiencia`).
 - **`/experiencias/[slug]/`**: hero (foto + título + datos clave en fila: ámbito/duración/coste) → descripción en portable text (de Sanity, ver 4.3) → convocatorias abiertas o bloque "avísame" → CTA de cierre. Solo se genera para experiencias sin `enlaceExterno`.
-- **`/volunteering/`**: hero púrpura → **for organisations** (4 tarjetas + franja de estadísticas institucionales + PDF, ver 4.5) → **for individuals** (what you can do here: ESC + traineeship, antes primer bloque, ahora segundo) → life in Ferrol (4 fotos) → practical info (3 columnas) → voices from past volunteers → how to apply (3 pasos) → FAQ → CTA de cierre. Footer adaptado al inglés. Solo en inglés (antes vivía en `/en/`), alimentada por `pageEnContent` (`src/content/volunteering.ts`).
-- **`/nosotros/` y `/about/`**: hero (con foto de fondo opcional) → historia → valores → equipo → voluntarios históricos + testimonios → "han estado con nosotros" (rejilla + cargar más) → iniciativas → partners → **datos legales** (CIF, OID, PIC, acreditaciones, memoria anual — ver 4.6) → CTA de cierre. `/about/` reimporta los componentes de `src/app/nosotros/_sections/`, alimentados por `pageNosotrosEnContent`.
-- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero teal → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `ValueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3) → CTA de cierre, reimportado literalmente de `src/app/agenda/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). Solo en español; no está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/agenda/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentoresContent` (`src/content/mentores.ts`).
+- **`/nosotros/`**: hero (con foto de fondo opcional) → historia → valores → equipo → voluntarios históricos + testimonios → "han estado con nosotros" (rejilla + cargar más) → iniciativas → partners → **datos legales** (CIF, OID, PIC, acreditaciones, memoria anual — ver 4.5) → CTA de cierre.
+- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero teal → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `ValueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3) → CTA de cierre, reimportado literalmente de `src/app/agenda/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). No está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/agenda/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentoresContent` (`src/content/mentores.ts`).
 
 Para el contenido literal exacto de cada sección en español (textos, testimonios, preguntas de FAQ, eventos de agenda, etc.) consultar siempre [ESPECIFICACION.md](ESPECIFICACION.md) como referencia histórica del tono/estructura original — pero el contenido real y actualmente publicado vive en `src/content/*.ts` (ver 4.2), que es la fuente de verdad para editar.
 

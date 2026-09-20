@@ -42,8 +42,16 @@ const EXPERIENCIAS_QUERY = `*[_type == "experiencia" && activa == true] | order(
 }`
 
 export const getExperiencias = cache(async (): Promise<ExperienciaData[]> => {
-  const { data } = await sanityFetch({ query: EXPERIENCIAS_QUERY })
-  return (data as ExperienciaData[]) ?? []
+  // Igual que getExperienciaSlugs: si Sanity no responde en build time (o en
+  // producción, si el servicio está caído), la página se degrada a "sin
+  // experiencias" en vez de tirar todo el build/render abajo.
+  try {
+    const { data } = await sanityFetch({ query: EXPERIENCIAS_QUERY })
+    return (data as ExperienciaData[]) ?? []
+  } catch (err) {
+    console.error('No se pudieron obtener las experiencias:', err)
+    return []
+  }
 })
 
 const EXPERIENCIAS_DESTACADAS_QUERY = `*[_type == "experiencia" && activa == true && destacada == true] | order(orden asc, _createdAt asc){
@@ -51,8 +59,13 @@ const EXPERIENCIAS_DESTACADAS_QUERY = `*[_type == "experiencia" && activa == tru
 }`
 
 export const getExperienciasDestacadas = cache(async (): Promise<ExperienciaData[]> => {
-  const { data } = await sanityFetch({ query: EXPERIENCIAS_DESTACADAS_QUERY })
-  return (data as ExperienciaData[]) ?? []
+  try {
+    const { data } = await sanityFetch({ query: EXPERIENCIAS_DESTACADAS_QUERY })
+    return (data as ExperienciaData[]) ?? []
+  } catch (err) {
+    console.error('No se pudieron obtener las experiencias destacadas:', err)
+    return []
+  }
 })
 
 const EXPERIENCIA_BY_SLUG_QUERY = `*[_type == "experiencia" && activa == true && slug.current == $slug][0]{

@@ -1,4 +1,4 @@
-import type { Partner, RouteCard, SectionIntro, StatItem, Testimonial } from './types'
+import type { Partner, SectionIntro, Testimonial } from './types'
 
 // ES: copy del pivote a catálogo de experiencias (scripts/patch-pivot-content.ts
 // fue la última actualización real de este contenido en producción).
@@ -43,61 +43,4 @@ export const homeEsTestimonialMedium: Testimonial = {
   name: 'Tasos Batzonis',
   originCity: 'Grecia',
   program: 'ESC',
-}
-
-// EN: /en/ no se tocó en el pivote — sigue con el patrón de 3 tarjetas de
-// ruta + tira de números de siempre. Contenido de scripts/seed-en-content.ts.
-export const homeEn = {
-  eyebrow: 'Youth association · Ferrol · since 2013',
-  heading: 'Twelve years opening doors to Europe from Galicia.',
-  intro:
-    'We send young Galicians volunteering across Europe, bring young Europeans to Ferrol, and put together things for the people who live here.',
-  heroImageCaption: "editorial photo · group at Ferrol's quay",
-  heroIndicator: "Choose where you're coming from",
-  routeCardFerrol: {
-    badgeLabel: 'Route 1 · Local',
-    title: 'I live in Ferrol and want to do something this week.',
-    text: 'Casa da Xuventude on Almendra. Clubs, workshops, get-togethers. Almost all of it free.',
-    ctaLabel: "See what's on",
-    photoLabel: 'group at Offline Club',
-  } satisfies RouteCard,
-  routeCardVolunteering: {
-    badgeLabel: 'Route 3 · Come over',
-    title: 'I want to volunteer or intern in Galicia.',
-    text: '2 to 12 months in Ferrol with the European Solidarity Corps.',
-    ctaLabel: 'Apply',
-    photoLabel: 'volunteer group at the Cantábrico coast',
-  } satisfies RouteCard,
-  routeCardAbout: {
-    badgeLabel: 'About us',
-    title: 'Twelve years building a network across Europe.',
-    text: 'Who we are, how it started, and the team behind it.',
-    ctaLabel: 'Meet the team',
-    photoLabel: 'team at the Casa da Xuventude',
-  } satisfies RouteCard,
-  stats: [
-    { value: '12', label: 'years active since 2013' },
-    { value: '~80', label: 'young Galicians sent volunteering' },
-    { value: '~60', label: 'Europeans hosted in Ferrol' },
-    { value: '15+', label: 'countries of origin and destination' },
-  ] satisfies StatItem[],
-  testimonialsEyebrow: 'Real stories',
-  agendaEyebrow: 'This week in Ferrol',
-  agendaLinkLabel: 'Full schedule',
-  closingHeading: "If you're unsure, just write to us.",
-  closingText: 'No long forms. WhatsApp, email, or drop by Almendra 9 any afternoon.',
-}
-
-// Ningún testimonio se sembró con displaySize "grande" e idioma inglés —
-// solo hay "mediano". testimonial-amelie es el más antiguo de ese grupo por
-// orden de creación (mejor estimación, mismo caveat que arriba).
-export const homeEnTestimonialLarge: Testimonial | null = null
-
-export const homeEnTestimonialMedium: Testimonial = {
-  quote: 'I came to Ferrol for six months. I stayed almost a year. The sea, the food, the people.',
-  name: 'Amélie',
-  originCity: 'Lyon',
-  destinationCity: 'Ferrol',
-  program: 'ESC',
-  year: 2023,
 }

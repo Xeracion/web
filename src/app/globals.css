@@ -81,15 +81,7 @@ ol {
   --color-irse-grad-1: #f5c4b3;
   --color-irse-grad-2: #f0997b;
 
-  /* Acento English (púrpura) */
-  --color-en-bg: #eeedfe;
-  --color-en-border: #afa9ec;
-  --color-en-text: #534ab7;
-  --color-en-strong: #26215c;
-  --color-en-grad-1: #cecbf6;
-  --color-en-grad-2: #afa9ec;
-
-  /* Acento genérico — cada ruta lo redefine vía .route-ferrol / .route-irse / .route-en.
+  /* Acento genérico — cada ruta lo redefine vía .route-ferrol / .route-irse.
      Los componentes solo deben leer estas cuatro variables, nunca --color-{ruta}-*. */
   --color-accent-bg: var(--color-bg-warm);
   --color-accent-border: var(--color-border-strong);
@@ -145,15 +137,6 @@ ol {
   --color-accent-strong: var(--color-irse-strong);
   --color-accent-grad-1: var(--color-irse-grad-1);
   --color-accent-grad-2: var(--color-irse-grad-2);
-}
-
-.route-en {
-  --color-accent-bg: var(--color-en-bg);
-  --color-accent-border: var(--color-en-border);
-  --color-accent-text: var(--color-en-text);
-  --color-accent-strong: var(--color-en-strong);
-  --color-accent-grad-1: var(--color-en-grad-1);
-  --color-accent-grad-2: var(--color-en-grad-2);
 }
 
 /* Estructura compartida por los layouts: header/main/footer en columna,

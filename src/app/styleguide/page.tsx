@@ -37,16 +37,6 @@ const ROUTES = [
     cta: 'Quiero irme',
     photoLabel: 'voluntaria despidiéndose en el aeropuerto',
   },
-  {
-    key: 'en',
-    routeClass: 'route-en',
-    eyebrow: 'Route 3 · Come to Galicia',
-    pill: 'Route 3 · Come over',
-    title: 'I want to volunteer or intern in Galicia.',
-    text: '2 to 12 months in Ferrol with the European Solidarity Corps.',
-    cta: 'Apply',
-    photoLabel: 'volunteer group at the Cantábrico coast',
-  },
 ] as const
 
 export default function StyleguidePage() {

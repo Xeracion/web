@@ -11,62 +11,27 @@ interface FooterColumn {
   links: Array<{ label: string; href: string }>
 }
 
-interface FooterCopy {
-  columns: FooterColumn[]
-  credits: (address: string) => string
-}
+const COLUMNS: FooterColumn[] = [
+  {
+    heading: 'Agenda',
+    links: [
+      { label: 'Próximos eventos', href: '/agenda/#agenda' },
+      { label: 'Offline Club', href: '/agenda/#offline-club' },
+      { label: 'Cómo llegar', href: '/agenda/#visitanos' },
+    ],
+  },
+  {
+    heading: 'Experiencias',
+    links: [
+      { label: 'Ver todas', href: '/experiencias/' },
+      { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
+      { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
+    ],
+  },
+]
 
-const COPY: Record<'es' | 'en', FooterCopy> = {
-  es: {
-    columns: [
-      {
-        heading: 'Agenda',
-        links: [
-          { label: 'Próximos eventos', href: '/agenda/#agenda' },
-          { label: 'Offline Club', href: '/agenda/#offline-club' },
-          { label: 'Cómo llegar', href: '/agenda/#visitanos' },
-        ],
-      },
-      {
-        heading: 'Experiencias',
-        links: [
-          { label: 'Ver todas', href: '/experiencias/' },
-          { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
-          { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
-        ],
-      },
-      {
-        heading: 'Volunteering',
-        links: [
-          { label: 'Volunteering', href: '/volunteering/#volunteering' },
-          { label: 'Life in Ferrol', href: '/volunteering/#life' },
-          { label: 'Apply', href: '/volunteering/#apply' },
-        ],
-      },
-    ],
-    credits: (address) => `© 2026 Asociación Xeración · ${address}`,
-  },
-  en: {
-    columns: [
-      {
-        heading: 'Schedule',
-        links: [
-          { label: 'Upcoming events', href: '/en/agenda/#agenda' },
-          { label: 'Offline Club', href: '/en/agenda/#offline-club' },
-          { label: 'Getting here', href: '/en/agenda/#visitanos' },
-        ],
-      },
-      {
-        heading: 'Volunteering',
-        links: [
-          { label: 'Volunteering', href: '/volunteering/#volunteering' },
-          { label: 'Life in Ferrol', href: '/volunteering/#life' },
-          { label: 'Apply', href: '/volunteering/#apply' },
-        ],
-      },
-    ],
-    credits: (address) => `© 2026 Xeración Association · ${address}`,
-  },
+function credits(address: string) {
+  return `© 2026 Asociación Xeración · ${address}`
 }
 
 const PLATFORM_LABELS: Record<string, string> = {
@@ -135,20 +100,17 @@ function SocialIcon({ platform }: { platform?: string }) {
 
 interface FooterProps {
   siteSettings: SiteSettings
-  locale?: 'es' | 'en'
 }
 
-export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
-  const copy = COPY[locale]
+export function Footer({ siteSettings }: FooterProps) {
   const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
-  const homeHref = locale === 'en' ? '/en/' : '/'
 
   return (
     <footer className={styles.footer}>
       <Container className={styles.grid}>
         <div>
-          <Link href={homeHref} className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
+          <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
             <Image src="/XeracionWhite.png" alt="" width={1811} height={375} />
           </Link>
           {socialLinks.length > 0 && (
@@ -173,7 +135,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
           )}
         </div>
 
-        {copy.columns.map((column) => (
+        {COLUMNS.map((column) => (
           <div key={column.heading}>
             <h5 className={styles.columnHeading}>{column.heading}</h5>
             <ul className={styles.linkList}>
@@ -190,7 +152,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
       </Container>
 
       <Container>
-        <p className={styles.credits}>{copy.credits(address)}</p>
+        <p className={styles.credits}>{credits(address)}</p>
       </Container>
     </footer>
   )

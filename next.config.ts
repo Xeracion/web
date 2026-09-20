@@ -63,15 +63,13 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // La página antigua /ferrol/ (y su versión en inglés) se renombró a /agenda/.
+  // La página antigua /ferrol/ se renombró a /agenda/.
   // La página antigua /irse/ se sustituyó por el catálogo de experiencias en /experiencias/.
   // Redirige las URLs antiguas para no romper enlaces ya indexados o guardados.
   async redirects() {
     return [
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
-      { source: "/en/ferrol", destination: "/en/agenda/", permanent: true },
-      { source: "/en/ferrol/:path*", destination: "/en/agenda/:path*", permanent: true },
       { source: "/irse", destination: "/experiencias/", permanent: true },
       { source: "/irse/:path*", destination: "/experiencias/:path*", permanent: true },
     ];

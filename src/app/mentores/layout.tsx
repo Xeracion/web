@@ -12,13 +12,11 @@ export default function MentoresLayout({ children }: { children: React.ReactNode
       <ResizableNavbar
         siteName={siteSettings?.title ?? 'Xeración'}
         items={NAV_ITEMS_ES}
-        locale="es"
-        altLangHref="/en/"
       />
       <main className="site-main" id="main-content">
         {children}
       </main>
-      <Footer siteSettings={siteSettings} locale="es" />
+      <Footer siteSettings={siteSettings} />
       <ScrollReveal />
     </div>
   )

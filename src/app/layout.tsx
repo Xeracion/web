@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
-import { headers } from "next/headers";
 import "./globals.css";
 
 import { siteSettings } from "@/content/siteSettings";
@@ -47,21 +46,13 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = (await headers()).get("x-pathname") ?? "";
-  const lang =
-    pathname.startsWith("/en") ||
-    pathname.startsWith("/about") ||
-    pathname.startsWith("/volunteering")
-      ? "en"
-      : "es";
-
   return (
-    <html lang={lang} className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="es" className={`${manrope.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );

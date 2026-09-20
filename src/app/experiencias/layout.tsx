@@ -14,13 +14,11 @@ export default function ExperienciasLayout({ children }: { children: React.React
         siteName={siteSettings?.title ?? 'Xeración'}
         items={NAV_ITEMS_ES}
         activeRoute="experiencias"
-        locale="es"
-        altLangHref="/en/"
       />
       <main className="site-main" id="main-content">
         {children}
       </main>
-      <Footer siteSettings={siteSettings} locale="es" />
+      <Footer siteSettings={siteSettings} />
       <LivePreview />
       <ScrollReveal />
     </div>
