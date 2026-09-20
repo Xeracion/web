@@ -29,11 +29,11 @@ const COPY: Record<'es' | 'en', FooterCopy> = {
         ],
       },
       {
-        heading: 'Irse',
+        heading: 'Experiencias',
         links: [
-          { label: 'Voluntariado europeo', href: '/irse/#voluntariado' },
-          { label: 'Intercambios', href: '/irse/#intercambios' },
-          { label: 'Proyectos abiertos', href: '/irse/#proyectos' },
+          { label: 'Ver todas', href: '/experiencias/' },
+          { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
+          { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
         ],
       },
       {

@@ -9,6 +9,7 @@ import { HanEstadoConNosotros } from '../nosotros/_sections/HanEstadoConNosotros
 import { Hero } from '../nosotros/_sections/Hero'
 import { Historia } from '../nosotros/_sections/Historia'
 import { Iniciativas } from '../nosotros/_sections/Iniciativas'
+import { Legal } from '../nosotros/_sections/Legal'
 import { Partners } from '../nosotros/_sections/Partners'
 import { Valores } from '../nosotros/_sections/Valores'
 import { VoluntariosHistoricos } from '../nosotros/_sections/VoluntariosHistoricos'
@@ -36,6 +37,7 @@ export default async function AboutPage() {
       <HanEstadoConNosotros intro={page.pastVolunteersIntro} members={page.pastVolunteers ?? []} locale="en" />
       <Iniciativas data={page} />
       <Partners data={page} />
+      <Legal data={page} locale="en" />
       <ClosingCta data={page} siteSettings={siteSettings} locale="en" />
     </>
   )

@@ -21,12 +21,6 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
         locations: [{ title: doc?.heroHeading || 'Página Agenda', href: '/agenda/' }],
       }),
     }),
-    pageIrse: defineLocations({
-      select: { heroHeading: 'heroHeading' },
-      resolve: (doc) => ({
-        locations: [{ title: doc?.heroHeading || 'Página Irse', href: '/irse/' }],
-      }),
-    }),
     pageEn: defineLocations({
       select: { heroHeading: 'heroHeading' },
       resolve: (doc) => ({
@@ -61,9 +55,7 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
       select: { name: 'name', route: 'route' },
       resolve: (doc) => ({
         locations:
-          doc?.route === 'irse' || doc?.route === 'en'
-            ? [{ title: doc?.name || 'Programa de movilidad', href: `/${doc.route}/` }]
-            : [],
+          doc?.route === 'en' ? [{ title: doc?.name || 'Programa de movilidad', href: '/volunteering/' }] : [],
       }),
     }),
     faq: defineLocations({
@@ -72,8 +64,8 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
         locations:
           doc?.route === 'ferrol'
             ? [{ title: doc?.question || 'Pregunta frecuente', href: '/agenda/' }]
-            : doc?.route === 'irse' || doc?.route === 'en'
-              ? [{ title: doc?.question || 'Pregunta frecuente', href: `/${doc.route}/` }]
+            : doc?.route === 'en'
+              ? [{ title: doc?.question || 'Pregunta frecuente', href: '/volunteering/' }]
               : [],
       }),
     }),
@@ -86,6 +78,28 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
           ...(doc?.route === 'nosotros'
             ? [{ title: doc?.name || 'Testimonio', href: '/nosotros/' }]
             : []),
+        ],
+      }),
+    }),
+    experiencia: defineLocations({
+      select: { titulo: 'titulo', slug: 'slug.current', enlaceExterno: 'enlaceExterno' },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.titulo || 'Experiencia',
+            href: doc?.enlaceExterno ? '/experiencias/' : `/experiencias/${doc?.slug ?? ''}/`,
+          },
+        ],
+      }),
+    }),
+    convocatoria: defineLocations({
+      select: { titulo: 'titulo', experienciaSlug: 'experiencia.slug.current' },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.titulo || 'Convocatoria',
+            href: doc?.experienciaSlug ? `/experiencias/${doc.experienciaSlug}/` : '/experiencias/',
+          },
         ],
       }),
     }),

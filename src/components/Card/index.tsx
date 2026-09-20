@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
 
 import { cn } from '@/lib/cn'
@@ -19,11 +20,27 @@ export function Card({ children, interactive, className, ...rest }: CardProps) {
   const classes = cn(styles.card, isInteractive && styles.interactive, className)
 
   if (isLink) {
-    const { href, ...anchorRest } = rest as AsLink
+    const { href, target, ...anchorRest } = rest as AsLink
+    const isExternal = target === '_blank' || /^https?:\/\//.test(href) || href.startsWith('mailto:')
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          target={target}
+          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+          className={classes}
+          {...anchorRest}
+        >
+          {children}
+        </a>
+      )
+    }
+
     return (
-      <a href={href} className={classes} {...anchorRest}>
+      <Link href={href} className={classes} {...anchorRest}>
         {children}
-      </a>
+      </Link>
     )
   }
 

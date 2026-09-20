@@ -28,7 +28,6 @@ export const structure: StructureResolver = (S) =>
                     .items([
                       singletonListItem(S, 'home'),
                       singletonListItem(S, 'pageFerrol'),
-                      singletonListItem(S, 'pageIrse'),
                       singletonListItem(S, 'pageNosotros'),
                       singletonListItem(S, 'pageMentores'),
                     ]),
@@ -45,6 +44,16 @@ export const structure: StructureResolver = (S) =>
                       singletonListItem(S, 'pageNosotrosEn'),
                     ]),
                 ),
+            ]),
+        ),
+      S.listItem()
+        .title('Catálogo')
+        .child(
+          S.list()
+            .title('Catálogo')
+            .items([
+              S.documentTypeListItem('experiencia').title('Experiencias'),
+              S.documentTypeListItem('convocatoria').title('Convocatorias'),
             ]),
         ),
       S.listItem()

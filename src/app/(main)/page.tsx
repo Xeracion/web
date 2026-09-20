@@ -1,15 +1,16 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getHomePageData, getSiteSettings } from '@/sanity/lib/queries'
+import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
+import { getExperienciasDestacadas, getHomePageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { Agenda } from './_sections/Agenda'
 import { ClosingCta } from './_sections/ClosingCta'
 import { Hero } from './_sections/Hero'
-import { RouteCards } from './_sections/RouteCards'
-import type { RouteCardEntry } from './_sections/RouteCards'
-import { Stats } from './_sections/Stats'
+import { InstitutionalStrip } from './_sections/InstitutionalStrip'
+import { Logos } from './_sections/Logos'
 import { Testimonials } from './_sections/Testimonials'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -18,9 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [{ home, testimonialLarge, testimonialMedium }, siteSettings] = await Promise.all([
+  const [{ home, testimonialLarge, testimonialMedium }, siteSettings, experiencias] = await Promise.all([
     getHomePageData(),
     getSiteSettings(),
+    getExperienciasDestacadas(),
   ])
 
   if (!home) return null
@@ -30,24 +32,21 @@ export default async function HomePage() {
     { maxResults: 4 },
   )
 
-  const routeCardItems: RouteCardEntry[] = [
-    { key: 'ferrol', routeClass: 'route-ferrol', href: '/agenda/', photoVariant: 'ferrol', card: home.routeCardFerrol },
-    { key: 'irse', routeClass: 'route-irse', href: '/irse/', photoVariant: 'irse', card: home.routeCardIrse },
-    { key: 'en', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardEn },
-  ]
-
   return (
     <>
       <Hero data={home} />
-      <RouteCards items={routeCardItems} />
-      <Stats data={home} />
-      <Testimonials eyebrow={home.testimonialsEyebrow} large={testimonialLarge} small={testimonialMedium} />
+      <Suspense fallback={null}>
+        <ExperienciasCatalog items={experiencias} intro={home.catalogIntro} />
+      </Suspense>
       <Agenda
         eyebrow={home.agendaEyebrow}
         linkLabel={home.agendaLinkLabel}
         featured={featuredEvent}
         upcoming={upcomingEvents}
       />
+      <Testimonials eyebrow={home.testimonialsEyebrow} large={testimonialLarge} small={testimonialMedium} />
+      <InstitutionalStrip text={home.institutionalText} href={home.institutionalLinkHref} />
+      <Logos items={home.institutionalLogos} />
       <ClosingCta home={home} siteSettings={siteSettings} />
     </>
   )

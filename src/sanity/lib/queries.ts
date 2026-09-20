@@ -57,10 +57,16 @@ export interface HomeBaseData {
   closingText?: RichTextValue
 }
 
+export interface InstitutionalLogoData {
+  name?: string
+  logo?: SanityImageSource
+}
+
 export interface HomeData extends HomeBaseData {
-  routeCardFerrol?: RouteCardData
-  routeCardIrse?: RouteCardData
-  routeCardEn?: RouteCardData
+  catalogIntro?: SectionIntroData
+  institutionalText?: string
+  institutionalLinkHref?: string
+  institutionalLogos?: InstitutionalLogoData[]
 }
 
 export interface TestimonialData {
@@ -93,14 +99,13 @@ const HOME_QUERY = `{
     intro,
     heroImage,
     heroImageCaption,
-    heroIndicator,
-    routeCardFerrol{ badgeLabel, title, text, ctaLabel, image, photoLabel },
-    routeCardIrse{ badgeLabel, title, text, ctaLabel, image, photoLabel },
-    routeCardEn{ badgeLabel, title, text, ctaLabel, image, photoLabel },
-    stats,
+    catalogIntro,
     testimonialsEyebrow,
     agendaEyebrow,
     agendaLinkLabel,
+    institutionalText,
+    institutionalLinkHref,
+    institutionalLogos[]{ name, logo },
     closingHeading,
     closingText
   },
@@ -280,62 +285,114 @@ export interface MobilityProgramData {
   ctaUrl?: string
 }
 
-export interface PageIrseData {
-  heroEyebrow?: string
-  heroHeading?: string
-  heroText?: RichTextValue
-  heroImage?: SanityImageSource
-  heroImageCaption?: string
-  heroCtaPrimaryLabel?: string
-  heroCtaPrimaryHref?: string
-  heroCtaSecondaryLabel?: string
-  heroCtaSecondaryHref?: string
-  programsIntro?: SectionIntroData
-  opportunitiesIntro?: SectionIntroData
-  opportunitiesFeedUrl?: string
-  faqIntro?: SectionIntroData
-  closingHeading?: string
-  closingText?: RichTextValue
-  closingCtaPrimaryHref?: string
+export interface ExperienciaData {
+  titulo?: string
+  slug?: string
+  categoria?: string
+  lugar?: string
+  resumen?: string
+  descripcion?: RichTextValue
+  ambito?: string
+  duracion?: string
+  costeTipo?: string
+  costeEtiqueta?: string
+  imagen?: SanityImageSource
+  colorBanda?: string
+  enlaceExterno?: string
 }
 
-export interface IrsePageData {
-  page: PageIrseData | null
-  mobilityPrograms: MobilityProgramData[]
-  faqs: FaqData[]
-}
+const EXPERIENCIA_CARD_PROJECTION = `
+  titulo,
+  "slug": slug.current,
+  categoria,
+  lugar,
+  resumen,
+  ambito,
+  duracion,
+  costeTipo,
+  costeEtiqueta,
+  imagen,
+  colorBanda,
+  enlaceExterno
+`
 
-const IRSE_QUERY = `{
-  "page": *[_type == "pageIrse"][0]{
-    heroEyebrow,
-    heroHeading,
-    heroText,
-    heroImage,
-    heroImageCaption,
-    heroCtaPrimaryLabel,
-    heroCtaPrimaryHref,
-    heroCtaSecondaryLabel,
-    heroCtaSecondaryHref,
-    programsIntro,
-    opportunitiesIntro,
-    opportunitiesFeedUrl,
-    faqIntro,
-    closingHeading,
-    closingText,
-    closingCtaPrimaryHref
-  },
-  "mobilityPrograms": *[_type == "mobilityProgram" && route == "irse"] | order(_createdAt asc){
-    name, duration, idealFor, covers, ctaLabel, ctaUrl
-  },
-  "faqs": *[_type == "faq" && route == "irse"] | order(order asc){
-    question, answer
-  }
+const EXPERIENCIAS_QUERY = `*[_type == "experiencia" && activa == true] | order(orden asc, _createdAt asc){
+  ${EXPERIENCIA_CARD_PROJECTION}
 }`
 
-export const getIrsePageData = cache(async (): Promise<IrsePageData> => {
-  const { data } = await sanityFetch({ query: IRSE_QUERY })
-  return data as IrsePageData
+export const getExperiencias = cache(async (): Promise<ExperienciaData[]> => {
+  const { data } = await sanityFetch({ query: EXPERIENCIAS_QUERY })
+  return (data as ExperienciaData[]) ?? []
 })
+
+const EXPERIENCIAS_DESTACADAS_QUERY = `*[_type == "experiencia" && activa == true && destacada == true] | order(orden asc, _createdAt asc){
+  ${EXPERIENCIA_CARD_PROJECTION}
+}`
+
+export const getExperienciasDestacadas = cache(async (): Promise<ExperienciaData[]> => {
+  const { data } = await sanityFetch({ query: EXPERIENCIAS_DESTACADAS_QUERY })
+  return (data as ExperienciaData[]) ?? []
+})
+
+const EXPERIENCIA_BY_SLUG_QUERY = `*[_type == "experiencia" && activa == true && slug.current == $slug][0]{
+  _id,
+  ${EXPERIENCIA_CARD_PROJECTION},
+  descripcion
+}`
+
+export const getExperienciaBySlug = cache(
+  async (slug: string): Promise<(ExperienciaData & { _id?: string }) | null> => {
+    const { data } = await sanityFetch({ query: EXPERIENCIA_BY_SLUG_QUERY, params: { slug } })
+    return data as (ExperienciaData & { _id?: string }) | null
+  },
+)
+
+const EXPERIENCIA_SLUGS_QUERY = `*[_type == "experiencia" && activa == true && !defined(enlaceExterno) && defined(slug.current)]{
+  "slug": slug.current
+}`
+
+export const getExperienciaSlugs = cache(async (): Promise<string[]> => {
+  // A diferencia del resto de queries, esta la llama generateStaticParams
+  // en build time — si Sanity no responde ahí mismo se cae todo el build,
+  // así que se degrada a "ninguna página pre-generada" en vez de fallar.
+  try {
+    const { data } = await sanityFetch({ query: EXPERIENCIA_SLUGS_QUERY })
+    return ((data as { slug: string }[]) ?? []).map((item) => item.slug)
+  } catch (err) {
+    console.error('No se pudieron obtener los slugs de experiencia en build time:', err)
+    return []
+  }
+})
+
+export interface ConvocatoriaData {
+  titulo?: string
+  pais?: string
+  fechaInicio?: string
+  fechaFin?: string
+  fechaLimite?: string
+  plazas?: number
+  enlaceInscripcion?: string
+}
+
+const CONVOCATORIAS_QUERY = `*[
+  _type == "convocatoria" &&
+  activa == true &&
+  experiencia._ref == $id &&
+  (!defined(fechaLimite) || fechaLimite >= $today)
+] | order(fechaLimite asc){
+  titulo, pais, fechaInicio, fechaFin, fechaLimite, plazas, enlaceInscripcion
+}`
+
+export const getConvocatoriasForExperiencia = cache(
+  async (experienciaId: string): Promise<ConvocatoriaData[]> => {
+    const today = new Date().toISOString().slice(0, 10)
+    const { data } = await sanityFetch({
+      query: CONVOCATORIAS_QUERY,
+      params: { id: experienciaId, today },
+    })
+    return (data as ConvocatoriaData[]) ?? []
+  },
+)
 
 export interface LifeInFerrolPhotoData {
   image?: SanityImageSource
@@ -353,6 +410,13 @@ export interface ProcessStepData {
   description?: string
 }
 
+export interface OrgCardData {
+  title?: string
+  text?: string
+  ctaLabel?: string
+  ctaHref?: string
+}
+
 export interface PageEnData {
   heroEyebrow?: string
   heroHeading?: string
@@ -363,6 +427,17 @@ export interface PageEnData {
   heroCtaPrimaryHref?: string
   heroCtaSecondaryLabel?: string
   heroCtaSecondaryHref?: string
+  forOrgsIntro?: SectionIntroData
+  orgCardVolunteers?: OrgCardData
+  orgCardVetInterns?: OrgCardData
+  orgCardHostOurs?: OrgCardData
+  orgCardPartnerships?: OrgCardData
+  orgStatsYears?: string
+  orgStatsProjects?: string
+  orgStatsCountries?: string
+  orgStatsOid?: string
+  orgStatsPic?: string
+  orgProfilePdfUrl?: string
   lifeInFerrolIntro?: SectionIntroData
   lifeInFerrolPhotos?: LifeInFerrolPhotoData[]
   whatYouCanDoIntro?: SectionIntroData
@@ -396,6 +471,17 @@ const EN_QUERY = `{
     heroCtaPrimaryHref,
     heroCtaSecondaryLabel,
     heroCtaSecondaryHref,
+    forOrgsIntro,
+    orgCardVolunteers,
+    orgCardVetInterns,
+    orgCardHostOurs,
+    orgCardPartnerships,
+    orgStatsYears,
+    orgStatsProjects,
+    orgStatsCountries,
+    orgStatsOid,
+    orgStatsPic,
+    "orgProfilePdfUrl": orgProfilePdf.asset->url,
     lifeInFerrolIntro,
     lifeInFerrolPhotos,
     whatYouCanDoIntro,
@@ -482,6 +568,13 @@ export interface PageNosotrosData {
   iniciativas?: InitiativeData[]
   partnersIntro?: SectionIntroData
   partners?: (PartnerData | string)[]
+  legalName?: string
+  legalCif?: string
+  legalAddress?: string
+  legalOid?: string
+  legalPic?: string
+  accreditations?: PartnerData[]
+  memoriaAnualUrl?: string
   closingHeading?: string
   closingText?: RichTextValue
   closingCtaPrimaryHref?: string
@@ -517,6 +610,13 @@ const NOSOTROS_QUERY = `{
     iniciativas,
     partnersIntro,
     partners,
+    legalName,
+    legalCif,
+    legalAddress,
+    legalOid,
+    legalPic,
+    accreditations[]{ name, logo },
+    memoriaAnualUrl,
     closingHeading,
     closingText,
     closingCtaPrimaryHref
@@ -556,6 +656,13 @@ const NOSOTROS_EN_QUERY = `{
     iniciativas,
     partnersIntro,
     partners,
+    legalName,
+    legalCif,
+    legalAddress,
+    legalOid,
+    legalPic,
+    accreditations[]{ name, logo },
+    memoriaAnualUrl,
     closingHeading,
     closingText,
     closingCtaPrimaryHref

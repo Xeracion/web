@@ -39,3 +39,10 @@ export function formatEventDay(iso: string) {
 export function formatEventMonthShort(iso: string, locale: Locale = 'es') {
   return MONTH_SHORT[locale][new Date(iso).getUTCMonth()]
 }
+
+export function formatDateShort(iso: string, locale: Locale = 'es') {
+  const date = new Date(iso)
+  const day = pad(date.getUTCDate())
+  const month = MONTH_SHORT[locale][date.getUTCMonth()]
+  return `${day} ${month} ${date.getUTCFullYear()}`
+}

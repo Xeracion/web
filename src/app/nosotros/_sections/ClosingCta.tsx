@@ -10,7 +10,7 @@ interface ClosingCtaProps {
 }
 
 const COPY = {
-  es: { primaryHref: '/irse/', primaryLabel: 'Ver oportunidades', secondaryLabel: 'Escríbenos →' },
+  es: { primaryHref: '/experiencias/', primaryLabel: 'Ver experiencias', secondaryLabel: 'Escríbenos →' },
   en: { primaryHref: '/volunteering/', primaryLabel: 'See opportunities', secondaryLabel: 'Write to us →' },
 }
 

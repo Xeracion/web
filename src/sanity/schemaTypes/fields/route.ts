@@ -2,7 +2,7 @@ import { defineField } from 'sanity'
 
 export const ROUTE_OPTIONS = [
   { title: 'Agenda (Ferrol)', value: 'ferrol' },
-  { title: 'Irse', value: 'irse' },
+  { title: 'Irse (antigua — ya no se usa, sustituida por el catálogo de Experiencias)', value: 'irse' },
   { title: 'English', value: 'en' },
   { title: 'Sobre nós', value: 'nosotros' },
   { title: 'Mentores', value: 'mentores' },
@@ -14,7 +14,7 @@ export function routeField(overrides: Record<string, unknown> = {}) {
     name: 'route',
     title: 'Ruta',
     description:
-      'A qué zona del sitio pertenece este contenido: la de Agenda (Ferrol), la de Irse, la de English, la de Mentores, o General si no es de ninguna ruta en concreto.',
+      'A qué zona del sitio pertenece este contenido: la de Agenda (Ferrol), la de English, la de Mentores, o General si no es de ninguna ruta en concreto. La opción "Irse" es antigua y ya no alimenta ninguna página — el catálogo de Experiencias no usa este campo.',
     type: 'string',
     options: { list: ROUTE_OPTIONS, layout: 'dropdown' },
     validation: (Rule) => Rule.required().error('Elige a qué ruta pertenece este contenido.'),

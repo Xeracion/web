@@ -1,0 +1,28 @@
+.section {
+  padding-block: var(--space-xl);
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg) var(--space-2xl);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-tertiary);
+}
+
+.logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}

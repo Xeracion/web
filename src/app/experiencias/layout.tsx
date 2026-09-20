@@ -6,7 +6,7 @@ import { SkipLink } from '@/components/SkipLink'
 import { NAV_ITEMS_ES } from '@/lib/nav'
 import { getSiteSettings } from '@/sanity/lib/queries'
 
-export default async function IrseLayout({ children }: { children: React.ReactNode }) {
+export default async function ExperienciasLayout({ children }: { children: React.ReactNode }) {
   const siteSettings = await getSiteSettings()
 
   return (
@@ -15,7 +15,7 @@ export default async function IrseLayout({ children }: { children: React.ReactNo
       <ResizableNavbar
         siteName={siteSettings?.title ?? 'Xeración'}
         items={NAV_ITEMS_ES}
-        activeRoute="irse"
+        activeRoute="experiencias"
         locale="es"
         altLangHref="/en/"
       />

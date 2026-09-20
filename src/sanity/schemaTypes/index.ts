@@ -12,13 +12,13 @@ import { valueItem } from './objects/valueItem'
 import { teamMember } from './objects/teamMember'
 import { initiative } from './objects/initiative'
 import { partner } from './objects/partner'
+import { orgCard } from './objects/orgCard'
 
 import { siteSettings } from './documents/siteSettings'
 import { home } from './documents/home'
 import { homeEn } from './documents/homeEn'
 import { pageFerrol } from './documents/pageFerrol'
 import { pageFerrolEn } from './documents/pageFerrolEn'
-import { pageIrse } from './documents/pageIrse'
 import { pageEn } from './documents/pageEn'
 import { pageNosotros } from './documents/pageNosotros'
 import { pageNosotrosEn } from './documents/pageNosotrosEn'
@@ -28,6 +28,8 @@ import { fixedProgram } from './documents/fixedProgram'
 import { testimonial } from './documents/testimonial'
 import { mobilityProgram } from './documents/mobilityProgram'
 import { faq } from './documents/faq'
+import { experiencia } from './documents/experiencia'
+import { convocatoria } from './documents/convocatoria'
 import { post } from './documents/post'
 import { author } from './documents/author'
 import { category } from './documents/category'
@@ -48,6 +50,7 @@ export const schemaTypes = [
   teamMember,
   initiative,
   partner,
+  orgCard,
 
   // Documentos únicos
   siteSettings,
@@ -55,7 +58,6 @@ export const schemaTypes = [
   homeEn,
   pageFerrol,
   pageFerrolEn,
-  pageIrse,
   pageEn,
   pageNosotros,
   pageNosotrosEn,
@@ -67,6 +69,8 @@ export const schemaTypes = [
   testimonial,
   mobilityProgram,
   faq,
+  experiencia,
+  convocatoria,
   post,
   author,
   category,

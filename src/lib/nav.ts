@@ -1,6 +1,6 @@
 export type Locale = 'es' | 'en'
 
-export type RouteKey = 'home' | 'ferrol' | 'irse' | 'nosotros' | 'volunteering' | 'about'
+export type RouteKey = 'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'volunteering' | 'about'
 
 export interface NavItem {
   name: string
@@ -11,7 +11,7 @@ export interface NavItem {
 export const NAV_ITEMS_ES: NavItem[] = [
   { name: 'Inicio', link: '/', key: 'home' },
   { name: 'Agenda', link: '/agenda/', key: 'ferrol' },
-  { name: 'Irse', link: '/irse/', key: 'irse' },
+  { name: 'Experiencias', link: '/experiencias/', key: 'experiencias' },
   { name: 'Nosotros', link: '/nosotros/', key: 'nosotros' },
 ]
 

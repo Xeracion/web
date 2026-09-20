@@ -11,7 +11,7 @@ Documento de referencia del rediseño. Contiene el sistema de diseño, la estruc
 - **Tono editorial limpio**: mucho blanco, tipografía Fraunces para titulares, Inter para cuerpo, fotos grandes con bordes redondeados, jerarquía tipográfica marcada.
 - **Sistema de tres rutas por audiencia**: cada sub-home tiene un color de acento propio que persiste como identidad visual:
   - `/agenda/` (antes `/ferrol/`) → teal / verde (proximidad, ría, mar)
-  - `/irse/` → coral / naranja (salida, calidez)
+  - `/experiencias/` (antes `/irse/`) → coral / naranja (salida, calidez)
   - `/en/` → púrpura (Europa, llegada)
 - **Marco StoryBrand aplicado al copy**: el usuario es el héroe, Xeración es el guía. Los CTAs son directos, sin jerga institucional.
 - Bordes redondeados generosos (16 px en fotos hero, 12 px en tarjetas, 8 px en botones), asimetrías intencionadas, espacios en blanco generosos.
@@ -354,7 +354,9 @@ Sub-home para jóvenes de la comarca de Ferrol. Acento visual: teal.
 - Párrafo: `No hace falta avisar. Estamos en la Almendra 9.`
 - Botones: `WhatsApp` / `Instagram`
 
-## Página 3 · `/irse/`
+## Página 3 · `/irse/` (SUSTITUIDA por el catálogo de experiencias en `/experiencias/` — ver CLAUDE.md §4.4)
+
+> Esta sección describe la página antigua, de un único scroll organizada por programa de financiación (CES/ESC, Erasmus+ YE, TC). Ya no existe: se sustituyó por un catálogo filtrable de "experiencias" (colección `experiencia` en Sanity) donde el programa de financiación es una etiqueta de coste, no la categoría. El contenido literal de abajo queda solo como referencia histórica de tono — no refleja la página actual. Ver CLAUDE.md §4.4 y `scripts/seed-experiencias.ts` para el modelo y contenido real.
 
 Sub-home para jóvenes españoles que quieren irse de voluntariado/Erasmus+ a Europa. Acento visual: coral.
 

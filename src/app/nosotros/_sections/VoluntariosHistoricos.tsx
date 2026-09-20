@@ -47,7 +47,7 @@ export function VoluntariosHistoricos({
 
         {data.volunteersCtaLabel && (
           <div className={styles.cta}>
-            <a href={data.volunteersCtaUrl || '/irse/'} className={styles.ctaButton}>
+            <a href={data.volunteersCtaUrl || '/experiencias/'} className={styles.ctaButton}>
               {data.volunteersCtaLabel}
             </a>
           </div>

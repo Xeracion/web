@@ -6,6 +6,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 import { getEnPageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { ClosingCta } from './_sections/ClosingCta'
+import { ForOrganisations } from './_sections/ForOrganisations'
 import { Hero } from './_sections/Hero'
 import { HowToApply } from './_sections/HowToApply'
 import { LifeInFerrol } from './_sections/LifeInFerrol'
@@ -28,6 +29,7 @@ export default async function VolunteeringPage() {
   return (
     <>
       <Hero data={page} />
+      <ForOrganisations data={page} />
       <MobilityProgramCards
         id="stays"
         intro={page.whatYouCanDoIntro}

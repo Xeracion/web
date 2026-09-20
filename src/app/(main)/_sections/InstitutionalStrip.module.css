@@ -1,0 +1,29 @@
+.wrapper {
+  background: var(--color-bg-warm);
+  border-block: 0.5px solid var(--color-border);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding-block: 14px;
+  text-align: center;
+}
+
+.text {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.link:hover .arrow {
+  transform: translateX(2px);
+}

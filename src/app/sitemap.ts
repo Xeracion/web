@@ -1,12 +1,14 @@
 import type { MetadataRoute } from 'next'
 
+import { getExperienciaSlugs } from '@/sanity/lib/queries'
+
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     '/',
     '/agenda/',
-    '/irse/',
+    '/experiencias/',
     '/nosotros/',
     '/mentores/',
     '/en/',
@@ -15,7 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about/',
   ]
 
-  return routes.map((route) => ({
+  const experienciaSlugs = await getExperienciaSlugs()
+  const experienciaRoutes = experienciaSlugs.map((slug) => `/experiencias/${slug}/`)
+
+  return [...routes, ...experienciaRoutes].map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: new Date(),
   }))
