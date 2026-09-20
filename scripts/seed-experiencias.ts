@@ -29,11 +29,13 @@ function toBlock(text: string) {
 }
 
 // Contenido de ejemplo para el catálogo de experiencias (pivote de /irse/ a
-// /experiencias/). Usa createIfNotExists así que no pisa nada si ya has
-// editado estos documentos a mano en el Studio. Son ocho experiencias
-// pensadas para cubrir los siete chips de filtro del catálogo (Todas · En
-// Galicia · Por Europa · Un finde · Una semana · Meses · Sin coste) — edítalas
-// o bórralas libremente, son solo un punto de partida.
+// /experiencias/, luego ampliado con las actividades locales recurrentes y
+// las ediciones anteriores — ver CLAUDE.md 4.4). Usa createIfNotExists así
+// que no pisa nada si ya has editado estos documentos a mano en el Studio.
+// Las primeras ocho cubren los siete chips de filtro del catálogo (Todas ·
+// En Galicia · Por Europa · Un finde · Una semana · Meses · Sin coste); las
+// cuatro últimas son actividades locales permanentes — edítalas o bórralas
+// libremente, son solo un punto de partida.
 const experiencias: SanityDoc[] = [
   {
     _id: 'experiencia-camino-santiago',
@@ -217,6 +219,188 @@ const experiencias: SanityDoc[] = [
     orden: 8,
     language: 'es',
   },
+  // Actividades locales recurrentes como experiencias de pleno derecho (ver
+  // CLAUDE.md 4.4): no caducan, no tienen convocatoria con fecha, y compiten
+  // en el catálogo en igualdad de condiciones con las experiencias que
+  // implican viajar — para alguien de Ferrol, un club semanal es tan
+  // "experiencia" como un voluntariado en Cracovia.
+  {
+    _id: 'experiencia-speak-factor',
+    _type: 'experiencia',
+    titulo: 'Speak Factor',
+    slug: { _type: 'slug', current: 'speak-factor' },
+    categoria: 'local',
+    lugar: 'Casa da Xuventude, Ferrol',
+    resumen: 'Talleres de conversación en inglés, francés y alemán, llevados por nuestros propios voluntarios internacionales.',
+    descripcion: [
+      toBlock(
+        'Cada semana montamos un taller de conversación distinto — inglés, francés, alemán — según qué voluntario internacional tengamos en Ferrol en ese momento. Nivel bajo, medio o alto, todo el mundo encuentra su sitio.',
+      ),
+      toBlock('Gratis y sin apuntarte antes: solo te presentas en la Almendra 9.'),
+    ],
+    ambito: 'galicia',
+    duracion: 'finde',
+    costeTipo: 'gratis',
+    costeEtiqueta: 'Sin coste',
+    colorBanda: '#9FE1CB',
+    destacada: false,
+    activa: true,
+    orden: 9,
+    language: 'es',
+  },
+  {
+    _id: 'experiencia-building-nature',
+    _type: 'experiencia',
+    titulo: 'Building Nature',
+    slug: { _type: 'slug', current: 'building-nature' },
+    categoria: 'local',
+    lugar: 'Ría de Ferrol',
+    resumen: 'Limpiezas de costa, reforestación y sensibilización ambiental en la ría, con nuestro propio grupo de voluntariado verde.',
+    descripcion: [
+      toBlock(
+        'Building Nature es nuestro grupo de voluntariado ambiental permanente: limpiezas de playa y ribera, jornadas de reforestación con especies autóctonas, y talleres de sensibilización en colegios de la comarca.',
+      ),
+      toBlock('Salidas puntuales durante todo el año — te avisamos por Instagram de la próxima.'),
+    ],
+    ambito: 'galicia',
+    duracion: 'finde',
+    costeTipo: 'gratis',
+    costeEtiqueta: 'Sin coste',
+    colorBanda: '#5DCAA5',
+    destacada: false,
+    activa: true,
+    orden: 10,
+    language: 'es',
+  },
+  {
+    _id: 'experiencia-cousateca',
+    _type: 'experiencia',
+    titulo: 'Cousateca',
+    slug: { _type: 'slug', current: 'cousateca' },
+    categoria: 'local',
+    lugar: 'Casa da Xuventude, Ferrol',
+    resumen: 'Banco de préstamo de herramientas y material para vecinos y voluntarios: de carpas a bicicletas.',
+    descripcion: [
+      toBlock(
+        'La Cousateca es nuestro banco de objetos: herramientas, carpas, sacos de dormir, bicicletas, material de acampada. Lo que no usas cada día, alguien más lo necesita — lo prestamos gratis a cambio de devolverlo en condiciones.',
+      ),
+    ],
+    ambito: 'galicia',
+    duracion: 'finde',
+    costeTipo: 'gratis',
+    costeEtiqueta: 'Sin coste',
+    colorBanda: '#E1F5EE',
+    destacada: false,
+    activa: true,
+    orden: 11,
+    language: 'es',
+  },
+  {
+    _id: 'experiencia-das-nest',
+    _type: 'experiencia',
+    titulo: 'Das Nest',
+    slug: { _type: 'slug', current: 'das-nest' },
+    categoria: 'local',
+    lugar: 'Ferrol',
+    resumen: 'Nuestro espacio de alojamiento para voluntariado en Ferrol, gestionado por quienes ya pasaron por aquí.',
+    descripcion: [
+      toBlock(
+        'Das Nest es el piso compartido donde se alojan los voluntarios europeos que acogemos en Ferrol — pensado y llevado por gente que hizo su propio voluntariado antes. Si vienes con nosotros de intercambio o CES, tu alojamiento es aquí.',
+      ),
+    ],
+    ambito: 'galicia',
+    duracion: 'semana',
+    costeTipo: 'gratis',
+    costeEtiqueta: 'Incluido si vienes de voluntariado',
+    colorBanda: '#0F6E56',
+    destacada: false,
+    activa: true,
+    orden: 12,
+    language: 'es',
+  },
+]
+
+const ediciones: SanityDoc[] = [
+  // Profundidad histórica para las experiencias con más recorrido — no
+  // inventa cifras que no podamos sostener, son ejemplos razonables a
+  // corregir con los datos reales de cada convocatoria pasada. `destacada`
+  // solo en la más reciente de cada una, que es lo que activa el dato de
+  // refuerzo en la tarjeta del catálogo (ver 4.4 en CLAUDE.md).
+  {
+    _id: 'edicion-camino-2024',
+    _type: 'edicion',
+    titulo: 'Camino de Santiago · primavera 2024',
+    experiencia: { _type: 'reference', _ref: 'experiencia-camino-santiago' },
+    anio: 2024,
+    lugar: 'Ferrol → Santiago',
+    participantes: 14,
+    resumen: 'Cinco etapas, sin bajas por el camino. El grupo más numeroso hasta la fecha.',
+    destacada: true,
+  },
+  {
+    _id: 'edicion-camino-2022',
+    _type: 'edicion',
+    titulo: 'Camino de Santiago · primavera 2022',
+    experiencia: { _type: 'reference', _ref: 'experiencia-camino-santiago' },
+    anio: 2022,
+    lugar: 'Ferrol → Santiago',
+    participantes: 9,
+    resumen: 'Primera edición tras la pausa de 2020-21. Grupo pequeño y muy unido.',
+  },
+  {
+    _id: 'edicion-camino-2015',
+    _type: 'edicion',
+    titulo: 'Camino de Santiago · edición inaugural',
+    experiencia: { _type: 'reference', _ref: 'experiencia-camino-santiago' },
+    anio: 2015,
+    lugar: 'Ferrol → Santiago',
+    participantes: 6,
+    resumen: 'La primera vez que lo organizamos, casi sin presupuesto. De ahí salió la idea de repetirlo cada año.',
+  },
+  {
+    _id: 'edicion-cracovia-2023',
+    _type: 'edicion',
+    titulo: 'Voluntariado europeo en Cracovia · 2023',
+    experiencia: { _type: 'reference', _ref: 'experiencia-ces-cracovia' },
+    anio: 2023,
+    lugar: 'Cracovia, Polonia',
+    participantes: 2,
+    paises: ['Polonia'],
+    resumen: 'Dos voluntarios de Ferrol, ocho meses en un centro cultural del casco antiguo.',
+    destacada: true,
+  },
+  {
+    _id: 'edicion-cracovia-2021',
+    _type: 'edicion',
+    titulo: 'Voluntariado europeo en Cracovia · 2021',
+    experiencia: { _type: 'reference', _ref: 'experiencia-ces-cracovia' },
+    anio: 2021,
+    lugar: 'Cracovia, Polonia',
+    participantes: 1,
+    paises: ['Polonia'],
+    resumen: 'Nuestra primera plaza en esta organización socia, todavía en pandemia.',
+  },
+  {
+    _id: 'edicion-building-nature-2025',
+    _type: 'edicion',
+    titulo: 'Limpieza de la ría · primavera 2025',
+    experiencia: { _type: 'reference', _ref: 'experiencia-building-nature' },
+    anio: 2025,
+    lugar: 'Ría de Ferrol',
+    participantes: 22,
+    resumen: 'Tres kilómetros de costa limpiados en una mañana, con voluntarios de cinco países distintos.',
+    destacada: true,
+  },
+  {
+    _id: 'edicion-building-nature-2019',
+    _type: 'edicion',
+    titulo: 'Primera reforestación',
+    experiencia: { _type: 'reference', _ref: 'experiencia-building-nature' },
+    anio: 2019,
+    lugar: 'Ría de Ferrol',
+    participantes: 10,
+    resumen: 'La campaña que arrancó Building Nature como iniciativa permanente de la asociación.',
+  },
 ]
 
 const convocatorias: SanityDoc[] = [
@@ -249,7 +433,7 @@ const convocatorias: SanityDoc[] = [
 ]
 
 async function run() {
-  const docs = [...experiencias, ...convocatorias]
+  const docs = [...experiencias, ...ediciones, ...convocatorias]
   console.log(`Creando ${docs.length} documentos nuevos en ${dataset} (sin pisar nada existente)...`)
   const tx = docs.reduce((t, d) => t.createIfNotExists(d), client.transaction())
   await tx.commit()

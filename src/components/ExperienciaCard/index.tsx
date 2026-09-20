@@ -6,6 +6,10 @@ export function ExperienciaCard({ item }: { item: ExperienciaData }) {
   const external = Boolean(item.enlaceExterno)
   const href = external ? (item.enlaceExterno as string) : `/experiencias/${item.slug ?? ''}/`
   const bandLabel = item.categoria ? CATEGORIA_LABELS[item.categoria] ?? item.categoria : ''
+  const reinforcement =
+    item.tieneEdicionesDestacadas && item.edicionesCount
+      ? `${item.edicionesCount} edicion${item.edicionesCount === 1 ? '' : 'es'}${item.edicionesDesde ? ` desde ${item.edicionesDesde}` : ''}`
+      : undefined
 
   return (
     <BandCard
@@ -16,6 +20,7 @@ export function ExperienciaCard({ item }: { item: ExperienciaData }) {
       meta={item.lugar}
       title={item.titulo}
       text={item.resumen}
+      reinforcement={reinforcement}
       priceLabel={item.costeEtiqueta}
       priceTone={item.costeTipo === 'pago' ? 'neutral' : 'positive'}
       ctaLabel="Ver plazas"

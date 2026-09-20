@@ -60,6 +60,20 @@
   color: var(--color-text-muted);
 }
 
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.group:first-child {
+  margin-top: 0;
+}
+
+.groupHeading {
+  margin-bottom: var(--space-sm);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

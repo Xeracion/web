@@ -29,7 +29,7 @@ export default async function HomePage() {
     <>
       <Hero data={homeEs} />
       <Suspense fallback={null}>
-        <ExperienciasCatalog items={experiencias} intro={homeEs.catalogIntro} />
+        <ExperienciasCatalog items={experiencias} intro={homeEs.catalogIntro} forceGrouped />
       </Suspense>
       <Agenda
         eyebrow={homeEs.agendaEyebrow}

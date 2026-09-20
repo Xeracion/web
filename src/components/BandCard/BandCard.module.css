@@ -46,6 +46,13 @@
   color: var(--color-text-tertiary);
 }
 
+.reinforcement {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-accent-text);
+}
+
 .footer {
   display: flex;
   align-items: center;

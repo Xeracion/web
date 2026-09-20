@@ -2,6 +2,8 @@ import { imageWithAlt } from './objects/imageWithAlt'
 
 import { experiencia } from './documents/experiencia'
 import { convocatoria } from './documents/convocatoria'
+import { edicion } from './documents/edicion'
+import { avisoInteres } from './documents/avisoInteres'
 
 export const schemaTypes = [
   // Objetos reutilizables
@@ -12,4 +14,8 @@ export const schemaTypes = [
   // src/content/*.ts.
   experiencia,
   convocatoria,
+  edicion,
+
+  // Leads del formulario "Avísame" (solo lectura, se crean desde el sitio)
+  avisoInteres,
 ]

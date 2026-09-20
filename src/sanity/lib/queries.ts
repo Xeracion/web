@@ -20,6 +20,12 @@ export interface ExperienciaData {
   imagen?: SanityImageSource
   colorBanda?: string
   enlaceExterno?: string
+  // Agregados desde la colección `edicion` (ver 4.4 en CLAUDE.md) — solo se
+  // usan para el dato de refuerzo discreto de la tarjeta ("8 ediciones desde
+  // 2015"), no para el listado completo de la ficha (eso es getEdicionesForExperiencia).
+  edicionesCount?: number
+  edicionesDesde?: number
+  tieneEdicionesDestacadas?: boolean
 }
 
 const EXPERIENCIA_CARD_PROJECTION = `
@@ -34,7 +40,10 @@ const EXPERIENCIA_CARD_PROJECTION = `
   costeEtiqueta,
   imagen,
   colorBanda,
-  enlaceExterno
+  enlaceExterno,
+  "edicionesCount": count(*[_type == "edicion" && references(^._id)]),
+  "edicionesDesde": math::min(*[_type == "edicion" && references(^._id)].anio),
+  "tieneEdicionesDestacadas": count(*[_type == "edicion" && references(^._id) && destacada == true]) > 0
 `
 
 const EXPERIENCIAS_QUERY = `*[_type == "experiencia" && activa == true] | order(orden asc, _createdAt asc){
@@ -125,5 +134,26 @@ export const getConvocatoriasForExperiencia = cache(
       params: { id: experienciaId, today },
     })
     return (data as ConvocatoriaData[]) ?? []
+  },
+)
+
+export interface EdicionData {
+  titulo?: string
+  anio?: number
+  lugar?: string
+  participantes?: number
+  paises?: string[]
+  resumen?: string
+  galeria?: SanityImageSource[]
+}
+
+const EDICIONES_QUERY = `*[_type == "edicion" && experiencia._ref == $id] | order(anio desc){
+  titulo, anio, lugar, participantes, paises, resumen, galeria
+}`
+
+export const getEdicionesForExperiencia = cache(
+  async (experienciaId: string): Promise<EdicionData[]> => {
+    const { data } = await sanityFetch({ query: EDICIONES_QUERY, params: { id: experienciaId } })
+    return (data as EdicionData[]) ?? []
   },
 )

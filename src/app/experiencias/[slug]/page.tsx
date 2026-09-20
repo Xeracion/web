@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
+import { AvisoForm } from '@/components/AvisoForm'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
@@ -12,8 +14,10 @@ import { siteSettings } from '@/content/siteSettings'
 import { formatDateShort } from '@/lib/formatDate'
 import { AMBITO_LABELS, CATEGORIA_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
 import { buildPageMetadata } from '@/lib/metadata'
+import { urlFor } from '@/sanity/lib/image'
 import {
   getConvocatoriasForExperiencia,
+  getEdicionesForExperiencia,
   getExperienciaBySlug,
   getExperienciaSlugs,
 } from '@/sanity/lib/queries'
@@ -42,8 +46,11 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
 
   if (!item || item.enlaceExterno) notFound()
 
-  const convocatorias = item._id ? await getConvocatoriasForExperiencia(item._id) : []
+  const [convocatorias, ediciones] = item._id
+    ? await Promise.all([getConvocatoriasForExperiencia(item._id), getEdicionesForExperiencia(item._id)])
+    : [[], []]
   const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
+  const hayConvocatorias = convocatorias.length > 0
 
   return (
     <>
@@ -95,8 +102,47 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
         </Container>
       )}
 
+      {ediciones.length > 0 && (
+        <Container as="section" className={styles.ediciones}>
+          <Eyebrow accent>Ediciones anteriores</Eyebrow>
+          <ul className={styles.edicionesList}>
+            {ediciones.map((edicion, i) => (
+              <li key={i} className={styles.edicion}>
+                <div className={styles.edicionHeader}>
+                  <p className={styles.edicionTitulo}>{edicion.titulo}</p>
+                  <p className={styles.edicionMeta}>
+                    {[
+                      edicion.anio,
+                      edicion.lugar,
+                      edicion.participantes ? `${edicion.participantes} participantes` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                  {edicion.resumen && <p className={styles.edicionResumen}>{edicion.resumen}</p>}
+                </div>
+                {edicion.galeria && edicion.galeria.length > 0 && (
+                  <div className={styles.edicionGaleria}>
+                    {edicion.galeria.slice(0, 4).map((foto, j) => (
+                      <Image
+                        key={j}
+                        src={urlFor(foto).width(160).height(160).url()}
+                        alt=""
+                        width={80}
+                        height={80}
+                        className={styles.edicionFoto}
+                      />
+                    ))}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      )}
+
       <Container as="section" className={styles.convocatorias}>
-        {convocatorias.length > 0 ? (
+        {hayConvocatorias && (
           <>
             <Eyebrow accent>Convocatorias abiertas</Eyebrow>
             <ul className={styles.convocatoriasList}>
@@ -128,15 +174,24 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
               ))}
             </ul>
           </>
-        ) : (
-          <div className={styles.avisame}>
-            <Eyebrow accent>Próximamente</Eyebrow>
-            <p>Todavía no hay convocatorias abiertas para esta experiencia.</p>
-            {whatsappHref && (
-              <ButtonPrimary accent href={whatsappHref}>
-                Avísame cuando salga algo
-              </ButtonPrimary>
+        )}
+
+        {item._id && (
+          <div className={hayConvocatorias ? styles.avisameSecondary : styles.avisame}>
+            {hayConvocatorias ? (
+              <p className={styles.avisameTexto}>
+                ¿No entras en esta o prefieres esperar? Déjanos tu contacto y te avisamos de la siguiente.
+              </p>
+            ) : (
+              <>
+                <Eyebrow accent>Próximamente</Eyebrow>
+                <p className={styles.avisameTexto}>
+                  Se abren dos o tres plazas al año. Déjanos tu contacto y te avisamos en cuanto salga la
+                  próxima.
+                </p>
+              </>
             )}
+            <AvisoForm experienciaId={item._id} variant={hayConvocatorias ? 'secondary' : 'primary'} />
           </div>
         )}
       </Container>

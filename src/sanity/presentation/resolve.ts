@@ -25,5 +25,16 @@ export const presentationResolve: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
+    edicion: defineLocations({
+      select: { titulo: 'titulo', experienciaSlug: 'experiencia.slug.current' },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.titulo || 'Edición',
+            href: doc?.experienciaSlug ? `/experiencias/${doc.experienciaSlug}/` : '/experiencias/',
+          },
+        ],
+      }),
+    }),
   },
 }

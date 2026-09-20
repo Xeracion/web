@@ -26,7 +26,7 @@ export default async function ExperienciasPage() {
         <Eyebrow accent>Catálogo completo</Eyebrow>
         <h1>Todo lo que puedes hacer, en un solo sitio.</h1>
         <p className={styles.subtitle}>
-          Filtra por dónde, cuánto dura y qué te cuesta. Busca si ya sabes lo que quieres.
+          Desde clubs semanales en Ferrol hasta voluntariados por Europa. Busca si ya sabes lo que quieres.
         </p>
       </Container>
       <Suspense fallback={null}>

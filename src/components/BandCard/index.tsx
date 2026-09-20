@@ -13,6 +13,7 @@ interface BandCardProps {
   meta?: string
   title?: string
   text?: string
+  reinforcement?: string
   priceLabel?: string
   priceTone?: 'positive' | 'neutral'
   ctaLabel?: string
@@ -27,6 +28,7 @@ export function BandCard({
   meta,
   title,
   text,
+  reinforcement,
   priceLabel,
   priceTone = 'neutral',
   ctaLabel,
@@ -46,6 +48,7 @@ export function BandCard({
         {meta && <p className={styles.meta}>{meta}</p>}
         {title && <h3 className={styles.title}>{title}</h3>}
         {text && <p className={styles.text}>{text}</p>}
+        {reinforcement && <p className={styles.reinforcement}>{reinforcement}</p>}
         <div className={styles.footer}>
           {priceLabel ? (
             <span className={priceTone === 'positive' ? styles.pricePositive : styles.priceNeutral}>
