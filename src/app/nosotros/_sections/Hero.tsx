@@ -3,9 +3,8 @@ import Image from 'next/image'
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import { RichText } from '@/components/RichText'
-import { urlFor } from '@/sanity/lib/image'
-import type { PageNosotrosData } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { StatItem } from '@/content/types'
 
 import styles from './Hero.module.css'
 
@@ -19,7 +18,16 @@ function splitHeading(heading: string, accent?: string) {
   ]
 }
 
-export function Hero({ data }: { data: PageNosotrosData }) {
+interface HeroData {
+  heroEyebrow?: string
+  heroHeading: string
+  heroHeadingAccent?: string
+  heroText?: string | string[]
+  heroStats?: StatItem[]
+  heroBackgroundImage?: string
+}
+
+export function Hero({ data }: { data: HeroData }) {
   const heading = data.heroHeading ?? ''
   const parts = splitHeading(heading, data.heroHeadingAccent)
 
@@ -28,7 +36,7 @@ export function Hero({ data }: { data: PageNosotrosData }) {
       {data.heroBackgroundImage && (
         <>
           <Image
-            src={urlFor(data.heroBackgroundImage).url()}
+            src={data.heroBackgroundImage}
             alt=""
             fill
             priority
@@ -53,7 +61,7 @@ export function Hero({ data }: { data: PageNosotrosData }) {
             ),
           )}
         </h1>
-        <RichText value={data.heroText} className={styles.text} />
+        <Prose value={data.heroText} className={styles.text} />
         {data.heroStats && data.heroStats.length > 0 && (
           <div className={styles.stats}>
             {data.heroStats.map((stat, i) => (

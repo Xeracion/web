@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
+import { nosotrosTestimonialsEs, pageNosotrosEs } from '@/content/nosotros'
+import { siteSettings } from '@/content/siteSettings'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getSiteSettings, getNosotrosPageData } from '@/sanity/lib/queries'
 
 import { ClosingCta } from './_sections/ClosingCta'
 import { Equipo } from './_sections/Equipo'
@@ -15,17 +16,11 @@ import { Valores } from './_sections/Valores'
 import { VoluntariosHistoricos } from './_sections/VoluntariosHistoricos'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getNosotrosPageData()
-  return buildPageMetadata({ title: 'Sobre nós', description: page?.heroText })
+  return buildPageMetadata({ title: 'Sobre nós', description: pageNosotrosEs.heroText })
 }
 
-export default async function NosotrosPage() {
-  const [{ page, volunteerTestimonials }, siteSettings] = await Promise.all([
-    getNosotrosPageData(),
-    getSiteSettings(),
-  ])
-
-  if (!page) return null
+export default function NosotrosPage() {
+  const page = pageNosotrosEs
 
   return (
     <>
@@ -33,8 +28,8 @@ export default async function NosotrosPage() {
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} />
-      <VoluntariosHistoricos data={page} testimonials={volunteerTestimonials} />
-      <HanEstadoConNosotros intro={page.pastVolunteersIntro} members={page.pastVolunteers ?? []} />
+      <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} />
+      <HanEstadoConNosotros intro={page.pastVolunteersIntro} members={page.pastVolunteers} />
       <Iniciativas data={page} />
       <Partners data={page} />
       <Legal data={page} />

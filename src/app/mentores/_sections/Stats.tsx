@@ -1,10 +1,10 @@
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
-import type { PageMentoresData } from '@/sanity/lib/queries'
+import type { StatItem } from '@/content/types'
 
 import styles from './Stats.module.css'
 
-export function Stats({ data }: { data: PageMentoresData }) {
+export function Stats({ data }: { data: { stats?: StatItem[] } }) {
   if (!data.stats || data.stats.length === 0) return null
 
   return (

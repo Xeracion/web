@@ -1,15 +1,22 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import { RichText } from '@/components/RichText'
-import type { PageNosotrosData } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { SectionIntro, TimelineMilestone } from '@/content/types'
 
 import styles from './Historia.module.css'
 
-export function Historia({ data }: { data: PageNosotrosData }) {
+interface HistoriaData {
+  historiaIntro?: SectionIntro
+  historiaParagraphs?: string | string[]
+  timeline?: TimelineMilestone[]
+}
+
+export function Historia({ data }: { data: HistoriaData }) {
   const paragraphs = data.historiaParagraphs ?? []
   const timeline = data.timeline ?? []
 
-  if (paragraphs.length === 0 && timeline.length === 0) return null
+  if ((Array.isArray(paragraphs) ? paragraphs.length === 0 : !paragraphs) && timeline.length === 0)
+    return null
 
   return (
     <Container as="section" className={styles.section}>
@@ -17,7 +24,7 @@ export function Historia({ data }: { data: PageNosotrosData }) {
       {data.historiaIntro?.heading && <h2>{data.historiaIntro.heading}</h2>}
       <div className={styles.grid}>
         <div className={styles.text}>
-          <RichText value={data.historiaParagraphs} paragraphSpacing={false} />
+          <Prose value={data.historiaParagraphs} paragraphSpacing={false} />
         </div>
         {timeline.length > 0 && (
           <ol className={styles.timeline}>

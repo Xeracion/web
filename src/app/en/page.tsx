@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 
+import { homeEn, homeEnTestimonialLarge, homeEnTestimonialMedium } from '@/content/home'
+import { siteSettings } from '@/content/siteSettings'
 import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getHomeEnPageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { Agenda } from '../(main)/_sections/Agenda'
 import { ClosingCta } from '../(main)/_sections/ClosingCta'
@@ -12,45 +13,41 @@ import type { RouteCardEntry } from '../(main)/_sections/RouteCards'
 import { Stats } from '../(main)/_sections/Stats'
 import { Testimonials } from '../(main)/_sections/Testimonials'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { home } = await getHomeEnPageData()
-  return buildPageMetadata({ description: home?.intro, locale: 'en_US' })
+export function generateMetadata(): Metadata {
+  return buildPageMetadata({ description: homeEn.intro, locale: 'en_US' })
 }
 
 export default async function EnHomePage() {
-  const [{ home, testimonialLarge, testimonialMedium }, siteSettings] = await Promise.all([
-    getHomeEnPageData(),
-    getSiteSettings(),
-  ])
-
-  if (!home) return null
-
   const [featuredEvent = null, ...upcomingEvents] = await getGoogleCalendarEvents(
-    siteSettings?.googleCalendarId,
+    siteSettings.googleCalendarId,
     { maxResults: 4 },
   )
 
   const routeCardItems: RouteCardEntry[] = [
-    { key: 'ferrol', routeClass: 'route-ferrol', href: '/en/agenda/', photoVariant: 'ferrol', card: home.routeCardFerrol },
-    { key: 'volunteering', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: home.routeCardVolunteering },
-    { key: 'about', href: '/about/', photoVariant: 'neutral', card: home.routeCardAbout },
+    { key: 'ferrol', routeClass: 'route-ferrol', href: '/en/agenda/', photoVariant: 'ferrol', card: homeEn.routeCardFerrol },
+    { key: 'volunteering', routeClass: 'route-en', href: '/volunteering/', photoVariant: 'en', card: homeEn.routeCardVolunteering },
+    { key: 'about', href: '/about/', photoVariant: 'neutral', card: homeEn.routeCardAbout },
   ]
 
   return (
     <>
-      <Hero data={home} />
+      <Hero data={homeEn} />
       <RouteCards items={routeCardItems} />
-      <Stats data={home} />
-      <Testimonials eyebrow={home.testimonialsEyebrow} large={testimonialLarge} small={testimonialMedium} />
+      <Stats data={homeEn} />
+      <Testimonials
+        eyebrow={homeEn.testimonialsEyebrow}
+        large={homeEnTestimonialLarge}
+        small={homeEnTestimonialMedium}
+      />
       <Agenda
-        eyebrow={home.agendaEyebrow}
-        linkLabel={home.agendaLinkLabel}
+        eyebrow={homeEn.agendaEyebrow}
+        linkLabel={homeEn.agendaLinkLabel}
         featured={featuredEvent}
         upcoming={upcomingEvents}
         locale="en"
         ferrolAgendaHref="/en/agenda/#agenda"
       />
-      <ClosingCta home={home} siteSettings={siteSettings} locale="en" />
+      <ClosingCta home={homeEn} siteSettings={siteSettings} locale="en" />
     </>
   )
 }

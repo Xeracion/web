@@ -3,7 +3,7 @@ import { Container } from '@/components/Container'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import type { PhotoPlaceholderVariant } from '@/components/PhotoPlaceholder'
-import type { RouteCardData } from '@/sanity/lib/queries'
+import type { RouteCard } from '@/content/types'
 
 import styles from './RouteCards.module.css'
 
@@ -12,7 +12,7 @@ export interface RouteCardEntry {
   routeClass?: string
   href: string
   photoVariant: PhotoPlaceholderVariant
-  card?: RouteCardData
+  card?: RouteCard
 }
 
 export function RouteCards({ items }: { items: RouteCardEntry[] }) {

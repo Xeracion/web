@@ -8,6 +8,7 @@ import { Eyebrow } from '@/components/Eyebrow'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { RichText } from '@/components/RichText'
+import { siteSettings } from '@/content/siteSettings'
 import { formatDateShort } from '@/lib/formatDate'
 import { AMBITO_LABELS, CATEGORIA_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -15,7 +16,6 @@ import {
   getConvocatoriasForExperiencia,
   getExperienciaBySlug,
   getExperienciaSlugs,
-  getSiteSettings,
 } from '@/sanity/lib/queries'
 
 import styles from './page.module.css'
@@ -38,12 +38,12 @@ export async function generateMetadata({
 
 export default async function ExperienciaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const [item, siteSettings] = await Promise.all([getExperienciaBySlug(slug), getSiteSettings()])
+  const item = await getExperienciaBySlug(slug)
 
   if (!item || item.enlaceExterno) notFound()
 
   const convocatorias = item._id ? await getConvocatoriasForExperiencia(item._id) : []
-  const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
+  const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
 
   return (
     <>

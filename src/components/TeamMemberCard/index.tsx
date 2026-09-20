@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
-import { urlFor } from '@/sanity/lib/image'
-import type { TeamMemberData } from '@/sanity/lib/queries'
+import type { TeamMember } from '@/content/types'
 
 import styles from './TeamMemberCard.module.css'
 
@@ -15,18 +14,12 @@ function initials(name: string) {
     .toUpperCase()
 }
 
-export function TeamMemberCard({ member }: { member: TeamMemberData }) {
+export function TeamMemberCard({ member }: { member: TeamMember }) {
   const name = member.name ?? ''
   const content = (
     <>
-      {member.photo ? (
-        <Image
-          src={urlFor(member.photo).width(224).height(224).url()}
-          alt=""
-          width={112}
-          height={112}
-          className={styles.photo}
-        />
+      {member.image ? (
+        <Image src={member.image} alt="" width={112} height={112} className={styles.photo} />
       ) : (
         <span className={styles.avatar} aria-hidden="true">
           {initials(name)}

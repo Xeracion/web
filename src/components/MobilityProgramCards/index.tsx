@@ -1,7 +1,7 @@
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { MobilityProgramData, SectionIntroData } from '@/sanity/lib/queries'
+import type { MobilityProgram, SectionIntro } from '@/content/types'
 
 import styles from './MobilityProgramCards.module.css'
 
@@ -12,8 +12,8 @@ const LABELS = {
 
 interface MobilityProgramCardsProps {
   id?: string
-  intro?: SectionIntroData
-  items: MobilityProgramData[]
+  intro?: SectionIntro
+  items: MobilityProgram[]
   locale?: 'es' | 'en'
 }
 

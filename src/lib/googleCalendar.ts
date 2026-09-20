@@ -1,4 +1,9 @@
-import type { EventSummary } from '@/sanity/lib/queries'
+export interface EventSummary {
+  title?: string
+  dateTime?: string
+  location?: string
+  description?: string
+}
 
 interface GoogleCalendarStart {
   dateTime?: string

@@ -2,7 +2,7 @@ import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { formatEventTime, formatEventWeekdayLong, formatEventWeekdayShort } from '@/lib/formatDate'
-import type { EventSummary } from '@/sanity/lib/queries'
+import type { EventSummary } from '@/lib/googleCalendar'
 
 import styles from './Agenda.module.css'
 

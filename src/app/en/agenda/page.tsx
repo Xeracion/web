@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 
 import { FaqAccordionSection } from '@/components/FaqAccordionSection'
+import { ferrolFaqsEn, fixedProgramsEn, pageFerrolEnContent } from '@/content/agenda'
+import { siteSettings } from '@/content/siteSettings'
 import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getFerrolEnPageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { AgendaTimeline } from '../../agenda/_sections/AgendaTimeline'
 import { ClosingCta } from '../../agenda/_sections/ClosingCta'
@@ -11,22 +12,14 @@ import { FixedPrograms } from '../../agenda/_sections/FixedPrograms'
 import { Hero } from '../../agenda/_sections/Hero'
 import { HowToArrive } from '../../agenda/_sections/HowToArrive'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getFerrolEnPageData()
-  return buildPageMetadata({ title: 'Schedule', description: page?.heroText, locale: 'en_US' })
+export function generateMetadata(): Metadata {
+  return buildPageMetadata({ title: 'Schedule', description: pageFerrolEnContent.heroText, locale: 'en_US' })
 }
 
 export default async function EnFerrolPage() {
-  const [{ page, fixedPrograms, faqs }, siteSettings] = await Promise.all([
-    getFerrolEnPageData(),
-    getSiteSettings(),
-  ])
-
-  if (!page) return null
-
   const start = new Date()
   const end = new Date(start.getTime() + 14 * 24 * 60 * 60 * 1000)
-  const upcomingEvents = await getGoogleCalendarEvents(siteSettings?.googleCalendarId, {
+  const upcomingEvents = await getGoogleCalendarEvents(siteSettings.googleCalendarId, {
     timeMin: start,
     timeMax: end,
     maxResults: 20,
@@ -34,12 +27,12 @@ export default async function EnFerrolPage() {
 
   return (
     <>
-      <Hero data={page} />
-      <FixedPrograms intro={page.fixedProgramsIntro} items={fixedPrograms} />
-      <AgendaTimeline intro={page.agendaIntro} events={upcomingEvents} locale="en" />
-      <HowToArrive data={page} siteSettings={siteSettings} locale="en" />
-      <FaqAccordionSection intro={page.faqIntro} items={faqs} />
-      <ClosingCta data={page} siteSettings={siteSettings} locale="en" />
+      <Hero data={pageFerrolEnContent} />
+      <FixedPrograms intro={pageFerrolEnContent.fixedProgramsIntro} items={fixedProgramsEn} />
+      <AgendaTimeline intro={pageFerrolEnContent.agendaIntro} events={upcomingEvents} locale="en" />
+      <HowToArrive data={pageFerrolEnContent} siteSettings={siteSettings} locale="en" />
+      <FaqAccordionSection intro={pageFerrolEnContent.faqIntro} items={ferrolFaqsEn} />
+      <ClosingCta data={pageFerrolEnContent} siteSettings={siteSettings} locale="en" />
     </>
   )
 }

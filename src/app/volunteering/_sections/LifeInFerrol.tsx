@@ -1,13 +1,13 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import type { LifeInFerrolPhotoData, SectionIntroData } from '@/sanity/lib/queries'
+import type { LifeInFerrolPhoto, SectionIntro } from '@/content/types'
 
 import styles from './LifeInFerrol.module.css'
 
 interface LifeInFerrolProps {
-  intro?: SectionIntroData
-  photos: LifeInFerrolPhotoData[]
+  intro?: SectionIntro
+  photos: LifeInFerrolPhoto[]
 }
 
 export function LifeInFerrol({ intro, photos }: LifeInFerrolProps) {

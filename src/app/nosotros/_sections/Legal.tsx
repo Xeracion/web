@@ -2,8 +2,7 @@ import Image from 'next/image'
 
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import { urlFor } from '@/sanity/lib/image'
-import type { PageNosotrosData } from '@/sanity/lib/queries'
+import type { Partner } from '@/content/types'
 
 import styles from './Legal.module.css'
 
@@ -12,7 +11,17 @@ const LABELS = {
   en: { eyebrow: 'Legal information', oid: 'OID', pic: 'PIC', memoria: 'Annual report →' },
 }
 
-export function Legal({ data, locale = 'es' }: { data: PageNosotrosData; locale?: 'es' | 'en' }) {
+interface LegalData {
+  legalName?: string
+  legalCif?: string
+  legalAddress?: string
+  legalOid?: string
+  legalPic?: string
+  accreditations?: Partner[]
+  memoriaAnualUrl?: string
+}
+
+export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' | 'en' }) {
   const hasLegalData =
     data.legalName || data.legalCif || data.legalAddress || data.legalOid || data.legalPic
   const accreditations = data.accreditations ?? []
@@ -61,9 +70,9 @@ export function Legal({ data, locale = 'es' }: { data: PageNosotrosData; locale?
           <ul className={styles.accreditations}>
             {accreditations.map((item, i) => (
               <li key={i} className={styles.accreditation}>
-                {item.logo ? (
+                {item.image ? (
                   <Image
-                    src={urlFor(item.logo).url()}
+                    src={item.image}
                     alt={item.name ?? ''}
                     width={140}
                     height={56}

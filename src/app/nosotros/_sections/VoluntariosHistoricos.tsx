@@ -2,22 +2,28 @@ import Image from 'next/image'
 
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
-import { RichText } from '@/components/RichText'
-import { urlFor } from '@/sanity/lib/image'
-import type { PageNosotrosData, TestimonialData } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { Testimonial } from '@/content/types'
 
 import styles from './VoluntariosHistoricos.module.css'
 
-function attribution(testimonial: TestimonialData) {
+function attribution(testimonial: Testimonial) {
   return [testimonial.name, testimonial.originCity].filter(Boolean).join(' · ')
+}
+
+interface VoluntariosHistoricosData {
+  volunteersNumber?: string
+  volunteersSubtitle?: string
+  volunteersCtaLabel?: string
+  volunteersCtaUrl?: string
 }
 
 export function VoluntariosHistoricos({
   data,
   testimonials,
 }: {
-  data: PageNosotrosData
-  testimonials: TestimonialData[]
+  data: VoluntariosHistoricosData
+  testimonials: Testimonial[]
 }) {
   return (
     <div className={styles.wrapper}>
@@ -29,16 +35,16 @@ export function VoluntariosHistoricos({
           <div className={styles.testimonials}>
             {testimonials.map((testimonial, i) => (
               <div key={i} className={styles.card}>
-                {testimonial.photo && (
+                {testimonial.image && (
                   <Image
-                    src={urlFor(testimonial.photo).width(96).height(96).url()}
+                    src={testimonial.image}
                     alt=""
                     width={48}
                     height={48}
                     className={styles.photo}
                   />
                 )}
-                <RichText value={testimonial.quote} className={styles.quote} />
+                <Prose value={testimonial.quote} className={styles.quote} />
                 <p className={styles.attribution}>{attribution(testimonial)}</p>
               </div>
             ))}

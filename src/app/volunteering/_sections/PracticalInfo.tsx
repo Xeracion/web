@@ -1,14 +1,14 @@
 import { Container } from '@/components/Container'
-import type { InfoColumnData } from '@/sanity/lib/queries'
+import type { InfoColumn } from '@/content/types'
 
 import styles from './PracticalInfo.module.css'
 
 interface PracticalInfoProps {
-  columns: Array<InfoColumnData | undefined>
+  columns: Array<InfoColumn | undefined>
 }
 
 export function PracticalInfo({ columns }: PracticalInfoProps) {
-  const items = columns.filter((c): c is InfoColumnData => Boolean(c?.heading))
+  const items = columns.filter((c): c is InfoColumn => Boolean(c?.heading))
   if (items.length === 0) return null
 
   return (

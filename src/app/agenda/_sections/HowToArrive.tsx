@@ -1,14 +1,21 @@
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import { RichText } from '@/components/RichText'
-import type { PageFerrolData, SiteSettings } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { SiteSettings } from '@/content/siteSettings'
 
 import styles from './HowToArrive.module.css'
 
+interface HowToArriveData {
+  arrivalMapEmbedUrl?: string
+  arrivalHeading?: string
+  arrivalAddressText?: string | string[]
+  arrivalTransportText?: string | string[]
+}
+
 interface HowToArriveProps {
-  data: PageFerrolData
-  siteSettings: SiteSettings | null
+  data: HowToArriveData
+  siteSettings: SiteSettings
   locale?: 'es' | 'en'
 }
 
@@ -18,8 +25,8 @@ const COPY = {
 }
 
 export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArriveProps) {
-  const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
-  const emailHref = siteSettings?.email ? `mailto:${siteSettings.email}` : undefined
+  const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
+  const emailHref = siteSettings.email ? `mailto:${siteSettings.email}` : undefined
   const copy = COPY[locale]
 
   return (
@@ -42,11 +49,11 @@ export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArrivePr
       )}
       <div>
         <h3>{data.arrivalHeading}</h3>
-        <RichText value={data.arrivalAddressText} className={styles.text} />
+        <Prose value={data.arrivalAddressText} className={styles.text} />
         {data.arrivalTransportText && (
           <>
             <p className={styles.label}>{copy.gettingHere}</p>
-            <RichText value={data.arrivalTransportText} className={styles.text} />
+            <Prose value={data.arrivalTransportText} className={styles.text} />
           </>
         )}
         {(whatsappHref || emailHref) && (
@@ -60,7 +67,7 @@ export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArrivePr
               )}
               {emailHref && (
                 <ButtonLink accent href={emailHref}>
-                  {siteSettings?.email}
+                  {siteSettings.email}
                 </ButtonLink>
               )}
             </div>

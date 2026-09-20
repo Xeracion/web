@@ -6,7 +6,7 @@ import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { TeamMemberCard } from '@/components/TeamMemberCard'
-import type { SectionIntroData, TeamMemberData } from '@/sanity/lib/queries'
+import type { SectionIntro, TeamMember } from '@/content/types'
 
 import styles from './HanEstadoConNosotros.module.css'
 
@@ -18,8 +18,8 @@ const COPY = {
 }
 
 interface HanEstadoConNosotrosProps {
-  intro?: SectionIntroData
-  members: TeamMemberData[]
+  intro?: SectionIntro
+  members: TeamMember[]
   locale?: 'es' | 'en'
 }
 

@@ -1,10 +1,15 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageMentoresData } from '@/sanity/lib/queries'
+import type { SectionIntro, ValueItem } from '@/content/types'
 
 import styles from './Beneficios.module.css'
 
-export function Beneficios({ data }: { data: PageMentoresData }) {
+interface BeneficiosData {
+  beneficiosIntro?: SectionIntro
+  beneficios?: ValueItem[]
+}
+
+export function Beneficios({ data }: { data: BeneficiosData }) {
   const beneficios = data.beneficios ?? []
   if (beneficios.length === 0) return null
 

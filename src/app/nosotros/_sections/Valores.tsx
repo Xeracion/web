@@ -1,10 +1,15 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { PageNosotrosData } from '@/sanity/lib/queries'
+import type { SectionIntro, ValueItem } from '@/content/types'
 
 import styles from './Valores.module.css'
 
-export function Valores({ data }: { data: PageNosotrosData }) {
+interface ValoresData {
+  valoresIntro?: SectionIntro
+  values?: ValueItem[]
+}
+
+export function Valores({ data }: { data: ValoresData }) {
   const values = data.values ?? []
   if (values.length === 0) return null
 

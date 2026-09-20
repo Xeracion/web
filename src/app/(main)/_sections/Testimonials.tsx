@@ -1,12 +1,12 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import { RichText } from '@/components/RichText'
-import type { TestimonialData } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { Testimonial } from '@/content/types'
 
 import styles from './Testimonials.module.css'
 
-function attribution(testimonial: TestimonialData) {
+function attribution(testimonial: Testimonial) {
   const route = [testimonial.originCity, testimonial.destinationCity].filter(Boolean).join(' → ')
   const program = [testimonial.program, testimonial.year].filter(Boolean).join(' ')
   return [testimonial.name, route, program].filter(Boolean).join(' · ')
@@ -14,8 +14,8 @@ function attribution(testimonial: TestimonialData) {
 
 interface TestimonialsProps {
   eyebrow?: string
-  large: TestimonialData | null
-  small: TestimonialData | null
+  large: Testimonial | null
+  small: Testimonial | null
 }
 
 export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
@@ -29,11 +29,11 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
           <div>
             <PhotoPlaceholder
               variant="neutral"
-              image={large.photo}
+              image={large.image}
               label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
               aspectRatio="4 / 3"
             />
-            <RichText value={large.quote} className={styles.largeQuote} />
+            <Prose value={large.quote} className={styles.largeQuote} />
             <p className={styles.attribution}>{attribution(large)}</p>
           </div>
         )}
@@ -41,12 +41,12 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
           <div className={styles.small}>
             <PhotoPlaceholder
               variant="neutral"
-              image={small.photo}
+              image={small.image}
               label={small.name ?? ''}
               aspectRatio="1 / 1"
               className={styles.smallPhoto}
             />
-            <RichText value={small.quote} className={styles.smallQuote} />
+            <Prose value={small.quote} className={styles.smallQuote} />
             <p className={styles.smallAttribution}>{attribution(small)}</p>
           </div>
         )}

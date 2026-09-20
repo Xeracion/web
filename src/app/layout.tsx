@@ -1,10 +1,9 @@
-import { stegaClean } from "@sanity/client/stega";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
-import { getSiteSettings } from "@/sanity/lib/queries";
+import { siteSettings } from "@/content/siteSettings";
 
 const manrope = Manrope({
   variable: "--font-heading",
@@ -22,12 +21,9 @@ const inter = Inter({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const siteSettings = stegaClean(await getSiteSettings());
-  const title = siteSettings?.title ?? "Xeración";
-  const description =
-    siteSettings?.description ??
-    "Asociación xuvenil de Ferrol activa dende 2013.";
+export function generateMetadata(): Metadata {
+  const title = siteSettings.title;
+  const description = siteSettings.description;
   const images = [{ url: "/opengraph-image", width: 1200, height: 630 }];
 
   return {

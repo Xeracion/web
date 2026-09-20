@@ -1,13 +1,13 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { ProcessStepData, SectionIntroData } from '@/sanity/lib/queries'
+import type { ProcessStep, SectionIntro } from '@/content/types'
 
 import styles from './HowToApply.module.css'
 
 interface HowToApplyProps {
   id?: string
-  intro?: SectionIntroData
-  steps: ProcessStepData[]
+  intro?: SectionIntro
+  steps: ProcessStep[]
 }
 
 export function HowToApply({ id, intro, steps }: HowToApplyProps) {

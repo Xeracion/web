@@ -1,20 +1,15 @@
-import { toPlainText } from '@portabletext/react'
-import { stegaClean } from '@sanity/client/stega'
 import type { Metadata } from 'next'
-
-import type { RichTextValue } from '@/sanity/lib/queries'
 
 const DEFAULT_IMAGES = [{ url: '/opengraph-image', width: 1200, height: 630 }]
 
 interface PageMetadataInput {
   title?: string
-  description?: string | RichTextValue
+  description?: string | string[]
   locale?: string
 }
 
-export function buildPageMetadata(input: PageMetadataInput): Metadata {
-  const { title, description: rawDescription, locale } = stegaClean(input)
-  const description = Array.isArray(rawDescription) ? toPlainText(rawDescription) : rawDescription
+export function buildPageMetadata({ title, description: rawDescription, locale }: PageMetadataInput): Metadata {
+  const description = Array.isArray(rawDescription) ? rawDescription.join(' ') : rawDescription
   const metadata: Metadata = {}
 
   if (title) {

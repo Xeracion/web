@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 
 import { FaqAccordionSection } from '@/components/FaqAccordionSection'
+import { fixedProgramsEs, ferrolFaqsEs, pageFerrolEs } from '@/content/agenda'
+import { siteSettings } from '@/content/siteSettings'
 import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getFerrolPageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { AgendaTimeline } from './_sections/AgendaTimeline'
 import { ClosingCta } from './_sections/ClosingCta'
@@ -12,22 +13,14 @@ import { Hero } from './_sections/Hero'
 import { HowToArrive } from './_sections/HowToArrive'
 import { MentoresCallout } from './_sections/MentoresCallout'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getFerrolPageData()
-  return buildPageMetadata({ title: 'Agenda', description: page?.heroText })
+export function generateMetadata(): Metadata {
+  return buildPageMetadata({ title: 'Agenda', description: pageFerrolEs.heroText })
 }
 
 export default async function FerrolPage() {
-  const [{ page, fixedPrograms, faqs }, siteSettings] = await Promise.all([
-    getFerrolPageData(),
-    getSiteSettings(),
-  ])
-
-  if (!page) return null
-
   const start = new Date()
   const end = new Date(start.getTime() + 14 * 24 * 60 * 60 * 1000)
-  const upcomingEvents = await getGoogleCalendarEvents(siteSettings?.googleCalendarId, {
+  const upcomingEvents = await getGoogleCalendarEvents(siteSettings.googleCalendarId, {
     timeMin: start,
     timeMax: end,
     maxResults: 20,
@@ -35,13 +28,13 @@ export default async function FerrolPage() {
 
   return (
     <>
-      <Hero data={page} />
-      <FixedPrograms intro={page.fixedProgramsIntro} items={fixedPrograms} />
-      <AgendaTimeline intro={page.agendaIntro} events={upcomingEvents} />
-      <HowToArrive data={page} siteSettings={siteSettings} />
-      <FaqAccordionSection intro={page.faqIntro} items={faqs} />
+      <Hero data={pageFerrolEs} />
+      <FixedPrograms intro={pageFerrolEs.fixedProgramsIntro} items={fixedProgramsEs} />
+      <AgendaTimeline intro={pageFerrolEs.agendaIntro} events={upcomingEvents} />
+      <HowToArrive data={pageFerrolEs} siteSettings={siteSettings} />
+      <FaqAccordionSection intro={pageFerrolEs.faqIntro} items={ferrolFaqsEs} />
       <MentoresCallout />
-      <ClosingCta data={page} siteSettings={siteSettings} />
+      <ClosingCta data={pageFerrolEs} siteSettings={siteSettings} />
     </>
   )
 }

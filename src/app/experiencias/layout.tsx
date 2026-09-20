@@ -3,12 +3,10 @@ import { LivePreview } from '@/components/LivePreview'
 import { ResizableNavbar } from '@/components/ResizableNavbar'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
+import { siteSettings } from '@/content/siteSettings'
 import { NAV_ITEMS_ES } from '@/lib/nav'
-import { getSiteSettings } from '@/sanity/lib/queries'
 
-export default async function ExperienciasLayout({ children }: { children: React.ReactNode }) {
-  const siteSettings = await getSiteSettings()
-
+export default function ExperienciasLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="route-irse site-shell">
       <SkipLink />

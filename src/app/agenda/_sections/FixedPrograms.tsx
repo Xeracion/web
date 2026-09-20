@@ -1,12 +1,12 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { FixedProgramData, SectionIntroData } from '@/sanity/lib/queries'
+import type { FixedProgram, SectionIntro } from '@/content/types'
 
 import styles from './FixedPrograms.module.css'
 
 interface FixedProgramsProps {
-  intro?: SectionIntroData
-  items: FixedProgramData[]
+  intro?: SectionIntro
+  items: FixedProgram[]
 }
 
 export function FixedPrograms({ intro, items }: FixedProgramsProps) {

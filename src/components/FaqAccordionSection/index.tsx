@@ -1,13 +1,13 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import { RichText } from '@/components/RichText'
-import type { FaqData, SectionIntroData } from '@/sanity/lib/queries'
+import { Prose } from '@/components/Prose'
+import type { Faq, SectionIntro } from '@/content/types'
 
 import styles from './FaqAccordionSection.module.css'
 
 interface FaqAccordionSectionProps {
-  intro?: SectionIntroData
-  items: FaqData[]
+  intro?: SectionIntro
+  items: Faq[]
 }
 
 export function FaqAccordionSection({ intro, items }: FaqAccordionSectionProps) {
@@ -21,7 +21,7 @@ export function FaqAccordionSection({ intro, items }: FaqAccordionSectionProps) 
         {items.map((item, i) => (
           <details key={i} className={styles.item}>
             <summary className={styles.question}>{item.question}</summary>
-            <RichText value={item.answer} className={styles.answer} />
+            <Prose value={item.answer} className={styles.answer} />
           </details>
         ))}
       </div>

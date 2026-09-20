@@ -1,9 +1,8 @@
-import { stegaClean } from '@sanity/client/stega'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
-import type { SiteSettings } from '@/sanity/lib/queries'
+import type { SiteSettings } from '@/content/siteSettings'
 
 import styles from './Footer.module.css'
 
@@ -135,7 +134,7 @@ function SocialIcon({ platform }: { platform?: string }) {
 }
 
 interface FooterProps {
-  siteSettings: SiteSettings | null
+  siteSettings: SiteSettings
   locale?: 'es' | 'en'
 }
 
@@ -155,7 +154,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
           {socialLinks.length > 0 && (
             <ul className={styles.socialList}>
               {socialLinks.map((link, i) => {
-                const platform = stegaClean(link.platform) ?? 'other'
+                const platform = link.platform ?? 'other'
                 return (
                   <li key={i}>
                     <a

@@ -1,7 +1,7 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import type { Initiative, SectionIntro } from '@/content/types'
 import { cn } from '@/lib/cn'
-import type { PageNosotrosData } from '@/sanity/lib/queries'
 
 import styles from './Iniciativas.module.css'
 
@@ -11,7 +11,12 @@ const COLOR_CLASS: Record<string, string> = {
   orange: styles.orange,
 }
 
-export function Iniciativas({ data }: { data: PageNosotrosData }) {
+interface IniciativasData {
+  iniciativasIntro?: SectionIntro
+  iniciativas?: Initiative[]
+}
+
+export function Iniciativas({ data }: { data: IniciativasData }) {
   const items = data.iniciativas ?? []
   if (items.length === 0) return null
 

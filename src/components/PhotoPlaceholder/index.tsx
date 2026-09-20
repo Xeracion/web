@@ -18,7 +18,10 @@ const ROUTE_CLASS: Partial<Record<PhotoPlaceholderVariant, string>> = {
 interface PhotoPlaceholderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   variant?: PhotoPlaceholderVariant
   label: string
-  image?: SanityImageSource
+  // Una imagen de Sanity (experiencia.imagen) o una ruta estática de
+  // /public (contenido hardcodeado en src/content/). Sin ninguna, se
+  // muestra el gradiente + etiqueta entre corchetes de siempre.
+  image?: SanityImageSource | string
   alt?: string
   aspectRatio?: string
   radius?: 'lg' | 'xl'
@@ -39,6 +42,7 @@ export function PhotoPlaceholder({
 }: PhotoPlaceholderProps) {
   const variantModifier =
     variant === 'hero' || variant === 'neutral' ? styles[variant] : undefined
+  const src = typeof image === 'string' ? image : image ? urlFor(image).url() : undefined
 
   return (
     <div
@@ -50,18 +54,12 @@ export function PhotoPlaceholder({
         className,
       )}
       style={{ aspectRatio, ...style }}
-      role={image ? undefined : 'img'}
-      aria-label={image ? undefined : (alt ?? label)}
+      role={src ? undefined : 'img'}
+      aria-label={src ? undefined : (alt ?? label)}
       {...rest}
     >
-      {image ? (
-        <Image
-          src={urlFor(image).url()}
-          alt={alt ?? label}
-          fill
-          sizes={sizes}
-          className={styles.image}
-        />
+      {src ? (
+        <Image src={src} alt={alt ?? label} fill sizes={sizes} className={styles.image} />
       ) : (
         <span className={styles.label} aria-hidden="true">
           [ {label} ]

@@ -1,12 +1,13 @@
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
+import type { SectionIntro } from '@/content/types'
 import { formatEventDay, formatEventMonthShort, formatEventTime } from '@/lib/formatDate'
-import type { EventSummary, SectionIntroData } from '@/sanity/lib/queries'
+import type { EventSummary } from '@/lib/googleCalendar'
 
 import styles from './AgendaTimeline.module.css'
 
 interface AgendaTimelineProps {
-  intro?: SectionIntroData
+  intro?: SectionIntro
   events: EventSummary[]
   locale?: 'es' | 'en'
 }

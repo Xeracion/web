@@ -6,8 +6,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
+import type { SectionIntro } from '@/content/types'
 import { cn } from '@/lib/cn'
-import type { ExperienciaData, SectionIntroData } from '@/sanity/lib/queries'
+import type { ExperienciaData } from '@/sanity/lib/queries'
 
 import styles from './ExperienciasCatalog.module.css'
 
@@ -43,7 +44,7 @@ function matchesChip(item: ExperienciaData, chip: ChipKey) {
 
 interface ExperienciasCatalogProps {
   items: ExperienciaData[]
-  intro?: SectionIntroData
+  intro?: SectionIntro
   id?: string
   persistInUrl?: boolean
   showSearch?: boolean

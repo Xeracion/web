@@ -1,11 +1,11 @@
 import { BandCard } from '@/components/BandCard'
 import { Container } from '@/components/Container'
 import { Eyebrow } from '@/components/Eyebrow'
-import type { OrgCardData, PageEnData } from '@/sanity/lib/queries'
+import type { OrgCard, SectionIntro } from '@/content/types'
 
 import styles from './ForOrganisations.module.css'
 
-function Card({ id, bandLabel, card }: { id: string; bandLabel: string; card?: OrgCardData }) {
+function Card({ id, bandLabel, card }: { id: string; bandLabel: string; card?: OrgCard }) {
   if (!card?.title) return null
 
   return (
@@ -20,7 +20,21 @@ function Card({ id, bandLabel, card }: { id: string; bandLabel: string; card?: O
   )
 }
 
-export function ForOrganisations({ data }: { data: PageEnData }) {
+interface ForOrganisationsData {
+  forOrgsIntro?: SectionIntro
+  orgCardVolunteers?: OrgCard
+  orgCardVetInterns?: OrgCard
+  orgCardHostOurs?: OrgCard
+  orgCardPartnerships?: OrgCard
+  orgStatsYears?: string
+  orgStatsProjects?: string
+  orgStatsCountries?: string
+  orgStatsOid?: string
+  orgStatsPic?: string
+  orgProfilePdfUrl?: string
+}
+
+export function ForOrganisations({ data }: { data: ForOrganisationsData }) {
   const stats = [
     data.orgStatsYears && { label: 'Years running youth mobility', value: data.orgStatsYears },
     data.orgStatsProjects && { label: 'Projects delivered', value: data.orgStatsProjects },

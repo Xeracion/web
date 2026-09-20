@@ -1,8 +1,17 @@
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { HeroSplit } from '@/components/HeroSplit'
-import type { PageMentoresData } from '@/sanity/lib/queries'
 
-export function Hero({ data }: { data: PageMentoresData }) {
+interface HeroData {
+  heroEyebrow?: string
+  heroHeading: string
+  heroText?: string | string[]
+  heroImage?: string
+  heroImageCaption?: string
+  heroCtaLabel?: string
+  heroCtaHref?: string
+}
+
+export function Hero({ data }: { data: HeroData }) {
   return (
     <HeroSplit
       eyebrow={data.heroEyebrow}

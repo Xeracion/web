@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 
 import { FaqAccordionSection } from '@/components/FaqAccordionSection'
 import { MobilityProgramCards } from '@/components/MobilityProgramCards'
+import { siteSettings } from '@/content/siteSettings'
+import { faqsEn, mobilityProgramsEn, pageEnContent, testimonialsEn } from '@/content/volunteering'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getEnPageData, getSiteSettings } from '@/sanity/lib/queries'
 
 import { ClosingCta } from './_sections/ClosingCta'
 import { ForOrganisations } from './_sections/ForOrganisations'
@@ -14,17 +15,11 @@ import { PracticalInfo } from './_sections/PracticalInfo'
 import { Voices } from './_sections/Voices'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { page } = await getEnPageData()
-  return buildPageMetadata({ title: 'Volunteering', description: page?.heroText, locale: 'en_US' })
+  return buildPageMetadata({ title: 'Volunteering', description: pageEnContent.heroText, locale: 'en_US' })
 }
 
-export default async function VolunteeringPage() {
-  const [{ page, mobilityPrograms, testimonials, faqs }, siteSettings] = await Promise.all([
-    getEnPageData(),
-    getSiteSettings(),
-  ])
-
-  if (!page) return null
+export default function VolunteeringPage() {
+  const page = pageEnContent
 
   return (
     <>
@@ -33,16 +28,16 @@ export default async function VolunteeringPage() {
       <MobilityProgramCards
         id="stays"
         intro={page.whatYouCanDoIntro}
-        items={mobilityPrograms}
+        items={mobilityProgramsEn}
         locale="en"
       />
-      <LifeInFerrol intro={page.lifeInFerrolIntro} photos={page.lifeInFerrolPhotos ?? []} />
+      <LifeInFerrol intro={page.lifeInFerrolIntro} photos={page.lifeInFerrolPhotos} />
       <PracticalInfo
         columns={[page.practicalInfoGettingHere, page.practicalInfoHousing, page.practicalInfoLanguage]}
       />
-      <Voices intro={page.voicesIntro} items={testimonials} />
-      <HowToApply id="apply" intro={page.howToApplyIntro} steps={page.howToApplySteps ?? []} />
-      <FaqAccordionSection intro={page.faqIntro} items={faqs} />
+      <Voices intro={page.voicesIntro} items={testimonialsEn} />
+      <HowToApply id="apply" intro={page.howToApplyIntro} steps={page.howToApplySteps} />
+      <FaqAccordionSection intro={page.faqIntro} items={faqsEn} />
       <ClosingCta data={page} siteSettings={siteSettings} />
     </>
   )

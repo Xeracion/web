@@ -1,15 +1,21 @@
 import { HeroSplit } from '@/components/HeroSplit'
-import type { HomeBaseData } from '@/sanity/lib/queries'
 
 import styles from './Hero.module.css'
 
-export function Hero({ data }: { data: HomeBaseData }) {
+interface HeroData {
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  heroImageCaption?: string
+  heroIndicator?: string
+}
+
+export function Hero({ data }: { data: HeroData }) {
   return (
     <HeroSplit
       eyebrow={data.eyebrow}
       heading={data.heading}
       text={data.intro}
-      image={data.heroImage}
       imageLabel={data.heroImageCaption ?? ''}
       imageVariant="hero"
       below={

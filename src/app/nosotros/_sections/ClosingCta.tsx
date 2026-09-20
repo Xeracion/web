@@ -1,11 +1,17 @@
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
-import type { PageNosotrosData, SiteSettings } from '@/sanity/lib/queries'
+import type { SiteSettings } from '@/content/siteSettings'
+
+interface ClosingCtaData {
+  closingHeading?: string
+  closingText?: string | string[]
+  closingCtaPrimaryHref?: string
+}
 
 interface ClosingCtaProps {
-  data: PageNosotrosData
-  siteSettings: SiteSettings | null
+  data: ClosingCtaData
+  siteSettings: SiteSettings
   locale?: 'es' | 'en'
 }
 
