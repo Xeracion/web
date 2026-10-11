@@ -34,7 +34,7 @@ El usuario es el héroe, Xeración es el guía. Esto no es decorativo: condicion
 
 ### Tipografía
 
-- **Nordea Sans Large** (500) — todos los titulares H1 a H4, vía la variable `--font-display`. Es la tipografía corporativa real (con licencia); mientras no haya `.ttf` embebido en el proyecto, `--font-display` degrada en cascada a **Manrope** (next/font, variable `--font-heading`) y luego a `system-ui`. Para añadir la fuente real: colocar el `.ttf` en `public/fonts/` y declarar un `@font-face` para `"Nordea Sans Large"` en `globals.css` — no hace falta tocar ningún componente, ya leen `--font-display`.
+- **Nordea Sans Large** (500) — todos los titulares H1 a H4, vía la variable `--font-display`. Es la tipografía corporativa real (con licencia), embebida como `@font-face` en `globals.css` apuntando a `public/fonts/NordeaSansLarge-Medium.ttf`. Si ese archivo llegara a faltar, `--font-display` degrada en cascada a **Manrope** (next/font, variable `--font-heading`) y luego a `system-ui` — ningún componente necesita tocarse, todos leen `--font-display`.
 - **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos, vía `--font-body`.
 
 Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son: móvil < 768px, tablet 768–1024px, desktop > 1024px.
