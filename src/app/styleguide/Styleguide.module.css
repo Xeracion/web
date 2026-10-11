@@ -26,14 +26,14 @@
 }
 
 .sectionNote {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 13px;
   color: var(--color-text-tertiary);
   max-width: 560px;
 }
 
 .caption {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 12px;
   letter-spacing: 0.02em;
   color: var(--color-text-tertiary);

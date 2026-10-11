@@ -14,7 +14,7 @@ export default function OpengraphImage() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: '#FAFAF7',
+          backgroundColor: '#fbfffc',
         }}
       >
         <div
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
           <div
             style={{
               fontSize: 96,
-              color: '#2C2C2A',
+              color: '#2f2f2f',
               letterSpacing: '-2px',
               fontFamily: 'Georgia, serif',
             }}
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
             style={{
               display: 'flex',
               fontSize: 32,
-              color: '#5F5E5A',
+              color: '#5a5a5a',
               marginTop: 24,
               maxWidth: 820,
             }}
@@ -49,9 +49,8 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ display: 'flex', height: 14, width: '100%' }}>
-          <div style={{ display: 'flex', flex: 1, backgroundColor: '#5DCAA5' }} />
-          <div style={{ display: 'flex', flex: 1, backgroundColor: '#F0997B' }} />
-          <div style={{ display: 'flex', flex: 1, backgroundColor: '#AFA9EC' }} />
+          <div style={{ display: 'flex', flex: 1, backgroundColor: '#d5f483' }} />
+          <div style={{ display: 'flex', flex: 1, backgroundColor: '#357dca' }} />
         </div>
       </div>
     ),

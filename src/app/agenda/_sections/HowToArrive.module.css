@@ -30,13 +30,13 @@
 
 .text {
   margin-top: var(--space-xs);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   color: var(--color-text-secondary);
 }
 
 .label {
   margin-top: var(--space-md);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--color-text-primary);

@@ -1,10 +1,10 @@
 .eyebrow {
   display: block;
-  font-family: var(--font-inter), sans-serif;
-  font-size: 11px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-eyebrow);
   font-weight: 500;
   line-height: 1.4;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--ls-eyebrow);
   text-transform: uppercase;
   color: var(--color-text-tertiary);
 }

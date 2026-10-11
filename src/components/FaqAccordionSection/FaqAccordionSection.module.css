@@ -10,13 +10,16 @@
 
 .item {
   padding-block: var(--space-md);
-  border-bottom: 0.5px solid var(--color-border);
+  border-bottom: var(--border-hair) solid var(--color-border);
 }
 
 .question {
   cursor: pointer;
   list-style: none;
-  font-family: var(--font-inter), sans-serif;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-family: var(--font-body), sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: var(--color-text-primary);
@@ -28,17 +31,34 @@
 
 .question::after {
   content: '+';
-  float: right;
-  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-warm);
+  color: var(--color-text-secondary);
+  transition: transform var(--dur-slow) var(--ease-out), background-color var(--dur-base) ease;
 }
 
 .item[open] .question::after {
-  content: '−';
+  transform: rotate(45deg);
+  background: var(--color-accent-bg);
+  color: var(--color-accent-text);
 }
 
 .answer {
   margin-top: var(--space-sm);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 14px;
+  max-width: 640px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item[open] .answer {
+    animation: xr-fade-up 400ms var(--ease-out);
+  }
 }

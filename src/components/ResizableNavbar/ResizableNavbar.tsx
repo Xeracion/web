@@ -71,8 +71,8 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
           marginTop: scrolled ? 12 : 0,
           borderRadius: scrolled ? 999 : 0,
           boxShadow: scrolled
-            ? '0 12px 32px -16px rgba(44,44,42,0.25), inset 0 1px 0 rgba(255,255,255,0.6)'
-            : '0 0 0 0 rgba(44,44,42,0), inset 0 0 0 0 rgba(255,255,255,0)',
+            ? '0 12px 32px -16px rgba(47,47,47,0.25), inset 0 1px 0 rgba(255,255,255,0.6)'
+            : '0 0 0 0 rgba(47,47,47,0), inset 0 0 0 0 rgba(255,255,255,0)',
         }}
         transition={transition}
       >

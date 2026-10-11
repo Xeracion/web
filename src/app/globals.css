@@ -52,45 +52,148 @@ ol {
   outline-offset: 2px;
 }
 
-/* Variables */
+/* Variables — paleta de marca Xeración (azul #357dca · tinta #2f2f2f ·
+   papel #fbfffc · lima #d5f483). Los pasos derivados están calibrados para
+   que cada combinación de texto pase AA (4.5:1). */
 :root {
-  /* Neutros */
-  --color-text-primary: #2c2c2a;
-  --color-text-secondary: #444441;
-  --color-text-tertiary: #5f5e5a;
-  --color-text-muted: #888780;
-  --color-border: #d3d1c7;
-  --color-border-strong: #b4b2a9;
-  --color-bg: #fafaf7;
-  --color-bg-warm: #f1efe8;
-  --color-white: #ffffff;
+  /* Marca */
+  --xr-blue: #357dca;
+  --xr-ink: #2f2f2f;
+  --xr-paper: #fbfffc;
+  --xr-lime: #d5f483;
 
-  /* Acento Ferrol (teal) */
-  --color-ferrol-bg: #e1f5ee;
-  --color-ferrol-border: #5dcaa5;
-  --color-ferrol-text: #0f6e56;
-  --color-ferrol-strong: #04342c;
-  --color-ferrol-grad-1: #9fe1cb;
-  --color-ferrol-grad-2: #5dcaa5;
+  /* Escala azul */
+  --xr-blue-50: #f2f7fd;
+  --xr-blue-100: #e6f0fb;
+  --xr-blue-200: #c4dcf5;
+  --xr-blue-300: #8fbcef;
+  --xr-blue-500: #357dca;
+  --xr-blue-600: #2c6bb0;
+  --xr-blue-700: #245a96;
+  --xr-blue-900: #143a63;
 
-  /* Acento Irse (coral) */
-  --color-irse-bg: #faece7;
-  --color-irse-border: #f0997b;
-  --color-irse-text: #993c1d;
-  --color-irse-strong: #4a1b0c;
-  --color-irse-grad-1: #f5c4b3;
-  --color-irse-grad-2: #f0997b;
+  /* Escala lima */
+  --xr-lime-50: #f9fdec;
+  --xr-lime-100: #f2fbd8;
+  --xr-lime-200: #e6f9a8;
+  --xr-lime-300: #d5f483;
+  --xr-lime-500: #c3e65c;
+  --xr-lime-700: #4b6212;
+  --xr-lime-900: #2b3a06;
+
+  /* Tinta / neutros */
+  --xr-ink-950: #1c1c1c;
+  --xr-ink-900: #232323;
+  --xr-ink-800: #2f2f2f;
+  --xr-ink-700: #444444;
+  --xr-ink-600: #5a5a5a;
+  --xr-ink-500: #6b6b6b;
+  --xr-ink-300: #b9beb9;
+  --xr-ink-200: #d9ddd9;
+  --xr-ink-100: #eef2ee;
+  --xr-ink-50: #f4f8f4;
+  --xr-white: #ffffff;
+
+  /* Feedback */
+  --xr-success: #4b6212;
+  --xr-error: #b3261e;
+
+  /* Neutros (alias semánticos, mismos nombres que antes) */
+  --color-text-primary: var(--xr-ink-800);
+  --color-text-secondary: var(--xr-ink-700);
+  --color-text-tertiary: var(--xr-ink-600);
+  --color-text-muted: var(--xr-ink-500);
+  --color-text-on-dark: var(--xr-paper);
+  --color-text-on-dark-muted: #c9cec9;
+  --color-border: var(--xr-ink-200);
+  --color-border-strong: var(--xr-ink-300);
+  --color-bg: var(--xr-paper);
+  --color-bg-warm: var(--xr-ink-50);
+  --color-bg-dark: var(--xr-ink-900);
+  --color-white: var(--xr-white);
+
+  /* Superficies */
+  --surface-page: var(--color-bg);
+  --surface-card: var(--xr-white);
+  --surface-soft: var(--xr-ink-50);
+  --surface-dark: var(--xr-ink-900);
+  --surface-brand: var(--xr-blue);
+  --surface-highlight: var(--xr-lime);
+  --surface-glass: rgba(251, 255, 252, 0.72);
+
+  /* Acento Ferrol / Agenda → lima */
+  --color-ferrol-bg: var(--xr-lime-100);
+  --color-ferrol-border: var(--xr-lime-500);
+  --color-ferrol-text: var(--xr-lime-700);
+  --color-ferrol-strong: var(--xr-lime-900);
+  --color-ferrol-grad-1: var(--xr-lime-200);
+  --color-ferrol-grad-2: var(--xr-lime-500);
+  --color-ferrol-fill: var(--xr-lime);
+  --color-ferrol-on-fill: var(--xr-ink-800);
+
+  /* Acento Irse / Experiencias → azul */
+  --color-irse-bg: var(--xr-blue-100);
+  --color-irse-border: var(--xr-blue-300);
+  --color-irse-text: var(--xr-blue-700);
+  --color-irse-strong: var(--xr-blue-900);
+  --color-irse-grad-1: var(--xr-blue-300);
+  --color-irse-grad-2: var(--xr-blue);
+  --color-irse-fill: var(--xr-blue-600);
+  --color-irse-on-fill: var(--xr-white);
 
   /* Acento genérico — cada ruta lo redefine vía .route-ferrol / .route-irse.
-     Los componentes solo deben leer estas cuatro variables, nunca --color-{ruta}-*. */
-  --color-accent-bg: var(--color-bg-warm);
-  --color-accent-border: var(--color-border-strong);
-  --color-accent-text: var(--color-text-secondary);
-  --color-accent-strong: var(--color-text-primary);
-  --color-accent-grad-1: var(--color-border-strong);
-  --color-accent-grad-2: var(--color-text-muted);
+     Los componentes solo deben leer estas variables, nunca --color-{ruta}-*. */
+  --color-accent-bg: var(--xr-blue-50);
+  --color-accent-border: var(--xr-blue-300);
+  --color-accent-text: var(--xr-blue-700);
+  --color-accent-strong: var(--xr-blue-900);
+  --color-accent-grad-1: var(--xr-blue-200);
+  --color-accent-grad-2: var(--xr-blue-300);
+  --color-accent-fill: var(--xr-blue-600);
+  --color-accent-on-fill: var(--xr-white);
+
+  /* Degradados (solo para fondos de foto placeholder) */
+  --grad-hero: linear-gradient(135deg, #8fbcef 0%, #357dca 55%, #245a96 100%);
+  --grad-neutral: linear-gradient(135deg, #d9ddd9 0%, #b9beb9 100%);
+  --grad-lime: linear-gradient(135deg, #e6f9a8 0%, #c3e65c 100%);
+  --grad-blue: linear-gradient(135deg, #8fbcef 0%, #357dca 100%);
+
+  /* Tipografía — alias que respetan el cableado next/font de layout.tsx
+     (--font-heading/--font-inter). "Nordea Sans Large" se antepone para
+     que, en cuanto se añada el @font-face real, se recoja sin tocar CSS. */
+  --font-display: "Nordea Sans Large", var(--font-heading), sans-serif;
+  --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
+
+  --text-h1: 42px;
+  --lh-h1: 1.04;
+  --ls-h1: -0.025em;
+  --text-h2: 34px;
+  --lh-h2: 1.15;
+  --ls-h2: -0.02em;
+  --text-h3: 24px;
+  --lh-h3: 1.2;
+  --ls-h3: -0.015em;
+  --text-h4: 19px;
+  --lh-h4: 1.3;
+  --ls-h4: -0.01em;
+  --text-display: 64px;
+  --lh-display: 1;
+  --ls-display: -0.03em;
+  --text-closing: 36px;
+  --text-quote-lg: 28px;
+  --text-quote-sm: 19px;
+  --text-stat: 44px;
+  --text-body: 17px;
+  --lh-body: 1.55;
+  --text-ui: 15px;
+  --text-sm: 14px;
+  --text-xs: 13px;
+  --text-caption: 12px;
+  --text-eyebrow: 11px;
+  --ls-eyebrow: 0.16em;
 
   /* Espaciados */
+  --space-2xs: 4px;
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
@@ -100,21 +203,60 @@ ol {
   --space-3xl: 80px;
   --space-4xl: 96px;
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* Radius — generosos */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 999px;
+
+  --border-hair: 0.5px;
+  --border-thin: 1px;
+
+  --shadow-lift: 0 12px 32px -16px rgba(47, 47, 47, 0.18);
+  --shadow-float: 0 12px 32px -16px rgba(47, 47, 47, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-ring-accent: 0 0 0 3px var(--color-accent-bg);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: ease;
+  --dur-fast: 160ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+  --dur-reveal: 600ms;
+  --reveal-distance: 20px;
+  --reveal-stagger: 80ms;
 
   /* Container */
   --container-max: 1200px;
   --container-padding: 32px;
+  --nav-height: 88px;
 }
 
 @media (max-width: 768px) {
   :root {
     --container-padding: 20px;
+    --nav-height: 80px;
+  }
+}
+
+@keyframes xr-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes xr-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -128,6 +270,8 @@ ol {
   --color-accent-strong: var(--color-ferrol-strong);
   --color-accent-grad-1: var(--color-ferrol-grad-1);
   --color-accent-grad-2: var(--color-ferrol-grad-2);
+  --color-accent-fill: var(--color-ferrol-fill);
+  --color-accent-on-fill: var(--color-ferrol-on-fill);
 }
 
 .route-irse {
@@ -137,6 +281,8 @@ ol {
   --color-accent-strong: var(--color-irse-strong);
   --color-accent-grad-1: var(--color-irse-grad-1);
   --color-accent-grad-2: var(--color-irse-grad-2);
+  --color-accent-fill: var(--color-irse-fill);
+  --color-accent-on-fill: var(--color-irse-on-fill);
 }
 
 /* Estructura compartida por los layouts: header/main/footer en columna,
@@ -151,13 +297,7 @@ ol {
   flex: 1;
   /* ResizableNavbar is position: fixed (no space reserved in flow), so
      compensate here with its unscrolled height + a little breathing room. */
-  padding-top: 88px;
-}
-
-@media (max-width: 768px) {
-  .site-main {
-    padding-top: 80px;
-  }
+  padding-top: var(--nav-height);
 }
 
 /* Base */
@@ -167,10 +307,10 @@ body {
   flex-direction: column;
   background: var(--color-bg);
   color: var(--color-text-primary);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
-  font-size: 17px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: var(--lh-body);
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -182,40 +322,46 @@ body {
   }
 }
 
-/* Tipografía — H1 a H4, Manrope */
+a:hover {
+  color: var(--color-accent-text);
+}
+
+/* Tipografía — H1 a H4 */
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-heading), sans-serif;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 h1 {
-  font-size: 42px;
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.025em;
+  font-size: var(--text-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
 }
 
 h2 {
-  font-size: 34px;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: var(--text-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
 }
 
 h3 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
 }
 
 h4 {
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+  letter-spacing: var(--ls-h4);
 }
 
 @media (max-width: 1024px) {
@@ -238,7 +384,7 @@ h4 {
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   h2 {
@@ -254,7 +400,16 @@ h4 {
   }
 }
 
-/* Fade-in al hacer scroll (secciones y el footer). Se ven visibles por
+@media print {
+  .js-reveal-hidden,
+  .js-reveal-hidden [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Fade-in al hacer scroll (secciones y el footer), con stagger opcional en
+   hijos marcados [data-reveal-child] vía --reveal-i. Se ven visibles por
    defecto (sin JS, o mientras carga); el componente ScrollReveal marca con
    .js-reveal-hidden solo los que aún no están en pantalla al cargar la
    página, y la quita cuando entran en el viewport para disparar la
@@ -262,12 +417,23 @@ h4 {
 @media (prefers-reduced-motion: no-preference) {
   section,
   .site-shell > footer {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+    transition-delay: calc(var(--reveal-i, 0) * var(--reveal-stagger));
   }
 
   section.js-reveal-hidden,
   .site-shell > footer.js-reveal-hidden {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--reveal-distance));
+  }
+
+  .js-reveal-hidden [data-reveal-child] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  [data-reveal-child] {
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+    transition-delay: calc(var(--reveal-i, 0) * var(--reveal-stagger) + 120ms);
   }
 }

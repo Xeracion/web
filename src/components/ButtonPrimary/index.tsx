@@ -10,11 +10,18 @@ type AsLink = AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
 type ButtonPrimaryProps = (AsButton | AsLink) & {
   children: ReactNode
   accent?: boolean
+  highlight?: boolean
   className?: string
 }
 
-export function ButtonPrimary({ children, accent = false, className, ...rest }: ButtonPrimaryProps) {
-  const classes = cn(styles.button, accent && styles.accent, className)
+export function ButtonPrimary({
+  children,
+  accent = false,
+  highlight = false,
+  className,
+  ...rest
+}: ButtonPrimaryProps) {
+  const classes = cn(styles.button, accent && styles.accent, highlight && styles.highlight, className)
 
   if ('href' in rest && rest.href) {
     const { href, ...anchorRest } = rest as AsLink

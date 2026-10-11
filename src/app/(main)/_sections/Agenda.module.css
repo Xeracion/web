@@ -22,7 +22,7 @@
 
 .meta {
   margin-top: var(--space-sm);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -32,7 +32,7 @@
 
 .description {
   margin-top: var(--space-sm);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 15px;
   color: var(--color-text-secondary);
 }
@@ -52,13 +52,13 @@
 }
 
 .name {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 14px;
   color: var(--color-text-primary);
 }
 
 .date {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;

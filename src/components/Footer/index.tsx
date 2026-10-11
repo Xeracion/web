@@ -149,6 +149,36 @@ export function Footer({ siteSettings }: FooterProps) {
             </ul>
           </div>
         ))}
+
+        <div>
+          <h5 className={styles.columnHeading}>Contacto</h5>
+          <ul className={styles.linkList}>
+            {siteSettings?.email && (
+              <li>
+                <a href={`mailto:${siteSettings.email}`} className={styles.link}>
+                  {siteSettings.email}
+                </a>
+              </li>
+            )}
+            {siteSettings?.whatsapp && (
+              <li>
+                <a
+                  href={`https://wa.me/${siteSettings.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  WhatsApp
+                </a>
+              </li>
+            )}
+            <li>
+              <Link href="/nosotros/" className={styles.link}>
+                Nosotros
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
 
       <Container>

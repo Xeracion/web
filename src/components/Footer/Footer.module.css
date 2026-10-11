@@ -1,5 +1,6 @@
 .footer {
-  background: #1c1c1a;
+  background: var(--surface-dark);
+  color: var(--color-text-on-dark-muted);
   border-radius: var(--radius-xl);
   margin: var(--space-xl) var(--container-padding);
   padding-top: var(--space-xl);
@@ -58,24 +59,31 @@
 
 .socialLink {
   display: inline-flex;
-  color: #d4d2ca;
-  transition: color 0.2s ease;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(251, 255, 252, 0.08);
+  color: var(--color-text-on-dark-muted);
+  transition: background-color var(--dur-base) ease, color var(--dur-base) ease;
 }
 
 .socialLink:hover {
-  color: #ffffff;
+  background: var(--xr-lime);
+  color: var(--xr-ink-800);
 }
 
 .socialLink svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .columnHeading {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 13px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-xs);
   font-weight: 500;
-  color: #eeece5;
+  color: var(--xr-paper);
   margin-bottom: var(--space-xs);
 }
 
@@ -87,22 +95,22 @@
 
 .link {
   display: inline-block;
-  font-family: var(--font-inter), sans-serif;
-  font-size: 13px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-xs);
   line-height: 1.9;
-  color: #d4d2ca;
+  color: var(--color-text-on-dark-muted);
 }
 
 .link:hover {
-  color: #ffffff;
+  color: var(--xr-lime);
 }
 
 .credits {
   margin-top: var(--space-lg);
   padding-top: var(--space-sm);
-  border-top: 0.5px solid rgba(255, 255, 255, 0.14);
+  border-top: var(--border-hair) solid rgba(255, 255, 255, 0.14);
   text-align: center;
-  font-family: var(--font-inter), sans-serif;
-  font-size: 12px;
-  color: #a8a69f;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-caption);
+  color: #a9aea9;
 }

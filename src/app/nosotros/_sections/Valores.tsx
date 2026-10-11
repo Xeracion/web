@@ -22,7 +22,7 @@ export function Valores({ data }: { data: ValoresData }) {
           {values.map((value, i) => (
             <div key={i} className={styles.card}>
               <span className={styles.icon} aria-hidden="true">
-                {value.icon}
+                {i + 1}
               </span>
               <h4>{value.title}</h4>
               {value.description && <p className={styles.text}>{value.description}</p>}

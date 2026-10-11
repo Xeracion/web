@@ -39,7 +39,7 @@
 
 .text {
   margin-top: var(--space-xs);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 14px;
   color: var(--color-text-tertiary);
 }

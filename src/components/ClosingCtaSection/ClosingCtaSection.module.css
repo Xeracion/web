@@ -1,5 +1,5 @@
 .section {
-  max-width: 520px;
+  max-width: 560px;
   margin-inline: auto;
   padding-inline: var(--container-padding);
   padding-block: 56px;
@@ -13,12 +13,12 @@
 }
 
 .section h2 {
-  font-size: 28px;
+  font-size: var(--text-closing);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .section h2 {
-    font-size: 36px;
+    font-size: 28px;
   }
 }
 

@@ -5,21 +5,48 @@
   gap: 8px;
   padding: 14px 24px;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   background: var(--color-text-primary);
   color: var(--color-bg);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 15px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-ui);
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  transition: opacity var(--dur-base) ease, background-color var(--dur-base) ease,
+    transform var(--dur-fast) var(--ease-out);
 }
 
 .button:hover {
   opacity: 0.85;
 }
 
+.button:active {
+  transform: scale(0.97);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .accent {
-  background: var(--color-accent-text);
+  background: var(--color-accent-fill);
+  color: var(--color-accent-on-fill);
+}
+
+.accent:hover {
+  opacity: 0.88;
+}
+
+.highlight {
+  background: var(--xr-lime);
+  color: var(--xr-ink-800);
+}
+
+.highlight:hover {
+  background: var(--xr-lime-500);
+  opacity: 1;
 }

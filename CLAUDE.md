@@ -19,10 +19,10 @@ El sitio no tiene una home única: tiene varias sub-homes según quién es el vi
 | Ruta | Audiencia | Acento |
 |---|---|---|
 | `/` | Portada: hero + catálogo de experiencias destacadas | Neutro (sin clase `route-*`) |
-| `/agenda/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Teal / verde (proximidad, ría, mar) |
-| `/experiencias/`, `/experiencias/[slug]/` | Jóvenes españoles (18-30) que buscan un catálogo de experiencias — caminos, aventura, vivir fuera, intercambios, planes locales, naturaleza — sin que el programa de financiación (Erasmus+, CES) sea la categoría madre: es una etiqueta de coste más. Es el 4º ítem del nav en `/`, `/agenda/` y `/nosotros/`. | Coral / naranja (salida, calidez) |
+| `/agenda/` | Jóvenes de la comarca de Ferrol que buscan algo que hacer esta semana | Lima (energía, cercanía) |
+| `/experiencias/`, `/experiencias/[slug]/` | Jóvenes españoles (18-30) que buscan un catálogo de experiencias — caminos, aventura, vivir fuera, intercambios, planes locales, naturaleza — sin que el programa de financiación (Erasmus+, CES) sea la categoría madre: es una etiqueta de coste más. Es el 4º ítem del nav en `/`, `/agenda/` y `/nosotros/`. | Azul (salida, horizonte) |
 | `/nosotros/` | Quiénes somos, equipo, historia, partners, datos legales | Neutro (sin clase `route-*`) |
-| `/mentores/` | Captación de mentores locales (no está en el nav principal) | Teal / verde |
+| `/mentores/` | Captación de mentores locales (no está en el nav principal) | Lima |
 
 **El sitio fue bilingüe (es/en) hasta que se retiró por completo la versión en inglés** — existían `/en/`, `/en/agenda/`, `/volunteering/` y `/about/`, un selector de idioma con banderas en `ResizableNavbar`, detección de idioma por `Accept-Language` en `src/middleware.ts` y una cookie `xeracion_lang`. Todo eso se eliminó: código de esas rutas, sus componentes de sección (`ForOrganisations`, `MobilityProgramCards`, la sección `RouteCards`/`Stats` de la portada inglesa), el contenido en `src/content/` (`homeEn`, `pageFerrolEnContent`, `pageNosotrosEnContent`, `volunteering.ts` entero), el selector de idioma del navbar, `src/middleware.ts`, y los tokens de color `--color-en-*`/`.route-en` (el acento púrpura, exclusivo de `/volunteering/`). No queda rastro funcional de la versión en inglés — si en el futuro se quiere reintroducir, es un proyecto nuevo, no una reactivación de código apagado.
 
@@ -34,14 +34,14 @@ El usuario es el héroe, Xeración es el guía. Esto no es decorativo: condicion
 
 ### Tipografía
 
-- **Manrope** (600) — todos los titulares H1 a H4. Sustituye a Fraunces como alternativa de Google Fonts a Nordea Sans (fuente corporativa con licencia, no disponible para este proyecto).
-- **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos.
+- **Nordea Sans Large** (500) — todos los titulares H1 a H4, vía la variable `--font-display`. Es la tipografía corporativa real (con licencia); mientras no haya `.ttf` embebido en el proyecto, `--font-display` degrada en cascada a **Manrope** (next/font, variable `--font-heading`) y luego a `system-ui`. Para añadir la fuente real: colocar el `.ttf` en `public/fonts/` y declarar un `@font-face` para `"Nordea Sans Large"` en `globals.css` — no hace falta tocar ningún componente, ya leen `--font-display`.
+- **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos, vía `--font-body`.
 
 Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son: móvil < 768px, tablet 768–1024px, desktop > 1024px.
 
 | Nivel | Desktop | Tablet | Móvil | Weight | Line-height | Letter-spacing |
 |---|---|---|---|---|---|---|
-| H1 | 42px | 34px | 24px | 600 | 1.04 | -0.025em |
+| H1 | 42px | 34px | 28px | 600 | 1.04 | -0.025em |
 | H2 | 34px | 30px | 26px | 600 | 1.15 | -0.02em |
 | H3 | 24px | 22px | 20px | 600 | 1.2 | -0.015em |
 | H4 | 19px | 18px | 17px | 600 | 1.3 | -0.01em |
@@ -52,36 +52,39 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
 
 ### Paleta de color (variables CSS)
 
+Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, tinta `#2F2F2F`, papel `#FBFFFC`, lima `#D5F483`. Los pasos derivados (`--xr-blue-*`, `--xr-lime-*`, `--xr-ink-*`, en `globals.css`) están calibrados para que cada combinación de texto pase AA (4.5:1). Los nombres de variable semánticos de siempre (`--color-text-primary`, `--color-ferrol-*`, `--color-accent-*`...) se mantienen — solo cambiaron los valores a los que apuntan — para que ningún componente tenga que tocar su CSS al actualizar la marca.
+
 ```css
 :root {
   /* Neutros */
-  --color-text-primary: #2C2C2A;
-  --color-text-secondary: #444441;
-  --color-text-tertiary: #5F5E5A;
-  --color-text-muted: #888780;
-  --color-border: #D3D1C7;
-  --color-border-strong: #B4B2A9;
-  --color-bg: #FAFAF7;
-  --color-bg-warm: #F1EFE8;
+  --color-text-primary: #2F2F2F;
+  --color-text-secondary: #444444;
+  --color-text-tertiary: #5A5A5A;
+  --color-text-muted: #6B6B6B;
+  --color-border: #D9DDD9;
+  --color-border-strong: #B9BEB9;
+  --color-bg: #FBFFFC;
+  --color-bg-warm: #F4F8F4;
   --color-white: #FFFFFF;
 
-  /* Acento Ferrol (teal) */
-  --color-ferrol-bg: #E1F5EE;
-  --color-ferrol-border: #5DCAA5;
-  --color-ferrol-text: #0F6E56;
-  --color-ferrol-strong: #04342C;
-  --color-ferrol-grad-1: #9FE1CB;
-  --color-ferrol-grad-2: #5DCAA5;
+  /* Acento Ferrol / Agenda (lima) */
+  --color-ferrol-bg: #F2FBD8;
+  --color-ferrol-border: #C3E65C;
+  --color-ferrol-text: #4B6212;
+  --color-ferrol-strong: #2B3A06;
+  --color-ferrol-grad-1: #E6F9A8;
+  --color-ferrol-grad-2: #C3E65C;
 
-  /* Acento Irse (coral) */
-  --color-irse-bg: #FAECE7;
-  --color-irse-border: #F0997B;
-  --color-irse-text: #993C1D;
-  --color-irse-strong: #4A1B0C;
-  --color-irse-grad-1: #F5C4B3;
-  --color-irse-grad-2: #F0997B;
+  /* Acento Irse / Experiencias (azul) */
+  --color-irse-bg: #E6F0FB;
+  --color-irse-border: #8FBCEF;
+  --color-irse-text: #245A96;
+  --color-irse-strong: #143A63;
+  --color-irse-grad-1: #8FBCEF;
+  --color-irse-grad-2: #357DCA;
 
   /* Espaciados */
+  --space-2xs: 4px;
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
@@ -91,11 +94,11 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
   --space-3xl: 80px;
   --space-4xl: 96px;
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* Radius — generosos */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 999px;
 
   /* Container */
@@ -111,25 +114,29 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
 ```
 
 Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
-- Ferrol: `linear-gradient(135deg, #9FE1CB 0%, #5DCAA5 100%)`
-- Irse: `linear-gradient(135deg, #F5C4B3 0%, #F0997B 100%)`
+- Ferrol/Agenda: `linear-gradient(135deg, #E6F9A8 0%, #C3E65C 100%)`
+- Irse/Experiencias: `linear-gradient(135deg, #8FBCEF 0%, #357DCA 100%)`
+
+Cada ruta define además `--color-{ruta}-fill`/`-on-fill` (el par color de relleno + su texto de contraste correcto — lima necesita texto tinta, azul necesita texto blanco) que alimenta la variante `accent` de `ButtonPrimary`. Existe también una variante `highlight`, independiente de ruta, que es siempre lima — un acento de marca que puede aparecer incluso en páginas de acento azul (`ButtonPrimary`, `EyebrowPill`).
 
 ### Radios generosos por contexto
 
-- 16px en fotos hero (14px en móvil)
-- 12px en tarjetas
-- 8px en botones
+- 28px en fotos hero (`--radius-xl`)
+- 20px en tarjetas (`--radius-lg`)
+- Pill completo en botones (`--radius-full`) — ya no rectángulos redondeados
 
 ### Componentes reutilizables
 
 - `.eyebrow` — texto de sección en versalitas con espaciado ancho (11px, uppercase, letter-spacing 0.16em)
 - `.eyebrow-pill` — versión con pastilla de fondo semi-transparente, para superponer sobre fotos
 - `.container` — max-width 1200px, padding lateral responsive vía `--container-padding`
-- `.btn-primary` — fondo oscuro `#2C2C2A`, texto crema, radius 8px
-- `.btn-secondary` — borde 0.5px, fondo transparente
-- `.btn-link` — texto plano con flecha (`→`), para "Leer más" / CTAs terciarios
-- `.card` — fondo blanco, radius 12px, borde sutil, hover con lift ligero (`translateY(-2px)` + sombra `0 12px 32px -16px rgba(44,44,42,0.15)`)
+- `.btn-primary` — fondo oscuro `#2F2F2F`, texto papel, radius pill (`--radius-full`)
+- `.btn-secondary` — borde 0.5px, fondo transparente, radius pill
+- `.btn-link` — texto plano con flecha (`→`) que se desliza 3px al hover, para "Leer más" / CTAs terciarios
+- `.card` — fondo blanco, radius 20px (`--radius-lg`), borde sutil, hover con lift (`translateY(-3px)` + `--shadow-lift`)
 - `.photo-placeholder` — marcador de foto real con gradiente, incluye etiqueta entre corchetes indicando qué foto real va ahí (ej. `[ foto editorial · grupo en muelle de Ferrol ]`)
+
+En `/nosotros/`, la sección "Valores" usa discos numerados (1, 2, 3…) en vez de emoji como icono de cada tarjeta — un cambio explícito del libro de estilo, acotado a esa sección (`Iniciativas` y el patrón `ValueItem` de `/mentores/` siguen con emoji).
 
 ### Header y navegación (todas las páginas)
 
@@ -234,21 +241,21 @@ El pivote estratégico del proyecto: la web dejó de organizarse por programa de
 
 Cada layout de sub-home aplica una clase en su elemento raíz que determina qué variables de acento CSS están activas en el scope de esa página:
 
-- `route-ferrol` → activa el acento teal (en `/agenda/` y `/mentores/`)
-- `route-irse` → activa el acento coral (solo en `/experiencias/` y `/experiencias/[slug]/` — el nombre de la clase quedó como `irse` por continuidad del sistema de diseño, ver 4.2)
+- `route-ferrol` → activa el acento lima (en `/agenda/` y `/mentores/`)
+- `route-irse` → activa el acento azul (solo en `/experiencias/` y `/experiencias/[slug]/` — el nombre de la clase quedó como `irse` por continuidad del sistema de diseño, ver 4.2)
 
-Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte teal en `/agenda/` y coral en `/experiencias/` sin lógica condicional en el componente.
+Esta clase se aplica en el elemento raíz del layout (ej. el `<body>` o el contenedor principal de la página), no por componente individual. Los componentes compartidos (header, tarjetas, botones primarios) leen el color de acento heredando de esta clase mediante las variables `--color-{ruta}-*` definidas en el punto 2, en vez de recibir el color como prop. Esto es lo que permite que el mismo componente `.btn-primary` o el link de nav activo se pinte lima en `/agenda/` y azul en `/experiencias/` sin lógica condicional en el componente.
 
 Ni la portada (`/`) ni `/nosotros/` llevan ninguna de estas dos clases — usan solo la paleta neutra.
 
 ## 6. Estructura de páginas (resumen — detalle completo en ESPECIFICACION.md)
 
 - **Portada `/`**: hero asimétrico (kicker + H1 + subtítulo, foto editorial) → catálogo filtrable de experiencias destacadas (`ExperienciasCatalog`, ver 4.4) → esta semana en Ferrol (`Agenda`, reutilizado sin cambios) → historias reales (`Testimonials`, sin cambios) → franja institucional discreta (una línea, enlaza a `/nosotros/`) → logos institucionales (Erasmus+, CES, Concello de Ferrol, Xunta de Galicia) → CTA de cierre/contacto (sin cambios) → footer.
-- **`/agenda/`** (antes `/ferrol/`; la URL se renombró pero el objeto de contenido sigue llamándose `pageFerrolEs`, ver 4.2): hero teal → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre.
-- **`/experiencias/`** (antes `/irse/`; reemplazo de modelo de contenido, no solo de URL — ver 4.4): cabecera corta con `<h1>` (copy hardcodeado en la página) → catálogo completo filtrable con buscador de texto y filtros persistidos en la query string (`?filtro=`/`?q=`). Hero coral (`route-irse`). Es la única página cuyo contenido principal sigue viniendo de Sanity en tiempo real (la colección `experiencia`).
+- **`/agenda/`** (antes `/ferrol/`; la URL se renombró pero el objeto de contenido sigue llamándose `pageFerrolEs`, ver 4.2): hero lima → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre.
+- **`/experiencias/`** (antes `/irse/`; reemplazo de modelo de contenido, no solo de URL — ver 4.4): cabecera corta con `<h1>` (copy hardcodeado en la página) → catálogo completo filtrable con buscador de texto y filtros persistidos en la query string (`?filtro=`/`?q=`). Hero azul (`route-irse`). Es la única página cuyo contenido principal sigue viniendo de Sanity en tiempo real (la colección `experiencia`).
 - **`/experiencias/[slug]/`**: hero (foto + título + datos clave en fila: ámbito/duración/coste) → descripción en portable text (de Sanity, ver 4.3) → convocatorias abiertas o bloque "avísame" → CTA de cierre. Solo se genera para experiencias sin `enlaceExterno`.
 - **`/nosotros/`**: hero (con foto de fondo opcional) → historia → valores → equipo → voluntarios históricos + testimonios → "han estado con nosotros" (rejilla + cargar más) → iniciativas → partners → **datos legales** (CIF, OID, PIC, acreditaciones, memoria anual — ver 4.5) → CTA de cierre.
-- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero teal → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `ValueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3) → CTA de cierre, reimportado literalmente de `src/app/agenda/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). No está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/agenda/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentoresContent` (`src/content/mentores.ts`).
+- **`/mentores/`**: página de captación de mentores locales (voluntarios de Ferrol que acompañan a los voluntarios europeos a integrarse en la ciudad). Hero lima → a quién buscamos → tres beneficios (rejilla, reutiliza el patrón de `ValueItem` de "Valores") → tira de 2 números → testimonios (rejilla de 3) → CTA de cierre, reimportado literalmente de `src/app/agenda/_sections/ClosingCta.tsx` (mismo acento, mismos botones WhatsApp/Instagram). No está enlazada desde el nav principal, pero sí desde un banner (`MentoresCallout`, texto hardcodeado) insertado en `/agenda/` entre las preguntas rápidas y el CTA de cierre. Contenido de la propia página alimentado por `pageMentoresContent` (`src/content/mentores.ts`).
 
 Para el contenido literal exacto de cada sección en español (textos, testimonios, preguntas de FAQ, eventos de agenda, etc.) consultar siempre [ESPECIFICACION.md](ESPECIFICACION.md) como referencia histórica del tono/estructura original — pero el contenido real y actualmente publicado vive en `src/content/*.ts` (ver 4.2), que es la fuente de verdad para editar.
 

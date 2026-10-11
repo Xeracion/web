@@ -15,11 +15,11 @@
 }
 
 .hero {
-  background: linear-gradient(135deg, #b4b2a9 0%, #888780 50%, #5f5e5a 100%);
+  background: var(--grad-hero);
 }
 
 .neutral {
-  background: linear-gradient(135deg, #d3d1c7 0%, #b4b2a9 100%);
+  background: var(--grad-neutral);
 }
 
 .image {
@@ -31,11 +31,14 @@
   z-index: 1;
   max-width: 80%;
   text-align: center;
-  font-family: var(--font-inter), sans-serif;
-  font-size: 12px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-caption);
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: var(--xr-ink-800);
+  background: rgba(251, 255, 252, 0.8);
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  text-wrap: balance;
 }
