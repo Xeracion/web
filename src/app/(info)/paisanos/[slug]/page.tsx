@@ -9,6 +9,7 @@ import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import { pagePaisanosEs, paisanosEs } from '@/content/paisanos'
 import type { Paisano } from '@/content/types'
+import { cn } from '@/lib/cn'
 import { buildPageMetadata } from '@/lib/metadata'
 
 import { PaisanoCard } from '../_components/PaisanoCard'
@@ -74,12 +75,14 @@ export default async function PaisanoPage({ params }: PageProps) {
   return (
     <article>
       <Container className={styles.header}>
-        <Link href="/paisanos/" className={styles.back}>
-          <span aria-hidden="true">←</span> {page.backLabel}
-        </Link>
-        <Eyebrow accent>Paisanos</Eyebrow>
-        <h1>La historia de {paisano.name}.</h1>
-        <p className={styles.lead}>{paisano.lead}</p>
+        <div className={styles.column}>
+          <Link href="/paisanos/" className={styles.back}>
+            <span aria-hidden="true">←</span> {page.backLabel}
+          </Link>
+          <Eyebrow accent>Paisanos</Eyebrow>
+          <h1>La historia de {paisano.name}.</h1>
+          <p className={styles.lead}>{paisano.lead}</p>
+        </div>
       </Container>
 
       <Container>
@@ -96,7 +99,7 @@ export default async function PaisanoPage({ params }: PageProps) {
       </Container>
 
       <Container>
-        <div className={styles.body}>{body}</div>
+        <div className={cn(styles.column, styles.body)}>{body}</div>
       </Container>
 
       <Container as="section" className={styles.more}>

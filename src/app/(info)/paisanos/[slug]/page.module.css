@@ -2,6 +2,11 @@
   padding-block: var(--space-xl) var(--space-lg);
 }
 
+.column {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
 .back {
   display: inline-flex;
   gap: 6px;
@@ -13,12 +18,10 @@
 
 .header h1 {
   margin-top: var(--space-xs);
-  max-width: 760px;
 }
 
 .lead {
   margin-top: var(--space-md);
-  max-width: 720px;
   font-family: var(--font-display), sans-serif;
   font-size: 22px;
   line-height: 1.4;
@@ -51,7 +54,6 @@
 }
 
 .body {
-  max-width: 680px;
   padding-block: var(--space-2xl) var(--space-xl);
 }
 
