@@ -44,7 +44,7 @@ export const pageSpeakFactorViEs = {
     },
   ],
   trainersImage: '/img/speakfactor-vi/formadores.webp',
-  trainersImageAlt: 'Los dos formadores, con micrófono, hablando al grupo durante una sesión',
+  trainersImageAlt: 'Gabriel Vivas y Miłosz Bałdyga, los dos formadores, sonriendo en un selfie',
   galleryIntro: { eyebrow: 'En imágenes', heading: 'Lo que pasó en Panxón.' } satisfies SectionIntro,
   gallery: [
     { src: '/img/speakfactor-vi/malabares.webp', alt: 'Participantes practicando malabares en la sala de trabajo' },
