@@ -57,6 +57,7 @@ export const pageSpeakFactorEs = {
       image: '/img/speakfactor/notas.webp',
     },
   ],
+  internationalLinkLabel: 'Así fue Speak Factor VI, la edición internacional de 2026',
   closingHeading: '¿Te guardamos un sitio?',
   closingText: 'Es gratis. Escríbenos por WhatsApp y te contamos cuándo es la próxima sesión.',
   closingSecondaryLabel: 'Prefiero pasarme por la Almendra 9',

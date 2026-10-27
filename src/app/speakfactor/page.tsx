@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
+import { ButtonLink } from '@/components/ButtonLink'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
@@ -102,6 +103,9 @@ export default function SpeakFactorPage() {
             </a>
           ))}
         </div>
+        <ButtonLink accent href="/speak-factor-tc/" className={styles.internationalLink}>
+          {page.internationalLinkLabel}
+        </ButtonLink>
       </Container>
 
       <ClosingCtaSection heading={page.closingHeading} text={page.closingText}>

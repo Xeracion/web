@@ -244,3 +244,7 @@
   font-weight: 400;
   color: var(--color-text-tertiary);
 }
+
+.internationalLink {
+  margin-top: var(--space-lg);
+}

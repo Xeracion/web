@@ -1,0 +1,250 @@
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .facts {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-bg);
+}
+
+.factLabel {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+
+.factValue {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}
+
+.days {
+  padding-block: var(--space-3xl) var(--space-xl);
+}
+
+.days h2 {
+  margin-top: var(--space-xs);
+}
+
+.timeline {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm) var(--space-xl);
+  counter-reset: none;
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dayItem {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  border-top: var(--border-hair) solid var(--color-border);
+}
+
+.dayLabel {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+  padding-top: 4px;
+}
+
+.dayTitle {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}
+
+.dayText {
+  margin-top: var(--space-2xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.trainersBand {
+  background: var(--surface-soft);
+  padding-block: var(--space-3xl);
+}
+
+.trainers {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+@media (max-width: 1024px) {
+  .trainers {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trainers h2 {
+  margin-top: var(--space-xs);
+}
+
+.trainerList {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.trainerName {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}
+
+.trainerText {
+  margin-top: var(--space-2xs);
+  color: var(--color-text-secondary);
+}
+
+.trainersPhoto,
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-neutral);
+}
+
+.trainersPhoto img,
+.photo img {
+  object-fit: cover;
+}
+
+.trainersPhoto {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+}
+
+.galleryWrap {
+  padding-block: var(--space-3xl) var(--space-xl);
+}
+
+.galleryWrap h2 {
+  margin-top: var(--space-xs);
+}
+
+.gallery {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+}
+
+.photo:nth-child(5n + 1) {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 1024px) {
+  .photo:nth-child(5n + 1) {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+.voices {
+  padding-block: var(--space-xl) var(--space-2xl);
+}
+
+.voices h2 {
+  margin-top: var(--space-xs);
+}
+
+.voiceGrid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .voiceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.voice {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: var(--border-hair) solid var(--color-border);
+  background: var(--surface-card);
+}
+
+.voiceQuote {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-quote-sm);
+  line-height: 1.35;
+}
+
+.voiceQuote::before {
+  content: '\201C';
+}
+
+.voiceQuote::after {
+  content: '\201D';
+}
+
+.voiceName {
+  margin-top: var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.voicesNote {
+  margin-top: var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.support {
+  margin-top: var(--space-xl);
+  display: flex;
+  justify-content: center;
+}
+
+.supportLogo {
+  height: 56px;
+  width: auto;
+}
