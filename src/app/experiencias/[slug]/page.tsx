@@ -6,13 +6,12 @@ import { AvisoForm } from '@/components/AvisoForm'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { RichText } from '@/components/RichText'
 import { siteSettings } from '@/content/siteSettings'
 import { formatDateShort } from '@/lib/formatDate'
-import { AMBITO_LABELS, CATEGORIA_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
+import { AMBITO_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
 import { buildPageMetadata } from '@/lib/metadata'
 import { urlFor } from '@/sanity/lib/image'
 import {
@@ -60,7 +59,6 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
     <>
       <Container as="section" className={styles.hero}>
         <div className={styles.heroText}>
-          {item.categoria && <Eyebrow accent>{CATEGORIA_LABELS[item.categoria] ?? item.categoria}</Eyebrow>}
           <h1>{item.titulo}</h1>
           {item.resumen && <p className={styles.resumen}>{item.resumen}</p>}
           <dl className={styles.datos}>
@@ -108,7 +106,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
 
       {ediciones.length > 0 && (
         <Container as="section" className={styles.ediciones}>
-          <Eyebrow accent>Ediciones anteriores</Eyebrow>
+          <h2 className={styles.sectionTitle}>Ediciones anteriores</h2>
           <ul className={styles.edicionesList}>
             {ediciones.map((edicion, i) => (
               <li key={i} className={styles.edicion}>
@@ -148,7 +146,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
       <Container as="section" className={styles.convocatorias}>
         {hayConvocatorias && (
           <>
-            <Eyebrow accent>Convocatorias abiertas</Eyebrow>
+            <h2 className={styles.sectionTitle}>Convocatorias abiertas</h2>
             <ul className={styles.convocatoriasList}>
               {convocatorias.map((convocatoria, i) => (
                 <li key={i} className={styles.convocatoria}>
@@ -188,7 +186,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
               </p>
             ) : (
               <>
-                <Eyebrow accent>Próximamente</Eyebrow>
+                <h2 className={styles.sectionTitle}>Próximamente</h2>
                 <p className={styles.avisameTexto}>
                   Se abren dos o tres plazas al año. Déjanos tu contacto y te avisamos en cuanto salga la
                   próxima.

@@ -1,14 +1,13 @@
 import Image from 'next/image'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { Partner } from '@/content/types'
 
 import styles from './Legal.module.css'
 
 const LABELS = {
-  es: { eyebrow: 'Datos legales', oid: 'OID', pic: 'PIC', memoria: 'Memoria anual →' },
-  en: { eyebrow: 'Legal information', oid: 'OID', pic: 'PIC', memoria: 'Annual report →' },
+  es: { heading: 'Datos legales', oid: 'OID', pic: 'PIC', memoria: 'Memoria anual →' },
+  en: { heading: 'Legal information', oid: 'OID', pic: 'PIC', memoria: 'Annual report →' },
 }
 
 interface LegalData {
@@ -31,7 +30,7 @@ export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' 
 
   return (
     <Container as="section" className={styles.section}>
-      <Eyebrow accent>{labels.eyebrow}</Eyebrow>
+      <h2 className={styles.heading}>{labels.heading}</h2>
       <div className={styles.grid}>
         <dl className={styles.facts}>
           {data.legalName && (

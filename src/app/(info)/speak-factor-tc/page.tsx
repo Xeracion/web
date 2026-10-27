@@ -5,7 +5,6 @@ import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { HeroSplit } from '@/components/HeroSplit'
 import { pageSpeakFactorViEs, speakFactorViVoicesEs } from '@/content/speakfactorvi'
@@ -23,8 +22,6 @@ export default function SpeakFactorViPage() {
   return (
     <>
       <HeroSplit
-        eyebrow={page.heroEyebrow}
-        eyebrowAccent
         heading={page.heroHeading}
         text={page.heroText}
         image={page.heroImage}
@@ -46,7 +43,6 @@ export default function SpeakFactorViPage() {
       </Container>
 
       <Container as="section" className={styles.days}>
-        <Eyebrow accent>{page.daysIntro.eyebrow}</Eyebrow>
         <h2>{page.daysIntro.heading}</h2>
         <ol className={styles.timeline}>
           {page.days.map((day) => (
@@ -64,7 +60,6 @@ export default function SpeakFactorViPage() {
       <section className={styles.trainersBand}>
         <Container className={styles.trainers}>
           <div>
-            <Eyebrow accent>{page.trainersIntro.eyebrow}</Eyebrow>
             <h2>{page.trainersIntro.heading}</h2>
             <div className={styles.trainerList}>
               {page.trainers.map((trainer) => (
@@ -82,7 +77,6 @@ export default function SpeakFactorViPage() {
       </section>
 
       <Container as="section" className={styles.galleryWrap}>
-        <Eyebrow accent>{page.galleryIntro.eyebrow}</Eyebrow>
         <h2>{page.galleryIntro.heading}</h2>
         <div className={styles.gallery}>
           {page.gallery.map((photo) => (
@@ -94,7 +88,6 @@ export default function SpeakFactorViPage() {
       </Container>
 
       <Container as="section" className={styles.voices}>
-        <Eyebrow accent>{page.voicesIntro.eyebrow}</Eyebrow>
         <h2>{page.voicesIntro.heading}</h2>
         <div className={styles.voiceGrid}>
           {speakFactorViVoicesEs.map((voice) => (

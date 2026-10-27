@@ -3,7 +3,6 @@ import type { Faq, FixedProgram, SectionIntro } from './types'
 // Hero retitulado por scripts/patch-pivot-content.ts (habla de Ferrol y
 // comunidad local, no de programas); el resto viene de scripts/seed.ts.
 export const pageFerrolEs = {
-  heroEyebrow: 'Esta semana en Ferrol',
   heroHeading: 'Planes en la Almendra, cada semana del año.',
   heroText:
     'Nada de esperar a irte de Erasmus para que pase algo: en Ferrol hay clubs, talleres y encuentros casi todas las semanas, la mayoría gratis. Esto es lo que tenemos entre manos ahora mismo.',
@@ -12,8 +11,8 @@ export const pageFerrolEs = {
   heroImageCaption: 'foto editorial · Offline Club en la Almendra 9',
   heroCtaPrimaryLabel: 'Ver agenda de la semana',
   heroCtaSecondaryLabel: 'Cómo llegar',
-  fixedProgramsIntro: { eyebrow: 'Programas fijos', heading: 'Cuatro cosas que hacemos siempre.' } satisfies SectionIntro,
-  agendaIntro: { eyebrow: 'Agenda', heading: 'Qué hay esta semana y la que viene.' } satisfies SectionIntro,
+  fixedProgramsIntro: { heading: 'Cuatro cosas que hacemos siempre.' } satisfies SectionIntro,
+  agendaIntro: { heading: 'Qué hay esta semana y la que viene.' } satisfies SectionIntro,
   arrivalHeading: 'Casa da Xuventude',
   arrivalAddressText: 'Rúa Almendra 9, 15401 Ferrol. Planta baja y primera. Abierto de lunes a sábado, tardes.',
   arrivalMapEmbedUrl: undefined as string | undefined,

@@ -14,7 +14,6 @@ export function Podcast() {
       <Container className={styles.inner}>
         <Image src={page.podcastImage} alt="Logotipo del podcast Paisanos" width={160} height={160} className={styles.logo} />
         <div>
-          <p className={styles.eyebrow}>{page.podcastEyebrow}</p>
           <h2 className={styles.heading}>{page.podcastHeading}</h2>
           <p className={styles.text}>{page.podcastText}</p>
           <ButtonPrimary highlight href={page.podcastUrl} target="_blank" rel="noopener noreferrer" className={styles.cta}>

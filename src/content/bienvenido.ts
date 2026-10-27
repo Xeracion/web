@@ -3,10 +3,9 @@ import type { Feature, SectionIntro } from './types'
 // Transferido de xeracion.org/bienvenido/ — la página a la que llega quien
 // acaba de hacerse socio o socia.
 export const pageBienvenidoEs = {
-  eyebrow: 'Te damos la bienvenida',
   heading: 'Ya formas parte de Xeración.',
   intro: 'Ser socio o socia tiene sus ventajas. Estas son las tuyas.',
-  benefitsIntro: { eyebrow: 'Tus ventajas', heading: 'Lo que cambia desde hoy.' } satisfies SectionIntro,
+  benefitsIntro: { heading: 'Lo que cambia desde hoy.' } satisfies SectionIntro,
   closingHeading: '¿Y si además te haces mentor?',
   closingText: 'Acompaña a los voluntarios europeos que llegan a Ferrol y enséñales tu ciudad.',
   closingCtaLabel: 'Quiero ser mentor',

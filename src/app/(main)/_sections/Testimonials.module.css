@@ -94,3 +94,8 @@
   font-size: 12px;
   color: var(--color-text-tertiary);
 }
+
+.heading {
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+}

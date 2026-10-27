@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { Prose } from '@/components/Prose'
 import type { Testimonial } from '@/content/types'
@@ -13,17 +12,17 @@ function attribution(testimonial: Testimonial) {
 }
 
 interface TestimonialsProps {
-  eyebrow?: string
+  heading?: string
   large: Testimonial | null
   small: Testimonial | null
 }
 
-export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
+export function Testimonials({ heading, large, small }: TestimonialsProps) {
   if (!large && !small) return null
 
   return (
     <Container as="section" className={styles.section}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      {heading && <h2 className={styles.heading}>{heading}</h2>}
       <div className={styles.grid}>
         {large && (
           <div>

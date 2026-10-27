@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { SectionIntro } from '@/content/types'
 import { formatEventDay, formatEventMonthShort, formatEventTime } from '@/lib/formatDate'
 import type { EventSummary } from '@/lib/googleCalendar'
@@ -20,7 +19,6 @@ const EMPTY_MESSAGE = {
 export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineProps) {
   return (
     <Container as="section" id="agenda" className={styles.section}>
-      {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
       {intro?.heading && <h2>{intro.heading}</h2>}
       {events.length === 0 ? (
         <p className={styles.empty}>{EMPTY_MESSAGE[locale]}</p>

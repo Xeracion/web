@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import type { SectionIntro } from '@/content/types'
 
@@ -16,7 +15,6 @@ export function Why({ data }: { data: WhyData }) {
 
   return (
     <Container as="section" className={styles.section}>
-      {data.whyIntro?.eyebrow && <Eyebrow accent>{data.whyIntro.eyebrow}</Eyebrow>}
       {data.whyIntro?.heading && <h2>{data.whyIntro.heading}</h2>}
       <Prose value={data.whyText} className={styles.text} />
     </Container>

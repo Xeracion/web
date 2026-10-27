@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
@@ -20,7 +19,6 @@ const ROUTES = [
   {
     key: 'ferrol',
     routeClass: 'route-ferrol',
-    eyebrow: 'Ruta 1 · Casa da Xuventude · Ferrol',
     pill: 'Ruta 1 · Local',
     title: 'Vivo en Ferrol y quiero hacer algo esta semana.',
     text: 'Casa da Xuventude na Almendra. Clubs, talleres, encuentros. Casi todo gratis.',
@@ -30,7 +28,6 @@ const ROUTES = [
   {
     key: 'irse',
     routeClass: 'route-irse',
-    eyebrow: 'Ruta 2 · Voluntariado y Erasmus+',
     pill: 'Ruta 2 · Irse',
     title: 'Quiero irme de voluntariado o Erasmus+ a Europa.',
     text: '18 a 30. Te buscamos proyecto en Europa con todo pagado.',
@@ -43,7 +40,6 @@ export default function StyleguidePage() {
   return (
     <Container as="main" className={styles.page}>
       <div className={styles.intro}>
-        <Eyebrow>Sistema de diseño</Eyebrow>
         <h1>Guía de estilo.</h1>
         <p className={styles.caption}>
           H1 · 42 / 34 / 24 px · line-height 1.04 · letter-spacing -0.025em
@@ -89,14 +85,6 @@ export default function StyleguidePage() {
             </p>
             <p className={styles.caption}>Body · 17 / 16 / 16 px · line-height 1.55</p>
           </div>
-
-          <div className={styles.typeRow}>
-            <Eyebrow>Historias reales</Eyebrow>
-            <p className={styles.caption}>
-              Eyebrow · 11 px en los tres breakpoints · weight 500 · letter-spacing 0.16em
-              uppercase
-            </p>
-          </div>
         </div>
       </section>
 
@@ -111,20 +99,6 @@ export default function StyleguidePage() {
         <Container className={styles.containerDemo}>
           <p className={styles.containerDemoInner}>container</p>
         </Container>
-      </section>
-
-      <section className={styles.section}>
-        <div className={styles.sectionHeading}>
-          <h2>Eyebrow</h2>
-        </div>
-        <div className={styles.swatchRow}>
-          <Eyebrow>Historias reales</Eyebrow>
-          {ROUTES.map((route) => (
-            <div key={route.key} className={route.routeClass}>
-              <Eyebrow accent>{route.eyebrow}</Eyebrow>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className={styles.section}>

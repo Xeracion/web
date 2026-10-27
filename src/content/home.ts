@@ -3,16 +3,15 @@ import type { Partner, SectionIntro, Testimonial } from './types'
 // ES: copy del pivote a catálogo de experiencias (scripts/patch-pivot-content.ts
 // fue la última actualización real de este contenido en producción).
 export const homeEs = {
-  eyebrow: 'Xeración · Ferrol, Galicia',
   heading: 'Encuentra aquí tu aventura.',
   intro: 'Caminos, bosques, ciudades europeas y noches en Ferrol. Unas las pagas tú, otras te las paga Europa. Todas te dejan algo.',
   heroImage: '/img/fotos/portada-equipo.webp' as string | undefined,
   heroImageAlt: 'El equipo de Xeración y voluntarios europeos posando juntos al aire libre',
   heroImageCaption: 'foto editorial · grupo en muelle de Ferrol',
   heroIndicator: undefined as string | undefined,
-  catalogIntro: { eyebrow: 'Catálogo', heading: 'Elige tu experiencia.' } satisfies SectionIntro,
-  testimonialsEyebrow: 'Historias reales',
-  agendaEyebrow: 'Esta semana en Ferrol',
+  catalogIntro: { heading: 'Elige tu experiencia.' } satisfies SectionIntro,
+  testimonialsHeading: 'Historias reales',
+  agendaHeading: 'Esta semana en Ferrol',
   agendaLinkLabel: 'Toda la agenda',
   institutionalText:
     'Asociación juvenil sin ánimo de lucro desde 2013 · Acreditada Erasmus+ y Cuerpo Europeo de Solidaridad · 75 voluntarios europeos acogidos',

@@ -13,7 +13,6 @@ import type {
 // voluntarios, valores, "¿Qué es Xeración?", apoyos y memoria. Las cifras
 // salen de contar el propio listado de voluntarios de esa página.
 export const pageNosotrosEs = {
-  heroEyebrow: 'Desde 2013 · Ferrol, Galicia',
   heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
   heroHeadingAccent: 'tu red en Europa',
   heroText:
@@ -24,7 +23,7 @@ export const pageNosotrosEs = {
     { value: '15', label: 'países de origen' },
   ] satisfies StatItem[],
   heroBackgroundImage: undefined as string | undefined,
-  historiaIntro: { eyebrow: 'Qué es Xeración', heading: 'Soñamos proyectos, luego los creamos.' } satisfies SectionIntro,
+  historiaIntro: { heading: 'Soñamos proyectos, luego los creamos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Somos una red de entidades que desde 2013 trabaja en Galicia y Valencia. Montamos iniciativas culturales, medioambientales y de voluntariado, casi siempre con la Casa da Xuventude de Ferrol como campamento base.',
     'Formamos a la gente joven con talleres y cursos de educación no formal **accesibles y gratuitos**: oratoria, idiomas, vídeo, teatro.',
@@ -38,7 +37,7 @@ export const pageNosotrosEs = {
     { year: '2022', title: 'Eurolibrary', description: '24 creativos de 4 países recorren el Camino Inglés en autocaravana montando bibliotecas humanas.' },
     { year: '2023', title: 'Get The Net', description: 'Cerramos un año de trabajo con 11 entidades europeas sobre participación juvenil.' },
   ] satisfies TimelineMilestone[],
-  valoresIntro: { eyebrow: 'Cómo trabajamos', heading: 'Seis ideas que no negociamos.' } satisfies SectionIntro,
+  valoresIntro: { heading: 'Seis ideas que no negociamos.' } satisfies SectionIntro,
   values: [
     { icon: '✈️', title: 'Movilidad', description: 'Moverse por Europa debería estar al alcance de cualquier joven, sobre todo de quien tiene menos oportunidades.' },
     { icon: '🤝', title: 'Cooperación', description: 'Movemos proyectos de cooperación social y voluntariado, aquí en Ferrol y en el resto de Europa.' },
@@ -47,7 +46,7 @@ export const pageNosotrosEs = {
     { icon: '💚', title: 'Salud', description: 'Defendemos una vida sana: deporte, aire libre y planes de ocio alternativo.' },
     { icon: '🌿', title: 'Ecología', description: 'Cuidamos el entorno con acciones de restauración de la naturaleza y mucha sensibilización ambiental.' },
   ] satisfies ValueItem[],
-  equipoIntro: { eyebrow: 'Quién está detrás', heading: 'El equipo ahora mismo.' } satisfies SectionIntro,
+  equipoIntro: { heading: 'El equipo ahora mismo.' } satisfies SectionIntro,
   teamMembers: [
     { name: 'Fran Sequeiro', role: 'Coordinación', image: '/img/equipo/fran-sequeiro.webp', linkUrl: 'https://www.linkedin.com/in/fransequeiro/' },
     { name: 'Amélie Arles', role: 'Voluntariado · Francia', image: '/img/equipo/amelie-arles.webp' },
@@ -62,7 +61,6 @@ export const pageNosotrosEs = {
   volunteersCtaLabel: 'Quiero ser el próximo →',
   volunteersCtaUrl: '/experiencias/',
   pastVolunteersIntro: {
-    eyebrow: 'Voluntarios europeos',
     heading: 'Gente de toda Europa que ya ha pasado por aquí.',
   } as SectionIntro | undefined,
   pastVolunteers: [
@@ -136,14 +134,14 @@ export const pageNosotrosEs = {
     { name: "Yonca Akagündüz", role: "Turquía", image: '/img/voluntarios/yonca-akagunduz.webp' },
     { name: "Nadege Lefort", role: "Francia", image: '/img/voluntarios/nadege-lefort.webp' },
   ] as TeamMember[],
-  iniciativasIntro: { eyebrow: 'Más allá del voluntariado', heading: 'Cuatro proyectos propios.' } satisfies SectionIntro,
+  iniciativasIntro: { heading: 'Cuatro proyectos propios.' } satisfies SectionIntro,
   iniciativas: [
     { icon: '🏡', name: 'Das Nest', description: 'Nuestro espacio de alojamiento para voluntariado en Ferrol, pensado y gestionado por quienes ya pasaron por aquí.', colorScheme: 'blue' },
     { icon: '🌿', name: 'Building Nature', description: 'Voluntariado ambiental en la comarca de Ferrol: limpiezas, restauración de naturaleza y sensibilización.', colorScheme: 'green' },
     { icon: '🎤', name: 'Speak Factor', description: 'Curso gratuito de oratoria en inglés desde 2017. Martes alternos a las 19:00 en la Casa da Xuventude.', url: '/speakfactor/', colorScheme: 'orange' },
     { icon: '🎙️', name: 'Paisanos', description: 'Historias de vecinos y vecinas de Ferrol, en retratos y en podcast. Gente de a pie con sueños y luchas que seguro te suenan.', url: '/paisanos/', colorScheme: 'blue' },
   ] satisfies Initiative[],
-  partnersIntro: { eyebrow: 'Con el apoyo de' } satisfies SectionIntro,
+  partnersIntro: { heading: 'Con el apoyo de' } satisfies SectionIntro,
   partners: [
     { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
     { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },

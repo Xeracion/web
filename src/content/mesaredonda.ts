@@ -3,7 +3,6 @@ import type { Feature, Partner, SectionIntro, StatItem } from './types'
 // Transferido de xeracion.org/mesaredonda/ — ciclo de mesas redondas de las
 // municipales de mayo de 2023, dentro del proyecto Get The Net.
 export const pageMesaRedondaEs = {
-  heroEyebrow: 'Mesas redondas · Mayo 2023',
   heroHeading: 'Diseñamos el Ferrol del futuro.',
   heroText: [
     'Mayo de 2023 fue el momento de pensar en el Ferrol de los siguientes cuatro años. Por eso montamos una serie de encuentros informales y constructivos con las candidaturas que se presentaban a las elecciones municipales del 28 de mayo.',
@@ -12,20 +11,20 @@ export const pageMesaRedondaEs = {
   heroImage: '/img/mesaredonda/cabecera.webp',
   heroImageAlt: 'Un participante habla de pie ante el grupo durante una de las mesas redondas',
   heroImageCaption: 'foto · mesa redonda con una candidatura',
-  whatIntro: { eyebrow: 'Qué hicimos', heading: 'Hicimos oír ideas y propuestas para la ciudad.' } satisfies SectionIntro,
+  whatIntro: { heading: 'Hicimos oír ideas y propuestas para la ciudad.' } satisfies SectionIntro,
   stats: [
     { value: '1', label: 'consulta online' },
     { value: '4', label: 'candidatos a la alcaldía' },
     { value: '4', label: 'eventos públicos' },
     { value: '50', label: 'litros de café' },
   ] satisfies StatItem[],
-  encuentrosIntro: { eyebrow: 'Encuentros celebrados', heading: 'Cuatro cafés, cuatro candidaturas.' } satisfies SectionIntro,
+  encuentrosIntro: { heading: 'Cuatro cafés, cuatro candidaturas.' } satisfies SectionIntro,
   encuentros: ['Un café con José Manuel', 'Un café con Jorge', 'Un café con Iván', 'Un café con Ángel'],
   gallery: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
     src: `/img/mesaredonda/encuentro-${n}.webp`,
     alt: 'Jóvenes de Ferrol debatiendo con una candidatura en una de las mesas redondas',
   })),
-  supportIntro: { eyebrow: 'Con el apoyo de' } satisfies SectionIntro,
+  supportIntro: { heading: 'Con el apoyo de' } satisfies SectionIntro,
   support: [
     { name: 'Cofinanciado por la Unión Europea', image: '/img/logos/cofinanciado-ue.png' },
     { name: 'Get The Net 2023', image: '/img/logos/get-the-net.png' },

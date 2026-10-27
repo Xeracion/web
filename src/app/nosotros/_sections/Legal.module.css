@@ -75,3 +75,8 @@
   font-weight: 500;
   color: var(--color-accent-text);
 }
+
+.heading {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}

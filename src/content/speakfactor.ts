@@ -3,7 +3,6 @@ import type { SectionIntro, StatItem } from './types'
 // Transferido de xeracion.org/speakfactor/. La reserva se hacía con un plugin
 // de WordPress (Amelia); aquí se sustituye por un mensaje de WhatsApp.
 export const pageSpeakFactorEs = {
-  heroEyebrow: 'Speak Factor · Ferrol',
   heroHeading: 'La oportunidad gratuita de mejorar tu oratoria en inglés.',
   heroText: [
     'Speak Factor es el curso gratuito de oratoria que organiza Xeración. Desde 2017 ayudamos a la gente joven de Ferrol a mejorar sus habilidades de comunicación delante del público. A través de juegos y ejercicios practicamos improvisación, discurso y comunicación no verbal.',
@@ -21,7 +20,7 @@ export const pageSpeakFactorEs = {
     { label: 'Precio', value: 'Gratis' },
     { label: 'Idioma', value: 'Inglés' },
   ] satisfies StatItem[],
-  whatIntro: { eyebrow: 'Qué hacemos', heading: 'Del miedo a hablar en público a la confianza.' } satisfies SectionIntro,
+  whatIntro: { heading: 'Del miedo a hablar en público a la confianza.' } satisfies SectionIntro,
   whatText:
     'En nuestros talleres convertirás el miedo a hablar en público en confianza y seguridad. Aprenderás a captar la atención de tu audiencia, controlar los nervios y utilizar el lenguaje corporal a tu favor. Exploramos distintos estilos de comunicación y pondrás en práctica todo lo aprendido con ejercicios reales. Además, recibirás comentarios constructivos que te ayudarán a mejorar y brillar en cada presentación.',
   whatImage: '/img/speakfactor/escena.webp',
@@ -30,7 +29,7 @@ export const pageSpeakFactorEs = {
     { src: '/img/fotos/speak-factor-taller.webp', alt: 'Taller de Speak Factor en la Casa da Xuventude de Ferrol' },
     { src: '/img/fotos/speak-factor-grupo.webp', alt: 'Grupo de Speak Factor durante una dinámica' },
   ],
-  learnIntro: { eyebrow: 'Aprenderás a', heading: 'Todo lo que te llevas.' } satisfies SectionIntro,
+  learnIntro: { heading: 'Todo lo que te llevas.' } satisfies SectionIntro,
   learn: [
     'Comunicar de manera eficiente en diversas situaciones',
     'Improvisar',
@@ -43,7 +42,7 @@ export const pageSpeakFactorEs = {
     'Trabajar en equipo',
   ],
   learnOutro: '… todo dentro de un ambiente distendido y divertido.',
-  videosIntro: { eyebrow: 'En vídeo', heading: '¿Aún no tienes claro de qué va esto?' } satisfies SectionIntro,
+  videosIntro: { heading: '¿Aún no tienes claro de qué va esto?' } satisfies SectionIntro,
   videosText: 'Échale un ojo a estos vídeos, entre ellos el del curso internacional que organizamos en 2018.',
   videos: [
     {

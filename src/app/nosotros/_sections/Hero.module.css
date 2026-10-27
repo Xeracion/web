@@ -24,9 +24,6 @@
   z-index: 1;
 }
 
-.eyebrow {
-  color: rgba(255, 255, 255, 0.85);
-}
 
 .heading {
   margin-top: var(--space-sm);

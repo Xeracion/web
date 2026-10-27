@@ -18,9 +18,9 @@ export default function PreguntasPage() {
 
   return (
     <>
-      <PageHeader eyebrow={page.eyebrow} heading={page.heading} text={page.intro} />
+      <PageHeader heading={page.heading} text={page.intro} />
       {preguntasGroupsEs.map((group) => (
-        <FaqAccordionSection key={group.intro.eyebrow} intro={group.intro} items={group.items} />
+        <FaqAccordionSection key={group.intro.heading} intro={group.intro} items={group.items} />
       ))}
       <ClosingCtaSection heading={page.closingHeading} text={page.closingText}>
         <ButtonPrimary href="/experiencias/">{page.closingCtaLabel}</ButtonPrimary>

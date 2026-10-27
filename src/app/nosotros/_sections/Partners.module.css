@@ -27,3 +27,9 @@
   object-fit: contain;
   mix-blend-mode: multiply;
 }
+
+.heading {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+  text-align: center;
+}

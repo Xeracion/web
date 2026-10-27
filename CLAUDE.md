@@ -50,7 +50,6 @@ Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son:
 | H3 | 24px | 22px | 20px | 600 | 1.2 | -0.015em |
 | H4 | 19px | 18px | 17px | 600 | 1.3 | -0.01em |
 | Body | 17px | 16px | 16px | 400 | 1.55 | 0 |
-| Eyebrow | 11px | 11px | 11px | 500 | 1.4 | 0.16em uppercase |
 
 Notas de tamaños específicos que aparecen en secciones concretas y difieren de la escala base (respetar los de ESPECIFICACION.md en cada caso): la cita del testimonio grande usa 28px/22px/19px; la del testimonio pequeño 19px/17px; el H2 de CTA de cierre usa 36px/28px; el número de la tira de estadísticas usa 44px.
 
@@ -131,8 +130,7 @@ Cada ruta define además `--color-{ruta}-fill`/`-on-fill` (el par color de relle
 
 ### Componentes reutilizables
 
-- `.eyebrow` — texto de sección en versalitas con espaciado ancho (11px, uppercase, letter-spacing 0.16em)
-- `.eyebrow-pill` — versión con pastilla de fondo semi-transparente, para superponer sobre fotos
+- `.eyebrow-pill` (`EyebrowPill`) — etiqueta en versalitas con pastilla de fondo semi-transparente, para superponer sobre fotos y tarjetas. El antetítulo suelto (`Eyebrow`) se eliminó, ver regla 3 del punto 3.
 - `.container` — max-width 1200px, padding lateral responsive vía `--container-padding`
 - `.btn-primary` — fondo oscuro `#2F2F2F`, texto papel, radius pill (`--radius-full`)
 - `.btn-secondary` — borde 0.5px, fondo transparente, radius pill
@@ -167,7 +165,7 @@ Estas reglas son inviolables y se aplican a **todo** texto nuevo que se escriba,
 
 1. **CTAs en primera persona del héroe.** El usuario habla, no se le ordena. `"Quiero irme"`, `"Apúntame"`, `"Apply"` — nunca imperativos hacia el usuario como `"Regístrate"` o `"Apúntate"`.
 2. **H1 como frases completas terminadas en punto.** Nunca titulares telegráficos. Ej: `Doce años abriendo puertas a Europa desde Galicia.` — no `Doce años. Europa. Galicia.`
-3. **Eyebrows de 2 a 4 palabras**, descriptivos y breves. Ej: `Historias reales`, `Cómo funciona`, `Where you'll live`.
+3. **Sin antetítulos (eyebrows).** Se retiraron de toda la web: ningún título lleva encima el texto pequeño en mayúsculas. Si una sección necesita nombre y no tiene titular, se le da un `h2` normal (como «Historias reales» en la portada o «Datos legales» en `/nosotros/`). Las etiquetas sobre fotos (`EyebrowPill`) y los rótulos de datos («Dónde», «Cuándo»…) no son antetítulos y se mantienen.
 4. **Comillas tipográficas** en testimonios y citas — `" "`, nunca comillas rectas `" "`.
 5. **Punto medio (`·`) como separador de metadatos**, nunca guiones ni pipes. Ej: `MARTES · 20:00 · ALMENDRA 9`, `Nicolás · Ferrol → Cracovia · CES 2024`.
 6. **Nada de jerga institucional.** Prohibido: "movilidad participativa", "empoderamiento juvenil" y equivalentes. Tono directo, humano, ferrolano cuando cabe.
@@ -248,7 +246,7 @@ El sitio que estaba publicado en xeracion.org era un WordPress con Elementor. Su
 
 - **Fotos y datos reales** en `src/content/`: equipo actual (7 personas) y los 69 voluntarios europeos anteriores con foto (`pastVolunteers`, sección "Han estado con nosotros" de `/nosotros/`), valores, "¿Qué es Xeración?", hitos con fecha que aparecen en la propia web antigua (Speak Factor 2017, Paisanos 2020, Eurolibrary 2022, Get The Net 2023), apoyos institucionales con logo, memoria anual, foto del equipo en el hero de la portada y de Speak Factor en el de `/agenda/`. Las cifras de `/nosotros/` (75 voluntarios, 15 países) salen de contar ese listado — si se añade gente, actualízalas a mano.
 - **Testimonios**: solo citas reales (portada y `/voluntariado-europeo/` del WordPress, y reseñas de Google). Si una cita se recorta, se marca con `[…]`; no se reescriben citas de personas reales.
-- **Páginas nuevas** en el grupo de rutas `src/app/(info)/` (layout neutro, sin `activeRoute`): `/preguntas/` (antiguas `/condiciones-erasmus/`, detalles de `/voluntariado-europeo/` y `/cursos/`, en grupos de acordeón), `/empresas/` (antigua `/empresas/` + sectores de `/internships/`) y `/bienvenido/`, más `/mesaredonda/` (misma URL que en el WordPress; fotos en `public/img/mesaredonda/`, sin atribuir cada foto a un candidato porque la página original no lo dejaba claro). Usan dos componentes genéricos: `PageHeader` (eyebrow + `h1` + entradilla) y `FeatureGrid` (tarjetas con disco numerado).
+- **Páginas nuevas** en el grupo de rutas `src/app/(info)/` (layout neutro, sin `activeRoute`): `/preguntas/` (antiguas `/condiciones-erasmus/`, detalles de `/voluntariado-europeo/` y `/cursos/`, en grupos de acordeón), `/empresas/` (antigua `/empresas/` + sectores de `/internships/`) y `/bienvenido/`, más `/mesaredonda/` (misma URL que en el WordPress; fotos en `public/img/mesaredonda/`, sin atribuir cada foto a un candidato porque la página original no lo dejaba claro). Usan dos componentes genéricos: `PageHeader` (`h1` + entradilla) y `FeatureGrid` (tarjetas con disco numerado).
 - **Redirecciones permanentes** (en `next.config.ts`) de las URLs antiguas: `/voluntariado-europeo/`, `/intercambios/`, `/cursos/`, `/oportunidades/`, `/proyectos/` → `/experiencias/`; `/condiciones-erasmus/` → `/preguntas/`; `/calendario/`, `/eventos/` → `/agenda/`; `/paisanos/` → `/nosotros/`; `/english/`, `/en/*`, `/gl/*` → `/`.
 - **Paisanos** (`src/content/paisanos.ts`): las 11 entrevistas de la categoría «Paisanos» del blog (2020, sacadas por la API REST de WordPress) más la de Olga (página de 2023). El texto de cada entrevista es **literal** — no se reescribe ni se ajusta al tono del sitio, son palabras de otras personas — y está troceado en bloques (`p` / `heading`); la cita destacada (`pullQuote`) sale de las páginas de 2023 y solo la tienen 6. Retratos en `public/img/paisanos/`, con `imageFocus` (posición del recorte) por foto porque varias son panorámicas. Redirigen a su ficha las URLs antiguas `/paisanosluis/`… y las de las entradas del blog (`/luis/`, y `/luis-2/` de la versión inglesa).
 - **Speak Factor** (`src/app/speakfactor/`, layout propio con `route-ferrol`): la reserva del WordPress era un plugin (Amelia) y aquí es un enlace de WhatsApp con el mensaje ya escrito. Los dos vídeos de YouTube se enlazan, no se incrustan (sin iframes de terceros ni cookies de YouTube, y sin tocar la CSP); las miniaturas son fotos propias del taller porque las de YouTube usan imágenes de terceros. `/speak-factor-tc/` era la convocatoria en inglés del curso internacional Speak Factor VI y se mantiene en la misma URL, reescrita en español como proyecto ya realizado (grupo `(info)`): datos del programa oficial y de la documentación del proyecto en el Drive de Xeración — **solo cifras agregadas** (21 participantes de 14 países, valoración media 4,9/5 de 22 respuestas al cuestionario final), nunca nombres, documentos de identidad ni contactos de participantes — y 12 fotos elegidas del álbum compartido de Google Photos, en `public/img/speakfactor-vi/`. Las tres citas de participantes son anónimas y en su idioma original porque el cuestionario no se rellenó para publicarse.

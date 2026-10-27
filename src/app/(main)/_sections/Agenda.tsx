@@ -1,13 +1,12 @@
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { formatEventTime, formatEventWeekdayLong, formatEventWeekdayShort } from '@/lib/formatDate'
 import type { EventSummary } from '@/lib/googleCalendar'
 
 import styles from './Agenda.module.css'
 
 interface AgendaProps {
-  eyebrow?: string
+  heading?: string
   linkLabel?: string
   featured: EventSummary | null
   upcoming: EventSummary[]
@@ -16,7 +15,7 @@ interface AgendaProps {
 }
 
 export function Agenda({
-  eyebrow,
+  heading,
   linkLabel,
   featured,
   upcoming,
@@ -29,7 +28,7 @@ export function Agenda({
     <Container as="section" className={styles.section}>
       {featured && (
         <div>
-          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {heading && <h2 className={styles.heading}>{heading}</h2>}
           <h3 className={styles.featuredTitle}>{featured.title}</h3>
           {featured.dateTime && (
             <p className={styles.meta}>

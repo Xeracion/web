@@ -4,7 +4,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
 import type { SectionIntro } from '@/content/types'
 import { CATALOG_GROUPS, groupForExperiencia } from '@/lib/experienciaCategorias'
@@ -122,9 +121,8 @@ export function ExperienciasCatalog({
 
   return (
     <Container as="section" id={id} className={styles.section}>
-      {(intro?.eyebrow || intro?.heading) && (
+      {intro?.heading && (
         <div className={styles.intro}>
-          {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
           {intro?.heading && <h2>{intro.heading}</h2>}
         </div>
       )}

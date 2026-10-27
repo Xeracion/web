@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import { pagePaisanosEs, paisanosEs } from '@/content/paisanos'
 import type { Paisano } from '@/content/types'
@@ -79,7 +78,6 @@ export default async function PaisanoPage({ params }: PageProps) {
           <Link href="/paisanos/" className={styles.back}>
             <span aria-hidden="true">←</span> {page.backLabel}
           </Link>
-          <Eyebrow accent>Paisanos</Eyebrow>
           <h1>La historia de {paisano.name}.</h1>
           <p className={styles.lead}>{paisano.lead}</p>
         </div>

@@ -10,7 +10,6 @@ export interface StatItem {
 }
 
 export interface SectionIntro {
-  eyebrow?: string
   heading?: string
 }
 

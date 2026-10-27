@@ -27,17 +27,7 @@
   border-radius: var(--radius-lg);
 }
 
-.eyebrow {
-  font-size: var(--text-eyebrow);
-  font-weight: 500;
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
-  color: var(--xr-lime);
-}
 
-.heading {
-  margin-top: var(--space-xs);
-}
 
 .text {
   margin-top: var(--space-xs);

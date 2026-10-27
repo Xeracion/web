@@ -2,11 +2,10 @@ import type { Faq, SectionIntro } from './types'
 
 // Transferido de xeracion.org/empresas/ (y los sectores de /internships/).
 export const pageEmpresasEs = {
-  eyebrow: 'Para empresas',
   heading: 'Acoge en tu empresa a gente de otros países.',
   intro:
     'Te ayudamos a encontrar a la persona de fuera que mejor encaja con tu equipo. Sin coste de gestión.',
-  whyIntro: { eyebrow: 'Por qué hacerlo', heading: 'Un equipo más abierto y más europeo.' } satisfies SectionIntro,
+  whyIntro: { heading: 'Un equipo más abierto y más europeo.' } satisfies SectionIntro,
   whyText: [
     'Acoger a alguien en prácticas que viene de otro país es una gran oportunidad para crear un ambiente de trabajo más cosmopolita e innovador. Podrás plantear proyectos con dimensión europea y enriquecer vuestra manera de trabajar con el intercambio cultural que trae alguien de fuera.',
     'Ya colaboramos con **más de 50 empresas**, desde negocios familiares hasta multinacionales: turismo y hostelería, administración, comercio y marketing, peluquería y estética, panadería, cocina, academias de idiomas, inmobiliarias, informática, carpintería y talleres de automoción.',
@@ -29,7 +28,7 @@ export const pageEmpresasEs = {
     'Nombrar a un tutor o tutora que coordine y acompañe el aprendizaje',
     'Evaluar su desempeño al final',
   ],
-  faqIntro: { eyebrow: 'Más información', heading: 'Lo que más nos preguntan.' } satisfies SectionIntro,
+  faqIntro: { heading: 'Lo que más nos preguntan.' } satisfies SectionIntro,
   closingHeading: '¿Hablamos?',
   closingText: 'Registra tu empresa y te contamos los siguientes pasos.',
   closingCtaLabel: 'Quiero registrar mi empresa',

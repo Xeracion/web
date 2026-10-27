@@ -4,7 +4,6 @@ import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { FaqAccordionSection } from '@/components/FaqAccordionSection'
 import { PageHeader } from '@/components/PageHeader'
 import { Prose } from '@/components/Prose'
@@ -23,10 +22,9 @@ export default function EmpresasPage() {
 
   return (
     <>
-      <PageHeader eyebrow={page.eyebrow} heading={page.heading} text={page.intro} />
+      <PageHeader heading={page.heading} text={page.intro} />
 
       <Container as="section" className={styles.why}>
-        <Eyebrow accent>{page.whyIntro.eyebrow}</Eyebrow>
         <h2>{page.whyIntro.heading}</h2>
         <Prose value={page.whyText} className={styles.whyText} />
       </Container>

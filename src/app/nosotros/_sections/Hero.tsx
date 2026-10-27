@@ -2,7 +2,6 @@ import Image from 'next/image'
 
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import type { StatItem } from '@/content/types'
 
@@ -19,7 +18,6 @@ function splitHeading(heading: string, accent?: string) {
 }
 
 interface HeroData {
-  heroEyebrow?: string
   heroHeading: string
   heroHeadingAccent?: string
   heroText?: string | string[]
@@ -47,9 +45,6 @@ export function Hero({ data }: { data: HeroData }) {
         </>
       )}
       <Container className={styles.content}>
-        {data.heroEyebrow && (
-          <Eyebrow className={styles.eyebrow}>{data.heroEyebrow}</Eyebrow>
-        )}
         <h1 className={styles.heading}>
           {parts.map((part, i) =>
             part.accent ? (

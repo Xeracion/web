@@ -105,3 +105,8 @@
   height: 64px;
   width: auto;
 }
+
+.supportTitle {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}

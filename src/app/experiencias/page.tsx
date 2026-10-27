@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getExperiencias } from '@/sanity/lib/queries'
@@ -27,7 +26,6 @@ export default async function ExperienciasPage() {
   return (
     <>
       <Container as="section" className={styles.header}>
-        <Eyebrow accent>Catálogo completo</Eyebrow>
         <h1>Todo lo que puedes hacer, en un solo sitio.</h1>
         <p className={styles.subtitle}>
           Desde clubs semanales en Ferrol hasta voluntariados por Europa. Busca si ya sabes lo que quieres.

@@ -6,7 +6,6 @@ import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { HeroSplit } from '@/components/HeroSplit'
 import { siteSettings } from '@/content/siteSettings'
 import { pageSpeakFactorEs } from '@/content/speakfactor'
@@ -25,8 +24,6 @@ export default function SpeakFactorPage() {
   return (
     <>
       <HeroSplit
-        eyebrow={page.heroEyebrow}
-        eyebrowAccent
         heading={page.heroHeading}
         text={page.heroText}
         image={page.heroImage}
@@ -56,7 +53,6 @@ export default function SpeakFactorPage() {
 
       <Container as="section" className={styles.what}>
         <div>
-          <Eyebrow accent>{page.whatIntro.eyebrow}</Eyebrow>
           <h2>{page.whatIntro.heading}</h2>
           <p className={styles.whatText}>{page.whatText}</p>
         </div>
@@ -75,7 +71,6 @@ export default function SpeakFactorPage() {
 
       <section className={styles.learnBand}>
         <Container>
-          <Eyebrow accent>{page.learnIntro.eyebrow}</Eyebrow>
           <h2>{page.learnIntro.heading}</h2>
           <ul className={styles.learnList}>
             {page.learn.map((item) => (
@@ -87,7 +82,6 @@ export default function SpeakFactorPage() {
       </section>
 
       <Container as="section" id="videos" className={styles.videos}>
-        <Eyebrow accent>{page.videosIntro.eyebrow}</Eyebrow>
         <h2>{page.videosIntro.heading}</h2>
         <p className={styles.videosText}>{page.videosText}</p>
         <div className={styles.videoGrid}>

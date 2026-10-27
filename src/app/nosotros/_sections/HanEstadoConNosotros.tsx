@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { TeamMemberCard } from '@/components/TeamMemberCard'
 import type { SectionIntro, TeamMember } from '@/content/types'
 
@@ -34,7 +33,6 @@ export function HanEstadoConNosotros({ intro, members, locale = 'es' }: HanEstad
 
   return (
     <Container as="section" className={styles.section}>
-      {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
       <h2>{intro?.heading || copy.fallbackHeading}</h2>
       <div className={styles.grid}>
         {visibleMembers.map((member, i) => (

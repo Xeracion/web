@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { SectionIntro, ValueItem } from '@/content/types'
 
 import styles from './Valores.module.css'
@@ -16,7 +15,6 @@ export function Valores({ data }: { data: ValoresData }) {
   return (
     <div className={styles.wrapper}>
       <Container as="section" className={styles.section}>
-        {data.valoresIntro?.eyebrow && <Eyebrow accent>{data.valoresIntro.eyebrow}</Eyebrow>}
         {data.valoresIntro?.heading && <h2>{data.valoresIntro.heading}</h2>}
         <div className={styles.grid}>
           {values.map((value, i) => (

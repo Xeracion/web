@@ -193,3 +193,8 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
+
+.sectionTitle {
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+}

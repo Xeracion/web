@@ -3,7 +3,6 @@ import { HeroSplit } from '@/components/HeroSplit'
 import styles from './Hero.module.css'
 
 interface HeroData {
-  eyebrow?: string
   heading?: string
   intro?: string
   heroImage?: string
@@ -15,7 +14,6 @@ interface HeroData {
 export function Hero({ data }: { data: HeroData }) {
   return (
     <HeroSplit
-      eyebrow={data.eyebrow}
       heading={data.heading}
       text={data.intro}
       image={data.heroImage}

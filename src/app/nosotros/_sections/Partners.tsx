@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { Partner, SectionIntro } from '@/content/types'
 
 import styles from './Partners.module.css'
@@ -17,7 +16,7 @@ export function Partners({ data }: { data: PartnersData }) {
 
   return (
     <Container as="section" className={styles.section}>
-      {data.partnersIntro?.eyebrow && <Eyebrow>{data.partnersIntro.eyebrow}</Eyebrow>}
+      {data.partnersIntro?.heading && <h2 className={styles.heading}>{data.partnersIntro.heading}</h2>}
       <ul className={styles.list}>
         {partners.map((partner, i) => (
           <li key={i} className={styles.partner}>

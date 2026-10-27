@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { FeatureGrid } from '@/components/FeatureGrid'
 import { HeroSplit } from '@/components/HeroSplit'
 import { mesaRedondaWhatEs, pageMesaRedondaEs } from '@/content/mesaredonda'
@@ -23,8 +22,6 @@ export default function MesaRedondaPage() {
   return (
     <>
       <HeroSplit
-        eyebrow={page.heroEyebrow}
-        eyebrowAccent
         heading={page.heroHeading}
         text={page.heroText}
         image={page.heroImage}
@@ -49,7 +46,6 @@ export default function MesaRedondaPage() {
       </section>
 
       <Container as="section" className={styles.encuentros}>
-        <Eyebrow accent>{page.encuentrosIntro.eyebrow}</Eyebrow>
         <h2>{page.encuentrosIntro.heading}</h2>
         <ul className={styles.cafes}>
           {page.encuentros.map((name) => (
@@ -68,7 +64,7 @@ export default function MesaRedondaPage() {
       </Container>
 
       <Container as="section" className={styles.support}>
-        <Eyebrow>{page.supportIntro.eyebrow}</Eyebrow>
+        <h2 className={styles.supportTitle}>{page.supportIntro.heading}</h2>
         <div className={styles.logos}>
           {page.support.map((partner) => (
             <Image

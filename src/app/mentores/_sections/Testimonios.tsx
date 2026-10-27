@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import type { SectionIntro, Testimonial } from '@/content/types'
 
@@ -15,7 +14,6 @@ export function Testimonios({ intro, items }: TestimoniosProps) {
 
   return (
     <Container as="section" className={styles.section}>
-      {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
       {intro?.heading && <h2>{intro.heading}</h2>}
       <div className={styles.grid}>
         {items.map((item, i) => (

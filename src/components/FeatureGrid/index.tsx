@@ -1,7 +1,6 @@
 import type { CSSProperties } from 'react'
 
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import type { Feature, SectionIntro } from '@/content/types'
 
@@ -17,7 +16,6 @@ export function FeatureGrid({ intro, items }: FeatureGridProps) {
 
   return (
     <Container as="section" className={styles.section}>
-      {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
       {intro?.heading && <h2>{intro.heading}</h2>}
       <div className={styles.grid}>
         {items.map((item, i) => (

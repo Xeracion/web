@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { FixedProgram, SectionIntro } from '@/content/types'
 
 import styles from './FixedPrograms.module.css'
@@ -14,7 +13,6 @@ export function FixedPrograms({ intro, items }: FixedProgramsProps) {
 
   return (
     <Container as="section" className={styles.section}>
-      {intro?.eyebrow && <Eyebrow accent>{intro.eyebrow}</Eyebrow>}
       {intro?.heading && <h2>{intro.heading}</h2>}
       <div className={styles.grid}>
         {items.map((item, i) => (

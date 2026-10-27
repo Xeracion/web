@@ -40,13 +40,13 @@ export default async function HomePage() {
         <ExperienciasCatalog items={experiencias} intro={homeEs.catalogIntro} forceGrouped />
       </Suspense>
       <Agenda
-        eyebrow={homeEs.agendaEyebrow}
+        heading={homeEs.agendaHeading}
         linkLabel={homeEs.agendaLinkLabel}
         featured={featuredEvent}
         upcoming={upcomingEvents}
       />
       <Testimonials
-        eyebrow={homeEs.testimonialsEyebrow}
+        heading={homeEs.testimonialsHeading}
         large={homeEsTestimonialLarge}
         small={homeEsTestimonialMedium}
       />

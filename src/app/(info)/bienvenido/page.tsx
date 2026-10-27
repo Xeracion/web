@@ -19,7 +19,7 @@ export default function BienvenidoPage() {
 
   return (
     <>
-      <PageHeader eyebrow={page.eyebrow} heading={page.heading} text={page.intro} />
+      <PageHeader heading={page.heading} text={page.intro} />
       <FeatureGrid intro={page.benefitsIntro} items={bienvenidoBenefitsEs} />
       <ClosingCtaSection heading={page.closingHeading} text={page.closingText}>
         <ButtonPrimary highlight href={page.closingCtaHref}>

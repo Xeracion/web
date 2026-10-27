@@ -3,7 +3,6 @@ import type { Faq, SectionIntro } from './types'
 // Transferido de xeracion.org/condiciones-erasmus/, /voluntariado-europeo/ y
 // /cursos/, reorganizado por temas.
 export const pagePreguntasEs = {
-  eyebrow: 'Preguntas frecuentes',
   heading: 'Todo lo que te preguntas antes de irte.',
   intro:
     'Igual es tu primera vez y te ha llamado la atención eso de viajar por Europa sin pagarlo de tu bolsillo. Si es así, sigue leyendo: aquí aclaramos unas cuantas cosillas.',
@@ -20,7 +19,7 @@ export interface FaqGroup {
 
 export const preguntasGroupsEs: FaqGroup[] = [
   {
-    intro: { eyebrow: 'Lo básico', heading: 'Antes de nada.' },
+    intro: { heading: 'Antes de nada.' },
     items: [
       {
         question: '¿Esto de qué va?',
@@ -51,7 +50,7 @@ export const preguntasGroupsEs: FaqGroup[] = [
     ],
   },
   {
-    intro: { eyebrow: 'Voluntariado largo', heading: 'Irte unos meses fuera.' },
+    intro: { heading: 'Irte unos meses fuera.' },
     items: [
       {
         question: '¿Quién puede apuntarse?',
@@ -87,7 +86,7 @@ export const preguntasGroupsEs: FaqGroup[] = [
     ],
   },
   {
-    intro: { eyebrow: 'Selección', heading: 'Cómo elegimos a quién va.' },
+    intro: { heading: 'Cómo elegimos a quién va.' },
     items: [
       {
         question: '¿Necesito algún título para participar?',
@@ -112,7 +111,7 @@ export const preguntasGroupsEs: FaqGroup[] = [
     ],
   },
   {
-    intro: { eyebrow: 'El viaje', heading: 'Billetes, fechas y aeropuertos.' },
+    intro: { heading: 'Billetes, fechas y aeropuertos.' },
     items: [
       {
         question: '¿Quién paga mis billetes?',
@@ -144,7 +143,7 @@ export const preguntasGroupsEs: FaqGroup[] = [
     ],
   },
   {
-    intro: { eyebrow: 'Otras dudas', heading: 'Lo que nadie te cuenta.' },
+    intro: { heading: 'Lo que nadie te cuenta.' },
     items: [
       {
         question: '¿Tengo que hacerme un seguro médico?',

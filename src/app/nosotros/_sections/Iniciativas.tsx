@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import type { Initiative, SectionIntro } from '@/content/types'
 import { cn } from '@/lib/cn'
 
@@ -22,7 +21,6 @@ export function Iniciativas({ data }: { data: IniciativasData }) {
 
   return (
     <Container as="section" className={styles.section}>
-      {data.iniciativasIntro?.eyebrow && <Eyebrow accent>{data.iniciativasIntro.eyebrow}</Eyebrow>}
       {data.iniciativasIntro?.heading && <h2>{data.iniciativasIntro.heading}</h2>}
       <div className={styles.grid}>
         {items.map((item, i) => {

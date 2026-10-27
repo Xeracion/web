@@ -6,7 +6,6 @@ import type { Partner, SectionIntro, StatItem, Testimonial } from './types'
 // agregadas, nunca datos personales de participantes) y fotos del álbum
 // compartido del proyecto.
 export const pageSpeakFactorViEs = {
-  heroEyebrow: 'Proyecto realizado · Mayo 2026',
   heroHeading: 'Speak Factor VI: una semana para perderle el miedo al escenario.',
   heroText: [
     'Del 11 al 18 de mayo de 2026 reunimos en Panxón, frente a las islas Cíes, a 21 jóvenes de 14 países para un curso intensivo de oratoria en inglés.',
@@ -21,7 +20,7 @@ export const pageSpeakFactorViEs = {
     { label: 'Quiénes', value: '21 participantes · 14 países' },
     { label: 'Valoración', value: '4,9 sobre 5' },
   ] satisfies StatItem[],
-  daysIntro: { eyebrow: 'Día a día', heading: 'Así fue la semana.' } satisfies SectionIntro,
+  daysIntro: { heading: 'Así fue la semana.' } satisfies SectionIntro,
   days: [
     { day: 'Día 0', title: 'Se levanta el telón', text: 'Llegada a Panxón, primera cena juntos y juegos para romper el hielo: dos verdades y una mentira, caras dibujadas y preguntas con música.' },
     { day: 'Día 1', title: 'Bajo el foco', text: 'La Juggling Machine para hacer equipo con pelotas de malabares, miedos y expectativas, los tríos de aprendizaje y una primera grabación de «la historia de mi vida».' },
@@ -32,7 +31,7 @@ export const pageSpeakFactorViEs = {
     { day: 'Día 6', title: 'Más allá de la sala', text: 'Qué aprendimos: repaso de la gala, autoevaluación final, Youthpass, una carta a uno mismo y la noche de cierre.' },
     { day: 'Día 7', title: 'Llévatelo a casa', text: 'Desayuno y despedidas.' },
   ],
-  trainersIntro: { eyebrow: 'Quién lo impartió', heading: 'Dos formadores, dos maneras de subir al escenario.' } satisfies SectionIntro,
+  trainersIntro: { heading: 'Dos formadores, dos maneras de subir al escenario.' } satisfies SectionIntro,
   trainers: [
     {
       name: 'Gabriel Vivas',
@@ -45,7 +44,7 @@ export const pageSpeakFactorViEs = {
   ],
   trainersImage: '/img/speakfactor-vi/formadores.webp',
   trainersImageAlt: 'Gabriel Vivas y Miłosz Bałdyga, los dos formadores, sonriendo en un selfie',
-  galleryIntro: { eyebrow: 'En imágenes', heading: 'Lo que pasó en Panxón.' } satisfies SectionIntro,
+  galleryIntro: { heading: 'Lo que pasó en Panxón.' } satisfies SectionIntro,
   gallery: [
     { src: '/img/speakfactor-vi/malabares.webp', alt: 'Participantes practicando malabares en la sala de trabajo' },
     { src: '/img/speakfactor-vi/ensayo.webp', alt: 'Un participante ensaya su discurso de pie ante el grupo sentado' },
@@ -58,7 +57,7 @@ export const pageSpeakFactorViEs = {
     { src: '/img/speakfactor-vi/playa.webp', alt: 'Tres participantes sonríen en una playa de Nigrán' },
     { src: '/img/speakfactor-vi/atardecer.webp', alt: 'Atardecer sobre la ría de Vigo desde Panxón' },
   ],
-  voicesIntro: { eyebrow: 'Lo que dijeron', heading: 'En sus propias palabras.' } satisfies SectionIntro,
+  voicesIntro: { heading: 'En sus propias palabras.' } satisfies SectionIntro,
   voicesNote: 'Respuestas anónimas del cuestionario final, en su idioma original.',
   support: [{ name: 'Cofinanciado por la Unión Europea', image: '/img/logos/cofinanciado-ue.png' }] satisfies Partner[],
   closingHeading: '¿Te lo perdiste?',

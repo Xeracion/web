@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Eyebrow } from '@/components/Eyebrow'
 import { Prose } from '@/components/Prose'
 import type { SectionIntro, TimelineMilestone } from '@/content/types'
 
@@ -20,7 +19,6 @@ export function Historia({ data }: { data: HistoriaData }) {
 
   return (
     <Container as="section" className={styles.section}>
-      {data.historiaIntro?.eyebrow && <Eyebrow accent>{data.historiaIntro.eyebrow}</Eyebrow>}
       {data.historiaIntro?.heading && <h2>{data.historiaIntro.heading}</h2>}
       <div className={styles.grid}>
         <div className={styles.text}>

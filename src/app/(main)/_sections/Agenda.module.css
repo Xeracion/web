@@ -69,3 +69,9 @@
 .link {
   margin-top: var(--space-sm);
 }
+
+.heading {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+}

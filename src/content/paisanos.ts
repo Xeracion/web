@@ -4,14 +4,12 @@ import type { Paisano, SectionIntro } from './types'
 // categoría «Paisanos» del blog (2020) más la de Olga (2023). El texto de
 // las entrevistas se mantiene literal; solo cambia la presentación.
 export const pagePaisanosEs = {
-  eyebrow: 'Paisanos · Historias de Ferrol',
   heading: 'Descubre las historias de tus vecinos.',
   intro: [
     'Paisanos va de las vidas de los ferrolanos normales. Gente de a pie, como tú, con la que seguramente te identifiques en muchos de sus sueños y preocupaciones.',
     'A través de una serie de retratos íntimos descubrimos la historia vital de nuestros vecinos: sus triunfos, sus esperanzas y sus luchas. ¿Nos acompañas?',
   ],
-  storiesIntro: { eyebrow: 'Las entrevistas', heading: 'Doce vidas, una ciudad.' } satisfies SectionIntro,
-  podcastEyebrow: 'Nuestro podcast',
+  storiesIntro: { heading: 'Doce vidas, una ciudad.' } satisfies SectionIntro,
   podcastHeading: 'Conversaciones sobre la vida.',
   podcastText: 'Reflexiones sobre el mundo en que vivimos. Experiencias de vidas únicas que pueden cambiar tu perspectiva.',
   podcastCtaLabel: 'Quiero escuchar el podcast',
