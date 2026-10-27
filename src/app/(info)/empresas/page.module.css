@@ -1,0 +1,60 @@
+.why {
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.why h2 {
+  margin-top: var(--space-xs);
+  max-width: 720px;
+}
+
+.whyText {
+  max-width: 680px;
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  padding-block: var(--space-lg) var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.column {
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  border: var(--border-hair) solid var(--color-border);
+}
+
+.column:first-child {
+  background: var(--color-accent-bg);
+  border-color: transparent;
+}
+
+.list {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-text);
+}

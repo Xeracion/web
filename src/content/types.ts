@@ -66,3 +66,8 @@ export interface Faq {
   question: string
   answer: string | string[]
 }
+
+export interface Feature {
+  title: string
+  text?: string | string[]
+}

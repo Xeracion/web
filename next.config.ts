@@ -65,9 +65,26 @@ const nextConfig: NextConfig = {
   },
   // La página antigua /ferrol/ se renombró a /agenda/.
   // La página antigua /irse/ se sustituyó por el catálogo de experiencias en /experiencias/.
-  // Redirige las URLs antiguas para no romper enlaces ya indexados o guardados.
+  // Redirige las URLs antiguas para no romper enlaces ya indexados o guardados,
+  // incluidas las páginas del WordPress anterior de xeracion.org.
   async redirects() {
+    const legacy: Array<[string, string]> = [
+      ["/voluntariado-europeo", "/experiencias/"],
+      ["/intercambios", "/experiencias/"],
+      ["/cursos", "/experiencias/"],
+      ["/oportunidades", "/experiencias/"],
+      ["/proyectos", "/experiencias/"],
+      ["/speakfactor", "/experiencias/"],
+      ["/condiciones-erasmus", "/preguntas/"],
+      ["/calendario", "/agenda/"],
+      ["/eventos", "/agenda/"],
+      ["/paisanos", "/nosotros/"],
+      ["/english", "/"],
+    ];
     return [
+      ...legacy.map(([source, destination]) => ({ source, destination, permanent: true })),
+      { source: "/en/:path*", destination: "/", permanent: true },
+      { source: "/gl/:path*", destination: "/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
       { source: "/irse", destination: "/experiencias/", permanent: true },

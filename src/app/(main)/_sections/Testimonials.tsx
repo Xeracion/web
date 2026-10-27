@@ -30,6 +30,7 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
             <PhotoPlaceholder
               variant="neutral"
               image={large.image}
+              alt={`Retrato de ${large.name}`}
               label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
               aspectRatio="4 / 3"
             />
@@ -42,6 +43,7 @@ export function Testimonials({ eyebrow, large, small }: TestimonialsProps) {
             <PhotoPlaceholder
               variant="neutral"
               image={small.image}
+              alt={`Retrato de ${small.name}`}
               label={small.name ?? ''}
               aspectRatio="1 / 1"
               className={styles.smallPhoto}

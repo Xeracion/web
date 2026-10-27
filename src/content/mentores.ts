@@ -1,6 +1,6 @@
 import type { SectionIntro, StatItem, Testimonial, ValueItem } from './types'
 
-// scripts/seed-mentores.ts. /mentores/ no cambió con el pivote.
+// Transferido de xeracion.org/mentores/ (formulario de alta y cifras reales).
 export const pageMentoresContent = {
   heroEyebrow: 'Adopta un extranjero',
   heroHeading: 'Viaja sin salir de casa: hazte mentor de un voluntario europeo en Ferrol.',
@@ -8,7 +8,7 @@ export const pageMentoresContent = {
     'Durante todo el año recibimos voluntarios europeos en Ferrol, gente joven que se queda entre 2 y 10 meses desarrollando su Voluntariado Europeo. Adaptarse a una ciudad y una cultura nuevas no es fácil — hasta ir al banco se convierte en una aventura. Queremos que ese proceso sea lo más sencillo posible, y para eso hace falta gente de aquí.',
   heroImageCaption: 'foto editorial · mentor y voluntaria paseando por Ferrol Vello',
   heroCtaLabel: 'Apúntame',
-  heroCtaHref: 'mailto:info@xeracion.org',
+  heroCtaHref: 'https://xeracion.typeform.com/mentores',
   whyIntro: { eyebrow: 'A quién buscamos', heading: 'Gente activa con ganas de enseñar su ciudad.' } satisfies SectionIntro,
   whyText:
     'Buscamos personas con algo de tiempo libre, capaces de comunicarse en inglés y con ganas de unirse al club de los mejores embajadores que puede tener Ferrol. Tu trabajo: ayudar a los voluntarios a integrarse en la ciudad, descubrirla, disfrutarla y sentirse como en casa.',

@@ -1,0 +1,14 @@
+.header {
+  padding-block: var(--space-2xl) var(--space-md);
+}
+
+.header h1 {
+  margin-top: var(--space-xs);
+  max-width: 760px;
+}
+
+.text {
+  margin-top: var(--space-sm);
+  max-width: 620px;
+  color: var(--color-text-secondary);
+}

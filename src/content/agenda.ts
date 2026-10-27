@@ -7,6 +7,8 @@ export const pageFerrolEs = {
   heroHeading: 'Planes en la Almendra, cada semana del año.',
   heroText:
     'Nada de esperar a irte de Erasmus para que pase algo: en Ferrol hay clubs, talleres y encuentros casi todas las semanas, la mayoría gratis. Esto es lo que tenemos entre manos ahora mismo.',
+  heroImage: '/img/fotos/speak-factor-taller.webp' as string | undefined,
+  heroImageAlt: 'Taller de Speak Factor en la Casa da Xuventude de Ferrol',
   heroImageCaption: 'foto editorial · Offline Club en la Almendra 9',
   heroCtaPrimaryLabel: 'Ver agenda de la semana',
   heroCtaSecondaryLabel: 'Cómo llegar',

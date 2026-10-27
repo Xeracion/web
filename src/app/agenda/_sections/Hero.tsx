@@ -8,6 +8,8 @@ interface HeroData {
   heroEyebrow?: string
   heroHeading?: string
   heroText?: string | string[]
+  heroImage?: string
+  heroImageAlt?: string
   heroImageCaption?: string
   heroCtaPrimaryLabel?: string
   heroCtaPrimaryHref?: string
@@ -22,6 +24,8 @@ export function Hero({ data }: { data: HeroData }) {
       eyebrowAccent
       heading={data.heroHeading}
       text={data.heroText}
+      image={data.heroImage}
+      imageAlt={data.heroImageAlt}
       imageLabel={data.heroImageCaption ?? ''}
       imageVariant="ferrol"
       below={

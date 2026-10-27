@@ -26,6 +26,7 @@ const COLUMNS: FooterColumn[] = [
       { label: 'Ver todas', href: '/experiencias/' },
       { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
       { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
+      { label: 'Preguntas frecuentes', href: '/preguntas/' },
     ],
   },
 ]
@@ -175,6 +176,11 @@ export function Footer({ siteSettings }: FooterProps) {
             <li>
               <Link href="/nosotros/" className={styles.link}>
                 Nosotros
+              </Link>
+            </li>
+            <li>
+              <Link href="/empresas/" className={styles.link}>
+                Empresas
               </Link>
             </li>
           </ul>

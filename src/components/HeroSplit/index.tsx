@@ -15,6 +15,7 @@ interface HeroSplitProps {
   heading?: string
   text?: string | string[]
   image?: SanityImageSource | string
+  imageAlt?: string
   imageLabel: string
   imageVariant: PhotoPlaceholderVariant
   below?: ReactNode
@@ -26,6 +27,7 @@ export function HeroSplit({
   heading,
   text,
   image,
+  imageAlt,
   imageLabel,
   imageVariant,
   below,
@@ -41,6 +43,7 @@ export function HeroSplit({
       <PhotoPlaceholder
         variant={imageVariant}
         image={image}
+        alt={imageAlt}
         label={imageLabel}
         radius="xl"
         className={styles.photo}
