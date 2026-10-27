@@ -17,6 +17,7 @@ const COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Próximos eventos', href: '/agenda/#agenda' },
       { label: 'Offline Club', href: '/agenda/#offline-club' },
+      { label: 'Speak Factor', href: '/speakfactor/' },
       { label: 'Cómo llegar', href: '/agenda/#visitanos' },
     ],
   },

@@ -1,0 +1,246 @@
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .facts {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+
+  .fact {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-bg);
+}
+
+.factLabel {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+
+.factValue {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+  color: var(--color-text-primary);
+}
+
+.what {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: var(--space-xl);
+  padding-block: var(--space-3xl) var(--space-xl);
+}
+
+@media (max-width: 1024px) {
+  .what {
+    grid-template-columns: 1fr;
+  }
+}
+
+.what h2 {
+  margin-top: var(--space-xs);
+}
+
+.whatText {
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.whatPhoto,
+.galleryPhoto,
+.videoThumb {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-lime);
+}
+
+.whatPhoto img,
+.galleryPhoto img,
+.videoThumb img {
+  object-fit: cover;
+}
+
+.whatPhoto {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  padding-block: var(--space-md) var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.galleryPhoto {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-lg);
+}
+
+.learnBand {
+  background: var(--color-accent-bg);
+  padding-block: var(--space-3xl);
+}
+
+.learnBand h2 {
+  margin-top: var(--space-xs);
+}
+
+.learnList {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+@media (max-width: 1024px) {
+  .learnList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .learnList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.learnList li {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.learnOutro {
+  margin-top: var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+.videos {
+  padding-block: var(--space-3xl) var(--space-xl);
+  scroll-margin-top: var(--nav-height);
+}
+
+.videos h2 {
+  margin-top: var(--space-xs);
+}
+
+.videosText {
+  margin-top: var(--space-sm);
+  max-width: 620px;
+  color: var(--color-text-secondary);
+}
+
+.videoGrid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.video {
+  display: block;
+  color: inherit;
+}
+
+.video:hover {
+  color: inherit;
+}
+
+.videoThumb {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+}
+
+.videoThumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 35, 35, 0.25);
+  transition: background-color var(--dur-base) ease;
+}
+
+.video:hover .videoThumb::after {
+  background: rgba(35, 35, 35, 0.1);
+}
+
+.play {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-fill);
+  transform: translate(-50%, -50%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.play::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent var(--color-accent-on-fill);
+  transform: translate(-50%, -50%);
+}
+
+.video:hover .play {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.videoTitle {
+  margin-top: var(--space-sm);
+  font-weight: 500;
+}
+
+.videoHint {
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
