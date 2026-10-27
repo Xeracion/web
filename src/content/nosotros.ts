@@ -141,7 +141,7 @@ export const pageNosotrosEs = {
     { icon: '🏡', name: 'Das Nest', description: 'Nuestro espacio de alojamiento para voluntariado en Ferrol, pensado y gestionado por quienes ya pasaron por aquí.', colorScheme: 'blue' },
     { icon: '🌿', name: 'Building Nature', description: 'Voluntariado ambiental en la comarca de Ferrol: limpiezas, restauración de naturaleza y sensibilización.', colorScheme: 'green' },
     { icon: '🎤', name: 'Speak Factor', description: 'Curso gratuito de oratoria en inglés desde 2017. Martes alternos a las 19:00 en la Casa da Xuventude.', colorScheme: 'orange' },
-    { icon: '🎙️', name: 'Paisanos', description: 'Historias de vecinos y vecinas de Ferrol, en retratos y en podcast. Gente de a pie con sueños y luchas que seguro te suenan.', url: 'https://open.spotify.com/show/3csJv7gS92mOxZT8zTdfOM', colorScheme: 'blue' },
+    { icon: '🎙️', name: 'Paisanos', description: 'Historias de vecinos y vecinas de Ferrol, en retratos y en podcast. Gente de a pie con sueños y luchas que seguro te suenan.', url: '/paisanos/', colorScheme: 'blue' },
   ] satisfies Initiative[],
   partnersIntro: { eyebrow: 'Con el apoyo de' } satisfies SectionIntro,
   partners: [

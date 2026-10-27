@@ -71,3 +71,20 @@ export interface Feature {
   title: string
   text?: string | string[]
 }
+
+export interface PaisanoBlock {
+  type: 'p' | 'heading'
+  text: string
+}
+
+export interface Paisano {
+  slug: string
+  name: string
+  summary: string
+  lead: string
+  pullQuote?: string
+  image: string
+  imageAlt: string
+  imageFocus: string
+  body: PaisanoBlock[]
+}

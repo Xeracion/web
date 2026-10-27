@@ -32,6 +32,11 @@ const CONTENT_SECURITY_POLICY = [
   "form-action 'self'",
 ].join("; ");
 
+// Entrevistas de Paisanos en el WordPress anterior: páginas de 2023
+// (/paisanosluis/…) y entradas del blog de 2020 (/luis/, y /luis-2/ en inglés).
+const PAISANOS_PAGES = ["luis", "montse", "sarath", "olga", "mbacke", "fran", "vanessa"];
+const PAISANOS_POSTS = ["luis", "montse", "sarath", "mbacke", "vanessa", "fran", "katia", "demba", "alberto", "maria", "juan"];
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
@@ -78,11 +83,15 @@ const nextConfig: NextConfig = {
       ["/condiciones-erasmus", "/preguntas/"],
       ["/calendario", "/agenda/"],
       ["/eventos", "/agenda/"],
-      ["/paisanos", "/nosotros/"],
       ["/english", "/"],
     ];
     return [
       ...legacy.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...PAISANOS_PAGES.map((slug) => ({ source: `/paisanos${slug}`, destination: `/paisanos/${slug}/`, permanent: true })),
+      ...PAISANOS_POSTS.flatMap((slug) => [
+        { source: `/${slug}`, destination: `/paisanos/${slug}/`, permanent: true },
+        { source: `/${slug}-2`, destination: `/paisanos/${slug}/`, permanent: true },
+      ]),
       { source: "/en/:path*", destination: "/", permanent: true },
       { source: "/gl/:path*", destination: "/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
