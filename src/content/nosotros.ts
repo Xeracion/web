@@ -142,14 +142,23 @@ export const pageNosotrosEs = {
     { icon: '🎙️', name: 'Paisanos', description: 'Historias de vecinos y vecinas de Ferrol, en retratos y en podcast. Gente de a pie con sueños y luchas que seguro te suenan.', url: '/paisanos/', colorScheme: 'blue' },
   ] satisfies Initiative[],
   partnersIntro: { heading: 'Con el apoyo de' } satisfies SectionIntro,
-  partners: [
-    { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
-    { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
-    { name: 'Erasmus+', image: '/img/logos/erasmus-plus.png' },
-    { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
-    { name: 'Canva' },
-    { name: 'Google for Nonprofits' },
-  ] satisfies Partner[],
+  // Separados a propósito: quien nos respalda institucionalmente no es lo
+  // mismo que las herramientas que nos ceden gratis por ser una ONG.
+  partnersGroups: [
+    {
+      heading: 'Respaldo institucional',
+      items: [
+        { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
+        { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
+        { name: 'Erasmus+', image: '/img/logos/erasmus-plus.png' },
+        { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
+      ] satisfies Partner[],
+    },
+    {
+      heading: 'Herramientas donadas',
+      items: [{ name: 'Canva' }, { name: 'Google for Nonprofits' }] satisfies Partner[],
+    },
+  ],
   legalName: 'Asociación Xeración',
   legalCif: 'G70385091',
   legalAddress: 'Rúa Almendra 9, 15402 Ferrol',
@@ -161,7 +170,7 @@ export const pageNosotrosEs = {
     { name: 'Acreditación Cuerpo Europeo de Solidaridad' },
   ] satisfies Partner[],
   closingHeading: '¿Listo para vivir tu aventura europea?',
-  closingText: 'Todas nuestras oportunidades están financiadas. El único requisito es querer.',
+  closingText: 'La mayoría de nuestras experiencias están financiadas, y las que no, te las contamos claras desde el principio. El único requisito es querer.',
   closingCtaPrimaryHref: undefined as string | undefined,
 }
 

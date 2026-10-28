@@ -29,8 +29,11 @@ export function AnimatedNumber({ value, className, duration = 1200, as: Tag = 'p
     const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0
     if (alreadyVisible) return
 
-    setDisplay(`${prefix}0${suffix}`)
-
+    // El valor real se pinta siempre (SSR, sin JS, buscadores, capturas): el
+    // contador solo arranca desde 0 en el momento en que entra en pantalla.
+    // Antes se ponía a 0 nada más cargar y, si el observer no llegaba a
+    // dispararse, la página se quedaba enseñando «0 voluntarios».
+    let frame = 0
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -42,16 +45,20 @@ export function AnimatedNumber({ value, className, duration = 1200, as: Tag = 'p
             const progress = Math.min((now - start) / duration, 1)
             const eased = 1 - Math.pow(1 - progress, 3)
             setDisplay(`${prefix}${Math.round(target * eased)}${suffix}`)
-            if (progress < 1) requestAnimationFrame(tick)
+            if (progress < 1) frame = requestAnimationFrame(tick)
           }
-          requestAnimationFrame(tick)
+          frame = requestAnimationFrame(tick)
         }
       },
       { threshold: 0.3 },
     )
 
     observer.observe(node)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+      setDisplay(value)
+    }
   }, [value, duration])
 
   return (

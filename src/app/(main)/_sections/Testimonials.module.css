@@ -15,15 +15,43 @@
   }
 }
 
-.small {
-  order: 2;
+.gridSingle {
+  max-width: 720px;
+  margin-top: var(--space-lg);
+}
+
+.smalls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
 }
 
 @media (min-width: 768px) {
-  .small {
-    order: 0;
+  .smalls {
     padding-top: 8px;
   }
+}
+
+/* Con dos citas pequeñas, foto más pequeña al lado del texto para que la
+   columna no se alargue más que la cita grande. */
+.smallCompact {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: var(--space-md);
+  align-items: start;
+}
+
+.smallCompact > :not(:first-child) {
+  grid-column: 2;
+}
+
+.smallCompact .smallQuote {
+  margin-top: 0;
+}
+
+.smallPhotoCompact {
+  grid-row: span 2;
+  width: 96px;
 }
 
 .smallPhoto {

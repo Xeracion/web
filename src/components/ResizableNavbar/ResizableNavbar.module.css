@@ -36,7 +36,9 @@
 .barScrolled {
   padding-block: 12px;
   padding-inline: var(--space-md);
-  background: var(--surface-glass);
+  /* Casi opaco: con el cristal al 72% el texto de la página se leía a
+     través del menú. */
+  background: rgba(251, 255, 252, 0.94);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
@@ -141,7 +143,7 @@
   margin-top: var(--space-xs);
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background: rgba(251, 255, 252, 0.85);
+  background: rgba(251, 255, 252, 0.97);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.5);

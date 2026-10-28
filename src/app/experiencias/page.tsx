@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
+import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { Container } from '@/components/Container'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -32,7 +33,7 @@ export default async function ExperienciasPage() {
         </p>
       </Container>
       <Suspense fallback={null}>
-        <ExperienciasCatalog items={items} persistInUrl showSearch />
+        <ExperienciasCatalog items={items} persistInUrl showSearch emptyState={<CatalogEmptyState />} />
       </Suspense>
     </>
   )

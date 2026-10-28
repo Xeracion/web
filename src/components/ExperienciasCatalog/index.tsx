@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 
 import { Container } from '@/components/Container'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
@@ -63,6 +63,10 @@ interface ExperienciasCatalogProps {
   emptyMessage?: string
   /** Fuerza la vista agrupada aunque haya más experiencias que GROUPED_THRESHOLD (la home siempre va agrupada, nunca con chips). */
   forceGrouped?: boolean
+  /** Qué mostrar si no hay ninguna experiencia publicada. Sin él, la sección no se pinta. */
+  emptyState?: ReactNode
+  /** Contenido bajo las tarjetas (ej. el enlace a todo el catálogo). Solo se pinta si hay experiencias. */
+  footer?: ReactNode
 }
 
 export function ExperienciasCatalog({
@@ -73,6 +77,8 @@ export function ExperienciasCatalog({
   showSearch = false,
   emptyMessage = 'No hay experiencias con este filtro todavía.',
   forceGrouped = false,
+  emptyState,
+  footer,
 }: ExperienciasCatalogProps) {
   const router = useRouter()
   const pathname = usePathname()
@@ -117,13 +123,25 @@ export function ExperienciasCatalog({
     })).filter((g) => g.items.length > 0)
   }, [searched, grouped])
 
-  if (items.length === 0) return null
+  if (items.length === 0) {
+    if (!emptyState) return null
+    return (
+      <Container as="section" id={id} className={styles.section}>
+        {intro?.heading && (
+          <div className={styles.intro}>
+            <h2>{intro.heading}</h2>
+          </div>
+        )}
+        {emptyState}
+      </Container>
+    )
+  }
 
   return (
     <Container as="section" id={id} className={styles.section}>
       {intro?.heading && (
         <div className={styles.intro}>
-          {intro?.heading && <h2>{intro.heading}</h2>}
+          <h2>{intro.heading}</h2>
         </div>
       )}
 
@@ -180,6 +198,8 @@ export function ExperienciasCatalog({
           ))}
         </div>
       )}
+
+      {footer && <div className={styles.footer}>{footer}</div>}
     </Container>
   )
 }

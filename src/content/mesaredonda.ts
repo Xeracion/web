@@ -30,7 +30,7 @@ export const pageMesaRedondaEs = {
     { name: 'Get The Net 2023', image: '/img/logos/get-the-net.png' },
   ] satisfies Partner[],
   closingHeading: '¿Tienes ideas para Ferrol?',
-  closingText: 'Cuéntanoslas por WhatsApp o pásate cualquier tarde por la Almendra 9.',
+  closingText: 'Cuéntanoslas por WhatsApp o pásate por la Almendra 9 cualquier mañana, de 10:00 a 14:00.',
   closingCtaLabel: 'Quiero contaros mi idea',
 }
 

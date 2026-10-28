@@ -1,15 +1,18 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
+import { ButtonLink } from '@/components/ButtonLink'
+import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
-import { homeEs, homeEsTestimonialLarge, homeEsTestimonialMedium } from '@/content/home'
+import { homeEs, homeEsTestimonials } from '@/content/home'
 import { siteSettings } from '@/content/siteSettings'
 import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getExperienciasDestacadas } from '@/sanity/lib/queries'
+import { getExperiencias, getExperienciasDestacadas } from '@/sanity/lib/queries'
 
 import { Agenda } from './_sections/Agenda'
 import { ClosingCta } from './_sections/ClosingCta'
+import { Doors } from './_sections/Doors'
 import { Hero } from './_sections/Hero'
 import { InstitutionalStrip } from './_sections/InstitutionalStrip'
 import { Logos } from './_sections/Logos'
@@ -28,30 +31,32 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function HomePage() {
-  const [experiencias, [featuredEvent = null, ...upcomingEvents]] = await Promise.all([
+  const [destacadas, events] = await Promise.all([
     getExperienciasDestacadas(),
-    getGoogleCalendarEvents(siteSettings.googleCalendarId, { maxResults: 4 }),
+    getGoogleCalendarEvents(siteSettings.googleCalendarId, { maxResults: 3 }),
   ])
+  // Si nadie ha marcado ninguna como destacada, la home enseña todas las
+  // activas antes que quedarse sin catálogo.
+  const experiencias = destacadas.length > 0 ? destacadas : await getExperiencias()
 
   return (
     <>
       <Hero data={homeEs} />
       <Suspense fallback={null}>
-        <ExperienciasCatalog items={experiencias} intro={homeEs.catalogIntro} forceGrouped />
+        <ExperienciasCatalog
+          id="experiencias"
+          items={experiencias}
+          intro={homeEs.catalogIntro}
+          forceGrouped
+          emptyState={<CatalogEmptyState />}
+          footer={<ButtonLink href="/experiencias/">{homeEs.catalogAllLabel}</ButtonLink>}
+        />
       </Suspense>
-      <Agenda
-        heading={homeEs.agendaHeading}
-        linkLabel={homeEs.agendaLinkLabel}
-        featured={featuredEvent}
-        upcoming={upcomingEvents}
-      />
-      <Testimonials
-        heading={homeEs.testimonialsHeading}
-        large={homeEsTestimonialLarge}
-        small={homeEsTestimonialMedium}
-      />
+      <Agenda heading={homeEs.agendaHeading} linkLabel={homeEs.agendaLinkLabel} events={events} />
+      <Testimonials heading={homeEs.testimonialsHeading} items={homeEsTestimonials} />
       <InstitutionalStrip text={homeEs.institutionalText} href={homeEs.institutionalLinkHref} />
       <Logos items={homeEs.institutionalLogos} />
+      <Doors heading={homeEs.doorsHeading} items={homeEs.doors} />
       <ClosingCta home={homeEs} siteSettings={siteSettings} />
     </>
   )

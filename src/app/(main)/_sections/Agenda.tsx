@@ -1,6 +1,6 @@
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
-import { formatEventTime, formatEventWeekdayLong, formatEventWeekdayShort } from '@/lib/formatDate'
+import { formatEventDay, formatEventMonthShort, formatEventTime, formatEventWeekdayShort } from '@/lib/formatDate'
 import type { EventSummary } from '@/lib/googleCalendar'
 
 import styles from './Agenda.module.css'
@@ -8,57 +8,36 @@ import styles from './Agenda.module.css'
 interface AgendaProps {
   heading?: string
   linkLabel?: string
-  featured: EventSummary | null
-  upcoming: EventSummary[]
-  locale?: 'es' | 'en'
-  ferrolAgendaHref?: string
+  events: EventSummary[]
+  agendaHref?: string
 }
 
-export function Agenda({
-  heading,
-  linkLabel,
-  featured,
-  upcoming,
-  locale = 'es',
-  ferrolAgendaHref = '/agenda/#agenda',
-}: AgendaProps) {
-  if (!featured && upcoming.length === 0) return null
+// Versión compacta para la home: los próximos 2–3 eventos (fecha, nombre,
+// lugar). Si no hay ninguno futuro, la sección entera desaparece.
+export function Agenda({ heading, linkLabel, events, agendaHref = '/agenda/#agenda' }: AgendaProps) {
+  const items = events.filter((e) => e.title).slice(0, 3)
+  if (items.length === 0) return null
 
   return (
     <Container as="section" className={styles.section}>
-      {featured && (
-        <div>
-          {heading && <h2 className={styles.heading}>{heading}</h2>}
-          <h3 className={styles.featuredTitle}>{featured.title}</h3>
-          {featured.dateTime && (
-            <p className={styles.meta}>
-              {formatEventWeekdayLong(featured.dateTime, locale)} · {formatEventTime(featured.dateTime)}
-              {featured.location ? ` · ${featured.location.toUpperCase()}` : ''}
-            </p>
-          )}
-          {featured.description && <p className={styles.description}>{featured.description}</p>}
-        </div>
-      )}
-
-      <div>
-        <ul className={styles.list}>
-          {upcoming.map((event, i) => (
-            <li key={i} className={styles.row}>
-              <span className={styles.name}>{event.title}</span>
-              {event.dateTime && (
-                <span className={styles.date}>
-                  {formatEventWeekdayShort(event.dateTime, locale)} · {formatEventTime(event.dateTime)}
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-        {linkLabel && (
-          <ButtonLink href={ferrolAgendaHref} className={styles.link}>
-            {linkLabel}
-          </ButtonLink>
-        )}
+      <div className={styles.head}>
+        {heading && <h2 className={styles.heading}>{heading}</h2>}
+        {linkLabel && <ButtonLink href={agendaHref}>{linkLabel}</ButtonLink>}
       </div>
+      <ul className={styles.list}>
+        {items.map((event, i) => (
+          <li key={i} className={styles.row}>
+            {event.dateTime && (
+              <span className={styles.date}>
+                {formatEventWeekdayShort(event.dateTime)} {formatEventDay(event.dateTime)}{' '}
+                {formatEventMonthShort(event.dateTime)} · {formatEventTime(event.dateTime)}
+              </span>
+            )}
+            <span className={styles.name}>{event.title}</span>
+            {event.location && <span className={styles.place}>{event.location}</span>}
+          </li>
+        ))}
+      </ul>
     </Container>
   )
 }

@@ -13,42 +13,46 @@ function attribution(testimonial: Testimonial) {
 
 interface TestimonialsProps {
   heading?: string
-  large: Testimonial | null
-  small: Testimonial | null
+  /** La primera es la grande; las siguientes (máximo dos) van apiladas al lado. */
+  items: Testimonial[]
 }
 
-export function Testimonials({ heading, large, small }: TestimonialsProps) {
-  if (!large && !small) return null
+export function Testimonials({ heading, items }: TestimonialsProps) {
+  const [large, ...rest] = items
+  const smalls = rest.slice(0, 2)
+  if (!large) return null
 
   return (
     <Container as="section" className={styles.section}>
       {heading && <h2 className={styles.heading}>{heading}</h2>}
-      <div className={styles.grid}>
-        {large && (
-          <div>
-            <PhotoPlaceholder
-              variant="neutral"
-              image={large.image}
-              alt={`Retrato de ${large.name}`}
-              label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
-              aspectRatio="4 / 3"
-            />
-            <Prose value={large.quote} className={styles.largeQuote} />
-            <p className={styles.attribution}>{attribution(large)}</p>
-          </div>
-        )}
-        {small && (
-          <div className={styles.small}>
-            <PhotoPlaceholder
-              variant="neutral"
-              image={small.image}
-              alt={`Retrato de ${small.name}`}
-              label={small.name ?? ''}
-              aspectRatio="1 / 1"
-              className={styles.smallPhoto}
-            />
-            <Prose value={small.quote} className={styles.smallQuote} />
-            <p className={styles.smallAttribution}>{attribution(small)}</p>
+      <div className={smalls.length > 0 ? styles.grid : styles.gridSingle}>
+        <div>
+          <PhotoPlaceholder
+            variant="neutral"
+            image={large.image}
+            alt={`Retrato de ${large.name}`}
+            label={[large.name, large.destinationCity].filter(Boolean).join(' · ')}
+            aspectRatio="4 / 3"
+          />
+          <Prose value={large.quote} className={styles.largeQuote} />
+          <p className={styles.attribution}>{attribution(large)}</p>
+        </div>
+        {smalls.length > 0 && (
+          <div className={styles.smalls}>
+            {smalls.map((small) => (
+              <div key={small.name} className={smalls.length > 1 ? styles.smallCompact : undefined}>
+                <PhotoPlaceholder
+                  variant="neutral"
+                  image={small.image}
+                  alt={`Retrato de ${small.name}`}
+                  label={small.name ?? ''}
+                  aspectRatio="1 / 1"
+                  className={smalls.length > 1 ? styles.smallPhotoCompact : styles.smallPhoto}
+                />
+                <Prose value={small.quote} className={styles.smallQuote} />
+                <p className={styles.smallAttribution}>{attribution(small)}</p>
+              </div>
+            ))}
           </div>
         )}
       </div>

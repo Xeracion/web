@@ -7,7 +7,7 @@ export const pagePreguntasEs = {
   intro:
     'Igual es tu primera vez y te ha llamado la atención eso de viajar por Europa sin pagarlo de tu bolsillo. Si es así, sigue leyendo: aquí aclaramos unas cuantas cosillas.',
   closingHeading: '¿Te queda alguna duda?',
-  closingText: 'Escríbenos por WhatsApp o pásate cualquier tarde por la Almendra 9.',
+  closingText: 'Escríbenos por WhatsApp o pásate por la Almendra 9 cualquier mañana, de 10:00 a 14:00.',
   closingCtaLabel: 'Quiero ver las experiencias',
   closingWhatsappLabel: 'Prefiero preguntar por WhatsApp',
 }
