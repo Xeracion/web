@@ -87,8 +87,8 @@ ol {
   --xr-lime-200: #e6f9a8;
   --xr-lime-300: #d5f483;
   --xr-lime-500: #c3e65c;
-  --xr-lime-700: #4b6212;
-  --xr-lime-900: #2b3a06;
+  --xr-lime-700: #0e3a2f;
+  --xr-lime-900: #08241d;
 
   /* Tinta / neutros */
   --xr-ink-950: #1c1c1c;
@@ -104,7 +104,7 @@ ol {
   --xr-white: #ffffff;
 
   /* Feedback */
-  --xr-success: #4b6212;
+  --xr-success: #0e3a2f;
   --xr-error: #b3261e;
 
   /* Neutros (alias semánticos, mismos nombres que antes) */

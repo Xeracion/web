@@ -55,7 +55,7 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
 
 ### Paleta de color (variables CSS)
 
-Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, tinta `#2F2F2F`, papel `#FBFFFC`, lima `#D5F483`. Los pasos derivados (`--xr-blue-*`, `--xr-lime-*`, `--xr-ink-*`, en `globals.css`) están calibrados para que cada combinación de texto pase AA (4.5:1). Los nombres de variable semánticos de siempre (`--color-text-primary`, `--color-ferrol-*`, `--color-accent-*`...) se mantienen — solo cambiaron los valores a los que apuntan — para que ningún componente tenga que tocar su CSS al actualizar la marca.
+Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, tinta `#2F2F2F`, papel `#FBFFFC`, lima `#D5F483`, verde `#0E3A2F` (el verde oscuro de texto: `--xr-lime-700`, `--xr-success`, `--color-ferrol-text`; sustituyó al antiguo `#4B6212`). Los pasos derivados (`--xr-blue-*`, `--xr-lime-*`, `--xr-ink-*`, en `globals.css`) están calibrados para que cada combinación de texto pase AA (4.5:1). Los nombres de variable semánticos de siempre (`--color-text-primary`, `--color-ferrol-*`, `--color-accent-*`...) se mantienen — solo cambiaron los valores a los que apuntan — para que ningún componente tenga que tocar su CSS al actualizar la marca.
 
 ```css
 :root {
@@ -73,8 +73,8 @@ Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, 
   /* Acento Ferrol / Agenda (lima) */
   --color-ferrol-bg: #F2FBD8;
   --color-ferrol-border: #C3E65C;
-  --color-ferrol-text: #4B6212;
-  --color-ferrol-strong: #2B3A06;
+  --color-ferrol-text: #0E3A2F;
+  --color-ferrol-strong: #08241D;
   --color-ferrol-grad-1: #E6F9A8;
   --color-ferrol-grad-2: #C3E65C;
 
