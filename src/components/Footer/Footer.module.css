@@ -70,7 +70,7 @@
 }
 
 .socialLink:hover {
-  background: var(--xr-lime);
+  background: var(--xr-lime-on-dark);
   color: var(--xr-ink-800);
 }
 
@@ -102,7 +102,7 @@
 }
 
 .link:hover {
-  color: var(--xr-lime);
+  color: var(--xr-lime-on-dark);
 }
 
 .credits {

@@ -28,7 +28,7 @@
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--xr-lime);
+  color: var(--xr-lime-on-dark);
   font-variant-numeric: tabular-nums;
 }
 

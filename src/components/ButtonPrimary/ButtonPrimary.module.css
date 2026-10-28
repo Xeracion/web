@@ -43,10 +43,10 @@
 
 .highlight {
   background: var(--xr-lime);
-  color: var(--xr-ink-800);
+  color: var(--xr-paper);
 }
 
 .highlight:hover {
-  background: var(--xr-lime-500);
+  background: var(--xr-lime-900);
   opacity: 1;
 }

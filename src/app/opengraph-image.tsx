@@ -49,7 +49,7 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ display: 'flex', height: 14, width: '100%' }}>
-          <div style={{ display: 'flex', flex: 1, backgroundColor: '#d5f483' }} />
+          <div style={{ display: 'flex', flex: 1, backgroundColor: '#0e3a2f' }} />
           <div style={{ display: 'flex', flex: 1, backgroundColor: '#357dca' }} />
         </div>
       </div>

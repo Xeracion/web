@@ -55,7 +55,7 @@ Notas de tamaños específicos que aparecen en secciones concretas y difieren de
 
 ### Paleta de color (variables CSS)
 
-Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, tinta `#2F2F2F`, papel `#FBFFFC`, lima `#D5F483`, verde `#0E3A2F` (el verde oscuro de texto: `--xr-lime-700`, `--xr-success`, `--color-ferrol-text`; sustituyó al antiguo `#4B6212`). Los pasos derivados (`--xr-blue-*`, `--xr-lime-*`, `--xr-ink-*`, en `globals.css`) están calibrados para que cada combinación de texto pase AA (4.5:1). Los nombres de variable semánticos de siempre (`--color-text-primary`, `--color-ferrol-*`, `--color-accent-*`...) se mantienen — solo cambiaron los valores a los que apuntan — para que ningún componente tenga que tocar su CSS al actualizar la marca.
+Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, tinta `#2F2F2F`, papel `#FBFFFC`, verde `#0E3A2F`. **El verde sustituyó al antiguo lima `#D5F483`** como color de acento de marca (y al verde de texto `#4B6212`): las variables conservan el nombre histórico `--xr-lime-*`/`ferrol`, pero hoy son una escala de verdes — `--xr-lime` y `--xr-lime-700` = `#0E3A2F`, `-900` `#08241D`, tintes claros `-50` `#EEF5F2`, `-100` `#E2EEE9`, `-200` `#C3DBD1`, `-300` `#8FB8A8`, `-500` `#4F8371`, y `--xr-lime-on-dark` `#A8D5C2` para usar el verde sobre fondos oscuros (pie, bandas de cifras), donde el verde oscuro no se leería. Al ser oscuro, todo lo que lleva el verde de fondo (botón `highlight`, `EyebrowPill highlight`, botón `accent` en rutas `route-ferrol`) va con texto papel. Cuando este documento dice «lima», léase este verde. Los pasos derivados (`--xr-blue-*`, `--xr-lime-*`, `--xr-ink-*`, en `globals.css`) están calibrados para que cada combinación de texto pase AA (4.5:1). Los nombres de variable semánticos de siempre (`--color-text-primary`, `--color-ferrol-*`, `--color-accent-*`...) se mantienen — solo cambiaron los valores a los que apuntan — para que ningún componente tenga que tocar su CSS al actualizar la marca.
 
 ```css
 :root {
@@ -71,12 +71,12 @@ Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, 
   --color-white: #FFFFFF;
 
   /* Acento Ferrol / Agenda (lima) */
-  --color-ferrol-bg: #F2FBD8;
-  --color-ferrol-border: #C3E65C;
+  --color-ferrol-bg: #E2EEE9;
+  --color-ferrol-border: #4F8371;
   --color-ferrol-text: #0E3A2F;
   --color-ferrol-strong: #08241D;
-  --color-ferrol-grad-1: #E6F9A8;
-  --color-ferrol-grad-2: #C3E65C;
+  --color-ferrol-grad-1: #C3DBD1;
+  --color-ferrol-grad-2: #8FB8A8;
 
   /* Acento Irse / Experiencias (azul) */
   --color-irse-bg: #E6F0FB;
@@ -117,10 +117,10 @@ Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, 
 ```
 
 Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
-- Ferrol/Agenda: `linear-gradient(135deg, #E6F9A8 0%, #C3E65C 100%)`
+- Ferrol/Agenda: `linear-gradient(135deg, #C3DBD1 0%, #8FB8A8 100%)`
 - Irse/Experiencias: `linear-gradient(135deg, #8FBCEF 0%, #357DCA 100%)`
 
-Cada ruta define además `--color-{ruta}-fill`/`-on-fill` (el par color de relleno + su texto de contraste correcto — lima necesita texto tinta, azul necesita texto blanco) que alimenta la variante `accent` de `ButtonPrimary`. Existe también una variante `highlight`, independiente de ruta, que es siempre lima — un acento de marca que puede aparecer incluso en páginas de acento azul (`ButtonPrimary`, `EyebrowPill`).
+Cada ruta define además `--color-{ruta}-fill`/`-on-fill` (el par color de relleno + su texto de contraste correcto — verde y azul necesitan texto claro) que alimenta la variante `accent` de `ButtonPrimary`. Existe también una variante `highlight`, independiente de ruta, que es siempre el verde de marca — un acento que puede aparecer incluso en páginas de acento azul (`ButtonPrimary`, `EyebrowPill`).
 
 ### Radios generosos por contexto
 

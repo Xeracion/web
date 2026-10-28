@@ -62,14 +62,14 @@ ol {
 }
 
 /* Variables — paleta de marca Xeración (azul #357dca · tinta #2f2f2f ·
-   papel #fbfffc · lima #d5f483). Los pasos derivados están calibrados para
+   papel #fbfffc · verde #0e3a2f, antes lima #d5f483). Los pasos derivados están calibrados para
    que cada combinación de texto pase AA (4.5:1). */
 :root {
   /* Marca */
   --xr-blue: #357dca;
   --xr-ink: #2f2f2f;
   --xr-paper: #fbfffc;
-  --xr-lime: #d5f483;
+  --xr-lime: #0e3a2f;
 
   /* Escala azul */
   --xr-blue-50: #f2f7fd;
@@ -81,14 +81,17 @@ ol {
   --xr-blue-700: #245a96;
   --xr-blue-900: #143a63;
 
-  /* Escala lima */
-  --xr-lime-50: #f9fdec;
-  --xr-lime-100: #f2fbd8;
-  --xr-lime-200: #e6f9a8;
-  --xr-lime-300: #d5f483;
-  --xr-lime-500: #c3e65c;
+  /* Escala verde (las variables conservan el nombre histórico «lime»: el
+     acento de marca era lima #d5f483 y pasó a ser el verde #0e3a2f) */
+  --xr-lime-50: #eef5f2;
+  --xr-lime-100: #e2eee9;
+  --xr-lime-200: #c3dbd1;
+  --xr-lime-300: #8fb8a8;
+  --xr-lime-500: #4f8371;
   --xr-lime-700: #0e3a2f;
   --xr-lime-900: #08241d;
+  /* Para usar el verde sobre fondos oscuros (pie, bandas de cifras) */
+  --xr-lime-on-dark: #a8d5c2;
 
   /* Tinta / neutros */
   --xr-ink-950: #1c1c1c;
@@ -130,15 +133,15 @@ ol {
   --surface-highlight: var(--xr-lime);
   --surface-glass: rgba(251, 255, 252, 0.72);
 
-  /* Acento Ferrol / Agenda → lima */
+  /* Acento Ferrol / Agenda → verde */
   --color-ferrol-bg: var(--xr-lime-100);
   --color-ferrol-border: var(--xr-lime-500);
   --color-ferrol-text: var(--xr-lime-700);
   --color-ferrol-strong: var(--xr-lime-900);
   --color-ferrol-grad-1: var(--xr-lime-200);
-  --color-ferrol-grad-2: var(--xr-lime-500);
+  --color-ferrol-grad-2: var(--xr-lime-300);
   --color-ferrol-fill: var(--xr-lime);
-  --color-ferrol-on-fill: var(--xr-ink-800);
+  --color-ferrol-on-fill: var(--xr-paper);
 
   /* Acento Irse / Experiencias → azul */
   --color-irse-bg: var(--xr-blue-100);
@@ -164,7 +167,7 @@ ol {
   /* Degradados (solo para fondos de foto placeholder) */
   --grad-hero: linear-gradient(135deg, #8fbcef 0%, #357dca 55%, #245a96 100%);
   --grad-neutral: linear-gradient(135deg, #d9ddd9 0%, #b9beb9 100%);
-  --grad-lime: linear-gradient(135deg, #e6f9a8 0%, #c3e65c 100%);
+  --grad-lime: linear-gradient(135deg, #c3dbd1 0%, #8fb8a8 100%);
   --grad-blue: linear-gradient(135deg, #8fbcef 0%, #357dca 100%);
 
   /* Tipografía — alias que respetan el cableado next/font de layout.tsx
