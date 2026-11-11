@@ -350,7 +350,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 400;
   text-wrap: balance;
 }
 
