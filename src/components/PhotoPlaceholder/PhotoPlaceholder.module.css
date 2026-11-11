@@ -24,6 +24,7 @@
 
 .image {
   object-fit: cover;
+  object-position: var(--photo-focus, center);
 }
 
 .label {

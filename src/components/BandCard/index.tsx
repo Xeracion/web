@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 
 import { Card } from '@/components/Card'
 import { EyebrowPill } from '@/components/EyebrowPill'
+import { cn } from '@/lib/cn'
 
 import styles from './BandCard.module.css'
 
@@ -39,7 +40,7 @@ export function BandCard({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={className}
+      className={cn(styles.root, className)}
     >
       <div className={styles.band} style={{ background: bandColor }}>
         <EyebrowPill>{bandLabel}</EyebrowPill>

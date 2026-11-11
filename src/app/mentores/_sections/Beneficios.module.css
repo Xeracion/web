@@ -16,17 +16,11 @@
 }
 
 .card {
-  background: var(--color-white);
-  border: 0.5px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
-.card:hover {
-  border-color: var(--color-accent-border);
-  box-shadow: 0 0 0 2px var(--color-accent-bg);
-}
 
 .icon {
   font-size: 28px;

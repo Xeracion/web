@@ -1,36 +1,50 @@
 .hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  padding-block: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-block: var(--space-2xl) var(--space-lg);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .hero {
-    grid-template-columns: 47fr 53fr;
-    align-items: center;
+    gap: var(--space-lg);
+    padding-block: var(--space-lg) var(--space-sm);
   }
 }
 
 .text {
-  order: 2;
-  padding: 8px 0 24px 0;
+  max-width: 1040px;
 }
 
-@media (min-width: 768px) {
-  .text {
-    order: 0;
-    padding: 80px 32px 64px 32px;
-  }
+.heading {
+  max-width: 820px;
 }
 
-.text h1 {
-  margin-top: var(--space-xs);
+/* Titular + entradilla en una sola frase larga: la primera parte en tinta
+   y el resto en gris, al mismo tamaño. */
+.statement {
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.statementMuted {
+  color: var(--color-text-muted);
 }
 
 .intro {
-  max-width: 460px;
-  margin-top: var(--space-sm);
+  max-width: 640px;
+  margin-top: var(--space-md);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .intro {
+    font-size: var(--text-body);
+  }
 }
 
 .below {
@@ -38,14 +52,17 @@
 }
 
 .photo {
-  order: 1;
-  --hero-aspect: 4 / 3;
+  --hero-aspect: 21 / 9;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
   .photo {
-    order: 0;
-    --hero-aspect: 4 / 5;
-    min-height: 460px;
+    --hero-aspect: 16 / 9;
+  }
+}
+
+@media (max-width: 768px) {
+  .photo {
+    --hero-aspect: 4 / 3;
   }
 }

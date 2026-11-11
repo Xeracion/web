@@ -27,6 +27,7 @@ export default function SpeakFactorPage() {
         heading={page.heroHeading}
         text={page.heroText}
         image={page.heroImage}
+        imageFocus="center 15%"
         imageAlt={page.heroImageAlt}
         imageLabel={page.heroImageCaption}
         imageVariant="ferrol"

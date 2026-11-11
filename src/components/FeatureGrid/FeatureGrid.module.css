@@ -17,16 +17,10 @@
 
 .card {
   background: var(--surface-card);
-  border: var(--border-hair) solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
 }
 
-.card:hover {
-  border-color: var(--color-accent-border);
-  box-shadow: var(--shadow-ring-accent);
-}
 
 .number {
   display: inline-flex;

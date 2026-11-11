@@ -1,19 +1,23 @@
+/* Tarjeta plana (estilo anthropic.com): fondo gris suave sobre el papel,
+   sin borde ni sombra; al pasar el ratón solo se oscurece un poco. */
 .card {
   display: block;
   background: var(--surface-card);
-  border: var(--border-hair) solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   color: inherit;
 }
 
 .interactive {
-  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) ease,
-    border-color var(--dur-base) ease;
+  transition: background-color var(--dur-base) ease;
 }
 
 .interactive:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lift);
+  background: var(--surface-card-hover);
   color: inherit;
+}
+
+.interactive:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
 }

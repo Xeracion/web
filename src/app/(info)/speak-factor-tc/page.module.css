@@ -208,7 +208,6 @@
 .voice {
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
-  border: var(--border-hair) solid var(--color-border);
   background: var(--surface-card);
 }
 

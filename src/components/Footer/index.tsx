@@ -8,7 +8,7 @@ import styles from './Footer.module.css'
 
 interface FooterColumn {
   heading: string
-  links: Array<{ label: string; href: string }>
+  links: Array<{ label: string; href: string; external?: boolean }>
 }
 
 const COLUMNS: FooterColumn[] = [
@@ -108,10 +108,23 @@ export function Footer({ siteSettings }: FooterProps) {
   const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
 
+  const contactLinks: Array<{ label: string; href: string; external?: boolean }> = [
+    ...(siteSettings?.email ? [{ label: siteSettings.email, href: `mailto:${siteSettings.email}`, external: true }] : []),
+    ...(siteSettings?.whatsapp
+      ? [{ label: 'WhatsApp', href: `https://wa.me/${siteSettings.whatsapp}`, external: true }]
+      : []),
+    { label: 'Nosotros', href: '/nosotros/' },
+    { label: 'Empresas', href: '/empresas/' },
+  ]
+  const rows: FooterColumn[] = [...COLUMNS, { heading: 'Contacto', links: contactLinks }]
+
+  // Inspirado en el pie de anthropic.com: a la izquierda la marca y las
+  // redes; a la derecha, una fila por grupo separada por líneas finas, con
+  // el nombre del grupo y sus enlaces en línea.
   return (
     <footer className={styles.footer}>
       <Container className={styles.grid}>
-        <div>
+        <div className={styles.brand}>
           <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
             <Image src="/XeracionWhite.png" alt="" width={1811} height={375} />
           </Link>
@@ -137,54 +150,38 @@ export function Footer({ siteSettings }: FooterProps) {
           )}
         </div>
 
-        {COLUMNS.map((column) => (
-          <div key={column.heading}>
-            <h5 className={styles.columnHeading}>{column.heading}</h5>
-            <ul className={styles.linkList}>
-              {column.links.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className={styles.link}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className={styles.rows}>
+          {rows.map((row) => (
+            <div key={row.heading} className={styles.row}>
+              <h2 className={styles.columnHeading}>{row.heading}</h2>
+              <ul className={styles.linkList}>
+                {row.links.map((link) => (
+                  <li key={link.href}>
+                    {/^(https?:|mailto:)/.test(link.href) ? (
+                      <a
+                        href={link.href}
+                        className={styles.link}
+                        {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={styles.link}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-        <div>
-          <h5 className={styles.columnHeading}>Contacto</h5>
-          <ul className={styles.linkList}>
-            {siteSettings?.email && (
-              <li>
-                <a href={`mailto:${siteSettings.email}`} className={styles.link}>
-                  {siteSettings.email}
-                </a>
-              </li>
-            )}
-            {siteSettings?.whatsapp && (
-              <li>
-                <a
-                  href={`https://wa.me/${siteSettings.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  WhatsApp
-                </a>
-              </li>
-            )}
-            <li>
-              <Link href="/nosotros/" className={styles.link}>
-                Nosotros
-              </Link>
-            </li>
-            <li>
-              <Link href="/empresas/" className={styles.link}>
-                Empresas
-              </Link>
-            </li>
-          </ul>
+          {siteSettings?.mission && (
+            <div className={styles.mission}>
+              <h2 className={styles.missionHeading}>Quiénes somos</h2>
+              <p>{siteSettings.mission}</p>
+            </div>
+          )}
         </div>
       </Container>
 

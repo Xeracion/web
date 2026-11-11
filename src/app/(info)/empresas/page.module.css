@@ -28,14 +28,12 @@
 
 .column {
   padding: var(--space-lg);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  border: var(--border-hair) solid var(--color-border);
 }
 
 .column:first-child {
   background: var(--color-accent-bg);
-  border-color: transparent;
 }
 
 .list {

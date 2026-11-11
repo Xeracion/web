@@ -3,13 +3,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 24px;
+  padding: 12px 20px;
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   background: var(--color-text-primary);
   color: var(--color-bg);
   font-family: var(--font-body), sans-serif;
-  font-size: var(--text-ui);
+  font-size: var(--text-sm);
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
@@ -22,9 +22,6 @@
   opacity: 0.85;
 }
 
-.button:active {
-  transform: scale(0.97);
-}
 
 .button:disabled {
   opacity: 0.5;

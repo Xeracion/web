@@ -4,16 +4,14 @@
   align-items: center;
   text-align: center;
   padding: var(--space-lg) var(--space-sm);
-  border: var(--border-hair) solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--surface-card);
   color: inherit;
-  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  transition: background-color var(--dur-base) ease;
 }
 
 a.member:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lift);
+  background: var(--surface-card-hover);
   color: inherit;
 }
 

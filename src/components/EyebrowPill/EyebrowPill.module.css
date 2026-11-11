@@ -2,17 +2,16 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
-  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   font-family: var(--font-body), sans-serif;
-  font-size: var(--text-eyebrow);
+  font-size: var(--text-caption);
   font-weight: 500;
   line-height: 1.4;
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--color-text-secondary);
   white-space: nowrap;
 }

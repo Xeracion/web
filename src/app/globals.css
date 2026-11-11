@@ -126,7 +126,8 @@ ol {
 
   /* Superficies */
   --surface-page: var(--color-bg);
-  --surface-card: var(--xr-white);
+  --surface-card: var(--xr-ink-50);
+  --surface-card-hover: var(--xr-ink-100);
   --surface-soft: var(--xr-ink-50);
   --surface-dark: var(--xr-ink-900);
   --surface-brand: var(--xr-blue);
@@ -215,17 +216,22 @@ ol {
   --space-3xl: 80px;
   --space-4xl: 96px;
 
-  /* Radius — generosos */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  /* Radius — contenidos, al estilo de anthropic.com: esquinas casi rectas.
+     -xl (fotos de cabecera) es más pequeño que -lg (tarjetas) a propósito:
+     las fotos grandes van casi rectas. -full queda para las pastillas del
+     menú, chips y avatares redondos. */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 8px;
   --radius-full: 999px;
 
   --border-hair: 0.5px;
   --border-thin: 1px;
 
-  --shadow-lift: 0 12px 32px -16px rgba(47, 47, 47, 0.18);
+  /* Sin elevación: las tarjetas son planas y al pasar el ratón solo
+     cambian de fondo. */
+  --shadow-lift: none;
   --shadow-float: 0 12px 32px -16px rgba(47, 47, 47, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   --shadow-ring-accent: 0 0 0 3px var(--color-accent-bg);
 
@@ -242,13 +248,13 @@ ol {
   /* Container */
   --container-max: 1200px;
   --container-padding: 32px;
-  --nav-height: 88px;
+  --nav-height: 72px;
 }
 
 @media (max-width: 768px) {
   :root {
     --container-padding: 20px;
-    --nav-height: 80px;
+    --nav-height: 64px;
   }
 }
 

@@ -20,6 +20,7 @@ export function Hero({ data }: { data: HeroData }) {
       imageAlt={data.heroImageAlt}
       imageLabel={data.heroImageCaption ?? ''}
       imageVariant="hero"
+      inlineText
       below={
         data.heroIndicator ? (
           <p className={styles.indicator}>

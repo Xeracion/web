@@ -122,20 +122,25 @@ Gradientes de tarjeta de ruta (para fondos de foto placeholder en la portada):
 
 Cada ruta define además `--color-{ruta}-fill`/`-on-fill` (el par color de relleno + su texto de contraste correcto — verde y azul necesitan texto claro) que alimenta la variante `accent` de `ButtonPrimary`. Existe también una variante `highlight`, independiente de ruta, que es siempre el verde de marca — un acento que puede aparecer incluso en páginas de acento azul (`ButtonPrimary`, `EyebrowPill`).
 
-### Radios generosos por contexto
+### Lenguaje visual inspirado en anthropic.com
 
-- 28px en fotos hero (`--radius-xl`)
-- 20px en tarjetas (`--radius-lg`)
-- Pill completo en botones (`--radius-full`) — ya no rectángulos redondeados
+Desde noviembre de 2026 la interfaz replica la UX/UI de anthropic.com, manteniendo la paleta, la tipografía (solo Nordea + Inter, sin serif) y el contenido y la estructura de cada página:
+
+- **Esquinas contenidas**: `--radius-sm` 4px, `--radius-md` 8px (botones, campos), `--radius-lg` 12px (tarjetas), `--radius-xl` 8px (fotos de cabecera — más pequeño que `-lg` a propósito: las fotos grandes van casi rectas). `--radius-full` queda solo para las pastillas del menú, chips y avatares redondos.
+- **Tarjetas planas**: fondo `--surface-card` (`--xr-ink-50`, gris suave sobre el papel), sin borde ni sombra; al pasar el ratón solo cambian a `--surface-card-hover` (`--xr-ink-100`). Nada se eleva (`--shadow-lift: none`, sin `translateY`). En secciones que ya tienen fondo gris (`--color-bg-warm`, p. ej. «Valores» de `/nosotros/`), las tarjetas van en papel (`--color-bg`).
+- **Botones rectangulares** (`--radius-md`, 14px): `ButtonPrimary` en tinta (o verde/azul con `accent`/`highlight`); `ButtonSecondary` en gris suave, sin contorno.
+- **Cabeceras apiladas** (`HeroSplit`): titular a todo el ancho, entradilla y botones debajo, y la foto en panorámico (21:9 desktop, 16:9 tablet, 4:3 móvil) al final. Con `inlineText` (solo la portada) la entradilla va dentro del mismo `h1`, en gris, a continuación de la frase principal — el efecto de anthropic.com hecho solo con Nordea. `imageFocus` ajusta el recorte (por defecto `center 35%`).
+- **Separadores con líneas finas**: los nombres de grupo del catálogo («En Ferrol y comarca»…) son una etiqueta pequeña entre dos líneas, y el pie es una lista de filas separadas por líneas.
+- **`EyebrowPill`** pasó a ser una etiqueta pequeña en minúscula normal (12px, `--radius-sm`), no versalitas espaciadas.
 
 ### Componentes reutilizables
 
 - `.eyebrow-pill` (`EyebrowPill`) — etiqueta en versalitas con pastilla de fondo semi-transparente, para superponer sobre fotos y tarjetas. El antetítulo suelto (`Eyebrow`) se eliminó, ver regla 3 del punto 3.
 - `.container` — max-width 1200px, padding lateral responsive vía `--container-padding`
-- `.btn-primary` — fondo oscuro `#2F2F2F`, texto papel, radius pill (`--radius-full`)
-- `.btn-secondary` — borde 0.5px, fondo transparente, radius pill
+- `.btn-primary` — fondo oscuro `#2F2F2F`, texto papel, `--radius-md`
+- `.btn-secondary` — fondo gris suave, sin borde, `--radius-md`
 - `.btn-link` — texto plano con flecha (`→`) que se desliza 3px al hover, para "Leer más" / CTAs terciarios
-- `.card` — fondo blanco, radius 20px (`--radius-lg`), borde sutil, hover con lift (`translateY(-3px)` + `--shadow-lift`)
+- `.card` — plana: fondo `--surface-card`, `--radius-lg` (12px), sin borde; hover solo cambia el fondo
 - `.photo-placeholder` — marcador de foto real con gradiente, incluye etiqueta entre corchetes indicando qué foto real va ahí (ej. `[ foto editorial · grupo en muelle de Ferrol ]`)
 
 En `/nosotros/`, la sección "Valores" usa discos numerados (1, 2, 3…) en vez de emoji como icono de cada tarjeta — un cambio explícito del libro de estilo, acotado a esa sección (`Iniciativas` y el patrón `ValueItem` de `/mentores/` siguen con emoji).
@@ -144,12 +149,15 @@ En `/nosotros/`, la sección "Valores" usa discos numerados (1, 2, 3…) en vez 
 
 Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver el punto 2.1 más abajo para el detalle del componente. Resumen visual:
 
-- Sticky. Al cargar, fondo transparente y ancho igual al `.container` de la página. Al superar ~100px de scroll, la barra se estrecha (max-width 1200px → 720px), se centra, gana fondo `rgba(250,250,247,0.85)` + `backdrop-filter: blur(12px)` + sombra sutil + esquinas muy redondeadas (efecto "pill" flotante). Transición con spring (`motion`), no lineal.
-- Izquierda: logotipo "Xeración" (imagen del wordmark de marca), enlaza a `/`.
-- Derecha desktop: cuatro enlaces (Inicio, Agenda, Experiencias, Nosotros — ver `NAV_ITEMS_ES` en `src/lib/nav.ts`). Reciben el mismo "pill" de fondo (`--color-accent-bg`) que se desplaza animado al pasar el ratón o el foco entre ellos, sin distinción visual entre ellos.
-- Derecha móvil (< 768px): hamburguesa → menú desplegable animado (no overlay a pantalla completa); se cierra al pulsar un enlace o Escape.
-- **En cada sub-home**, el enlace de nav de la sección activa lleva el color de acento correspondiente (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.
-- Respeta `prefers-reduced-motion`: sin pill animado ni transiciones de layout si está activo.
+- Barra fija sencilla, estilo anthropic.com: fondo papel opaco, ancho del `.container`; no se encoge ni flota — al hacer scroll solo gana una línea fina inferior. Altura `--nav-height` (72px / 64px en móvil).
+- Desktop: la primera mitad de `NAV_ITEMS_ES` (Inicio, Agenda) a la izquierda, el logotipo centrado y la segunda mitad (Experiencias, Nosotros) a la derecha, cada enlace en una pastilla fina con borde (`--radius-full`, 13px).
+- Móvil (< 768px): logotipo a la izquierda y botón de menú a la derecha → lista desplegable con enlaces grandes separados por líneas; se cierra al pulsar un enlace o Escape.
+- **En cada sub-home**, la pastilla de la sección activa lleva el fondo y el texto de acento correspondientes (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.
+- Respeta `prefers-reduced-motion`: sin animación del desplegable ni transiciones.
+
+### Pie (`Footer`)
+
+Fondo oscuro a todo el ancho (ya no una tarjeta redondeada). Izquierda: logotipo y redes. Derecha: una fila por grupo (Agenda, Experiencias, Contacto) separada por líneas finas, con el nombre del grupo y sus enlaces en línea, y debajo «Quiénes somos» con `siteSettings.mission` (frase corta sin nombres de programa, regla 7).
 
 #### 2.1 Componente `ResizableNavbar`
 
@@ -157,7 +165,7 @@ Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver e
 - Sustituye a los antiguos `Header` y `MobileMenu` (eliminados) en los cinco layouts que montan navegación: `(main)`, `agenda`, `experiencias`, `nosotros`, `mentores`.
 - Props: `siteName: string`, `items: NavItem[]` (`{ name, link, key }`, de `src/lib/nav.ts` — `NAV_ITEMS_ES`), `activeRoute?: RouteKey` (`'home' | 'ferrol' | 'experiencias' | 'nosotros'` — el valor sigue llamándose `ferrol` internamente para la Agenda aunque la página pública sea `/agenda/`, ver 4.2 — se compara contra `item.key`, no se reconstruye a partir de la URL). Nada de contenido va hardcodeado dentro del componente — los enlaces se definen una vez en `src/lib/nav.ts` y cada layout se los pasa. **Ya no tiene selector de idioma** (props `locale`/`altLangHref` eliminadas junto con la versión en inglés, ver punto 1).
 - El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse` que ya aplica cada layout — el componente no tiene lógica condicional de color.
-- **Decisión técnica**: usa la librería `motion` (antes `framer-motion`) para las animaciones de scroll (`useScroll` + `useMotionValueEvent`), el spring de resize y el pill con `layoutId`. Está inspirado en el "Resizable Navbar" de Aceternity UI, pero reimplementado desde cero en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
+- El nombre `ResizableNavbar` es histórico: era la barra que se estrechaba y flotaba (inspirada en Aceternity UI). Hoy es la barra fija estilo anthropic.com; se mantuvo el nombre y las props para no tocar los layouts. Usa `motion` solo para detectar el scroll (`useScroll`) y animar el desplegable móvil — todo en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
 
 ## 3. Reglas de tono del copy
 
@@ -196,7 +204,7 @@ Mientras falte cualquiera de los dos, la agenda no muestra eventos (no rompe la 
 **Sanity dejó de ser el CMS del sitio.** Se mantiene únicamente para el catálogo de experiencias (`experiencia` + `convocatoria`, ver 4.4) — eso es lo único que se sigue editando desde `/studio`. Todo el resto del contenido de todas las páginas (portada, `/agenda/`, `/nosotros/`, `/mentores/`, ajustes generales) vive hardcodeado como objetos TypeScript planos en `src/content/*.ts`, y se edita directamente en el código, en sesiones de Claude Code — no en un Studio. Este es un cambio deliberado: la web es en esencia una landing page que no cambia cada semana, así que no compensa el coste de mantener veinte tipos de documento Sanity solo para editar un titular de vez en cuando.
 
 - **Un archivo por página/sección**, con el shape del contenido calcado del antiguo documento Sanity (mismos nombres de campo, sin `_type`/`_key`) para minimizar la reescritura de componentes:
-  - `src/content/siteSettings.ts` — `siteSettings` (antes el singleton `siteSettings`): title, description, address, email, whatsapp, socialLinks, googleCalendarId.
+  - `src/content/siteSettings.ts` — `siteSettings` (antes el singleton `siteSettings`): title, description, mission (frase del pie), address, email, whatsapp, socialLinks, googleCalendarId.
   - `src/content/home.ts` — `homeEs` + sus testimonios destacados.
   - `src/content/agenda.ts` — `pageFerrolEs`, `fixedProgramsEs`, `ferrolFaqsEs` (sigue usando el nombre histórico `Ferrol`, ver más abajo).
   - `src/content/nosotros.ts` — `pageNosotrosEs` (incluye el bloque legal, ver 4.5) + testimonios.
