@@ -522,3 +522,9 @@ h4 {
 section[id] {
   scroll-margin-top: calc(var(--nav-height) + var(--space-sm));
 }
+
+/* Si la página acaba con la banda verde de cierre, el pie va pegado a ella
+   (sin la franja de papel que deja su margen superior). */
+.site-main:has(> [data-closing-band]:last-child) + footer {
+  margin-top: 0;
+}
