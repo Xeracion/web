@@ -65,7 +65,7 @@ export async function getGoogleCalendarEvents(
       (item): EventSummary => ({
         title: item.summary,
         dateTime: toNaiveIso(item.start),
-        location: item.location,
+        location: shortLocation(item.location),
         description: item.description,
       }),
     )
@@ -104,4 +104,15 @@ export function endOfWeekMadrid(now: Date = new Date()): Date {
   const sundayEndWall = Date.UTC(num('year'), num('month') - 1, num('day') + daysToSunday, 23, 59, 59)
 
   return new Date(sundayEndWall - offsetMs)
+}
+
+/**
+ * Google guarda la dirección completa del sitio («Xeracion, Rúa Almendra, 9,
+ * 15402 Ferrol, A Coruña, España»). En la agenda basta con el lugar: se corta
+ * desde el código postal.
+ */
+function shortLocation(location?: string) {
+  if (!location) return location
+  const cut = location.split(/,\s*\d{5}\b/)[0].trim()
+  return cut || location
 }
