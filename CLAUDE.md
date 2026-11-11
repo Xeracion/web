@@ -160,7 +160,7 @@ Con `prefers-reduced-motion`, el cambio es instantáneo.
 
 ### Logotipo
 
-Los logos oficiales en vectorial están en `public/logo/`: `xeracion-azul.svg` (`#357DCA`, para fondos claros) y `xeracion-blanco.svg` (para fondos oscuros, como el pie). Mismo trazado y viewBox (1811×375). Los PNG antiguos de la raíz de `public/` (`XeracionBlue.png`, `XeracionWhite.png`, `XeracionXblue-1.png`) ya no los usa la web; se conservan por si hay enlaces externos a ellos.
+Los logos oficiales en vectorial están en `public/logo/`: `xeracion-azul.svg` (`#357DCA`, para fondos claros) y `xeracion-blanco.svg` (para fondos oscuros, como el pie). Mismo trazado y viewBox (1811×375). Son los únicos archivos de logo: los PNG antiguos (`XeracionBlue.png`, `XeracionWhite.png`, `XeracionXblue-1.png`) se borraron.
 
 ### Pie (`Footer`)
 
