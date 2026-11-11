@@ -1,8 +1,8 @@
 /* Tipografía corporativa */
 @font-face {
-  font-family: "Nordea Sans Large";
-  src: url("/fonts/NordeaSansLarge-Medium.ttf") format("truetype");
-  font-weight: 500;
+  font-family: "Nordea Sans Small";
+  src: url("/fonts/NordeaSansSmall-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -172,9 +172,9 @@ ol {
   --grad-blue: linear-gradient(135deg, #8fbcef 0%, #357dca 100%);
 
   /* Tipografía — alias que respetan el cableado next/font de layout.tsx
-     (--font-heading/--font-inter). "Nordea Sans Large" se antepone para
+     (--font-heading/--font-inter). "Nordea Sans Small" se antepone para
      que, en cuanto se añada el @font-face real, se recoja sin tocar CSS. */
-  --font-display: "Nordea Sans Large", var(--font-heading), sans-serif;
+  --font-display: "Nordea Sans Small", var(--font-heading), sans-serif;
   --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
 
   --text-h1: 42px;

@@ -43,17 +43,17 @@ El usuario es el héroe, Xeración es el guía. Esto no es decorativo: condicion
 
 ### Tipografía
 
-- **Nordea Sans Large** (500) — todos los titulares H1 a H4, vía la variable `--font-display`. Es la tipografía corporativa real (con licencia), embebida como `@font-face` en `globals.css` apuntando a `public/fonts/NordeaSansLarge-Medium.ttf`. Si ese archivo llegara a faltar, `--font-display` degrada en cascada a **Manrope** (next/font, variable `--font-heading`) y luego a `system-ui` — ningún componente necesita tocarse, todos leen `--font-display`.
+- **Nordea Sans Small** (Regular, 400) — todos los titulares H1 a H4, vía la variable `--font-display`. Es la tipografía corporativa real (con licencia), embebida como `@font-face` en `globals.css` apuntando a `public/fonts/NordeaSansSmall-Regular.ttf` (sustituyó en noviembre de 2026 a Nordea Sans Large Medium, que se retiró). Solo hay un peso: los titulares van a 400 y nada en `--font-display` debe pedir 600 o más, o el navegador fabricaría una negrita falsa. No tiene la flecha `→`, que sale de la fuente de respaldo. Si ese archivo llegara a faltar, `--font-display` degrada en cascada a **Manrope** (next/font, variable `--font-heading`) y luego a `system-ui` — ningún componente necesita tocarse, todos leen `--font-display`.
 - **Inter** (400, 500) — cuerpo, eyebrows, UI, metadatos, vía `--font-body`.
 
 Escalas responsive (desktop / tablet / móvil). Los breakpoints del sistema son: móvil < 768px, tablet 768–1024px, desktop > 1024px.
 
 | Nivel | Desktop | Tablet | Móvil | Weight | Line-height | Letter-spacing |
 |---|---|---|---|---|---|---|
-| H1 | 42px | 34px | 28px | 600 | 1.04 | -0.025em |
-| H2 | 34px | 30px | 26px | 600 | 1.15 | -0.02em |
-| H3 | 24px | 22px | 20px | 600 | 1.2 | -0.015em |
-| H4 | 19px | 18px | 17px | 600 | 1.3 | -0.01em |
+| H1 | 42px | 34px | 28px | 400 | 1.04 | -0.025em |
+| H2 | 34px | 30px | 26px | 400 | 1.15 | -0.02em |
+| H3 | 24px | 22px | 20px | 400 | 1.2 | -0.015em |
+| H4 | 19px | 18px | 17px | 400 | 1.3 | -0.01em |
 | Body | 17px | 16px | 16px | 400 | 1.55 | 0 |
 
 Notas de tamaños específicos que aparecen en secciones concretas y difieren de la escala base (respetar los de ESPECIFICACION.md en cada caso): la cita del testimonio grande usa 28px/22px/19px; la del testimonio pequeño 19px/17px; el H2 de CTA de cierre usa 36px/28px; el número de la tira de estadísticas usa 44px.
