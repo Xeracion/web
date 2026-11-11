@@ -22,7 +22,8 @@ export const pageNosotrosEs = {
     { value: '+120', label: 'voluntarios europeos acogidos' },
     { value: '+15', label: 'países de origen' },
   ] satisfies StatItem[],
-  heroBackgroundImage: undefined as string | undefined,
+  // Equipo y voluntariado en la Casa da Xuventude.
+  heroBackgroundImage: '/img/fotos/equipo-casa-xuventude.webp' as string | undefined,
   historiaIntro: { heading: 'Soñamos proyectos, luego los creamos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Somos una red de entidades que desde 2013 trabaja en Galicia y Valencia. Montamos iniciativas culturales, medioambientales y de voluntariado, casi siempre con la Casa da Xuventude de Ferrol como campamento base.',

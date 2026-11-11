@@ -10,7 +10,7 @@ export const homeEs = {
   intro:
     'Somos un grupo de gente que monta alternativas: experiencias para crecer, sobre todo si eres joven, y proyectos que mejoran la vida de la comunidad. Desde 2013.',
   heroImage: '/img/fotos/portada-equipo.webp' as string | undefined,
-  heroImageAlt: 'El equipo de Xeración y voluntarios europeos posando juntos al aire libre',
+  heroImageAlt: 'Cinco jóvenes de Xeración celebran con los brazos en alto en un parque en otoño',
   heroImageCaption: 'foto editorial · gente haciendo algo juntos al aire libre',
   heroIndicator: undefined as string | undefined,
   heroActions: [
@@ -46,6 +46,12 @@ export const homeEs = {
       text: 'Devolver el bosque autóctono al monte, parcela a parcela.',
       href: 'https://stopeucalipto.com',
       ctaLabel: 'Quiero verlo',
+    },
+    {
+      name: 'Retake',
+      text: 'Mañanas de voluntariado para limpiar playas y riberas, plantar árboles autóctonos y quitar eucalipto. Desde 2019.',
+      href: 'https://retake.es',
+      ctaLabel: 'Quiero echar una mano',
     },
   ] satisfies HomeProject[],
   figuresHeading: 'Un grupo pequeño con un historial largo.',

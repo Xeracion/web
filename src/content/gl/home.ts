@@ -8,7 +8,7 @@ export const homeGl = {
   heading: 'Outros plans son posibles.',
   intro:
     'Somos un grupo de xente que monta alternativas: experiencias para medrar, sobre todo se es xove, e proxectos que melloran a vida da comunidade. Dende 2013.',
-  heroImageAlt: 'O equipo de Xeración e voluntariado europeo posando xuntos ao aire libre',
+  heroImageAlt: 'Cinco mozos e mozas de Xeración celebran cos brazos en alto nun parque no outono',
   heroActions: [
     { label: 'Quero ver experiencias', href: '#experiencias' },
     { label: 'Quero ver os proxectos', href: '#proxectos' },
@@ -40,6 +40,12 @@ export const homeGl = {
       text: 'Devolverlle o bosque autóctono ao monte, parcela a parcela.',
       href: 'https://stopeucalipto.com',
       ctaLabel: 'Quero velo',
+    },
+    {
+      name: 'Retake',
+      text: 'Mañás de voluntariado para limpar praias e ribeiras, plantar árbores autóctonas e quitar eucalipto. Dende 2019.',
+      href: 'https://retake.es',
+      ctaLabel: 'Quero botar unha man',
     },
   ] satisfies HomeProject[],
   figuresHeading: 'Un grupo pequeno cun historial longo.',
