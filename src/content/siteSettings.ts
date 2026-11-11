@@ -14,8 +14,8 @@ export const siteSettings = {
     'Xeración es una asociación juvenil gallega activa desde 2013 con sede en Ferrol (Casa da Xuventude, Rúa Almendra 9). Coordina intercambios juveniles Erasmus+, voluntariados del Cuerpo Europeo de Solidaridad (CES/ESC), cursos de formación y actividades locales.',
   // Frase corta del pie («Quiénes somos»). Sin nombres de programa (regla 7).
   mission:
-    'Asociación juvenil sin ánimo de lucro de Ferrol desde 2013. Acompañamos a gente joven a vivir experiencias que le cambian algo, en la comarca y por Europa.',
-  address: 'Casa da Xuventude, Rúa Almendra 9, 15401 Ferrol',
+    'Asociación juvenil sin ánimo de lucro desde 2013. Montamos alternativas: experiencias para crecer y proyectos que mejoran lo que es de todos.',
+  address: 'Casa da Xuventude, Rúa Almendra 9, 15402 Ferrol',
   email: 'info@xeracion.org',
   whatsapp: '34644523505',
   socialLinks: [

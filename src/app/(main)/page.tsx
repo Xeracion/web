@@ -6,7 +6,7 @@ import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
 import { homeEs, homeEsTestimonials } from '@/content/home'
 import { siteSettings } from '@/content/siteSettings'
-import { getGoogleCalendarEvents } from '@/lib/googleCalendar'
+import { endOfWeekMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getExperiencias, getExperienciasDestacadas } from '@/sanity/lib/queries'
 
@@ -14,8 +14,9 @@ import { Agenda } from './_sections/Agenda'
 import { ClosingCta } from './_sections/ClosingCta'
 import { Doors } from './_sections/Doors'
 import { Hero } from './_sections/Hero'
-import { InstitutionalStrip } from './_sections/InstitutionalStrip'
+import { Figures } from './_sections/Figures'
 import { Logos } from './_sections/Logos'
+import { Projects } from './_sections/Projects'
 import { Testimonials } from './_sections/Testimonials'
 
 // Sin esto, la página se genera estática en build time y, si esa única
@@ -33,7 +34,8 @@ export function generateMetadata(): Metadata {
 export default async function HomePage() {
   const [destacadas, events] = await Promise.all([
     getExperienciasDestacadas(),
-    getGoogleCalendarEvents(siteSettings.googleCalendarId, { maxResults: 3 }),
+    // «Esta semana» es la semana natural: de ahora al domingo, hora de Madrid.
+    getGoogleCalendarEvents(siteSettings.googleCalendarId, { timeMax: endOfWeekMadrid(), maxResults: 5 }),
   ])
   // Si nadie ha marcado ninguna como destacada, la home enseña todas las
   // activas antes que quedarse sin catálogo.
@@ -42,6 +44,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero data={homeEs} />
+      <Agenda heading={homeEs.agendaHeading} linkLabel={homeEs.agendaLinkLabel} events={events} />
       <Suspense fallback={null}>
         <ExperienciasCatalog
           id="experiencias"
@@ -52,9 +55,21 @@ export default async function HomePage() {
           footer={<ButtonLink href="/experiencias/">{homeEs.catalogAllLabel}</ButtonLink>}
         />
       </Suspense>
-      <Agenda heading={homeEs.agendaHeading} linkLabel={homeEs.agendaLinkLabel} events={events} />
+      <Projects
+        id="proyectos"
+        heading={homeEs.projectsHeading}
+        text={homeEs.projectsText}
+        items={homeEs.projects}
+      />
       <Testimonials heading={homeEs.testimonialsHeading} items={homeEsTestimonials} />
-      <InstitutionalStrip text={homeEs.institutionalText} href={homeEs.institutionalLinkHref} />
+      <Figures
+        heading={homeEs.figuresHeading}
+        text={homeEs.figuresText}
+        items={homeEs.figures}
+        backing={homeEs.figuresBacking}
+        linkLabel={homeEs.figuresLinkLabel}
+        linkHref={homeEs.figuresLinkHref}
+      />
       <Logos items={homeEs.institutionalLogos} />
       <Doors heading={homeEs.doorsHeading} items={homeEs.doors} />
       <ClosingCta home={homeEs} siteSettings={siteSettings} />

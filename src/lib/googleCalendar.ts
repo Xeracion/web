@@ -73,3 +73,35 @@ export async function getGoogleCalendarEvents(
     return []
   }
 }
+
+const WEEKDAY_INDEX: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }
+
+/**
+ * Último instante (domingo, 23:59:59) de la semana natural en curso en hora
+ * de Madrid. Sirve de `timeMax` para la agenda de la portada: «esta semana»
+ * es de hoy al domingo, no los próximos siete días.
+ */
+export function endOfWeekMadrid(now: Date = new Date()): Date {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Madrid',
+    weekday: 'short',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hourCycle: 'h23',
+  }).formatToParts(now)
+  const get = (type: string) => parts.find((part) => part.type === type)?.value ?? ''
+  const num = (type: string) => Number(get(type))
+
+  // La hora de pared de Madrid leída como si fuese UTC: la diferencia con el
+  // instante real es el desfase horario vigente.
+  const wallAsUtc = Date.UTC(num('year'), num('month') - 1, num('day'), num('hour'), num('minute'), num('second'))
+  const offsetMs = wallAsUtc - Math.floor(now.getTime() / 1000) * 1000
+  const daysToSunday = 7 - (WEEKDAY_INDEX[get('weekday')] ?? 7)
+  const sundayEndWall = Date.UTC(num('year'), num('month') - 1, num('day') + daysToSunday, 23, 59, 59)
+
+  return new Date(sundayEndWall - offsetMs)
+}

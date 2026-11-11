@@ -1,22 +1,64 @@
-import type { Partner, SectionIntro, Testimonial } from './types'
+import type { HomeDoor, HomeProject, Partner, SectionIntro, StatItem, Testimonial } from './types'
 
 // ES: copy del pivote a catálogo de experiencias (scripts/patch-pivot-content.ts
 // fue la última actualización real de este contenido en producción).
 export const homeEs = {
-  heading: 'Encuentra aquí tu aventura.',
-  intro: 'Caminos, bosques, ciudades europeas y noches en Ferrol. Unas las pagas tú, otras te las paga Europa. Todas te dejan algo.',
+  // Posicionamiento (noviembre de 2026): Xeración se presenta como un grupo
+  // que monta alternativas, con dos pilares de igual peso (experiencias y
+  // proyectos para la comunidad). Europa y Ferrol quedan en segundo plano.
+  heading: 'Otros planes son posibles.',
+  intro:
+    'Somos un grupo de gente que monta alternativas: experiencias para crecer, sobre todo si eres joven, y proyectos que mejoran la vida de la comunidad. Desde 2013.',
   heroImage: '/img/fotos/portada-equipo.webp' as string | undefined,
   heroImageAlt: 'El equipo de Xeración y voluntarios europeos posando juntos al aire libre',
-  heroImageCaption: 'foto editorial · grupo en muelle de Ferrol',
+  heroImageCaption: 'foto editorial · gente haciendo algo juntos al aire libre',
   heroIndicator: undefined as string | undefined,
-  catalogIntro: { heading: 'Elige tu experiencia.' } satisfies SectionIntro,
-  catalogAllLabel: 'Quiero ver todas las experiencias',
-  testimonialsHeading: 'Historias reales',
-  agendaHeading: 'Esta semana en Ferrol',
+  heroActions: [
+    { label: 'Quiero ver experiencias', href: '#experiencias' },
+    { label: 'Quiero ver los proyectos', href: '#proyectos' },
+  ],
+  agendaHeading: 'Esta semana en Xeración',
   agendaLinkLabel: 'Quiero ver toda la agenda',
-  institutionalText:
-    'Asociación juvenil sin ánimo de lucro desde 2013 · Acreditada Erasmus+ y Cuerpo Europeo de Solidaridad · 75 voluntarios europeos acogidos',
-  institutionalLinkHref: '/nosotros/',
+  catalogIntro: {
+    heading: 'Para salir distinto de como entraste.',
+    text: 'Aventuras al aire libre, caminos, encuentros, voluntariados. Unas las pagas tú, otras están financiadas. Todas te dejan algo.',
+  } satisfies SectionIntro,
+  catalogAllLabel: 'Quiero ver todas las experiencias',
+  projectsHeading: 'Los montamos porque hacían falta.',
+  projectsText: 'Cuando algo no existe y debería, intentamos construirlo. Estos son algunos.',
+  // Solo llevan enlace los proyectos que tienen web pública confirmada.
+  projects: [
+    {
+      name: 'Liña',
+      text: 'Los buses de Ferrol y de Galicia en una sola app, con horarios y tiempo real de varias operadoras.',
+    },
+    {
+      name: 'Cousateca',
+      text: 'Una biblioteca de objetos con préstamo vecinal. Para qué comprar un taladro que vas a usar dos veces.',
+      status: 'En pruebas · abre en 2027',
+    },
+    {
+      name: 'Stop Eucalipto',
+      text: 'Devolver el bosque autóctono al monte, parcela a parcela.',
+      href: 'https://stopeucalipto.com',
+      ctaLabel: 'Quiero verlo',
+    },
+  ] satisfies HomeProject[],
+  testimonialsHeading: 'Historias reales',
+  figuresHeading: 'Un grupo pequeño con un historial largo.',
+  figuresText:
+    'Somos una asociación juvenil sin ánimo de lucro. Llevamos desde 2013 montando experiencias y proyectos, con gente de aquí y de fuera.',
+  figures: [
+    { value: '2013', label: 'año en que empezamos' },
+    { value: '+110', label: 'voluntarios internacionales acogidos' },
+    { value: '+50', label: 'jóvenes enviados a proyectos fuera' },
+    { value: '57', label: 'personas socias' },
+  ] satisfies StatItem[],
+  // El único sitio de la portada donde se nombran los programas europeos.
+  figuresBacking:
+    'Parte de lo que hacemos lo financia Europa. Estamos acreditados por Erasmus+ y el Cuerpo Europeo de Solidaridad y formamos parte de la red Eurodesk.',
+  figuresLinkLabel: 'Quiero saber quiénes sois',
+  figuresLinkHref: '/nosotros/',
   institutionalLogos: [
     { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
     { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
@@ -26,18 +68,26 @@ export const homeEs = {
   doorsHeading: '¿Vienes de parte de una entidad?',
   doors: [
     {
-      title: '¿Representas a una organización?',
-      text: 'Si buscáis socio para un proyecto europeo en Galicia, escribidnos. Contestamos en español o en inglés.',
-      ctaLabel: 'Quiero proponeros un proyecto',
+      // En inglés a propósito: quien busca socio desde fuera casi nunca lee español.
+      title: 'Looking for a partner in Spain?',
+      text: 'We host and send groups and volunteers, and we like building projects from scratch. We reply in English or Spanish.',
+      ctaLabel: 'I want to propose a project',
       href: 'mailto:info@xeracion.org?subject=Partnership',
+      lang: 'en',
     },
     {
-      title: '¿Tienes una empresa y quieres acoger?',
-      text: 'Gente joven de otros países en prácticas en tu equipo, sin coste de gestión.',
-      ctaLabel: 'Quiero saber cómo funciona',
+      title: 'Hagamos algo juntos.',
+      text: 'Para instituciones y empresas: qué hacemos, con quién y con qué resultados. Y una persona con la que hablar.',
+      ctaLabel: 'Quiero conoceros',
       href: '/empresas/',
     },
-  ],
+    {
+      title: '¿Traes un grupo?',
+      text: 'Caminos, cursos y estancias a medida para centros, asociaciones y equipos. Nos dices fechas y cuántos sois.',
+      ctaLabel: 'Quiero un presupuesto',
+      href: 'mailto:info@xeracion.org?subject=Presupuesto%20para%20un%20grupo',
+    },
+  ] satisfies HomeDoor[],
   closingHeading: 'Si dudas, escríbenos.',
   closingText: 'Sin formularios largos. WhatsApp, email o pásate por la Almendra 9 cualquier mañana, de 10:00 a 14:00.',
 }

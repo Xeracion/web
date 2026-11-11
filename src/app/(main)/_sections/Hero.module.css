@@ -1,3 +1,9 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
 .indicator {
   font-family: var(--font-body), sans-serif;
   font-size: 11px;

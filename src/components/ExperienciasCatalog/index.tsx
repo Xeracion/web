@@ -130,6 +130,7 @@ export function ExperienciasCatalog({
         {intro?.heading && (
           <div className={styles.intro}>
             <h2>{intro.heading}</h2>
+          {intro.text && <p className={styles.introText}>{intro.text}</p>}
           </div>
         )}
         {emptyState}
@@ -142,6 +143,7 @@ export function ExperienciasCatalog({
       {intro?.heading && (
         <div className={styles.intro}>
           <h2>{intro.heading}</h2>
+          {intro.text && <p className={styles.introText}>{intro.text}</p>}
         </div>
       )}
 

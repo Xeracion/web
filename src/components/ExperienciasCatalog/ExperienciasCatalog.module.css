@@ -1,9 +1,16 @@
 .section {
   padding-block: var(--space-2xl);
+  scroll-margin-top: var(--nav-height, 72px);
 }
 
 .intro {
   margin-bottom: var(--space-md);
+}
+
+.introText {
+  max-width: 640px;
+  margin-top: var(--space-xs);
+  color: var(--color-text-secondary);
 }
 
 .search {

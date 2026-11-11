@@ -12,10 +12,11 @@ interface AgendaProps {
   agendaHref?: string
 }
 
-// Versión compacta para la home: los próximos 2–3 eventos (fecha, nombre,
-// lugar). Si no hay ninguno futuro, la sección entera desaparece.
+// Versión compacta para la home: lo que queda de la semana natural (hasta el
+// domingo, hora de Madrid), con un máximo de 5 filas. Si no queda nada, la
+// sección entera desaparece.
 export function Agenda({ heading, linkLabel, events, agendaHref = '/agenda/#agenda' }: AgendaProps) {
-  const items = events.filter((e) => e.title).slice(0, 3)
+  const items = events.filter((e) => e.title).slice(0, 5)
   if (items.length === 0) return null
 
   return (
