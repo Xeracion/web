@@ -15,16 +15,13 @@ const SECURITY_HEADERS = [
   },
 ];
 
-// The embedded Sanity Studio at /studio is a third-party SPA that relies on
-// inline styles/scripts and its own frame/connect targets, so it gets only
-// the baseline headers above — a strict CSP there risks breaking editing.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "img-src 'self' https://cdn.sanity.io https://substackcdn.com data:",
+  "img-src 'self' https://substackcdn.com data:",
   "font-src 'self' data:",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  "connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io",
+  "connect-src 'self'",
   "frame-src 'self' https://www.google.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
@@ -44,10 +41,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-      {
-        protocol: "https",
         hostname: "substackcdn.com",
       },
     ],
@@ -56,15 +49,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/((?!studio).*)",
+        source: "/(.*)",
         headers: [
           ...SECURITY_HEADERS,
           { key: "Content-Security-Policy", value: CONTENT_SECURITY_POLICY },
         ],
-      },
-      {
-        source: "/studio/:path*",
-        headers: SECURITY_HEADERS,
       },
     ];
   },

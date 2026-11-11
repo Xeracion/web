@@ -5,10 +5,10 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 
 import { Container } from '@/components/Container'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
+import type { ExperienciaData } from '@/content/experiencias'
 import type { SectionIntro } from '@/content/types'
 import { CATALOG_GROUPS, groupForExperiencia } from '@/lib/experienciaCategorias'
 import { cn } from '@/lib/cn'
-import type { ExperienciaData } from '@/sanity/lib/queries'
 
 import styles from './ExperienciasCatalog.module.css'
 

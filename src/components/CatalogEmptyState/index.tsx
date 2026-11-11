@@ -6,7 +6,7 @@ import { siteSettings } from '@/content/siteSettings'
 import styles from './CatalogEmptyState.module.css'
 
 // Lo que se ve en lugar del catálogo cuando no hay ninguna experiencia
-// publicada en Sanity (o Sanity no responde): la home y /experiencias/ no
+// activa en src/content/experiencias.ts: la home y /experiencias/ no
 // pueden quedarse nunca con un hueco en blanco.
 export function CatalogEmptyState() {
   const whatsappHref = siteSettings.whatsapp

@@ -2,34 +2,26 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import { AvisoForm } from '@/components/AvisoForm'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
 import { EyebrowPill } from '@/components/EyebrowPill'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import { RichText } from '@/components/RichText'
+import { Prose } from '@/components/Prose'
+import { getConvocatoriasAbiertas, getExperienciaBySlug, getExperienciaSlugs } from '@/content/experiencias'
 import { siteSettings } from '@/content/siteSettings'
 import { formatDateShort } from '@/lib/formatDate'
 import { AMBITO_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
 import { buildPageMetadata } from '@/lib/metadata'
-import { urlFor } from '@/sanity/lib/image'
-import {
-  getConvocatoriasForExperiencia,
-  getEdicionesForExperiencia,
-  getExperienciaBySlug,
-  getExperienciaSlugs,
-} from '@/sanity/lib/queries'
 
 import styles from './page.module.css'
 
-// Ver (main)/page.tsx: evita quedarse con una ficha vacía/404 hasta el
-// siguiente deploy si Sanity falla justo en el build.
-export const revalidate = 300
+// Las convocatorias se filtran por fecha límite: se regenera a diario para
+// que una convocatoria cerrada deje de aparecer sola.
+export const revalidate = 86400
 
-export async function generateStaticParams() {
-  const slugs = await getExperienciaSlugs()
-  return slugs.map((slug) => ({ slug }))
+export function generateStaticParams() {
+  return getExperienciaSlugs().map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({
@@ -38,20 +30,22 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const item = await getExperienciaBySlug(slug)
-  if (!item || item.enlaceExterno) return {}
+  const item = getExperienciaBySlug(slug)
+  if (!item) return {}
   return buildPageMetadata({ title: item.titulo, description: item.resumen })
 }
 
 export default async function ExperienciaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const item = await getExperienciaBySlug(slug)
+  const item = getExperienciaBySlug(slug)
 
-  if (!item || item.enlaceExterno) notFound()
+  if (!item) notFound()
 
-  const [convocatorias, ediciones] = item._id
-    ? await Promise.all([getConvocatoriasForExperiencia(item._id), getEdicionesForExperiencia(item._id)])
-    : [[], []]
+  const convocatorias = getConvocatoriasAbiertas(item)
+  const ediciones = [...(item.ediciones ?? [])].sort((a, b) => b.anio - a.anio)
+  const avisoHref = siteSettings.whatsapp
+    ? `https://wa.me/${siteSettings.whatsapp}?text=${encodeURIComponent(`Hola, quiero que me aviséis de la próxima convocatoria de ${item.titulo}.`)}`
+    : undefined
   const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
   const hayConvocatorias = convocatorias.length > 0
 
@@ -86,7 +80,8 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
           <PhotoPlaceholder
             variant="irse"
             image={item.imagen}
-            label={item.lugar ?? item.titulo ?? ''}
+            alt={item.imagenAlt}
+            label={item.lugar ?? item.titulo}
             radius="xl"
             aspectRatio="4 / 3"
           />
@@ -100,7 +95,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
 
       {item.descripcion && (
         <Container as="section" className={styles.descripcion}>
-          <RichText value={item.descripcion} />
+          <Prose value={item.descripcion} />
         </Container>
       )}
 
@@ -128,7 +123,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
                     {edicion.galeria.slice(0, 4).map((foto, j) => (
                       <Image
                         key={j}
-                        src={urlFor(foto).width(160).height(160).url()}
+                        src={foto}
                         alt=""
                         width={80}
                         height={80}
@@ -178,22 +173,27 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
           </>
         )}
 
-        {item._id && (
+        {avisoHref && (
           <div className={hayConvocatorias ? styles.avisameSecondary : styles.avisame}>
             {hayConvocatorias ? (
               <p className={styles.avisameTexto}>
-                ¿No entras en esta o prefieres esperar? Déjanos tu contacto y te avisamos de la siguiente.
+                ¿No entras en esta o prefieres esperar? Escríbenos y te avisamos de la siguiente.
               </p>
             ) : (
               <>
                 <h2 className={styles.sectionTitle}>Próximamente</h2>
                 <p className={styles.avisameTexto}>
-                  Se abren dos o tres plazas al año. Déjanos tu contacto y te avisamos en cuanto salga la
-                  próxima.
+                  Ahora mismo no hay convocatoria abierta. Escríbenos y te avisamos en cuanto salga la próxima.
                 </p>
               </>
             )}
-            <AvisoForm experienciaId={item._id} variant={hayConvocatorias ? 'secondary' : 'primary'} />
+            {hayConvocatorias ? (
+              <ButtonSecondary href={avisoHref}>Quiero que me aviséis</ButtonSecondary>
+            ) : (
+              <ButtonPrimary accent href={avisoHref}>
+                Quiero que me aviséis
+              </ButtonPrimary>
+            )}
           </div>
         )}
       </Container>

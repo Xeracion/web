@@ -31,10 +31,15 @@ export const homeEs = {
     {
       name: 'Liña',
       text: 'Los buses de Ferrol y de Galicia en una sola app, con horarios y tiempo real de varias operadoras.',
+      // liña.com (el dominio lleva eñe; esta es su forma técnica).
+      href: 'https://xn--lia-8ma.com',
+      ctaLabel: 'Quiero probarla',
     },
     {
       name: 'Cousateca',
       text: 'Una biblioteca de objetos con préstamo vecinal. Para qué comprar un taladro que vas a usar dos veces.',
+      href: 'https://cousateca.com',
+      ctaLabel: 'Quiero ver qué hay',
     },
     {
       name: 'Stop Eucalipto',
@@ -84,7 +89,7 @@ export const homeEs = {
 }
 
 // Se muestra en lugar del catálogo (home y /experiencias/) si no hay ninguna
-// experiencia publicada en Sanity.
+// experiencia activa en src/content/experiencias.ts.
 export const catalogEmptyEs = {
   title: 'Estamos preparando las próximas experiencias.',
   text: 'Escríbenos por WhatsApp y te contamos lo que viene antes que a nadie. Mientras, en Ferrol siempre hay algo esta semana.',

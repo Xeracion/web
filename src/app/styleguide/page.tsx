@@ -178,7 +178,7 @@ export default function StyleguidePage() {
         <div className={styles.sectionHeading}>
           <h2>PhotoPlaceholder</h2>
           <p className={styles.sectionNote}>
-            Sin imagen de Sanity, muestra el gradiente de la variante y la etiqueta entre
+            Sin foto, muestra el gradiente de la variante y la etiqueta entre
             corchetes. Con imagen (prop <code>image</code>), sustituye el gradiente por la foto
             real.
           </p>

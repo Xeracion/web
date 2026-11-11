@@ -1,5 +1,4 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { SanityImageSource } from '@sanity/image-url'
 
 import { Container } from '@/components/Container'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
@@ -11,7 +10,7 @@ import styles from './HeroSplit.module.css'
 interface HeroSplitProps {
   heading?: string
   text?: string | string[]
-  image?: SanityImageSource | string
+  image?: string
   imageAlt?: string
   imageLabel: string
   imageVariant: PhotoPlaceholderVariant
