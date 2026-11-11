@@ -1,6 +1,5 @@
 .section {
-  padding-block: var(--space-2xl);
-  border-top: 0.5px solid var(--color-border);
+  padding-block: var(--space-xl) var(--space-2xl);
 }
 
 .head {

@@ -1,14 +1,33 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 const HIDDEN_CLASS = 'js-reveal-hidden'
 
+// Entrada al hacer scroll (como anthropic.com): cada sección sube y aparece
+// al entrar en pantalla, y dentro de ella las tarjetas de las rejillas
+// marcadas con [data-reveal-stagger] entran una detrás de otra. Lo que ya
+// está en pantalla al cargar no se toca, y sin JS o con
+// prefers-reduced-motion todo se ve directamente.
 export function ScrollReveal() {
+  const pathname = usePathname()
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const sections = document.querySelectorAll<HTMLElement>('main section, .site-shell > footer')
+    for (const group of document.querySelectorAll<HTMLElement>('[data-reveal-stagger]')) {
+      Array.from(group.children).forEach((child, i) => {
+        if (!(child instanceof HTMLElement)) return
+        child.dataset.revealChild = ''
+        child.style.setProperty('--reveal-i', String(Math.min(i, 8)))
+      })
+    }
+
+    // La banda verde de cierre y el pie no se animan: van pegados y, si
+    // entraban con fundido, al bajar se veía un instante el fondo blanco
+    // entre ellos.
+    const sections = document.querySelectorAll<HTMLElement>('main section:not([data-closing-band])')
     if (sections.length === 0) return
 
     const observer = new IntersectionObserver(
@@ -32,7 +51,7 @@ export function ScrollReveal() {
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return null
 }

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import type { SiteSettings } from '@/content/siteSettings'
+import type { Locale } from '@/lib/i18n'
 
 import styles from './Footer.module.css'
 
@@ -10,26 +11,54 @@ interface FooterColumn {
   links: Array<{ label: string; href: string; external?: boolean }>
 }
 
-const COLUMNS: FooterColumn[] = [
-  {
-    heading: 'Agenda',
-    links: [
-      { label: 'Próximos eventos', href: '/agenda/#agenda' },
-      { label: 'Offline Club', href: '/agenda/#offline-club' },
-      { label: 'Speak Factor', href: '/speakfactor/' },
-      { label: 'Cómo llegar', href: '/agenda/#visitanos' },
-    ],
-  },
-  {
-    heading: 'Experiencias',
-    links: [
-      { label: 'Ver todas', href: '/experiencias/' },
-      { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
-      { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
-      { label: 'Preguntas frecuentes', href: '/preguntas/' },
-    ],
-  },
-]
+const COLUMNS: Record<Locale, FooterColumn[]> = {
+  es: [
+    {
+      heading: 'Agenda',
+      links: [
+        { label: 'Próximos eventos', href: '/agenda/#agenda' },
+        { label: 'Offline Club', href: '/agenda/#offline-club' },
+        { label: 'Speak Factor', href: '/speakfactor/' },
+        { label: 'Cómo llegar', href: '/agenda/#visitanos' },
+      ],
+    },
+    {
+      heading: 'Experiencias',
+      links: [
+        { label: 'Ver todas', href: '/experiencias/' },
+        { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
+        { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
+        { label: 'Preguntas frecuentes', href: '/preguntas/' },
+      ],
+    },
+  ],
+  // Speak Factor y las preguntas frecuentes solo existen en castellano.
+  gl: [
+    {
+      heading: 'Axenda',
+      links: [
+        { label: 'Próximos eventos', href: '/gl/axenda/#agenda' },
+        { label: 'Offline Club', href: '/gl/axenda/#offline-club' },
+        { label: 'Speak Factor', href: '/speakfactor/' },
+        { label: 'Como chegar', href: '/gl/axenda/#visitanos' },
+      ],
+    },
+    {
+      heading: 'Experiencias',
+      links: [
+        { label: 'Ver todas', href: '/gl/experiencias/' },
+        { label: 'Por Europa', href: '/gl/experiencias/?filtro=europa' },
+        { label: 'Sen custo', href: '/gl/experiencias/?filtro=gratis' },
+        { label: 'Preguntas frecuentes', href: '/preguntas/' },
+      ],
+    },
+  ],
+}
+
+const COPY = {
+  es: { contact: 'Contacto', about: 'Nosotros', aboutHref: '/nosotros/', team: 'Equipo', companies: 'Empresas', who: 'Quiénes somos', link: 'Enlace', home: '/' },
+  gl: { contact: 'Contacto', about: 'Nós', aboutHref: '/gl/nos/', team: 'Equipo', companies: 'Empresas', who: 'Quen somos', link: 'Ligazón', home: '/gl/' },
+}
 
 function credits(address: string) {
   return `© 2026 Asociación Xeración · ${address}`
@@ -101,9 +130,11 @@ function SocialIcon({ platform }: { platform?: string }) {
 
 interface FooterProps {
   siteSettings: SiteSettings
+  locale?: Locale
 }
 
-export function Footer({ siteSettings }: FooterProps) {
+export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
+  const copy = COPY[locale]
   const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
 
@@ -112,11 +143,11 @@ export function Footer({ siteSettings }: FooterProps) {
     ...(siteSettings?.whatsapp
       ? [{ label: 'WhatsApp', href: `https://wa.me/${siteSettings.whatsapp}`, external: true }]
       : []),
-    { label: 'Nosotros', href: '/nosotros/' },
-    { label: 'Equipo', href: '/nosotros/equipo/' },
-    { label: 'Empresas', href: '/empresas/' },
+    { label: copy.about, href: copy.aboutHref },
+    { label: copy.team, href: '/nosotros/equipo/' },
+    { label: copy.companies, href: '/empresas/' },
   ]
-  const rows: FooterColumn[] = [...COLUMNS, { heading: 'Contacto', links: contactLinks }]
+  const rows: FooterColumn[] = [...COLUMNS[locale], { heading: copy.contact, links: contactLinks }]
 
   // Inspirado en el pie de anthropic.com: a la izquierda la marca y las
   // redes; a la derecha, una fila por grupo separada por líneas finas, con
@@ -125,7 +156,7 @@ export function Footer({ siteSettings }: FooterProps) {
     <footer className={styles.footer}>
       <Container className={styles.grid}>
         <div className={styles.brand}>
-          <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
+          <Link href={copy.home} className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/xeracion-blanco.svg" alt="" width={1811} height={375} />
           </Link>
@@ -140,7 +171,7 @@ export function Footer({ siteSettings }: FooterProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.socialLink}
-                      aria-label={PLATFORM_LABELS[platform] ?? 'Enlace'}
+                      aria-label={PLATFORM_LABELS[platform] ?? copy.link}
                     >
                       <SocialIcon platform={platform} />
                     </a>
@@ -179,7 +210,7 @@ export function Footer({ siteSettings }: FooterProps) {
 
           {siteSettings?.mission && (
             <div className={styles.mission}>
-              <h2 className={styles.missionHeading}>Quiénes somos</h2>
+              <h2 className={styles.missionHeading}>{copy.who}</h2>
               <p>{siteSettings.mission}</p>
             </div>
           )}

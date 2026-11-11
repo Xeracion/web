@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import type { HTMLAttributes } from 'react'
-import type { SanityImageSource } from '@sanity/image-url'
 
 import { cn } from '@/lib/cn'
-import { urlFor } from '@/sanity/lib/image'
 
 import styles from './PhotoPlaceholder.module.css'
 
@@ -18,10 +16,9 @@ const ROUTE_CLASS: Partial<Record<PhotoPlaceholderVariant, string>> = {
 interface PhotoPlaceholderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   variant?: PhotoPlaceholderVariant
   label: string
-  // Una imagen de Sanity (experiencia.imagen) o una ruta estática de
-  // /public (contenido hardcodeado en src/content/). Sin ninguna, se
+  // Ruta estática de /public (contenido en src/content/). Sin ella, se
   // muestra el gradiente + etiqueta entre corchetes de siempre.
-  image?: SanityImageSource | string
+  image?: string
   alt?: string
   aspectRatio?: string
   radius?: 'lg' | 'xl'
@@ -42,7 +39,7 @@ export function PhotoPlaceholder({
 }: PhotoPlaceholderProps) {
   const variantModifier =
     variant === 'hero' || variant === 'neutral' ? styles[variant] : undefined
-  const src = typeof image === 'string' ? image : image ? urlFor(image).url() : undefined
+  const src = image || undefined
 
   return (
     <div

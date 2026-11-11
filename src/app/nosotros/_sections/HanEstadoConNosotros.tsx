@@ -13,13 +13,13 @@ const VISIBLE_STEP = 8
 
 const COPY = {
   es: { fallbackHeading: 'Han estado con nosotros', loadMore: 'Cargar más' },
-  en: { fallbackHeading: 'Have been with us', loadMore: 'Load more' },
+  gl: { fallbackHeading: 'Estiveron connosco', loadMore: 'Cargar máis' },
 }
 
 interface HanEstadoConNosotrosProps {
   intro?: SectionIntro
   members: TeamMember[]
-  locale?: 'es' | 'en'
+  locale?: 'es' | 'gl'
 }
 
 export function HanEstadoConNosotros({ intro, members, locale = 'es' }: HanEstadoConNosotrosProps) {

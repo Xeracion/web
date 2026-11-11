@@ -14,7 +14,7 @@ export function FixedPrograms({ intro, items }: FixedProgramsProps) {
   return (
     <Container as="section" className={styles.section}>
       {intro?.heading && <h2>{intro.heading}</h2>}
-      <div className={styles.grid}>
+      <div className={styles.grid} data-reveal-stagger>
         {items.map((item, i) => (
           <div key={i} className={styles.card}>
             <h4>{item.name}</h4>

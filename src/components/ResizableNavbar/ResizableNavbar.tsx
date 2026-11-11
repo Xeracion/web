@@ -1,11 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
 
 import { LogoMark } from '@/components/LogoMark'
 import { cn } from '@/lib/cn'
+import { alternateHref, LOCALE_NAMES, LOCALES, localeFromPath } from '@/lib/i18n'
 import type { NavItem, RouteKey } from '@/lib/nav'
 
 import styles from './ResizableNavbar.module.css'
@@ -18,10 +20,20 @@ const TRANSITION = { duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }
 const INSTANT = { duration: 0 }
 
 const NAV_COPY = {
-  primaryNav: 'Navegación principal',
-  mobileNav: 'Navegación móvil',
-  open: 'Abrir menú',
-  close: 'Cerrar menú',
+  es: {
+    primaryNav: 'Navegación principal',
+    mobileNav: 'Navegación móvil',
+    open: 'Abrir menú',
+    close: 'Cerrar menú',
+    language: 'Idioma',
+  },
+  gl: {
+    primaryNav: 'Navegación principal',
+    mobileNav: 'Navegación móbil',
+    open: 'Abrir menú',
+    close: 'Pechar menú',
+    language: 'Lingua',
+  },
 }
 
 interface ResizableNavbarProps {
@@ -37,6 +49,12 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
   const [mobileOpen, setMobileOpen] = useState(false)
   const prefersReducedMotion = useReducedMotion()
   const toggleRef = useRef<HTMLButtonElement>(null)
+  // El idioma sale de la URL (/gl/… es gallego): así los layouts no tienen
+  // que pasarlo y el selector siempre apunta a la página equivalente.
+  const pathname = usePathname() ?? '/'
+  const locale = localeFromPath(pathname)
+  const copy = NAV_COPY[locale]
+  const homeHref = locale === 'gl' ? '/gl/' : '/'
 
   // Línea inferior en cuanto hay scroll; el logo se comprime a la X un poco
   // más abajo, para que no parpadee con un toque de rueda.
@@ -88,18 +106,46 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
     })
   }
 
+  function renderLanguages(className: string) {
+    return (
+      <ul className={className} aria-label={copy.language}>
+        {LOCALES.map((target) => {
+          const isCurrent = target === locale
+          return (
+            <li key={target}>
+              <Link
+                href={alternateHref(pathname, target)}
+                lang={target}
+                hrefLang={target}
+                className={cn(styles.lang, isCurrent && styles.langCurrent)}
+                aria-current={isCurrent ? 'true' : undefined}
+                aria-label={LOCALE_NAMES[target]}
+                onClick={() => setMobileOpen(false)}
+              >
+                {target.toUpperCase()}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   return (
     <header className={cn(styles.wrapper, (scrolled || mobileOpen) && styles.wrapperScrolled)}>
       <div className={styles.bar}>
-        <nav className={styles.desktopNav} aria-label={NAV_COPY.primaryNav}>
+        <nav className={styles.desktopNav} aria-label={copy.primaryNav}>
           <ul className={styles.list}>{renderLinks(groups[0])}</ul>
-          <Link href="/" className={styles.logo} aria-label={siteName}>
+          <Link href={homeHref} className={styles.logo} aria-label={siteName}>
             <LogoMark collapsed={compact} />
           </Link>
-          <ul className={cn(styles.list, styles.listEnd)}>{renderLinks(groups[1])}</ul>
+          <div className={styles.endGroup}>
+            <ul className={cn(styles.list, styles.listEnd)}>{renderLinks(groups[1])}</ul>
+            {renderLanguages(styles.langs)}
+          </div>
         </nav>
 
-        <Link href="/" className={cn(styles.logo, styles.logoMobile)} aria-label={siteName}>
+        <Link href={homeHref} className={cn(styles.logo, styles.logoMobile)} aria-label={siteName}>
           <LogoMark collapsed={compact && !mobileOpen} />
         </Link>
 
@@ -109,7 +155,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
           className={styles.mobileToggle}
           aria-expanded={mobileOpen}
           aria-controls="site-mobile-menu"
-          aria-label={mobileOpen ? NAV_COPY.close : NAV_COPY.open}
+          aria-label={mobileOpen ? copy.close : copy.open}
           onClick={() => setMobileOpen((value) => !value)}
         >
           <span className={cn(styles.toggleLine, mobileOpen && styles.toggleLineTop)} />
@@ -127,7 +173,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
             exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0 }}
             transition={transition}
           >
-            <nav aria-label={NAV_COPY.mobileNav}>
+            <nav aria-label={copy.mobileNav}>
               <ul className={styles.mobileList}>
                 {items.map((item) => {
                   const isActive = activeRoute === item.key
@@ -146,6 +192,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
                   )
                 })}
               </ul>
+              {renderLanguages(styles.mobileLangs)}
             </nav>
           </motion.div>
         )}

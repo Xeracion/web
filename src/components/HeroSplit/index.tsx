@@ -1,17 +1,18 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { SanityImageSource } from '@sanity/image-url'
 
 import { Container } from '@/components/Container'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import type { PhotoPlaceholderVariant } from '@/components/PhotoPlaceholder'
 import { Prose } from '@/components/Prose'
+import { countWords, WordReveal } from '@/components/WordReveal'
 
+import { HeroPhotoBleed } from './HeroPhotoBleed'
 import styles from './HeroSplit.module.css'
 
 interface HeroSplitProps {
   heading?: string
   text?: string | string[]
-  image?: SanityImageSource | string
+  image?: string
   imageAlt?: string
   imageLabel: string
   imageVariant: PhotoPlaceholderVariant
@@ -41,32 +42,49 @@ export function HeroSplit({
   imageFocus = 'center 35%',
 }: HeroSplitProps) {
   const inline = inlineText && typeof text === 'string'
+  const headingWords = countWords(heading)
+  const totalWords = headingWords + (inline ? countWords(text as string) : 0)
+  // Lo que va después del titular (entradilla, botones, foto) entra cuando
+  // ya han salido las palabras.
+  const afterWords = { '--hero-delay': `${totalWords * 28 + 260}ms` } as CSSProperties
 
   return (
     <Container as="section" className={styles.hero}>
       <div className={styles.text}>
         {inline ? (
           <h1 className={styles.statement}>
-            {heading} <span className={styles.statementMuted}>{text}</span>
+            <WordReveal text={heading} />{' '}
+            <span className={styles.statementMuted}>
+              <WordReveal text={text as string} offset={headingWords} />
+            </span>
           </h1>
         ) : (
           <>
-            <h1 className={styles.heading}>{heading}</h1>
-            <Prose value={text} className={styles.intro} />
+            <h1 className={styles.heading}>
+              <WordReveal text={heading} />
+            </h1>
+            <div className="xr-hero-fade" style={afterWords}>
+              <Prose value={text} className={styles.intro} />
+            </div>
           </>
         )}
-        {below && <div className={styles.below}>{below}</div>}
+        {below && (
+          <div className={`${styles.below} xr-hero-fade`} style={afterWords}>
+            {below}
+          </div>
+        )}
       </div>
-      <PhotoPlaceholder
-        variant={imageVariant}
-        image={image}
-        alt={imageAlt}
-        label={imageLabel}
-        radius="xl"
-        sizes="(min-width: 1200px) 1200px, 100vw"
-        className={styles.photo}
-        style={{ aspectRatio: 'var(--hero-aspect)', '--photo-focus': imageFocus } as CSSProperties}
-      />
+      <HeroPhotoBleed style={{ '--hero-delay': `${totalWords * 28 + 380}ms` } as CSSProperties}>
+        <PhotoPlaceholder
+          variant={imageVariant}
+          image={image}
+          alt={imageAlt}
+          label={imageLabel}
+          sizes="100vw"
+          className={`${styles.photo} xr-hero-photo`}
+          style={{ aspectRatio: 'auto', borderRadius: 0, '--photo-focus': imageFocus } as CSSProperties}
+        />
+      </HeroPhotoBleed>
     </Container>
   )
 }

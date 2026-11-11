@@ -1,35 +1,35 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
+import { Suspense, type CSSProperties } from 'react'
 
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { Container } from '@/components/Container'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
+import { WordReveal } from '@/components/WordReveal'
 import { buildPageMetadata } from '@/lib/metadata'
-import { getExperiencias } from '@/sanity/lib/queries'
+import { getExperiencias } from '@/content/experiencias'
 
 import styles from './page.module.css'
 
-// Ver (main)/page.tsx: evita que un fallo puntual de Sanity en build time
-// deje el catálogo vacío hasta el siguiente deploy.
-export const revalidate = 300
-
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return buildPageMetadata({
     title: 'Experiencias',
     description:
-      'El catálogo de experiencias de Xeración: caminos, aventura, vivir fuera, intercambios, planes locales y naturaleza. Unas las pagas tú, otras te las paga Europa.',
+      'El catálogo de experiencias de Xeración: caminos, aventura, vivir fuera, intercambios, planes locales y naturaleza. Unas las pagas tú, otras están financiadas.',
+    path: '/experiencias/',
   })
 }
 
-export default async function ExperienciasPage() {
-  const items = await getExperiencias()
+export default function ExperienciasPage() {
+  const items = getExperiencias()
 
   return (
     <>
       <Container as="section" className={styles.header}>
-        <h1>Todo lo que puedes hacer, en un solo sitio.</h1>
-        <p className={styles.subtitle}>
-          Desde clubs semanales en Ferrol hasta voluntariados por Europa. Busca si ya sabes lo que quieres.
+        <h1>
+          <WordReveal text="Todo lo que puedes hacer, en un solo sitio." />
+        </h1>
+        <p className={`${styles.subtitle} xr-hero-fade`} style={{ '--hero-delay': '420ms' } as CSSProperties}>
+          Aventuras, caminos, encuentros y planes de cada semana. Busca si ya sabes lo que quieres.
         </p>
       </Container>
       <Suspense fallback={null}>

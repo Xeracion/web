@@ -11,6 +11,25 @@ export interface StatItem {
 
 export interface SectionIntro {
   heading?: string
+  text?: string
+}
+
+export interface HomeProject {
+  name: string
+  text: string
+  /** Estado del proyecto si aún no está abierto (ej. «En pruebas»). */
+  status?: string
+  href?: string
+  ctaLabel?: string
+}
+
+export interface HomeDoor {
+  title: string
+  text?: string
+  ctaLabel: string
+  href: string
+  /** Idioma de la tarjeta si no es el de la página (ej. «en»). */
+  lang?: string
 }
 
 export interface TeamMember {

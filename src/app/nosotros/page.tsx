@@ -16,7 +16,7 @@ import { Valores } from './_sections/Valores'
 import { VoluntariosHistoricos } from './_sections/VoluntariosHistoricos'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildPageMetadata({ title: 'Nosotros', description: pageNosotrosEs.heroText })
+  return buildPageMetadata({ title: 'Nosotros', description: pageNosotrosEs.heroText, path: '/nosotros/' })
 }
 
 export default function NosotrosPage() {

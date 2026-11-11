@@ -1,3 +1,27 @@
+/* Cierre de cada página: banda a todo el ancho en el verde de marca
+   (#0E3A2F). En vez de tocar los botones, se redefinen las variables de
+   color dentro de la banda: el botón principal pasa a papel con texto
+   verde, el secundario a blanco translúcido, y los textos a claro. */
+.band {
+  --color-text-primary: var(--xr-paper);
+  --color-text-secondary: rgba(251, 255, 252, 0.82);
+  --color-text-tertiary: rgba(251, 255, 252, 0.82);
+  --color-bg: var(--xr-lime-700);
+  --color-accent-fill: var(--xr-paper);
+  --color-accent-on-fill: var(--xr-lime-700);
+  --color-accent-text: var(--xr-lime-on-dark);
+  --color-accent-strong: var(--xr-paper);
+  --surface-card-hover: rgba(251, 255, 252, 0.12);
+  --xr-ink-200: rgba(251, 255, 252, 0.2);
+
+  background: var(--xr-lime-700);
+  color: var(--color-text-primary);
+}
+
+.band :focus-visible {
+  outline-color: var(--xr-paper);
+}
+
 .section {
   max-width: 560px;
   margin-inline: auto;

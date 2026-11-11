@@ -51,18 +51,38 @@
   margin-top: var(--space-lg);
 }
 
-.photo {
-  --hero-aspect: 21 / 9;
+.bleed {
+  --expand: 0;
+  --hero-ratio: 2.3333;
+  --bleed-width: min(var(--vw, 100vw), var(--container-max));
+
+  width: var(--bleed-width);
+  margin-left: calc(50% - var(--bleed-width) / 2);
+  height: calc((var(--bleed-width) - 2 * var(--container-padding)) / var(--hero-ratio));
+  /* Las esquinas se mantienen redondeadas también abierta del todo. */
+  clip-path: inset(0 calc(var(--container-padding) * (1 - var(--expand))) round var(--radius-xl));
 }
 
 @media (max-width: 1024px) {
-  .photo {
-    --hero-aspect: 16 / 9;
+  .bleed {
+    --hero-ratio: 1.7778;
   }
 }
 
 @media (max-width: 768px) {
-  .photo {
-    --hero-aspect: 4 / 3;
+  .bleed {
+    --hero-ratio: 1.3333;
+  }
+}
+
+.photo {
+  height: 100%;
+}
+
+/* La imagen arranca un poco ampliada y se suelta a la vez que se abre. */
+@media (prefers-reduced-motion: no-preference) {
+  .bleed img {
+    transform: scale(calc(1.06 - 0.06 * var(--expand)));
+    will-change: transform;
   }
 }

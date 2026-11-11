@@ -22,7 +22,7 @@ export default function BienvenidoPage() {
       <PageHeader heading={page.heading} text={page.intro} />
       <FeatureGrid intro={page.benefitsIntro} items={bienvenidoBenefitsEs} />
       <ClosingCtaSection heading={page.closingHeading} text={page.closingText}>
-        <ButtonPrimary highlight href={page.closingCtaHref}>
+        <ButtonPrimary href={page.closingCtaHref}>
           {page.closingCtaLabel}
         </ButtonPrimary>
       </ClosingCtaSection>

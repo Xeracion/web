@@ -1,5 +1,4 @@
 import { Footer } from '@/components/Footer'
-import { LivePreview } from '@/components/LivePreview'
 import { ResizableNavbar } from '@/components/ResizableNavbar'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
@@ -19,7 +18,6 @@ export default function ExperienciasLayout({ children }: { children: React.React
         {children}
       </main>
       <Footer siteSettings={siteSettings} />
-      <LivePreview />
       <ScrollReveal />
     </div>
   )

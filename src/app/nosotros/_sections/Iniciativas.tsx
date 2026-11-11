@@ -22,7 +22,7 @@ export function Iniciativas({ data }: { data: IniciativasData }) {
   return (
     <Container as="section" className={styles.section}>
       {data.iniciativasIntro?.heading && <h2>{data.iniciativasIntro.heading}</h2>}
-      <div className={styles.grid}>
+      <div className={styles.grid} data-reveal-stagger>
         {items.map((item, i) => {
           const content = (
             <>

@@ -92,7 +92,7 @@ export default function StyleguidePage() {
         <div className={styles.sectionHeading}>
           <h2>Container</h2>
           <p className={styles.sectionNote}>
-            Max-width 1200px, padding lateral responsive (32px desktop, 20px por debajo de 768px).
+            Max-width 1920px, márgenes laterales de 32px (móvil), 48px (desde 768px) y 80px (desde 1280px), como anthropic.com.
             Esta misma página está envuelta en un Container.
           </p>
         </div>
@@ -178,7 +178,7 @@ export default function StyleguidePage() {
         <div className={styles.sectionHeading}>
           <h2>PhotoPlaceholder</h2>
           <p className={styles.sectionNote}>
-            Sin imagen de Sanity, muestra el gradiente de la variante y la etiqueta entre
+            Sin foto, muestra el gradiente de la variante y la etiqueta entre
             corchetes. Con imagen (prop <code>image</code>), sustituye el gradiente por la foto
             real.
           </p>

@@ -61,7 +61,7 @@ export function BandCard({
           {ctaLabel && (
             <span className={styles.cta}>
               {ctaLabel}
-              {external ? <ExternalIcon /> : <span aria-hidden="true">→</span>}
+              {external ? <ExternalIcon /> : <span className="xr-arrow" aria-hidden="true">→</span>}
             </span>
           )}
         </div>
