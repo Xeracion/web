@@ -24,7 +24,10 @@ export function ScrollReveal() {
       })
     }
 
-    const sections = document.querySelectorAll<HTMLElement>('main section, .site-shell > footer')
+    // La banda verde de cierre y el pie no se animan: van pegados y, si
+    // entraban con fundido, al bajar se veía un instante el fondo blanco
+    // entre ellos.
+    const sections = document.querySelectorAll<HTMLElement>('main section:not([data-closing-band])')
     if (sections.length === 0) return
 
     const observer = new IntersectionObserver(

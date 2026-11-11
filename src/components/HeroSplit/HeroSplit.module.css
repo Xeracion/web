@@ -59,10 +59,8 @@
   width: var(--bleed-width);
   margin-left: calc(50% - var(--bleed-width) / 2);
   height: calc((var(--bleed-width) - 2 * var(--container-padding)) / var(--hero-ratio));
-  clip-path: inset(
-    0 calc(var(--container-padding) * (1 - var(--expand)))
-      round calc(var(--radius-xl) * (1 - var(--expand)))
-  );
+  /* Las esquinas se mantienen redondeadas también abierta del todo. */
+  clip-path: inset(0 calc(var(--container-padding) * (1 - var(--expand))) round var(--radius-xl));
 }
 
 @media (max-width: 1024px) {

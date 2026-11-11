@@ -446,8 +446,7 @@ h4 {
    página, y la quita cuando entran en el viewport para disparar la
    transición. Sin animación si el sistema pide prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
-  section,
-  .site-shell > footer {
+  section:not([data-closing-band]) {
     transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
     transition-delay: calc(var(--reveal-i, 0) * var(--reveal-stagger));
   }
