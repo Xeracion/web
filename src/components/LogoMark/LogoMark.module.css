@@ -1,0 +1,63 @@
+/* Caja del logo: ancho del wordmark completo, que se estrecha hasta el
+   ancho de la X al comprimirse. Las piezas se posicionan sobre una capa de
+   ancho fijo (--logo-w) para que no se deformen mientras la caja cambia. */
+.mark {
+  --logo-h: 26px;
+  --logo-w: calc(var(--logo-h) * 1811 / 375);
+  --logo-x: calc(var(--logo-w) * 0.17504);
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 520ms;
+
+  position: relative;
+  display: block;
+  width: var(--logo-w);
+  height: var(--logo-h);
+  transition: width var(--dur) var(--ease);
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--logo-w);
+  height: 100%;
+}
+
+.piece {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  transform-origin: left center;
+  transition:
+    transform var(--dur) var(--ease) var(--delay-in),
+    opacity calc(var(--dur) * 0.6) ease var(--delay-in);
+  user-select: none;
+}
+
+.collapsed {
+  width: var(--logo-x);
+}
+
+.collapsed .piece:not(.pieceX) {
+  opacity: 0;
+  transform: translateX(calc(var(--logo-w) * var(--shift) * -1)) scale(0.6);
+  transition:
+    transform var(--dur) var(--ease) var(--delay-out),
+    opacity calc(var(--dur) * 0.5) ease var(--delay-out);
+}
+
+@media (max-width: 768px) {
+  .mark {
+    --logo-h: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .piece,
+  .collapsed .piece:not(.pieceX) {
+    transition: none;
+  }
+}

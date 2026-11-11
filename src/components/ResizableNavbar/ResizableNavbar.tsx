@@ -1,10 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
 
+import { LogoMark } from '@/components/LogoMark'
 import { cn } from '@/lib/cn'
 import type { NavItem, RouteKey } from '@/lib/nav'
 
@@ -33,11 +33,27 @@ interface ResizableNavbarProps {
 export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavbarProps) {
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
+  const [compact, setCompact] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const prefersReducedMotion = useReducedMotion()
   const toggleRef = useRef<HTMLButtonElement>(null)
 
-  useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 8))
+  // Línea inferior en cuanto hay scroll; el logo se comprime a la X un poco
+  // más abajo, para que no parpadee con un toque de rueda.
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setScrolled(latest > 8)
+    setCompact(latest > 48)
+  })
+
+  // Si la página se carga ya a media altura (recarga, ancla), el logo
+  // empieza comprimido. En un rAF para no encadenar renders en el efecto.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setScrolled(window.scrollY > 8)
+      setCompact(window.scrollY > 48)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   useEffect(() => {
     if (!mobileOpen) return
@@ -78,13 +94,13 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
         <nav className={styles.desktopNav} aria-label={NAV_COPY.primaryNav}>
           <ul className={styles.list}>{renderLinks(groups[0])}</ul>
           <Link href="/" className={styles.logo} aria-label={siteName}>
-            <Image src="/XeracionBlue.png" alt="" width={1811} height={375} priority />
+            <LogoMark collapsed={compact} />
           </Link>
           <ul className={cn(styles.list, styles.listEnd)}>{renderLinks(groups[1])}</ul>
         </nav>
 
         <Link href="/" className={cn(styles.logo, styles.logoMobile)} aria-label={siteName}>
-          <Image src="/XeracionBlue.png" alt="" width={1811} height={375} priority />
+          <LogoMark collapsed={compact && !mobileOpen} />
         </Link>
 
         <button

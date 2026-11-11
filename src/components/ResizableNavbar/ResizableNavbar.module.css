@@ -81,11 +81,6 @@
   align-items: center;
 }
 
-.logo img {
-  display: block;
-  height: 26px;
-  width: auto;
-}
 
 .logoMobile,
 .mobileToggle {
@@ -166,10 +161,6 @@
   .logoMobile,
   .mobileToggle {
     display: flex;
-  }
-
-  .logo img {
-    height: 22px;
   }
 }
 
