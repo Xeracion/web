@@ -84,7 +84,7 @@ export const homeEs = {
     },
   ] satisfies HomeDoor[],
   closingHeading: 'Si dudas, escríbenos.',
-  closingText: 'Sin formularios largos. WhatsApp, email o pásate por la Almendra 9 cualquier mañana, de 10:00 a 14:00.',
+  closingText: 'Sin formularios largos. WhatsApp, email o pásate por la Almendra 9 de lunes a viernes, de 10:00 a 14:00.',
 }
 
 // Se muestra en lugar del catálogo (home y /experiencias/) si no hay ninguna

@@ -72,7 +72,7 @@ export const homeGl = {
   ] satisfies HomeDoor[],
   closingHeading: 'Se dubidas, escríbenos.',
   closingText:
-    'Sen formularios longos. WhatsApp, correo ou pásate pola Almendra 9 calquera mañá, das 10:00 ás 14:00.',
+    'Sen formularios longos. WhatsApp, correo ou pásate pola Almendra 9 de luns a venres, das 10:00 ás 14:00.',
 }
 
 export const catalogEmptyGl = {

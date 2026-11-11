@@ -13,12 +13,14 @@ export const pageFerrolGl = {
   fixedProgramsIntro: { heading: 'Catro cousas que facemos sempre.' } satisfies SectionIntro,
   agendaIntro: { heading: 'Que hai esta semana e a seguinte.' } satisfies SectionIntro,
   arrivalHeading: 'Casa da Xuventude',
-  arrivalAddressText:
-    'Rúa Almendra 9, 15402 Ferrol. Planta baixa e primeira. Aberto de luns a sábado, pola tarde.',
+  arrivalAddressText: [
+    'Rúa Almendra 9, 15402 Ferrol. Planta baixa e primeira.',
+    'Atención ao público de luns a venres, das 10:00 ás 14:00. As actividades adoitan ser martes, mércores e xoves, normalmente ás 20:00, pero depende da axenda.',
+  ],
   arrivalTransportText: 'Estación de tren a 10 min a pé. Autobús urbano liñas 1, 5, 7 (parada Cantón).',
   faqIntro: { heading: 'Preguntas rápidas' } satisfies SectionIntro,
-  closingHeading: 'Pásate calquera tarde.',
-  closingText: 'Non fai falta avisar. Estamos na Almendra 9.',
+  closingHeading: 'Ven ao próximo plan.',
+  closingText: 'Non fai falta avisar. Case sempre hai algo martes, mércores ou xoves ás 20:00 na Almendra 9: mira a axenda para confirmalo.',
 }
 
 export const fixedProgramsGl: FixedProgram[] = [
