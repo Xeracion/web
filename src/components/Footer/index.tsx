@@ -114,6 +114,7 @@ export function Footer({ siteSettings }: FooterProps) {
       ? [{ label: 'WhatsApp', href: `https://wa.me/${siteSettings.whatsapp}`, external: true }]
       : []),
     { label: 'Nosotros', href: '/nosotros/' },
+    { label: 'Equipo', href: '/nosotros/equipo/' },
     { label: 'Empresas', href: '/empresas/' },
   ]
   const rows: FooterColumn[] = [...COLUMNS, { heading: 'Contacto', links: contactLinks }]

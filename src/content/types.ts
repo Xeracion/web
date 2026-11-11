@@ -18,6 +18,10 @@ export interface TeamMember {
   role?: string
   image?: string
   linkUrl?: string
+  /** Bio corta (2–3 líneas) para /nosotros/equipo/. Solo textos reales, confirmados por la persona. */
+  bio?: string
+  /** Bio completa, se despliega con «Leer más». */
+  bioLong?: string | string[]
 }
 
 export interface Partner {

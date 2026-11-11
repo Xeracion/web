@@ -1,3 +1,4 @@
+import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import { TeamMemberCard } from '@/components/TeamMemberCard'
 import type { SectionIntro, TeamMember } from '@/content/types'
@@ -21,6 +22,9 @@ export function Equipo({ data }: { data: EquipoData }) {
           <TeamMemberCard key={i} member={member} />
         ))}
       </div>
+      <ButtonLink href="/nosotros/equipo/" className={styles.more}>
+        Quiero conocer al equipo
+      </ButtonLink>
     </Container>
   )
 }
