@@ -35,7 +35,6 @@ export const homeEs = {
     {
       name: 'Cousateca',
       text: 'Una biblioteca de objetos con préstamo vecinal. Para qué comprar un taladro que vas a usar dos veces.',
-      status: 'En pruebas · abre en 2027',
     },
     {
       name: 'Stop Eucalipto',
@@ -50,7 +49,7 @@ export const homeEs = {
     'Somos una asociación juvenil sin ánimo de lucro. Llevamos desde 2013 montando experiencias y proyectos, con gente de aquí y de fuera.',
   figures: [
     { value: '2013', label: 'año en que empezamos' },
-    { value: '+110', label: 'voluntarios internacionales acogidos' },
+    { value: '+120', label: 'voluntarios internacionales acogidos' },
     { value: '+50', label: 'jóvenes enviados a proyectos fuera' },
     { value: '57', label: 'personas socias' },
   ] satisfies StatItem[],
@@ -67,14 +66,6 @@ export const homeEs = {
   ] satisfies Partner[],
   doorsHeading: '¿Vienes de parte de una entidad?',
   doors: [
-    {
-      // En inglés a propósito: quien busca socio desde fuera casi nunca lee español.
-      title: 'Looking for a partner in Spain?',
-      text: 'We host and send groups and volunteers, and we like building projects from scratch. We reply in English or Spanish.',
-      ctaLabel: 'I want to propose a project',
-      href: 'mailto:info@xeracion.org?subject=Partnership',
-      lang: 'en',
-    },
     {
       title: 'Hagamos algo juntos.',
       text: 'Para instituciones y empresas: qué hacemos, con quién y con qué resultados. Y una persona con la que hablar.',

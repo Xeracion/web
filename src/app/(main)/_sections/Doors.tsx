@@ -4,8 +4,9 @@ import type { HomeDoor } from '@/content/types'
 
 import styles from './Doors.module.css'
 
-// Tres puertas para quien no viene como participante: socios europeos (en
-// inglés), instituciones y empresas, y grupos que quieren algo a medida.
+// Dos puertas para quien no viene como participante: instituciones y
+// empresas, y grupos que quieren algo a medida. Los socios internacionales
+// tendrán su propia versión en inglés; aquí no se les habla.
 export function Doors({ heading, items }: { heading?: string; items: HomeDoor[] }) {
   if (items.length === 0) return null
 
