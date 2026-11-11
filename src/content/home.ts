@@ -32,24 +32,28 @@ export const homeEs = {
       name: 'Liña',
       text: 'Los buses de Ferrol y de Galicia en una sola app, con horarios y tiempo real de varias operadoras.',
       // liña.com (el dominio lleva eñe; esta es su forma técnica).
+      logo: { src: '/img/logos/proyectos/lina-icono.svg', width: 32, height: 32, wordmark: 'Liña', wordmarkColor: '#123d29' },
       href: 'https://xn--lia-8ma.com',
       ctaLabel: 'Quiero probarla',
     },
     {
       name: 'Cousateca',
       text: 'Una biblioteca de objetos con préstamo vecinal. Para qué comprar un taladro que vas a usar dos veces.',
+      logo: { src: '/img/logos/proyectos/cousateca-icono.png', width: 32, height: 32, wordmark: 'Cousateca', wordmarkColor: '#1d3fba' },
       href: 'https://cousateca.com',
       ctaLabel: 'Quiero ver qué hay',
     },
     {
       name: 'Stop Eucalipto',
       text: 'Devolver el bosque autóctono al monte, parcela a parcela.',
+      logo: { src: '/img/logos/proyectos/stop-eucalipto.png', width: 600, height: 192 },
       href: 'https://stopeucalipto.com',
       ctaLabel: 'Quiero verlo',
     },
     {
       name: 'Retake',
       text: 'Mañanas de voluntariado para limpiar playas y riberas, plantar árboles autóctonos y quitar eucalipto. Desde 2019.',
+      logo: { src: '/img/logos/proyectos/retake.png', width: 300, height: 86 },
       href: 'https://retake.es',
       ctaLabel: 'Quiero echar una mano',
     },

@@ -1,6 +1,6 @@
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import type { HomeProject } from '@/content/types'
+import type { HomeProject, ProjectLogo } from '@/content/types'
 
 import styles from './Projects.module.css'
 
@@ -9,6 +9,31 @@ interface ProjectsProps {
   heading?: string
   text?: string
   items: HomeProject[]
+}
+
+// El logo de cada proyecto ocupa el sitio del título. Si es un icono con el
+// nombre escrito al lado (Liña, Cousateca), el nombre va como texto con el
+// color de su marca; si es un logotipo completo (Stop Eucalipto, Retake), la
+// imagen lleva el nombre en el alt.
+function Logo({ name, logo }: { name: string; logo: ProjectLogo }) {
+  const ratio = logo.width / logo.height
+  return (
+    <span className={logo.wordmark ? styles.logoMark : styles.logoFull}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={logo.src}
+        alt={logo.wordmark ? '' : name}
+        width={logo.wordmark ? 32 : Math.round(40 * ratio)}
+        height={logo.wordmark ? 32 : 40}
+        className={styles.logoImg}
+      />
+      {logo.wordmark && (
+        <span className={styles.wordmark} style={{ color: logo.wordmarkColor }}>
+          {logo.wordmark}
+        </span>
+      )}
+    </span>
+  )
 }
 
 // Segundo pilar de la portada: proyectos para la comunidad. Las tarjetas solo
@@ -26,7 +51,9 @@ export function Projects({ id, heading, text, items }: ProjectsProps) {
         {items.map((project) => {
           const body = (
             <>
-              <h3 className={styles.name}>{project.name}</h3>
+              <h3 className={styles.name}>
+                {project.logo ? <Logo name={project.name} logo={project.logo} /> : project.name}
+              </h3>
               <p className={styles.text}>{project.text}</p>
               {project.href && project.ctaLabel ? (
                 <span className={styles.cta}>

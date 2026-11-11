@@ -14,8 +14,19 @@ export interface SectionIntro {
   text?: string
 }
 
+/** Logo de un proyecto, sacado de su propia web (public/img/logos/proyectos/). */
+export interface ProjectLogo {
+  src: string
+  width: number
+  height: number
+  /** Si el logo es un icono con el nombre escrito al lado, el nombre. */
+  wordmark?: string
+  wordmarkColor?: string
+}
+
 export interface HomeProject {
   name: string
+  logo?: ProjectLogo
   text: string
   /** Estado del proyecto si aún no está abierto (ej. «En pruebas»). */
   status?: string

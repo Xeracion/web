@@ -26,24 +26,28 @@ export const homeGl = {
     {
       name: 'Liña',
       text: 'Os autobuses de Ferrol e de Galicia nunha soa app, con horarios e tempo real de varias operadoras.',
+      logo: { src: '/img/logos/proyectos/lina-icono.svg', width: 32, height: 32, wordmark: 'Liña', wordmarkColor: '#123d29' },
       href: 'https://xn--lia-8ma.com',
       ctaLabel: 'Quero probala',
     },
     {
       name: 'Cousateca',
       text: 'Unha biblioteca de obxectos con préstamo veciñal. Para que mercar unha furadeira que vas usar dúas veces.',
+      logo: { src: '/img/logos/proyectos/cousateca-icono.png', width: 32, height: 32, wordmark: 'Cousateca', wordmarkColor: '#1d3fba' },
       href: 'https://cousateca.com',
       ctaLabel: 'Quero ver que hai',
     },
     {
       name: 'Stop Eucalipto',
       text: 'Devolverlle o bosque autóctono ao monte, parcela a parcela.',
+      logo: { src: '/img/logos/proyectos/stop-eucalipto.png', width: 600, height: 192 },
       href: 'https://stopeucalipto.com',
       ctaLabel: 'Quero velo',
     },
     {
       name: 'Retake',
       text: 'Mañás de voluntariado para limpar praias e ribeiras, plantar árbores autóctonas e quitar eucalipto. Dende 2019.',
+      logo: { src: '/img/logos/proyectos/retake.png', width: 300, height: 86 },
       href: 'https://retake.es',
       ctaLabel: 'Quero botar unha man',
     },

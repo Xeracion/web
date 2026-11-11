@@ -52,6 +52,37 @@
   line-height: var(--lh-h3);
 }
 
+/* Logos: todos a la misma altura óptica, para que la fila se lea pareja. */
+.logoMark,
+.logoFull {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-bottom: var(--space-xs);
+}
+
+.logoMark {
+  gap: 10px;
+}
+
+.logoImg {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+.logoMark .logoImg {
+  height: 32px;
+}
+
+.wordmark {
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
 .text {
   font-size: 15px;
   color: var(--color-text-secondary);
