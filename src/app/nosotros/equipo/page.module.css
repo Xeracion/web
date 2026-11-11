@@ -105,7 +105,7 @@
 .name {
   font-family: var(--font-display), sans-serif;
   font-size: var(--text-h4);
-  font-weight: 600;
+  font-weight: 400;
   line-height: var(--lh-h4);
   letter-spacing: var(--ls-h4);
 }

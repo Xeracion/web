@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import type { CSSProperties } from 'react'
 
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
+import { countWords, WordReveal } from '@/components/WordReveal'
 import type { StatItem } from '@/content/types'
 
 import styles from './Hero.module.css'
@@ -28,6 +30,8 @@ interface HeroData {
 export function Hero({ data }: { data: HeroData }) {
   const heading = data.heroHeading ?? ''
   const parts = splitHeading(heading, data.heroHeadingAccent)
+  const offsets = parts.map((_, i) => parts.slice(0, i).reduce((sum, p) => sum + countWords(p.text), 0))
+  const afterWords = { '--hero-delay': `${countWords(heading) * 28 + 260}ms` } as CSSProperties
 
   return (
     <section className={styles.hero}>
@@ -49,16 +53,22 @@ export function Hero({ data }: { data: HeroData }) {
           {parts.map((part, i) =>
             part.accent ? (
               <span key={i} className={styles.accent}>
-                {part.text}
+                <WordReveal text={part.text} offset={offsets[i]} />
               </span>
             ) : (
-              <span key={i}>{part.text}</span>
+              <span key={i}>
+                {part.text.startsWith(' ') && ' '}
+                <WordReveal text={part.text} offset={offsets[i]} />
+                {part.text.endsWith(' ') && ' '}
+              </span>
             ),
           )}
         </h1>
-        <Prose value={data.heroText} className={styles.text} />
+        <div className="xr-hero-fade" style={afterWords}>
+          <Prose value={data.heroText} className={styles.text} />
+        </div>
         {data.heroStats && data.heroStats.length > 0 && (
-          <div className={styles.stats}>
+          <div className={`${styles.stats} xr-hero-fade`} style={afterWords}>
             {data.heroStats.map((stat, i) => (
               <div key={i} className={styles.stat}>
                 <AnimatedNumber value={stat.value ?? ''} className={styles.statValue} />

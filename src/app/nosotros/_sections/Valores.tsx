@@ -16,7 +16,7 @@ export function Valores({ data }: { data: ValoresData }) {
     <div className={styles.wrapper}>
       <Container as="section" className={styles.section}>
         {data.valoresIntro?.heading && <h2>{data.valoresIntro.heading}</h2>}
-        <div className={styles.grid}>
+        <div className={styles.grid} data-reveal-stagger>
           {values.map((value, i) => (
             <div key={i} className={styles.card}>
               <span className={styles.icon} aria-hidden="true">

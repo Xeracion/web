@@ -23,7 +23,7 @@ export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineP
       {events.length === 0 ? (
         <p className={styles.empty}>{EMPTY_MESSAGE[locale]}</p>
       ) : (
-        <ul className={styles.list}>
+        <ul className={styles.list} data-reveal-stagger>
           {events.map((event, i) => (
             <li key={i} className={styles.row}>
               <div className={styles.date}>

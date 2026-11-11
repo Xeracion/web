@@ -1,3 +1,4 @@
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { ButtonLink } from '@/components/ButtonLink'
 import { Container } from '@/components/Container'
 import type { StatItem } from '@/content/types'
@@ -25,11 +26,16 @@ export function Figures({ heading, text, items, backing, linkLabel, linkHref }: 
           {heading && <h2>{heading}</h2>}
           {text && <p className={styles.intro}>{text}</p>}
         </div>
-        <dl className={styles.grid}>
+        <dl className={styles.grid} data-reveal-stagger>
           {items.map((item) => (
             <div key={item.label} className={styles.item}>
               <dt className={styles.label}>{item.label}</dt>
-              <dd className={styles.number}>{item.value}</dd>
+              {/* Los años (2013) no se cuentan desde cero: solo las cantidades. */}
+              {/^\d{4}$/.test(item.value ?? '') ? (
+                <dd className={styles.number}>{item.value}</dd>
+              ) : (
+                <AnimatedNumber as="dd" value={item.value ?? ''} className={styles.number} />
+              )}
             </div>
           ))}
         </dl>

@@ -27,7 +27,7 @@ export function Agenda({ heading, linkLabel, events, agendaHref = '/agenda/#agen
         {heading && <h2 className={styles.heading}>{heading}</h2>}
         {linkLabel && <ButtonLink href={agendaHref}>{linkLabel}</ButtonLink>}
       </div>
-      <ul className={styles.list}>
+      <ul className={styles.list} data-reveal-stagger>
         {items.map((event, i) => (
           <li key={i} className={styles.row}>
             {event.dateTime && (

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
+import { Suspense, type CSSProperties } from 'react'
 
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { Container } from '@/components/Container'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
+import { WordReveal } from '@/components/WordReveal'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getExperiencias } from '@/content/experiencias'
 
@@ -24,8 +25,10 @@ export default function ExperienciasPage() {
   return (
     <>
       <Container as="section" className={styles.header}>
-        <h1>Todo lo que puedes hacer, en un solo sitio.</h1>
-        <p className={styles.subtitle}>
+        <h1>
+          <WordReveal text="Todo lo que puedes hacer, en un solo sitio." />
+        </h1>
+        <p className={`${styles.subtitle} xr-hero-fade`} style={{ '--hero-delay': '420ms' } as CSSProperties}>
           Aventuras, caminos, encuentros y planes de cada semana. Busca si ya sabes lo que quieres.
         </p>
       </Container>

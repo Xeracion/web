@@ -13,13 +13,13 @@ export function Doors({ heading, items }: { heading?: string; items: HomeDoor[] 
   return (
     <Container as="section" className={styles.section}>
       {heading && <h2 className={styles.heading}>{heading}</h2>}
-      <div className={styles.grid}>
+      <div className={styles.grid} data-reveal-stagger>
         {items.map((door) => (
           <Card key={door.href} href={door.href} lang={door.lang} className={styles.card}>
             <h3 className={styles.title}>{door.title}</h3>
             {door.text && <p className={styles.text}>{door.text}</p>}
             <span className={styles.cta}>
-              {door.ctaLabel} <span aria-hidden="true">→</span>
+              {door.ctaLabel} <span className="xr-arrow" aria-hidden="true">→</span>
             </span>
           </Card>
         ))}

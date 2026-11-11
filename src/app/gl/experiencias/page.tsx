@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
+import { Suspense, type CSSProperties } from 'react'
 
 import styles from '@/app/experiencias/page.module.css'
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { Container } from '@/components/Container'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
+import { WordReveal } from '@/components/WordReveal'
 import { getExperiencias, localizeExperiencia } from '@/content/experiencias'
 import { buildPageMetadata } from '@/lib/metadata'
 
@@ -24,8 +25,10 @@ export default function ExperienciasGlPage() {
   return (
     <>
       <Container as="section" className={styles.header}>
-        <h1>Todo o que podes facer, nun só sitio.</h1>
-        <p className={styles.subtitle}>
+        <h1>
+          <WordReveal text="Todo o que podes facer, nun só sitio." />
+        </h1>
+        <p className={`${styles.subtitle} xr-hero-fade`} style={{ '--hero-delay': '420ms' } as CSSProperties}>
           Aventuras, camiños, encontros e plans de cada semana. Busca se xa sabes o que queres.
         </p>
       </Container>

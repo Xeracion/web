@@ -19,7 +19,7 @@ export function Equipo({ data, locale = 'es' }: { data: EquipoData; locale?: 'es
   return (
     <Container as="section" className={styles.section}>
       {data.equipoIntro?.heading && <h2>{data.equipoIntro.heading}</h2>}
-      <div className={styles.grid}>
+      <div className={styles.grid} data-reveal-stagger>
         {members.map((member, i) => (
           <TeamMemberCard key={i} member={member} />
         ))}

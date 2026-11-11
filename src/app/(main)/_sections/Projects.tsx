@@ -22,7 +22,7 @@ export function Projects({ id, heading, text, items }: ProjectsProps) {
         {heading && <h2>{heading}</h2>}
         {text && <p className={styles.intro}>{text}</p>}
       </div>
-      <div className={styles.grid}>
+      <div className={styles.grid} data-reveal-stagger>
         {items.map((project) => {
           const body = (
             <>
@@ -30,7 +30,7 @@ export function Projects({ id, heading, text, items }: ProjectsProps) {
               <p className={styles.text}>{project.text}</p>
               {project.href && project.ctaLabel ? (
                 <span className={styles.cta}>
-                  {project.ctaLabel} <span aria-hidden="true">→</span>
+                  {project.ctaLabel} <span className="xr-arrow" aria-hidden="true">→</span>
                 </span>
               ) : (
                 project.status && <span className={styles.status}>{project.status}</span>

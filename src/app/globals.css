@@ -455,3 +455,70 @@ h4 {
     transition-delay: calc(var(--reveal-i, 0) * var(--reveal-stagger) + 120ms);
   }
 }
+
+/* Animaciones de entrada estilo anthropic.com (noviembre de 2026).
+   Titulares que entran palabra a palabra (WordReveal), y detrás la
+   entradilla, los botones y la foto de la cabecera. Solo CSS: el contenido
+   está completo en el HTML y sin movimiento si el sistema lo pide. */
+@keyframes xr-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes xr-photo {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .xr-word {
+    display: inline-block;
+    animation: xr-word 700ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 28ms + 60ms);
+  }
+
+  .xr-hero-fade {
+    animation: xr-fade-up 800ms var(--ease-out) both;
+    animation-delay: var(--hero-delay, 400ms);
+  }
+
+  .xr-hero-photo {
+    animation: xr-photo 1100ms var(--ease-out) both;
+    animation-delay: var(--hero-delay, 500ms);
+  }
+
+  /* Flecha de los CTA de tarjeta: se desliza al pasar el ratón. */
+  .xr-arrow {
+    display: inline-block;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  a:hover .xr-arrow,
+  a:focus-visible .xr-arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* Que los anclajes (#experiencias, #proyectos…) no queden bajo el menú fijo. */
+:target,
+section[id] {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-sm));
+}

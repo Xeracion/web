@@ -25,7 +25,7 @@ export function Historia({ data }: { data: HistoriaData }) {
           <Prose value={data.historiaParagraphs} paragraphSpacing={false} />
         </div>
         {timeline.length > 0 && (
-          <ol className={styles.timeline}>
+          <ol className={styles.timeline} data-reveal-stagger>
             {timeline.map((milestone, i) => (
               <li key={i} className={styles.milestone}>
                 <span className={styles.year}>{milestone.year}</span>

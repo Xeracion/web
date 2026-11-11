@@ -213,7 +213,7 @@ export function ExperienciasCatalog({
             {groups.map((g) => (
               <div key={g.key} className={styles.group}>
                 <h3 className={styles.groupHeading}>{g.label}</h3>
-                <div className={styles.grid}>
+                <div className={styles.grid} data-reveal-stagger>
                   {g.items.map((item) => (
                     <ExperienciaCard key={item.slug ?? item.titulo} item={item} locale={locale} />
                   ))}
@@ -225,7 +225,7 @@ export function ExperienciasCatalog({
       ) : filtered.length === 0 ? (
         <p className={styles.empty}>{emptyMessage}</p>
       ) : (
-        <div className={styles.grid}>
+        <div className={styles.grid} data-reveal-stagger>
           {filtered.map((item) => (
             <ExperienciaCard key={item.slug ?? item.titulo} item={item} locale={locale} />
           ))}

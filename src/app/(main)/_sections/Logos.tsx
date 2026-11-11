@@ -10,7 +10,7 @@ export function Logos({ items }: { items?: Partner[] }) {
 
   return (
     <Container as="section" className={styles.section}>
-      <ul className={styles.list}>
+      <ul className={styles.list} data-reveal-stagger>
         {items.map((item, i) => (
           <li key={i} className={styles.item}>
             {item.image ? (
