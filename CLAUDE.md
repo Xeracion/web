@@ -109,15 +109,9 @@ Paleta de marca (desde el libro de estilo "Diseño Xeración"): azul `#357DCA`, 
   --radius-xl: 28px;
   --radius-full: 999px;
 
-  /* Container */
-  --container-max: 1200px;
-  --container-padding: 32px;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --container-padding: 20px;
-  }
+  /* Container: retícula de anthropic.com (el max-width incluye los márgenes) */
+  --container-max: 1920px;
+  --container-padding: 32px; /* 48px desde 768px, 80px desde 1280px */
 }
 ```
 
@@ -134,14 +128,14 @@ Desde noviembre de 2026 la interfaz replica la UX/UI de anthropic.com, mantenien
 - **Esquinas contenidas**: `--radius-sm` 4px, `--radius-md` 8px (botones, campos), `--radius-lg` 12px (tarjetas), `--radius-xl` 8px (fotos de cabecera — más pequeño que `-lg` a propósito: las fotos grandes van casi rectas). `--radius-full` queda solo para las pastillas del menú, chips y avatares redondos.
 - **Tarjetas planas**: fondo `--surface-card` (`--xr-ink-50`, gris suave sobre el papel), sin borde ni sombra; al pasar el ratón solo cambian a `--surface-card-hover` (`--xr-ink-100`). Nada se eleva (`--shadow-lift: none`, sin `translateY`). En secciones que ya tienen fondo gris (`--color-bg-warm`, p. ej. «Valores» de `/nosotros/`), las tarjetas van en papel (`--color-bg`).
 - **Botones rectangulares** (`--radius-md`, 14px): `ButtonPrimary` en tinta (o verde/azul con `accent`/`highlight`); `ButtonSecondary` en gris suave, sin contorno.
-- **Cabeceras apiladas** (`HeroSplit`): titular a todo el ancho, entradilla y botones debajo, y la foto en panorámico (21:9 desktop, 16:9 tablet, 4:3 móvil) al final. Con `inlineText` (solo la portada) la entradilla va dentro del mismo `h1`, en gris, a continuación de la frase principal — el efecto de anthropic.com hecho solo con Nordea. `imageFocus` ajusta el recorte (por defecto `center 35%`).
-- **Separadores con líneas finas**: los nombres de grupo del catálogo («En Ferrol y comarca»…) son una etiqueta pequeña entre dos líneas, y el pie es una lista de filas separadas por líneas.
+- **Cabeceras apiladas** (`HeroSplit`): titular a todo el ancho, entradilla y botones debajo, y la foto en panorámico (21:9 desktop, 16:9 tablet, 4:3 móvil) al final. La foto (`HeroPhotoBleed`) se abre hacia los márgenes al hacer scroll: la caja ocupa toda la retícula, un `clip-path` la recorta al ancho del contenido y se va abriendo según `--expand` (0 a 1, lo pone un poco de JS), mientras la imagen pierde un leve zoom. Sin JS o con `prefers-reduced-motion`, se queda al ancho del contenido. Con `inlineText` (solo la portada) la entradilla va dentro del mismo `h1`, en gris, a continuación de la frase principal — el efecto de anthropic.com hecho solo con Nordea. `imageFocus` ajusta el recorte (por defecto `center 35%`).
+- **Separadores con líneas finas**: el pie es una lista de filas separadas por líneas.
 - **`EyebrowPill`** pasó a ser una etiqueta pequeña en minúscula normal (12px, `--radius-sm`), no versalitas espaciadas.
 
 ### Componentes reutilizables
 
 - `.eyebrow-pill` (`EyebrowPill`) — etiqueta en versalitas con pastilla de fondo semi-transparente, para superponer sobre fotos y tarjetas. El antetítulo suelto (`Eyebrow`) se eliminó, ver regla 3 del punto 3.
-- `.container` — max-width 1200px, padding lateral responsive vía `--container-padding`
+- `.container` — max-width 1920px (márgenes incluidos), con márgenes laterales de 32/48/80px vía `--container-padding`: la misma retícula que anthropic.com
 - `.btn-primary` — fondo oscuro `#2F2F2F`, texto papel, `--radius-md`
 - `.btn-secondary` — fondo gris suave, sin borde, `--radius-md`
 - `.btn-link` — texto plano con flecha (`→`) que se desliza 3px al hover, para "Leer más" / CTAs terciarios
@@ -247,7 +241,7 @@ La web se organiza por **catálogo de experiencias**, no por programa de financi
 - **`ediciones`** (`titulo`, `anio`, `lugar`, `participantes`, `paises`, `resumen`, `galeria` de rutas en `/public`, `destacada`): se listan en la ficha bajo «Ediciones anteriores», de más reciente a más antigua. Si alguna está `destacada`, la tarjeta enseña el refuerzo «N ediciones desde AAAA».
 - **Bloque «avísame»**: en toda ficha propia hay un botón de WhatsApp con el mensaje ya escrito («quiero que me aviséis de la próxima convocatoria de …»), principal si no hay convocatoria abierta y secundario si la hay. Sustituye al formulario que guardaba contactos en Sanity; no hay base de datos detrás.
 - **Lectura**: `getExperiencias()` (activas), `getExperienciasDestacadas()` (portada), `getExperienciaBySlug()` y `getExperienciaSlugs()` (solo las que tienen ficha propia). Son funciones síncronas.
-- **Agrupación**: `CATALOG_GROUPS`/`groupForExperiencia()` (`src/lib/experienciaCategorias.ts`) clasifican cada experiencia en «En Ferrol y comarca» (`categoria === 'local'`), «Caminos y naturaleza» (resto en Galicia) o «Por Europa» (`ambito === 'europa'`). `ExperienciasCatalog` agrupa mientras haya 12 o menos (`GROUPED_THRESHOLD`) y pasa a chips de filtro por encima; la portada va siempre agrupada (`forceGrouped`). Como usa `useSearchParams`, cada uso va envuelto en `<Suspense>`.
+- **Sin agrupar**: todas las experiencias van juntas en una sola rejilla, sin separar las de Ferrol de las demás (decisión de noviembre de 2026; antes se agrupaban en «En Ferrol y comarca», «Caminos y naturaleza» y «Por Europa»). `ExperienciasCatalog` no enseña chips de filtro mientras haya 12 o menos (`FILTERS_THRESHOLD`); por encima aparecen. La portada nunca los lleva (`hideFilters`). Como usa `useSearchParams`, cada uso va envuelto en `<Suspense>`.
 - **Componentes**: `BandCard` (tarjeta con banda de color), `ExperienciaCard` (la monta a partir de una experiencia), `ExperienciasCatalog` (buscador y filtros en cliente, con `persistInUrl` en `/experiencias/`), `CatalogEmptyState` (lo que se ve si no hay ninguna activa).
 - **`Card`** (`src/components/Card/`) usa `next/link` en hrefs internos y `<a target="_blank">` con `rel="noopener noreferrer"` en externos.
 - **Redirección**: `/irse/` → `/experiencias/` (301 permanente, en `next.config.ts`).
@@ -281,7 +275,7 @@ Ni la portada (`/`) ni `/nosotros/` llevan ninguna de estas dos clases — usan 
 
 ## 6. Estructura de páginas (resumen — detalle completo en ESPECIFICACION.md)
 
-- **Portada `/`** (copy en `homeEs`, `src/content/home.ts`): hero («Otros planes son posibles.» con la entradilla en gris dentro del `h1` y dos botones, `heroActions`: experiencias y proyectos) → esta semana en Xeración (`Agenda` compacta: lo que queda de la semana natural, de hoy al domingo en hora de Madrid vía `endOfWeekMadrid()`, máximo 5 filas; desaparece si no queda nada o si falla Google Calendar) → catálogo de experiencias (`ExperienciasCatalog` con `forceGrouped`, ver 4.4: destacadas, o todas las activas si no hay ninguna destacada; si no hay ninguna experiencia publicada, `CatalogEmptyState`) → proyectos para la comunidad (`Projects`, `homeEs.projects`: Liña → liña.com, Cousateca → cousateca.com, Stop Eucalipto → stopeucalipto.com; no inventar enlaces ni estados) → historias reales (`Testimonials`, hasta 3; hoy hay 2 citas reales, falta una que no hable de Europa, no inventarla) → quiénes somos en cifras (`Figures`: es el único punto de la portada donde se nombran Erasmus+ y el Cuerpo Europeo de Solidaridad) → logos institucionales → dos puertas para entidades (`Doors`: instituciones y empresas → `/empresas/`; grupos → correo de presupuesto; la portada en español no habla a socios internacionales, que tendrán su propia versión en inglés) → CTA de cierre/contacto (la oficina abre por las mañanas, de 10:00 a 14:00 — no escribir «cualquier tarde» en textos de contacto) → footer. Las cifras de la portada (+120 acogidos, +50 enviados, 57 personas socias) las confirmó la asociación; las de `/nosotros/` (75) salen de contar el listado con foto y son otro dato.
+- **Portada `/`** (copy en `homeEs`, `src/content/home.ts`): hero («Otros planes son posibles.» con la entradilla en gris dentro del `h1` y dos botones, `heroActions`: experiencias y proyectos) → esta semana en Xeración (`Agenda` compacta: lo que queda de la semana natural, de hoy al domingo en hora de Madrid vía `endOfWeekMadrid()`, máximo 5 filas; desaparece si no queda nada o si falla Google Calendar) → catálogo de experiencias (`ExperienciasCatalog` con `hideFilters`, en una sola rejilla, ver 4.4: destacadas, o todas las activas si no hay ninguna destacada; si no hay ninguna experiencia publicada, `CatalogEmptyState`) → proyectos para la comunidad (`Projects`, `homeEs.projects`: Liña → liña.com, Cousateca → cousateca.com, Stop Eucalipto → stopeucalipto.com; no inventar enlaces ni estados) → historias reales (`Testimonials`, hasta 3; hoy hay 2 citas reales, falta una que no hable de Europa, no inventarla) → quiénes somos en cifras (`Figures`: es el único punto de la portada donde se nombran Erasmus+ y el Cuerpo Europeo de Solidaridad) → logos institucionales → dos puertas para entidades (`Doors`: instituciones y empresas → `/empresas/`; grupos → correo de presupuesto; la portada en español no habla a socios internacionales, que tendrán su propia versión en inglés) → CTA de cierre/contacto (la oficina abre por las mañanas, de 10:00 a 14:00 — no escribir «cualquier tarde» en textos de contacto) → footer. Las cifras de la portada (+120 acogidos, +50 enviados, 57 personas socias) las confirmó la asociación; las de `/nosotros/` (75) salen de contar el listado con foto y son otro dato.
 - **`/agenda/`** (antes `/ferrol/`; la URL se renombró pero el objeto de contenido sigue llamándose `pageFerrolEs`, ver 4.2): hero lima → programas fijos (grid 2×2) → agenda próximas 2 semanas (timeline) → cómo llegar (mapa + info) → preguntas rápidas (acordeón) → CTA de cierre.
 - **`/experiencias/`** (antes `/irse/`; reemplazo de modelo de contenido, no solo de URL — ver 4.4): cabecera corta con `<h1>` (copy hardcodeado en la página) → catálogo completo filtrable con buscador de texto y filtros persistidos en la query string (`?filtro=`/`?q=`). Hero azul (`route-irse`). El catálogo sale de `src/content/experiencias.ts`.
 - **`/experiencias/[slug]/`**: hero (foto + título + datos clave en fila: ámbito/duración/coste) → descripción (`Prose`) → ediciones anteriores → convocatorias abiertas y botón «avísame» por WhatsApp → CTA de cierre. Solo se genera para experiencias sin `enlaceExterno` ni `enlaceInterno`.

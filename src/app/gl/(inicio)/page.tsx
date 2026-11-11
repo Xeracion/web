@@ -49,7 +49,7 @@ export default async function InicioGlPage() {
           id="experiencias"
           items={experiencias}
           intro={homeGl.catalogIntro}
-          forceGrouped
+          hideFilters
           locale="gl"
           emptyState={<CatalogEmptyState locale="gl" />}
           footer={<ButtonLink href="/gl/experiencias/">{homeGl.catalogAllLabel}</ButtonLink>}

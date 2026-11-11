@@ -46,7 +46,7 @@ export default async function HomePage() {
           id="experiencias"
           items={experiencias}
           intro={homeEs.catalogIntro}
-          forceGrouped
+          hideFilters
           emptyState={<CatalogEmptyState />}
           footer={<ButtonLink href="/experiencias/">{homeEs.catalogAllLabel}</ButtonLink>}
         />

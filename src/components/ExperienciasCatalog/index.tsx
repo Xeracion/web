@@ -7,18 +7,17 @@ import { Container } from '@/components/Container'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
 import type { ExperienciaData } from '@/content/experiencias'
 import type { SectionIntro } from '@/content/types'
-import { CATALOG_GROUP_LABELS_GL, CATALOG_GROUPS, groupForExperiencia } from '@/lib/experienciaCategorias'
 import type { Locale } from '@/lib/i18n'
 import { cn } from '@/lib/cn'
 
 import styles from './ExperienciasCatalog.module.css'
 
-// Por debajo de este número de experiencias activas, los chips de filtro se
-// sustituyen por las secciones agrupadas fijas (ver CATALOG_GROUPS) — con
-// pocas tarjetas, un chip que devuelve una sola tarjeta (o ninguna) se lee
-// peor que no filtrar. El día que el catálogo crezca por encima del umbral,
-// vuelven los chips solos, sin tocar este componente.
-const GROUPED_THRESHOLD = 12
+// Por debajo de este número de experiencias activas no se enseñan los chips
+// de filtro: con pocas tarjetas, un chip que devuelve una sola (o ninguna) se
+// lee peor que no filtrar. Todas van juntas en una sola rejilla, sin separar
+// las de Ferrol de las demás. Cuando el catálogo crezca por encima del
+// umbral, vuelven los chips solos, sin tocar este componente.
+const FILTERS_THRESHOLD = 12
 
 type ChipKey = 'todas' | 'galicia' | 'europa' | 'finde' | 'semana' | 'meses' | 'gratis'
 
@@ -87,8 +86,8 @@ interface ExperienciasCatalogProps {
   persistInUrl?: boolean
   showSearch?: boolean
   emptyMessage?: string
-  /** Fuerza la vista agrupada aunque haya más experiencias que GROUPED_THRESHOLD (la home siempre va agrupada, nunca con chips). */
-  forceGrouped?: boolean
+  /** Oculta los chips de filtro aunque haya más experiencias que FILTERS_THRESHOLD (la portada nunca los lleva). */
+  hideFilters?: boolean
   /** Qué mostrar si no hay ninguna experiencia publicada. Sin él, la sección no se pinta. */
   emptyState?: ReactNode
   /** Contenido bajo las tarjetas (ej. el enlace a todo el catálogo). Solo se pinta si hay experiencias. */
@@ -103,7 +102,7 @@ export function ExperienciasCatalog({
   persistInUrl = false,
   showSearch = false,
   emptyMessage: emptyMessageProp,
-  forceGrouped = false,
+  hideFilters = false,
   emptyState,
   footer,
   locale = 'es',
@@ -114,7 +113,7 @@ export function ExperienciasCatalog({
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const grouped = forceGrouped || items.length <= GROUPED_THRESHOLD
+  const simple = hideFilters || items.length <= FILTERS_THRESHOLD
 
   const urlChip = searchParams.get('filtro')
   const urlQuery = searchParams.get('q')
@@ -128,12 +127,12 @@ export function ExperienciasCatalog({
   useEffect(() => {
     if (!persistInUrl) return
     const params = new URLSearchParams()
-    if (!grouped && chip !== 'todas') params.set('filtro', chip)
+    if (!simple && chip !== 'todas') params.set('filtro', chip)
     if (query.trim()) params.set('q', query.trim())
     const qs = params.toString()
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chip, query, persistInUrl, grouped])
+  }, [chip, query, persistInUrl, simple])
 
   const searched = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -141,18 +140,10 @@ export function ExperienciasCatalog({
   }, [items, query])
 
   const filtered = useMemo(
-    () => (grouped ? searched : searched.filter((item) => matchesChip(item, chip))),
-    [searched, grouped, chip],
+    () => (simple ? searched : searched.filter((item) => matchesChip(item, chip))),
+    [searched, simple, chip],
   )
 
-  const groups = useMemo(() => {
-    if (!grouped) return []
-    return CATALOG_GROUPS.map((g) => ({
-      ...g,
-      label: locale === 'gl' ? CATALOG_GROUP_LABELS_GL[g.key] : g.label,
-      items: searched.filter((item) => groupForExperiencia(item) === g.key),
-    })).filter((g) => g.items.length > 0)
-  }, [searched, grouped, locale])
 
   if (items.length === 0) {
     if (!emptyState) return null
@@ -189,7 +180,7 @@ export function ExperienciasCatalog({
         />
       )}
 
-      {!grouped && (
+      {!simple && (
         <div className={styles.chips} role="group" aria-label={copy.filterLabel}>
           {CHIP_KEYS.map((key) => (
             <button
@@ -205,24 +196,7 @@ export function ExperienciasCatalog({
         </div>
       )}
 
-      {grouped ? (
-        groups.length === 0 ? (
-          <p className={styles.empty}>{emptyMessage}</p>
-        ) : (
-          <div className={styles.groups}>
-            {groups.map((g) => (
-              <div key={g.key} className={styles.group}>
-                <h3 className={styles.groupHeading}>{g.label}</h3>
-                <div className={styles.grid} data-reveal-stagger>
-                  {g.items.map((item) => (
-                    <ExperienciaCard key={item.slug ?? item.titulo} item={item} locale={locale} />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )
-      ) : filtered.length === 0 ? (
+      {filtered.length === 0 ? (
         <p className={styles.empty}>{emptyMessage}</p>
       ) : (
         <div className={styles.grid} data-reveal-stagger>

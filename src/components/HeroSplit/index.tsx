@@ -6,6 +6,7 @@ import type { PhotoPlaceholderVariant } from '@/components/PhotoPlaceholder'
 import { Prose } from '@/components/Prose'
 import { countWords, WordReveal } from '@/components/WordReveal'
 
+import { HeroPhotoBleed } from './HeroPhotoBleed'
 import styles from './HeroSplit.module.css'
 
 interface HeroSplitProps {
@@ -73,22 +74,17 @@ export function HeroSplit({
           </div>
         )}
       </div>
-      <PhotoPlaceholder
-        variant={imageVariant}
-        image={image}
-        alt={imageAlt}
-        label={imageLabel}
-        radius="xl"
-        sizes="(min-width: 1200px) 1200px, 100vw"
-        className={`${styles.photo} xr-hero-photo`}
-        style={
-          {
-            aspectRatio: 'var(--hero-aspect)',
-            '--photo-focus': imageFocus,
-            '--hero-delay': `${totalWords * 28 + 380}ms`,
-          } as CSSProperties
-        }
-      />
+      <HeroPhotoBleed style={{ '--hero-delay': `${totalWords * 28 + 380}ms` } as CSSProperties}>
+        <PhotoPlaceholder
+          variant={imageVariant}
+          image={image}
+          alt={imageAlt}
+          label={imageLabel}
+          sizes="100vw"
+          className={`${styles.photo} xr-hero-photo`}
+          style={{ aspectRatio: 'auto', borderRadius: 0, '--photo-focus': imageFocus } as CSSProperties}
+        />
+      </HeroPhotoBleed>
     </Container>
   )
 }

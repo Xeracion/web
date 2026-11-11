@@ -245,15 +245,28 @@ ol {
   --reveal-distance: 20px;
   --reveal-stagger: 80ms;
 
-  /* Container */
-  --container-max: 1200px;
+  /* Container: la misma retícula que anthropic.com (noviembre de 2026),
+     hasta 1920px con márgenes de 32px en móvil, 48px desde 768px y 80px
+     desde 1280px. El max-width incluye los márgenes. */
+  --container-max: 1920px;
   --container-padding: 32px;
   --nav-height: 72px;
 }
 
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --container-padding: 80px;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
-    --container-padding: 20px;
     --nav-height: 64px;
   }
 }
