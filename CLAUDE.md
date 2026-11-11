@@ -162,6 +162,8 @@ Con `prefers-reduced-motion`, el cambio es instantáneo.
 
 Los logos oficiales en vectorial están en `public/logo/`: `xeracion-azul.svg` (`#357DCA`, para fondos claros) y `xeracion-blanco.svg` (para fondos oscuros, como el pie). Mismo trazado y viewBox (1811×375). Son los únicos archivos de logo: los PNG antiguos (`XeracionBlue.png`, `XeracionWhite.png`, `XeracionXblue-1.png`) se borraron.
 
+**Favicon**: `src/app/icon.svg` es solo la X del logo vectorial, con un `@media (prefers-color-scheme: dark)` dentro del propio SVG: azul de marca con el navegador en modo claro y blanca en modo oscuro. `src/app/favicon.ico` (X azul) se mantiene como respaldo para Safari, que no admite favicons SVG.
+
 ### Pie (`Footer`)
 
 Fondo oscuro a todo el ancho (ya no una tarjeta redondeada). Izquierda: logotipo (`xeracion-blanco.svg`) y redes. Derecha: una fila por grupo (Agenda, Experiencias, Contacto) separada por líneas finas, con el nombre del grupo y sus enlaces en línea, y debajo «Quiénes somos» con `siteSettings.mission` (frase corta sin nombres de programa, regla 7).
