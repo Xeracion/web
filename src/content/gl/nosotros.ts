@@ -30,8 +30,8 @@ export const pageNosotrosGl = {
     'Somos xente nova que axuda a outra xente nova a vivir a súa aventura europea. Sen protocolo nin papelame interminable, e coa experiencia de máis dunha década facendo isto.',
   heroStats: [
     { value: '13', label: 'anos en activo' },
-    { value: '75', label: 'voluntarios europeos acollidos' },
-    { value: '15', label: 'países de orixe' },
+    { value: '+120', label: 'voluntarios europeos acollidos' },
+    { value: '+15', label: 'países de orixe' },
   ] satisfies StatItem[],
   historiaIntro: { heading: 'Soñamos proxectos, despois creámolos.' } satisfies SectionIntro,
   historiaParagraphs: [
@@ -58,7 +58,7 @@ export const pageNosotrosGl = {
   ] satisfies ValueItem[],
   equipoIntro: { heading: 'O equipo agora mesmo.' } satisfies SectionIntro,
   teamMembers: membersGl(pageNosotrosEs.teamMembers),
-  volunteersSubtitle: 'voluntarios europeos de 15 países pasaron por Xeración dende 2013.',
+  volunteersSubtitle: 'voluntarios europeos de máis de 15 países pasaron por Xeración dende 2013.',
   volunteersCtaLabel: 'Quero ser o seguinte →',
   volunteersCtaUrl: '/gl/experiencias/',
   pastVolunteersIntro: {

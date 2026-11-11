@@ -19,8 +19,8 @@ export const pageNosotrosEs = {
     'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
   heroStats: [
     { value: '13', label: 'años activos' },
-    { value: '75', label: 'voluntarios europeos acogidos' },
-    { value: '15', label: 'países de origen' },
+    { value: '+120', label: 'voluntarios europeos acogidos' },
+    { value: '+15', label: 'países de origen' },
   ] satisfies StatItem[],
   heroBackgroundImage: undefined as string | undefined,
   historiaIntro: { heading: 'Soñamos proyectos, luego los creamos.' } satisfies SectionIntro,
@@ -56,8 +56,10 @@ export const pageNosotrosEs = {
     { name: 'Sara Mauro', role: 'Voluntariado · Italia', image: '/img/equipo/sara-mauro.webp' },
     { name: 'Jose Pekkonen', role: 'Voluntariado · Finlandia', image: '/img/equipo/jose-pekkonen.webp' },
   ] satisfies TeamMember[],
-  volunteersNumber: '75',
-  volunteersSubtitle: 'voluntarios europeos de 15 países han pasado por Xeración desde 2013.',
+  // +120 lo confirmó la asociación (noviembre de 2026); el listado con foto
+  // solo recoge a una parte. Los países (+15) salen de ese listado.
+  volunteersNumber: '+120',
+  volunteersSubtitle: 'voluntarios europeos de más de 15 países han pasado por Xeración desde 2013.',
   volunteersCtaLabel: 'Quiero ser el próximo →',
   volunteersCtaUrl: '/experiencias/',
   pastVolunteersIntro: {
