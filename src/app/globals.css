@@ -540,3 +540,15 @@ section[id] {
 .site-main:has(> [data-closing-band]:last-child) + footer {
   margin-top: 0;
 }
+
+/* Tratamiento común de las fotos (noviembre de 2026): un mismo tono suave
+   para que fotos de orígenes muy distintos se vean de la misma familia. Los
+   logos no se tocan. */
+:root {
+  --photo-filter: saturate(0.94) contrast(1.03) brightness(1.01);
+  --photo-ring: 0 0 0 1px rgba(47, 47, 47, 0.07);
+}
+
+main img:not([src*="logos"]):not([src*="%2Flogos%2F"]):not([src$=".svg"]) {
+  filter: var(--photo-filter);
+}

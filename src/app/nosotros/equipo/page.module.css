@@ -91,6 +91,10 @@
   background: var(--surface-card);
 }
 
+.photo {
+  box-shadow: var(--photo-ring);
+}
+
 .photo img {
   object-fit: cover;
 }

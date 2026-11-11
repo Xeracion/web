@@ -34,6 +34,18 @@ a.member:hover {
   height: 112px;
   border-radius: var(--radius-full);
   object-fit: cover;
+  box-shadow: var(--photo-ring);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+a.member:hover .photo {
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo {
+    transition: none;
+  }
 }
 
 .name {
