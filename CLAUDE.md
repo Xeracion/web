@@ -133,7 +133,7 @@ Desde noviembre de 2026 la interfaz replica la UX/UI de anthropic.com, mantenien
 - **Tarjetas planas**: fondo `--surface-card` (`--xr-ink-50`, gris suave sobre el papel), sin borde ni sombra; al pasar el ratón solo cambian a `--surface-card-hover` (`--xr-ink-100`). Nada se eleva (`--shadow-lift: none`, sin `translateY`). En secciones que ya tienen fondo gris (`--color-bg-warm`, p. ej. «Valores» de `/nosotros/`), las tarjetas van en papel (`--color-bg`).
 - **Botones rectangulares** (`--radius-md`, 14px): `ButtonPrimary` en tinta (o verde/azul con `accent`/`highlight`); `ButtonSecondary` en gris suave, sin contorno.
 - **Cabeceras apiladas** (`HeroSplit`): titular a todo el ancho, entradilla y botones debajo, y la foto en panorámico (21:9 desktop, 16:9 tablet, 4:3 móvil) al final. La foto (`HeroPhotoBleed`) se abre hacia los márgenes al hacer scroll: la caja ocupa toda la retícula, un `clip-path` la recorta al ancho del contenido y se va abriendo según `--expand` (0 a 1, lo pone un poco de JS), mientras la imagen pierde un leve zoom. Sin JS o con `prefers-reduced-motion`, se queda al ancho del contenido. Con `inlineText` (solo la portada) la entradilla va dentro del mismo `h1`, en gris, a continuación de la frase principal — el efecto de anthropic.com hecho solo con Nordea. `imageFocus` ajusta el recorte (por defecto `center 35%`).
-- **Separadores con líneas finas**: el pie es una lista de filas separadas por líneas.
+- **Separadores con líneas finas**: los grupos del pie son acordeones separados por líneas.
 - **`EyebrowPill`** pasó a ser una etiqueta pequeña en minúscula normal (12px, `--radius-sm`), no versalitas espaciadas.
 
 ### Componentes reutilizables
@@ -168,7 +168,7 @@ Los logos oficiales en vectorial están en `public/logo/`: `xeracion-azul.svg` (
 
 ### Pie (`Footer`)
 
-Fondo oscuro a todo el ancho (ya no una tarjeta redondeada). Izquierda: logotipo (`xeracion-blanco.svg`) y redes. Derecha: una fila por grupo (Agenda, Experiencias, Contacto) separada por líneas finas, con el nombre del grupo y sus enlaces en línea, y debajo «Quiénes somos» con `siteSettings.mission` (frase corta sin nombres de programa, regla 7).
+Calcado del pie de anthropic.com, a todo el ancho sobre fondo oscuro y en la retícula de 12 columnas: columnas 1 a 3 con el logotipo (`xeracion-blanco.svg`) arriba y los créditos y las redes abajo (iconos macizos de Instagram, TikTok, Facebook y LinkedIn, sacados de `siteSettings.socialLinks`); columnas 4 a 9 con los grupos de enlaces (Agenda, Experiencias, Proyectos, Nosotros) como acordeones `<details>` separados por líneas finas; columnas 11 y 12 con «Quiénes somos» (`siteSettings.mission`, frase corta sin nombres de programa, regla 7) y «Escríbenos» (correo y WhatsApp). Por debajo de 1024px todo se apila. Va pegado a la banda verde de cierre cuando la página termina con ella.
 
 #### 2.1 Componente `ResizableNavbar`
 

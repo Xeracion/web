@@ -6,126 +6,188 @@ import type { Locale } from '@/lib/i18n'
 
 import styles from './Footer.module.css'
 
-interface FooterColumn {
-  heading: string
-  links: Array<{ label: string; href: string; external?: boolean }>
+// Pie calcado del de anthropic.com: a la izquierda el logotipo y, abajo, los
+// créditos y las redes; en el centro, los grupos de enlaces como acordeones
+// (<details> nativo) separados por líneas finas; a la derecha, quiénes somos
+// y cómo escribirnos.
+
+interface FooterLink {
+  label: string
+  href: string
 }
 
-const COLUMNS: Record<Locale, FooterColumn[]> = {
+interface FooterGroup {
+  heading: string
+  links: FooterLink[]
+}
+
+const GROUPS: Record<Locale, FooterGroup[]> = {
   es: [
     {
       heading: 'Agenda',
       links: [
         { label: 'Próximos eventos', href: '/agenda/#agenda' },
-        { label: 'Offline Club', href: '/agenda/#offline-club' },
         { label: 'Speak Factor', href: '/speakfactor/' },
         { label: 'Cómo llegar', href: '/agenda/#visitanos' },
+        { label: 'Quiero ser mentor', href: '/mentores/' },
       ],
     },
     {
       heading: 'Experiencias',
       links: [
-        { label: 'Ver todas', href: '/experiencias/' },
-        { label: 'Por Europa', href: '/experiencias/?filtro=europa' },
+        { label: 'Todas las experiencias', href: '/experiencias/' },
         { label: 'Sin coste', href: '/experiencias/?filtro=gratis' },
         { label: 'Preguntas frecuentes', href: '/preguntas/' },
       ],
     },
+    {
+      heading: 'Proyectos',
+      links: [
+        { label: 'Liña', href: 'https://xn--lia-8ma.com' },
+        { label: 'Cousateca', href: 'https://cousateca.com' },
+        { label: 'Stop Eucalipto', href: 'https://stopeucalipto.com' },
+        { label: 'Paisanos', href: '/paisanos/' },
+      ],
+    },
+    {
+      heading: 'Nosotros',
+      links: [
+        { label: 'Quiénes somos', href: '/nosotros/' },
+        { label: 'Equipo', href: '/nosotros/equipo/' },
+        { label: 'Para empresas', href: '/empresas/' },
+      ],
+    },
   ],
-  // Speak Factor y las preguntas frecuentes solo existen en castellano.
+  // Speak Factor, mentores, preguntas, Paisanos, equipo y empresas solo
+  // existen en castellano.
   gl: [
     {
       heading: 'Axenda',
       links: [
         { label: 'Próximos eventos', href: '/gl/axenda/#agenda' },
-        { label: 'Offline Club', href: '/gl/axenda/#offline-club' },
         { label: 'Speak Factor', href: '/speakfactor/' },
         { label: 'Como chegar', href: '/gl/axenda/#visitanos' },
+        { label: 'Quero ser mentor', href: '/mentores/' },
       ],
     },
     {
       heading: 'Experiencias',
       links: [
-        { label: 'Ver todas', href: '/gl/experiencias/' },
-        { label: 'Por Europa', href: '/gl/experiencias/?filtro=europa' },
+        { label: 'Todas as experiencias', href: '/gl/experiencias/' },
         { label: 'Sen custo', href: '/gl/experiencias/?filtro=gratis' },
         { label: 'Preguntas frecuentes', href: '/preguntas/' },
+      ],
+    },
+    {
+      heading: 'Proxectos',
+      links: [
+        { label: 'Liña', href: 'https://xn--lia-8ma.com' },
+        { label: 'Cousateca', href: 'https://cousateca.com' },
+        { label: 'Stop Eucalipto', href: 'https://stopeucalipto.com' },
+        { label: 'Paisanos', href: '/paisanos/' },
+      ],
+    },
+    {
+      heading: 'Nós',
+      links: [
+        { label: 'Quen somos', href: '/gl/nos/' },
+        { label: 'Equipo', href: '/nosotros/equipo/' },
+        { label: 'Para empresas', href: '/empresas/' },
       ],
     },
   ],
 }
 
 const COPY = {
-  es: { contact: 'Contacto', about: 'Nosotros', aboutHref: '/nosotros/', team: 'Equipo', companies: 'Empresas', who: 'Quiénes somos', link: 'Enlace', home: '/' },
-  gl: { contact: 'Contacto', about: 'Nós', aboutHref: '/gl/nos/', team: 'Equipo', companies: 'Empresas', who: 'Quen somos', link: 'Ligazón', home: '/gl/' },
-}
-
-function credits(address: string) {
-  return `© 2026 Asociación Xeración · ${address}`
+  es: { who: 'Quiénes somos', write: 'Escríbenos', home: '/', social: 'Redes sociales', link: 'Enlace' },
+  gl: { who: 'Quen somos', write: 'Escríbenos', home: '/gl/', social: 'Redes sociais', link: 'Ligazón' },
 }
 
 const PLATFORM_LABELS: Record<string, string> = {
   instagram: 'Instagram',
-  facebook: 'Facebook',
   tiktok: 'TikTok',
-  youtube: 'YouTube',
+  facebook: 'Facebook',
   linkedin: 'LinkedIn',
-  other: 'Enlace',
+  youtube: 'YouTube',
 }
 
-function SocialIcon({ platform }: { platform?: string }) {
+const isExternal = (href: string) => /^(https?:|mailto:)/.test(href)
+
+// Iconos macizos, como los del pie de anthropic.com. Los huecos se pintan
+// con el color del fondo del pie (--surface-dark).
+function SocialIcon({ platform }: { platform: string }) {
+  const hole = 'var(--surface-dark)'
   switch (platform) {
     case 'instagram':
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5" />
-          <circle cx="12" cy="12" r="4.2" />
-          <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="currentColor" />
+          <circle cx="12" cy="12" r="4.6" style={{ fill: hole }} />
+          <circle cx="12" cy="12" r="2.9" fill="currentColor" />
+          <circle cx="17.2" cy="6.8" r="1.25" style={{ fill: hole }} />
         </svg>
       )
     case 'facebook':
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="currentColor" />
           <path
-            d="M13.5 21v-7h2.2l.3-2.6h-2.5V9.4c0-.75.2-1.26 1.28-1.26h1.37V5.8c-.24-.03-1.05-.1-2-.1-1.98 0-3.33 1.2-3.33 3.42v1.9H8.5v2.6h2.35V21"
-            fill="currentColor"
-            stroke="none"
+            d="M13.4 22v-7.3h2.4l.37-2.85H13.4v-1.8c0-.83.23-1.39 1.42-1.39h1.5V6.12a20 20 0 0 0-2.2-.11c-2.18 0-3.66 1.33-3.66 3.76v2.08H8v2.85h2.46V22z"
+            style={{ fill: hole }}
           />
         </svg>
       )
     case 'tiktok':
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <path d="M14 4v10.2a3.3 3.3 0 1 1-2.4-3.18" />
-          <path d="M14 4c.4 2.1 2 3.7 4.1 4" />
-        </svg>
-      )
-    case 'youtube':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <rect x="2.5" y="6" width="19" height="12" rx="4" />
-          <path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="4" fill="currentColor" />
+          <path
+            d="M13.6 6h2.1c.2 1.3 1.1 2.3 2.4 2.5v2.1a5 5 0 0 1-2.4-.75v4.4a3.85 3.85 0 1 1-3.85-3.85c.2 0 .4.02.6.05v2.15a1.75 1.75 0 1 0 1.15 1.65z"
+            style={{ fill: hole }}
+          />
         </svg>
       )
     case 'linkedin':
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="4" />
-          <line x1="7.5" y1="10" x2="7.5" y2="17" />
-          <circle cx="7.5" cy="6.7" r="0.9" fill="currentColor" stroke="none" />
-          <line x1="11.5" y1="10" x2="11.5" y2="17" />
-          <path d="M11.5 17v-4.2c0-1.5.9-2.4 2.1-2.4 1.2 0 1.9.8 1.9 2.4V17" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="2.5" fill="currentColor" />
+          <rect x="6.2" y="10" width="2.6" height="8" style={{ fill: hole }} />
+          <circle cx="7.5" cy="7.3" r="1.5" style={{ fill: hole }} />
+          <path d="M10.8 10h2.5v1.1c.4-.75 1.35-1.3 2.6-1.3 2.1 0 2.9 1.3 2.9 3.4V18h-2.6v-4.3c0-1-.3-1.75-1.3-1.75s-1.5.75-1.5 1.75V18h-2.6z" style={{ fill: hole }} />
         </svg>
       )
     default:
       return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="currentColor" />
         </svg>
       )
   }
+}
+
+function FooterAnchor({ link, className }: { link: FooterLink; className: string }) {
+  if (!isExternal(link.href)) {
+    return (
+      <Link href={link.href} className={className}>
+        {link.label}
+      </Link>
+    )
+  }
+  const newTab = link.href.startsWith('http')
+  return (
+    <a
+      href={link.href}
+      className={className}
+      {...(newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+    >
+      {link.label}
+      {newTab && (
+        <span className={styles.external} aria-hidden="true">
+          ↗
+        </span>
+      )}
+    </a>
+  )
 }
 
 interface FooterProps {
@@ -135,23 +197,13 @@ interface FooterProps {
 
 export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
   const copy = COPY[locale]
-  const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, Ferrol'
+  const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, 15402 Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
-
-  const contactLinks: Array<{ label: string; href: string; external?: boolean }> = [
-    ...(siteSettings?.email ? [{ label: siteSettings.email, href: `mailto:${siteSettings.email}`, external: true }] : []),
-    ...(siteSettings?.whatsapp
-      ? [{ label: 'WhatsApp', href: `https://wa.me/${siteSettings.whatsapp}`, external: true }]
-      : []),
-    { label: copy.about, href: copy.aboutHref },
-    { label: copy.team, href: '/nosotros/equipo/' },
-    { label: copy.companies, href: '/empresas/' },
+  const contactLinks: FooterLink[] = [
+    ...(siteSettings?.email ? [{ label: siteSettings.email, href: `mailto:${siteSettings.email}` }] : []),
+    ...(siteSettings?.whatsapp ? [{ label: 'WhatsApp', href: `https://wa.me/${siteSettings.whatsapp}` }] : []),
   ]
-  const rows: FooterColumn[] = [...COLUMNS[locale], { heading: copy.contact, links: contactLinks }]
 
-  // Inspirado en el pie de anthropic.com: a la izquierda la marca y las
-  // redes; a la derecha, una fila por grupo separada por líneas finas, con
-  // el nombre del grupo y sus enlaces en línea.
   return (
     <footer className={styles.footer}>
       <Container className={styles.grid}>
@@ -160,65 +212,69 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/xeracion-blanco.svg" alt="" width={1811} height={375} />
           </Link>
-          {socialLinks.length > 0 && (
-            <ul className={styles.socialList}>
-              {socialLinks.map((link, i) => {
-                const platform = link.platform ?? 'other'
-                return (
-                  <li key={i}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                      aria-label={PLATFORM_LABELS[platform] ?? copy.link}
-                    >
-                      <SocialIcon platform={platform} />
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
         </div>
 
-        <div className={styles.rows}>
-          {rows.map((row) => (
-            <div key={row.heading} className={styles.row}>
-              <h2 className={styles.columnHeading}>{row.heading}</h2>
-              <ul className={styles.linkList}>
-                {row.links.map((link) => (
+        <nav className={styles.groups} aria-label={siteSettings?.title ?? 'Xeración'}>
+          {GROUPS[locale].map((group) => (
+            <details key={group.heading} className={styles.group}>
+              <summary className={styles.summary}>
+                <h2 className={styles.groupHeading}>{group.heading}</h2>
+                <svg className={styles.chevron} viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3.5 6l4.5 4.5L12.5 6" fill="none" stroke="currentColor" strokeWidth="1.3" />
+                </svg>
+              </summary>
+              <ul className={styles.groupLinks}>
+                {group.links.map((link) => (
                   <li key={link.href}>
-                    {/^(https?:|mailto:)/.test(link.href) ? (
-                      <a
-                        href={link.href}
-                        className={styles.link}
-                        {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link href={link.href} className={styles.link}>
-                        {link.label}
-                      </Link>
-                    )}
+                    <FooterAnchor link={link} className={styles.link} />
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </nav>
+
+        <div className={styles.aside}>
+          {siteSettings?.mission && (
+            <div>
+              <h2 className={styles.asideHeading}>{copy.who}</h2>
+              <p className={styles.asideText}>{siteSettings.mission}</p>
+            </div>
+          )}
+          {contactLinks.length > 0 && (
+            <div>
+              <h2 className={styles.asideHeading}>{copy.write}</h2>
+              <ul className={styles.asideLinks}>
+                {contactLinks.map((link) => (
+                  <li key={link.href}>
+                    <FooterAnchor link={link} className={styles.asideLink} />
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
-
-          {siteSettings?.mission && (
-            <div className={styles.mission}>
-              <h2 className={styles.missionHeading}>{copy.who}</h2>
-              <p>{siteSettings.mission}</p>
-            </div>
           )}
         </div>
-      </Container>
 
-      <Container>
-        <p className={styles.credits}>{credits(address)}</p>
+        <div className={styles.bottom}>
+          <p className={styles.credits}>© 2026 Asociación Xeración · {address}</p>
+          {socialLinks.length > 0 && (
+            <ul className={styles.socialList} aria-label={copy.social}>
+              {socialLinks.map((link) => (
+                <li key={link.url}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                    aria-label={PLATFORM_LABELS[link.platform] ?? copy.link}
+                  >
+                    <SocialIcon platform={link.platform} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </Container>
     </footer>
   )
