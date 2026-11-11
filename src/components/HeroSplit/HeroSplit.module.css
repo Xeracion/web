@@ -82,7 +82,7 @@
 /* La imagen arranca un poco ampliada y se suelta a la vez que se abre. */
 @media (prefers-reduced-motion: no-preference) {
   .bleed img {
-    transform: scale(calc(1.06 - 0.06 * var(--expand)));
+    transform: scale(calc(1.03 - 0.03 * var(--expand)));
     will-change: transform;
   }
 }

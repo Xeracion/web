@@ -23,6 +23,8 @@ interface PhotoPlaceholderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
   aspectRatio?: string
   radius?: 'lg' | 'xl'
   sizes?: string
+  /** Calidad de compresión de next/image (75 por defecto; 90 en cabeceras). */
+  quality?: number
 }
 
 export function PhotoPlaceholder({
@@ -33,6 +35,7 @@ export function PhotoPlaceholder({
   aspectRatio = '4 / 3',
   radius = 'lg',
   sizes = '(min-width: 1024px) 50vw, 100vw',
+  quality,
   className,
   style,
   ...rest
@@ -56,7 +59,7 @@ export function PhotoPlaceholder({
       {...rest}
     >
       {src ? (
-        <Image src={src} alt={alt ?? label} fill sizes={sizes} className={styles.image} />
+        <Image src={src} alt={alt ?? label} fill sizes={sizes} quality={quality} className={styles.image} />
       ) : (
         <span className={styles.label} aria-hidden="true">
           [ {label} ]

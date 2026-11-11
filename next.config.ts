@@ -45,6 +45,8 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    // 90 solo para las fotos grandes de cabecera; el resto va a 75 (por defecto).
+    qualities: [75, 90],
   },
   async headers() {
     return [

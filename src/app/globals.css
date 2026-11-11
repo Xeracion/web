@@ -549,6 +549,7 @@ section[id] {
   --photo-ring: 0 0 0 1px rgba(47, 47, 47, 0.07);
 }
 
-main img:not([src*="logos"]):not([src*="%2Flogos%2F"]):not([src$=".svg"]) {
+/* Las fotos de cabecera se ven tal cual, sin filtro. */
+main img:not([src*="logos"]):not([src*="%2Flogos%2F"]):not([src$=".svg"]):not(.xr-hero-photo > img):not([sizes="100vw"]) {
   filter: var(--photo-filter);
 }

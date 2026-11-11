@@ -81,6 +81,7 @@ export function HeroSplit({
           alt={imageAlt}
           label={imageLabel}
           sizes="100vw"
+          quality={90}
           className={`${styles.photo} xr-hero-photo`}
           style={{ aspectRatio: 'auto', borderRadius: 0, '--photo-focus': imageFocus } as CSSProperties}
         />

@@ -43,6 +43,7 @@ export function Hero({ data }: { data: HeroData }) {
             fill
             priority
             sizes="100vw"
+            quality={90}
             className={styles.backgroundImage}
           />
           <div className={styles.overlay} aria-hidden="true" />
