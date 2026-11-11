@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
@@ -127,7 +126,8 @@ export function Footer({ siteSettings }: FooterProps) {
       <Container className={styles.grid}>
         <div className={styles.brand}>
           <Link href="/" className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
-            <Image src="/XeracionWhite.png" alt="" width={1811} height={375} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/xeracion-blanco.svg" alt="" width={1811} height={375} />
           </Link>
           {socialLinks.length > 0 && (
             <ul className={styles.socialList}>

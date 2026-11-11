@@ -152,14 +152,19 @@ Implementado por `ResizableNavbar` (`src/components/ResizableNavbar/`) — ver e
 
 - Barra fija sencilla, estilo anthropic.com: fondo papel opaco, ancho del `.container`; no se encoge ni flota — al hacer scroll solo gana una línea fina inferior. Altura `--nav-height` (72px / 64px en móvil).
 - Desktop: la primera mitad de `NAV_ITEMS_ES` (Inicio, Agenda) a la izquierda, el logotipo centrado y la segunda mitad (Experiencias, Nosotros) a la derecha, cada enlace en una pastilla fina con borde (`--radius-full`, 13px).
-- **Logo que se comprime a la X** (como el de anthropic.com): al bajar más de 48px, las letras «eracion» se pliegan hacia la X (se desplazan, encogen y desvanecen, escalonadas de la última a la primera) mientras la caja del logo se estrecha hasta el ancho de la X; al volver arriba se despliegan en orden inverso. Es una transición CSS disparada por umbral, no ligada al scroll. Componente `LogoMark` (`src/components/LogoMark/`, prop `collapsed`): el wordmark está troceado en 8 PNG (`public/img/logo/x.png`, `e.png`… `n.png`, 96px de alto) sacados de `public/XeracionBlue.png` por silueta, con su posición original en % del ancho. Si cambia el logo, hay que volver a trocearlo. El pie sigue usando el PNG blanco entero. Con `prefers-reduced-motion`, el cambio es instantáneo.
+- **Logo que se comprime a la X** (como el de anthropic.com): al bajar más de 48px, las letras «eracion» se pliegan hacia la X (se desplazan, encogen y desvanecen, escalonadas de la última a la primera) mientras la caja del logo se estrecha hasta el ancho de la X; al volver arriba se despliegan en orden inverso. Es una transición CSS disparada por umbral, no ligada al scroll. Componente `LogoMark` (`src/components/LogoMark/`, prop `collapsed`): SVG en línea con el trazado del logo vectorial troceado por letras (X, e, r, a, c, i, o, n, cada una con sus huecos interiores) en `paths.ts`, generado a partir de `public/logo/xeracion-azul.svg` — no se edita a mano; si cambia el logo, hay que regenerarlo. Color vía `currentColor` (azul de marca).
+Con `prefers-reduced-motion`, el cambio es instantáneo.
 - Móvil (< 768px): logotipo a la izquierda y botón de menú a la derecha → lista desplegable con enlaces grandes separados por líneas; se cierra al pulsar un enlace o Escape.
 - **En cada sub-home**, la pastilla de la sección activa lleva el fondo y el texto de acento correspondientes (sutil, no llamativo) — esto es lo que conecta con la convención de clases de ruta del punto 5.
 - Respeta `prefers-reduced-motion`: sin animación del desplegable ni transiciones.
 
+### Logotipo
+
+Los logos oficiales en vectorial están en `public/logo/`: `xeracion-azul.svg` (`#357DCA`, para fondos claros) y `xeracion-blanco.svg` (para fondos oscuros, como el pie). Mismo trazado y viewBox (1811×375). Los PNG antiguos de la raíz de `public/` (`XeracionBlue.png`, `XeracionWhite.png`, `XeracionXblue-1.png`) ya no los usa la web; se conservan por si hay enlaces externos a ellos.
+
 ### Pie (`Footer`)
 
-Fondo oscuro a todo el ancho (ya no una tarjeta redondeada). Izquierda: logotipo y redes. Derecha: una fila por grupo (Agenda, Experiencias, Contacto) separada por líneas finas, con el nombre del grupo y sus enlaces en línea, y debajo «Quiénes somos» con `siteSettings.mission` (frase corta sin nombres de programa, regla 7).
+Fondo oscuro a todo el ancho (ya no una tarjeta redondeada). Izquierda: logotipo (`xeracion-blanco.svg`) y redes. Derecha: una fila por grupo (Agenda, Experiencias, Contacto) separada por líneas finas, con el nombre del grupo y sus enlaces en línea, y debajo «Quiénes somos» con `siteSettings.mission` (frase corta sin nombres de programa, regla 7).
 
 #### 2.1 Componente `ResizableNavbar`
 
