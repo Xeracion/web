@@ -7,7 +7,8 @@ import { Container } from '@/components/Container'
 import { ExperienciaCard } from '@/components/ExperienciaCard'
 import type { ExperienciaData } from '@/content/experiencias'
 import type { SectionIntro } from '@/content/types'
-import { CATALOG_GROUPS, groupForExperiencia } from '@/lib/experienciaCategorias'
+import { CATALOG_GROUP_LABELS_GL, CATALOG_GROUPS, groupForExperiencia } from '@/lib/experienciaCategorias'
+import type { Locale } from '@/lib/i18n'
 import { cn } from '@/lib/cn'
 
 import styles from './ExperienciasCatalog.module.css'
@@ -21,15 +22,40 @@ const GROUPED_THRESHOLD = 12
 
 type ChipKey = 'todas' | 'galicia' | 'europa' | 'finde' | 'semana' | 'meses' | 'gratis'
 
-const CHIPS: { key: ChipKey; label: string }[] = [
-  { key: 'todas', label: 'Todas' },
-  { key: 'galicia', label: 'En Galicia' },
-  { key: 'europa', label: 'Por Europa' },
-  { key: 'finde', label: 'Un finde' },
-  { key: 'semana', label: 'Una semana' },
-  { key: 'meses', label: 'Meses' },
-  { key: 'gratis', label: 'Sin coste' },
-]
+const CHIP_KEYS: ChipKey[] = ['todas', 'galicia', 'europa', 'finde', 'semana', 'meses', 'gratis']
+
+const COPY = {
+  es: {
+    chips: {
+      todas: 'Todas',
+      galicia: 'En Galicia',
+      europa: 'Por Europa',
+      finde: 'Un finde',
+      semana: 'Una semana',
+      meses: 'Meses',
+      gratis: 'Sin coste',
+    } satisfies Record<ChipKey, string>,
+    empty: 'No hay experiencias con este filtro todavía.',
+    searchPlaceholder: 'Busca por nombre...',
+    searchLabel: 'Buscar experiencias',
+    filterLabel: 'Filtrar experiencias',
+  },
+  gl: {
+    chips: {
+      todas: 'Todas',
+      galicia: 'En Galicia',
+      europa: 'Por Europa',
+      finde: 'Unha fin de semana',
+      semana: 'Unha semana',
+      meses: 'Meses',
+      gratis: 'Sen custo',
+    } satisfies Record<ChipKey, string>,
+    empty: 'Aínda non hai experiencias con este filtro.',
+    searchPlaceholder: 'Busca polo nome...',
+    searchLabel: 'Buscar experiencias',
+    filterLabel: 'Filtrar experiencias',
+  },
+}
 
 function matchesChip(item: ExperienciaData, chip: ChipKey) {
   switch (chip) {
@@ -67,6 +93,7 @@ interface ExperienciasCatalogProps {
   emptyState?: ReactNode
   /** Contenido bajo las tarjetas (ej. el enlace a todo el catálogo). Solo se pinta si hay experiencias. */
   footer?: ReactNode
+  locale?: Locale
 }
 
 export function ExperienciasCatalog({
@@ -75,11 +102,14 @@ export function ExperienciasCatalog({
   id,
   persistInUrl = false,
   showSearch = false,
-  emptyMessage = 'No hay experiencias con este filtro todavía.',
+  emptyMessage: emptyMessageProp,
   forceGrouped = false,
   emptyState,
   footer,
+  locale = 'es',
 }: ExperienciasCatalogProps) {
+  const copy = COPY[locale]
+  const emptyMessage = emptyMessageProp ?? copy.empty
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -91,7 +121,7 @@ export function ExperienciasCatalog({
 
   const [chip, setChip] = useState<ChipKey>(() => {
     if (!persistInUrl) return 'todas'
-    return CHIPS.some((c) => c.key === urlChip) ? (urlChip as ChipKey) : 'todas'
+    return CHIP_KEYS.some((key) => key === urlChip) ? (urlChip as ChipKey) : 'todas'
   })
   const [query, setQuery] = useState(() => (persistInUrl ? (urlQuery ?? '') : ''))
 
@@ -119,9 +149,10 @@ export function ExperienciasCatalog({
     if (!grouped) return []
     return CATALOG_GROUPS.map((g) => ({
       ...g,
+      label: locale === 'gl' ? CATALOG_GROUP_LABELS_GL[g.key] : g.label,
       items: searched.filter((item) => groupForExperiencia(item) === g.key),
     })).filter((g) => g.items.length > 0)
-  }, [searched, grouped])
+  }, [searched, grouped, locale])
 
   if (items.length === 0) {
     if (!emptyState) return null
@@ -152,23 +183,23 @@ export function ExperienciasCatalog({
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Busca por nombre..."
+          placeholder={copy.searchPlaceholder}
           className={styles.search}
-          aria-label="Buscar experiencias"
+          aria-label={copy.searchLabel}
         />
       )}
 
       {!grouped && (
-        <div className={styles.chips} role="group" aria-label="Filtrar experiencias">
-          {CHIPS.map((c) => (
+        <div className={styles.chips} role="group" aria-label={copy.filterLabel}>
+          {CHIP_KEYS.map((key) => (
             <button
-              key={c.key}
+              key={key}
               type="button"
-              onClick={() => setChip(c.key)}
-              className={cn(styles.chip, chip === c.key && styles.chipActive)}
-              aria-pressed={chip === c.key}
+              onClick={() => setChip(key)}
+              className={cn(styles.chip, chip === key && styles.chipActive)}
+              aria-pressed={chip === key}
             >
-              {c.label}
+              {copy.chips[key]}
             </button>
           ))}
         </div>
@@ -184,7 +215,7 @@ export function ExperienciasCatalog({
                 <h3 className={styles.groupHeading}>{g.label}</h3>
                 <div className={styles.grid}>
                   {g.items.map((item) => (
-                    <ExperienciaCard key={item.slug ?? item.titulo} item={item} />
+                    <ExperienciaCard key={item.slug ?? item.titulo} item={item} locale={locale} />
                   ))}
                 </div>
               </div>
@@ -196,7 +227,7 @@ export function ExperienciasCatalog({
       ) : (
         <div className={styles.grid}>
           {filtered.map((item) => (
-            <ExperienciaCard key={item.slug ?? item.titulo} item={item} />
+            <ExperienciaCard key={item.slug ?? item.titulo} item={item} locale={locale} />
           ))}
         </div>
       )}

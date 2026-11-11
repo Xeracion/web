@@ -81,7 +81,6 @@ const nextConfig: NextConfig = {
         { source: `/${slug}-2`, destination: `/paisanos/${slug}/`, permanent: true },
       ]),
       { source: "/en/:path*", destination: "/", permanent: true },
-      { source: "/gl/:path*", destination: "/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
       { source: "/irse", destination: "/experiencias/", permanent: true },

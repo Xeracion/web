@@ -16,12 +16,12 @@ interface HowToArriveData {
 interface HowToArriveProps {
   data: HowToArriveData
   siteSettings: SiteSettings
-  locale?: 'es' | 'en'
+  locale?: 'es' | 'gl'
 }
 
 const COPY = {
   es: { map: 'Mapa', placeholder: 'mapa', gettingHere: 'Cómo venir', contact: 'Contacto' },
-  en: { map: 'Map', placeholder: 'map', gettingHere: 'Getting here', contact: 'Contact' },
+  gl: { map: 'Mapa', placeholder: 'mapa', gettingHere: 'Como vir', contact: 'Contacto' },
 }
 
 export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArriveProps) {

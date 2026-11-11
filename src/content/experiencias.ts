@@ -31,6 +31,16 @@ export interface Edicion {
   destacada?: boolean
 }
 
+/** Textos en gallego de una experiencia. Lo que falte se enseña en castellano. */
+export interface ExperienciaGl {
+  titulo?: string
+  lugar?: string
+  resumen?: string
+  descripcion?: string[]
+  costeEtiqueta?: string
+  imagenAlt?: string
+}
+
 export interface ExperienciaData {
   titulo: string
   slug: string
@@ -59,6 +69,8 @@ export interface ExperienciaData {
   activa?: boolean
   convocatorias?: Convocatoria[]
   ediciones?: Edicion[]
+  /** Versión en gallego (/gl/experiencias/). */
+  gl?: ExperienciaGl
 }
 
 // El orden de esta lista es el orden en que aparecen.
@@ -76,6 +88,12 @@ export const experiencias: ExperienciaData[] = [
     colorBanda: '#0E3A2F',
     enlaceExterno: 'https://intothewildproject.com',
     destacada: true,
+    gl: {
+      lugar: 'Fragas do Eume e O Forgoselo',
+      resumen:
+        'Un reto ao aire libre por equipos, con xente nova de varios países. A última edición foron 36 horas de monte.',
+      costeEtiqueta: 'Financiada',
+    },
   },
   {
     titulo: 'Orgasmo Sonoro',
@@ -91,6 +109,10 @@ export const experiencias: ExperienciaData[] = [
     colorBanda: '#4F8371',
     enlaceExterno: 'https://orgasmosonoro.com',
     destacada: true,
+    gl: {
+      resumen:
+        'Exploración musical con cerimonia do cacao e exercicios de respiración. Grupos de 10 a 15 persoas, só maiores de 18.',
+    },
   },
   {
     titulo: 'Caminocrew',
@@ -106,6 +128,12 @@ export const experiencias: ExperienciaData[] = [
     colorBanda: '#357DCA',
     enlaceExterno: 'https://caminocrew.com',
     destacada: true,
+    gl: {
+      lugar: 'Ferrol → Santiago',
+      resumen:
+        'O Camiño Inglés en grupo e nunha semana: día de acollida, mochilas transportadas e celebración ao chegar a Santiago.',
+      costeEtiqueta: 'De pagamento',
+    },
   },
   {
     titulo: 'Speak Factor',
@@ -118,8 +146,27 @@ export const experiencias: ExperienciaData[] = [
     costeEtiqueta: 'Sin coste',
     colorBanda: '#8FBCEF',
     enlaceInterno: '/speakfactor/',
+    gl: {
+      resumen: 'Curso gratuíto de oratoria en inglés dende 2017. Martes alternos ás 19:00.',
+      costeEtiqueta: 'Sen custo',
+    },
   },
 ]
+
+/** La experiencia con sus textos en el idioma pedido (castellano si falta alguno). */
+export function localizeExperiencia(item: ExperienciaData, locale: 'es' | 'gl'): ExperienciaData {
+  if (locale === 'es' || !item.gl) return item
+  const { gl } = item
+  return {
+    ...item,
+    titulo: gl.titulo ?? item.titulo,
+    lugar: gl.lugar ?? item.lugar,
+    resumen: gl.resumen ?? item.resumen,
+    descripcion: gl.descripcion ?? item.descripcion,
+    costeEtiqueta: gl.costeEtiqueta ?? item.costeEtiqueta,
+    imagenAlt: gl.imagenAlt ?? item.imagenAlt,
+  }
+}
 
 const activas = () => experiencias.filter((item) => item.activa !== false)
 

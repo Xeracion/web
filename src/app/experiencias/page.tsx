@@ -14,6 +14,7 @@ export function generateMetadata(): Metadata {
     title: 'Experiencias',
     description:
       'El catálogo de experiencias de Xeración: caminos, aventura, vivir fuera, intercambios, planes locales y naturaleza. Unas las pagas tú, otras están financiadas.',
+    path: '/experiencias/',
   })
 }
 

@@ -14,7 +14,7 @@ import { HowToArrive } from './_sections/HowToArrive'
 import { MentoresCallout } from './_sections/MentoresCallout'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Agenda', description: pageFerrolEs.heroText })
+  return buildPageMetadata({ title: 'Agenda', description: pageFerrolEs.heroText, path: '/agenda/' })
 }
 
 export default async function FerrolPage() {

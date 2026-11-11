@@ -6,8 +6,8 @@ import type { Partner } from '@/content/types'
 import styles from './Legal.module.css'
 
 const LABELS = {
-  es: { heading: 'Datos legales', oid: 'OID', pic: 'PIC', memoria: 'Memoria anual →' },
-  en: { heading: 'Legal information', oid: 'OID', pic: 'PIC', memoria: 'Annual report →' },
+  es: { heading: 'Datos legales', name: 'Nombre legal', address: 'Domicilio social', oid: 'OID', pic: 'PIC', memoria: 'Memoria anual →' },
+  gl: { heading: 'Datos legais', name: 'Nome legal', address: 'Domicilio social', oid: 'OID', pic: 'PIC', memoria: 'Memoria anual →' },
 }
 
 interface LegalData {
@@ -20,7 +20,7 @@ interface LegalData {
   memoriaAnualUrl?: string
 }
 
-export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' | 'en' }) {
+export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' | 'gl' }) {
   const hasLegalData =
     data.legalName || data.legalCif || data.legalAddress || data.legalOid || data.legalPic
   const accreditations = data.accreditations ?? []
@@ -35,7 +35,7 @@ export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' 
         <dl className={styles.facts}>
           {data.legalName && (
             <div>
-              <dt>{locale === 'en' ? 'Legal name' : 'Nombre legal'}</dt>
+              <dt>{labels.name}</dt>
               <dd>{data.legalName}</dd>
             </div>
           )}
@@ -47,7 +47,7 @@ export function Legal({ data, locale = 'es' }: { data: LegalData; locale?: 'es' 
           )}
           {data.legalAddress && (
             <div>
-              <dt>{locale === 'en' ? 'Registered address' : 'Domicilio social'}</dt>
+              <dt>{labels.address}</dt>
               <dd>{data.legalAddress}</dd>
             </div>
           )}

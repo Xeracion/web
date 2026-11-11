@@ -8,12 +8,12 @@ import styles from './AgendaTimeline.module.css'
 interface AgendaTimelineProps {
   intro?: SectionIntro
   events: EventSummary[]
-  locale?: 'es' | 'en'
+  locale?: 'es' | 'gl'
 }
 
 const EMPTY_MESSAGE = {
   es: 'No hay nada programado en los próximos catorce días todavía. Vuelve pronto o pásate un martes por Offline Club.',
-  en: 'Nothing scheduled for the next two weeks yet. Check back soon, or drop by Offline Club on a Tuesday.',
+  gl: 'Aínda non hai nada programado nos próximos catorce días. Volve axiña ou pásate un martes polo Offline Club.',
 }
 
 export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineProps) {

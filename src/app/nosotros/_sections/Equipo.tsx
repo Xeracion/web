@@ -10,7 +10,9 @@ interface EquipoData {
   teamMembers?: TeamMember[]
 }
 
-export function Equipo({ data }: { data: EquipoData }) {
+const MORE_LABEL = { es: 'Quiero conocer al equipo', gl: 'Quero coñecer o equipo' }
+
+export function Equipo({ data, locale = 'es' }: { data: EquipoData; locale?: 'es' | 'gl' }) {
   const members = data.teamMembers ?? []
   if (members.length === 0) return null
 
@@ -23,7 +25,7 @@ export function Equipo({ data }: { data: EquipoData }) {
         ))}
       </div>
       <ButtonLink href="/nosotros/equipo/" className={styles.more}>
-        Quiero conocer al equipo
+        {MORE_LABEL[locale]}
       </ButtonLink>
     </Container>
   )

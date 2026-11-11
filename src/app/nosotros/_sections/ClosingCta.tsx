@@ -12,15 +12,22 @@ interface ClosingCtaData {
 interface ClosingCtaProps {
   data: ClosingCtaData
   siteSettings: SiteSettings
+  locale?: 'es' | 'gl'
 }
 
-export function ClosingCta({ data, siteSettings }: ClosingCtaProps) {
+const COPY = {
+  es: { primary: 'Quiero ver experiencias', primaryHref: '/experiencias/', whatsapp: 'Escríbenos →' },
+  gl: { primary: 'Quero ver experiencias', primaryHref: '/gl/experiencias/', whatsapp: 'Escríbenos →' },
+}
+
+export function ClosingCta({ data, siteSettings, locale = 'es' }: ClosingCtaProps) {
+  const copy = COPY[locale]
   const whatsappHref = siteSettings?.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
 
   return (
     <ClosingCtaSection heading={data.closingHeading} text={data.closingText}>
-      <ButtonPrimary href={data.closingCtaPrimaryHref || '/experiencias/'}>Ver experiencias</ButtonPrimary>
-      {whatsappHref && <ButtonSecondary href={whatsappHref}>Escríbenos →</ButtonSecondary>}
+      <ButtonPrimary href={data.closingCtaPrimaryHref || copy.primaryHref}>{copy.primary}</ButtonPrimary>
+      {whatsappHref && <ButtonSecondary href={whatsappHref}>{copy.whatsapp}</ButtonSecondary>}
     </ClosingCtaSection>
   )
 }

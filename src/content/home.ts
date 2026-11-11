@@ -1,4 +1,4 @@
-import type { HomeDoor, HomeProject, Partner, SectionIntro, StatItem, Testimonial } from './types'
+import type { HomeDoor, HomeProject, Partner, SectionIntro, StatItem } from './types'
 
 // ES: copy del pivote a catálogo de experiencias (scripts/patch-pivot-content.ts
 // fue la última actualización real de este contenido en producción).
@@ -48,7 +48,6 @@ export const homeEs = {
       ctaLabel: 'Quiero verlo',
     },
   ] satisfies HomeProject[],
-  testimonialsHeading: 'Historias reales',
   figuresHeading: 'Un grupo pequeño con un historial largo.',
   figuresText:
     'Somos una asociación juvenil sin ánimo de lucro. Llevamos desde 2013 montando experiencias y proyectos, con gente de aquí y de fuera.',
@@ -97,31 +96,3 @@ export const catalogEmptyEs = {
   whatsappMessage: 'Hola, quiero que me aviséis de las próximas experiencias de Xeración.',
   agendaLabel: 'Quiero ver la agenda',
 }
-
-// Citas reales de xeracion.org: Nicolás en /voluntariado-europeo/ y Tasos
-// en la portada.
-//
-// La sección admite hasta tres (lo ideal: una actividad local, una
-// experiencia de pago y una movilidad europea). Hoy solo hay dos citas reales
-// publicables; la tercera se añade aquí cuando exista, sin tocar el
-// componente. No inventar citas.
-const homeEsTestimonialLarge: Testimonial = {
-  quote:
-    'Decidí venir a Cracovia […] para pasar seis meses trabajando en proyectos de movilidad juvenil y está siendo una experiencia increíble. No solo es una oportunidad de aportar algo a la comunidad que me acoge, sino un proceso de aprendizaje enriquecedor.',
-  name: 'Nicolás',
-  originCity: 'Ferrol',
-  destinationCity: 'Cracovia',
-  program: 'CES',
-  image: '/img/testimonios/nicolas.webp',
-}
-
-const homeEsTestimonialMedium: Testimonial = {
-  quote:
-    'Hacer un voluntariado europeo ha sido la mejor decisión. Me ha ayudado a descubrir mejor mi potencial y a tener nuevas oportunidades laborales.',
-  name: 'Tasos Batzonis',
-  originCity: 'Grecia',
-  program: 'ESC',
-  image: '/img/voluntarios/anastasios-batzonis.webp',
-}
-
-export const homeEsTestimonials: Testimonial[] = [homeEsTestimonialLarge, homeEsTestimonialMedium]

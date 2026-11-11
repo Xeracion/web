@@ -5,7 +5,7 @@ import { ButtonLink } from '@/components/ButtonLink'
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
 import { getExperiencias, getExperienciasDestacadas } from '@/content/experiencias'
-import { homeEs, homeEsTestimonials } from '@/content/home'
+import { homeEs } from '@/content/home'
 import { siteSettings } from '@/content/siteSettings'
 import { endOfWeekMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -17,14 +17,13 @@ import { Hero } from './_sections/Hero'
 import { Figures } from './_sections/Figures'
 import { Logos } from './_sections/Logos'
 import { Projects } from './_sections/Projects'
-import { Testimonials } from './_sections/Testimonials'
 
 // La agenda sale de Google Calendar: se regenera cada 5 minutos para que la
 // semana que se enseña sea siempre la actual.
 export const revalidate = 300
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ description: homeEs.intro })
+  return buildPageMetadata({ description: homeEs.intro, path: '/' })
 }
 
 export default async function HomePage() {
@@ -58,7 +57,6 @@ export default async function HomePage() {
         text={homeEs.projectsText}
         items={homeEs.projects}
       />
-      <Testimonials heading={homeEs.testimonialsHeading} items={homeEsTestimonials} />
       <Figures
         heading={homeEs.figuresHeading}
         text={homeEs.figuresText}

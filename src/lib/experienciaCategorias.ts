@@ -1,3 +1,5 @@
+import type { Locale } from './i18n'
+
 export const CATEGORIA_LABELS: Record<string, string> = {
   camino: 'Camino',
   aventura: 'Aventura',
@@ -5,6 +7,31 @@ export const CATEGORIA_LABELS: Record<string, string> = {
   intercambio: 'Intercambio',
   local: 'Local',
   naturaleza: 'Naturaleza',
+}
+
+export const CATEGORIA_LABELS_GL: Record<string, string> = {
+  camino: 'Camiño',
+  aventura: 'Aventura',
+  vivirFuera: 'Vivir fóra',
+  intercambio: 'Intercambio',
+  local: 'Local',
+  naturaleza: 'Natureza',
+}
+
+export const CATEGORIA_LABELS_BY_LOCALE: Record<Locale, Record<string, string>> = {
+  es: CATEGORIA_LABELS,
+  gl: CATEGORIA_LABELS_GL,
+}
+
+export const AMBITO_LABELS_GL: Record<string, string> = {
+  galicia: 'Galicia',
+  europa: 'Europa',
+}
+
+export const DURACION_LABELS_GL: Record<string, string> = {
+  finde: 'Unha fin de semana',
+  semana: 'Unha semana',
+  meses: 'Meses',
 }
 
 export const AMBITO_LABELS: Record<string, string> = {
@@ -29,6 +56,12 @@ export const CATALOG_GROUPS: { key: CatalogGroupKey; label: string }[] = [
   { key: 'caminos', label: 'Caminos y naturaleza' },
   { key: 'europa', label: 'Por Europa' },
 ]
+
+export const CATALOG_GROUP_LABELS_GL: Record<CatalogGroupKey, string> = {
+  ferrol: 'En Ferrol e comarca',
+  caminos: 'Camiños e natureza',
+  europa: 'Por Europa',
+}
 
 export function groupForExperiencia(item: { categoria?: string; ambito?: string }): CatalogGroupKey {
   if (item.ambito === 'europa') return 'europa'
