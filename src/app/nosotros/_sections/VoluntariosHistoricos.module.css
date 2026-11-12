@@ -97,3 +97,101 @@
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--color-white);
 }
+
+/* Feed de opiniones de Google: valoración y tarjetas en una fila que se desliza */
+.feed {
+  margin-top: var(--space-2xl);
+  text-align: left;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.score {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-stat);
+  line-height: 1;
+}
+
+.summaryText p {
+  margin-top: 6px;
+  font-size: var(--text-sm);
+  color: var(--color-border-strong);
+}
+
+.all {
+  margin-left: auto;
+  font-size: var(--text-ui);
+  color: var(--xr-lime-on-dark);
+}
+
+.track {
+  margin: var(--space-lg) 0 0;
+  padding: 0 0 var(--space-sm);
+  list-style: none;
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.review {
+  flex: 0 0 min(360px, 85%);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.name {
+  font-size: var(--text-ui);
+  font-weight: 500;
+}
+
+.name a {
+  color: inherit;
+}
+
+.when {
+  font-size: var(--text-caption);
+  color: var(--color-border-strong);
+}
+
+.text {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .all {
+    margin-left: 0;
+  }
+}

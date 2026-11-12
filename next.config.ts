@@ -17,7 +17,7 @@ const SECURITY_HEADERS = [
 
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "img-src 'self' https://substackcdn.com data:",
+  "img-src 'self' https://substackcdn.com https://*.googleusercontent.com data:",
   "font-src 'self' data:",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "substackcdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.googleusercontent.com",
       },
     ],
     formats: ["image/avif", "image/webp"],

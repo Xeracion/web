@@ -28,7 +28,7 @@ export default function NosPage() {
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} locale="gl" />
-      <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} />
+      <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} locale="gl" />
       <Iniciativas data={page} />
       <Partners data={page} />
       <Legal data={page} locale="gl" />
