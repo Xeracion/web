@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="es" data-scroll-behavior="smooth" className={`${manrope.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );
