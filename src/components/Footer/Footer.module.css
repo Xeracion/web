@@ -98,6 +98,9 @@
 /* La X solo existe en móvil, con el tamaño de la de la cabecera. */
 .brandLogo .brandMark {
   display: none;
+}
+
+.brandMark > span {
   color: var(--color-text-on-dark);
 }
 

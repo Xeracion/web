@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
-import { LogoMark } from '@/components/LogoMark'
 import type { SiteSettings } from '@/content/siteSettings'
 import type { Locale } from '@/lib/i18n'
 
+import { FooterMark } from './FooterMark'
 import styles from './Footer.module.css'
 
 // Pie calcado del de anthropic.com: a la izquierda el logotipo y, abajo, los
@@ -214,7 +214,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/xeracion-blanco.svg" alt="" width={1811} height={375} className={styles.brandWordmark} />
             {/* En móvil, la X del mismo tamaño y en el mismo sitio que la de la cabecera: al subir el pie, la X de la cabecera (ya en blanco) toma su relevo. */}
-            <LogoMark collapsed className={styles.brandMark} />
+            <FooterMark />
           </Link>
         </div>
 
