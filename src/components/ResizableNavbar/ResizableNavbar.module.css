@@ -232,3 +232,30 @@
     transition: none;
   }
 }
+
+/* Capa oscura: copia de la barra, encima de la normal, que solo se ve donde
+   el pie pasa por debajo de la cabecera (el recorte lo pone el componente).
+   Redefine los tokens de color para que chips, idiomas y logo se inviertan. */
+.dark {
+  --color-bg: var(--surface-dark);
+  --color-bg-warm: rgba(251, 255, 252, 0.06);
+  --color-border: rgba(251, 255, 252, 0.18);
+  --color-border-strong: rgba(251, 255, 252, 0.36);
+  --color-text-primary: var(--color-text-on-dark);
+  --color-text-secondary: var(--color-text-on-dark-muted);
+  --color-text-muted: var(--color-text-on-dark-muted);
+  --xr-ink-100: rgba(251, 255, 252, 0.12);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--nav-height) + var(--border-hair));
+  background: var(--surface-dark);
+  border-bottom: var(--border-hair) solid var(--color-border);
+  clip-path: inset(100% 0 0 0);
+}
+
+.dark .logo > span {
+  color: var(--color-text-on-dark);
+}

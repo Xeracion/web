@@ -206,7 +206,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
   ]
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-invert-header>
       <Container className={styles.grid}>
         <div className={styles.brand}>
           <Link href={copy.home} className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
@@ -257,7 +257,6 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.credits}>© 2026 Asociación Xeración</p>
           {socialLinks.length > 0 && (
             <ul className={styles.socialList} aria-label={copy.social}>
               {socialLinks.map((link) => (
