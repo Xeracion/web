@@ -135,6 +135,9 @@ Calcado del pie de anthropic.com, a todo el ancho sobre fondo oscuro y en la ret
 - El color de acento (pill de hover, texto activo) se lee siempre de `var(--color-accent-*)`, heredada de la clase `.route-ferrol/.route-irse` que ya aplica cada layout — el componente no tiene lógica condicional de color.
 - El nombre `ResizableNavbar` es histórico: era la barra que se estrechaba y flotaba (inspirada en Aceternity UI). Hoy es la barra fija estilo anthropic.com; se mantuvo el nombre y las props para no tocar los layouts. Usa `motion` solo para detectar el scroll (`useScroll`) y animar el desplegable móvil — todo en CSS Modules — **no se instaló Tailwind** para portar sus clases; todos los valores (colores, espaciados, radios, tipografía) salen de las variables del sistema de diseño ya existente, tal y como exige el punto 4.
 
+- **Menú móvil** (noviembre de 2026): al abrirse es un panel oscuro a pantalla completa, como el de anthropic.com. La cabecera pasa a oscuro, los enlaces (34px) entran escalonados y los que tienen `children` en `src/lib/nav.ts` se despliegan como acordeón con los subenlaces. La página de debajo no hace scroll mientras está abierto. En escritorio los `children` no se usan.
+- **Blog (preparado, apagado)**: `src/lib/nav.ts` define la entrada «Blog» (`/blog/`, `/gl/blog/`, clave `blog`) detrás de `BLOG_ENABLED = false`. Para activarlo: poner el flag a `true`, crear las rutas `/blog/` y `/gl/blog/` y añadir `blog` al `activeRoute` de su layout. Aparece solo en el menú (escritorio y móvil) cuando el flag está activo.
+
 ## Convención de clases de ruta
 
 Cada layout de sub-home aplica una clase en su elemento raíz que determina qué variables de acento CSS están activas en el scope de esa página:

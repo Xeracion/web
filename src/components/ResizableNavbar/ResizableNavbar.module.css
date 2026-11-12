@@ -125,35 +125,133 @@
   transform: rotate(-45deg);
 }
 
+/* Menú móvil a pantalla completa, como el de anthropic.com: al abrirse, la
+   cabecera pasa a oscuro y debajo entra un panel con los enlaces en grande,
+   que aparecen uno tras otro. Los grupos se despliegan como acordeón. */
 .mobileMenu {
-  overflow: hidden;
-  border-top: var(--border-hair) solid var(--color-border);
-  background: var(--color-bg);
+  position: fixed;
+  top: var(--nav-height);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--surface-dark);
+  color: var(--color-text-on-dark);
 }
 
 .mobileList {
   display: flex;
   flex-direction: column;
-  padding: var(--space-xs) var(--container-padding) var(--space-md);
+  padding: var(--space-lg) var(--container-padding) var(--space-sm);
 }
 
-.mobileLink {
+.mobileItem {
+  animation: menu-in 480ms var(--ease-out) both;
+  animation-delay: calc(60ms + var(--i, 0) * 55ms);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.mobileRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 14px;
-  border-bottom: var(--border-hair) solid var(--color-border);
-  font-family: var(--font-display), sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--color-text-primary);
+  gap: var(--space-sm);
 }
 
+.mobileLink {
+  flex: 1;
+  padding-block: 10px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgba(251, 255, 252, 0.62);
+  transition: color var(--dur-base) ease;
+}
+
+.mobileLink:hover,
 .mobileLinkActive {
-  color: var(--color-accent-text);
+  color: var(--color-text-on-dark);
+}
+
+.mobileExpand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  color: rgba(251, 255, 252, 0.62);
+  cursor: pointer;
+}
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  transition: transform 300ms var(--ease-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Subenlaces: la altura se anima de 0 a su alto real con grid. */
+.mobileSub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease-out);
+}
+
+.mobileSubOpen {
+  grid-template-rows: 1fr;
+}
+
+.mobileSubList {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mobileSubLink {
+  display: block;
+  padding-block: 8px;
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-sm);
+  color: var(--color-text-on-dark-muted);
+}
+
+.mobileSubLink:hover {
+  color: var(--color-text-on-dark);
+}
+
+.mobileSubList li:last-child .mobileSubLink {
+  padding-bottom: 14px;
 }
 
 @media (max-width: 768px) {
+  /* Con el menú abierto la cabecera es oscura, igual que el panel. */
+  .wrapperOpen {
+    --color-bg: var(--surface-dark);
+    --color-bg-warm: rgba(251, 255, 252, 0.06);
+    --color-border: rgba(251, 255, 252, 0.18);
+    --color-text-primary: var(--color-text-on-dark);
+
+    background: var(--surface-dark);
+    border-bottom-color: rgba(251, 255, 252, 0.12);
+  }
+
+  .wrapperOpen .logo > span {
+    color: var(--color-text-on-dark);
+  }
+
   .desktopNav {
     display: none;
   }
@@ -173,8 +271,14 @@
 @media (prefers-reduced-motion: reduce) {
   .toggleLine,
   .chip,
-  .wrapper {
+  .wrapper,
+  .chevron,
+  .mobileSub {
     transition: none;
+  }
+
+  .mobileItem {
+    animation: none;
   }
 }
 
@@ -201,7 +305,17 @@
 
 .mobileLangs {
   gap: var(--space-xs);
-  padding-top: var(--space-md);
+  padding: var(--space-md) var(--container-padding) var(--space-xl);
+}
+
+.mobileLangs .lang {
+  color: var(--color-text-on-dark-muted);
+}
+
+.mobileLangs .langCurrent,
+.mobileLangs .lang:hover {
+  color: var(--color-text-on-dark);
+  background: none;
 }
 
 .lang {
