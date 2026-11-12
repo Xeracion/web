@@ -50,7 +50,7 @@ export const homeGl = {
     {
       name: 'Retake',
       text: 'Mañás de voluntariado para limpar praias e ribeiras, plantar árbores autóctonas e quitar eucalipto. Dende 2019.',
-      logo: { src: '/img/logos/proyectos/retake.png', width: 300, height: 86 },
+      logo: { src: '/img/logos/proyectos/retake.png', width: 967, height: 240 },
       href: 'https://retake.es',
       ctaLabel: 'Quero botar unha man',
     },
