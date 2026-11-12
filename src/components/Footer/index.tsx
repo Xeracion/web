@@ -4,6 +4,7 @@ import { Container } from '@/components/Container'
 import type { SiteSettings } from '@/content/siteSettings'
 import type { Locale } from '@/lib/i18n'
 
+import { FooterLogo } from './FooterLogo'
 import styles from './Footer.module.css'
 
 // Pie calcado del de anthropic.com: a la izquierda el logotipo y, abajo, los
@@ -209,10 +210,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
     <footer className={styles.footer} data-invert-header>
       <Container className={styles.grid}>
         <div className={styles.brand}>
-          <Link href={copy.home} className={styles.brandLogo} aria-label={siteSettings?.title ?? 'Xeración'}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo/xeracion-blanco.svg" alt="" width={1811} height={375} />
-          </Link>
+          <FooterLogo href={copy.home} label={siteSettings?.title ?? 'Xeración'} />
         </div>
 
         <nav className={styles.groups} aria-label={siteSettings?.title ?? 'Xeración'}>

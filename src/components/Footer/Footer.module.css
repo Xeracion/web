@@ -90,9 +90,10 @@
   display: inline-flex;
 }
 
-.brandLogo img {
-  height: 24px;
-  width: auto;
+.brandLogo .brandMark {
+  --logo-h: 40px;
+
+  color: var(--color-text-on-dark);
 }
 
 /* Acordeones */
