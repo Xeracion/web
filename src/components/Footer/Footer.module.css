@@ -90,10 +90,25 @@
   display: inline-flex;
 }
 
-.brandLogo .brandMark {
-  --logo-h: 40px;
+.brandWordmark {
+  height: 24px;
+  width: auto;
+}
 
+/* La X solo existe en móvil, con el tamaño de la de la cabecera. */
+.brandLogo .brandMark {
+  display: none;
   color: var(--color-text-on-dark);
+}
+
+@media (max-width: 768px) {
+  .brandWordmark {
+    display: none;
+  }
+
+  .brandLogo .brandMark {
+    display: block;
+  }
 }
 
 /* Acordeones */
