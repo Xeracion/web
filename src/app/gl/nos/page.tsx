@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import { ClosingCta } from '@/app/nosotros/_sections/ClosingCta'
 import { Equipo } from '@/app/nosotros/_sections/Equipo'
-import { HanEstadoConNosotros } from '@/app/nosotros/_sections/HanEstadoConNosotros'
 import { Hero } from '@/app/nosotros/_sections/Hero'
 import { Historia } from '@/app/nosotros/_sections/Historia'
 import { Iniciativas } from '@/app/nosotros/_sections/Iniciativas'
@@ -30,7 +29,6 @@ export default function NosPage() {
       <Valores data={page} />
       <Equipo data={page} locale="gl" />
       <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} />
-      <HanEstadoConNosotros intro={page.pastVolunteersIntro} members={page.pastVolunteers} locale="gl" />
       <Iniciativas data={page} />
       <Partners data={page} />
       <Legal data={page} locale="gl" />
