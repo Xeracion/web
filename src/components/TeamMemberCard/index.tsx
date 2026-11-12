@@ -1,6 +1,8 @@
 import Image from 'next/image'
 
+import { Flag } from '@/components/Flag'
 import type { TeamMember } from '@/content/types'
+import type { Locale } from '@/lib/i18n'
 
 import styles from './TeamMemberCard.module.css'
 
@@ -14,7 +16,7 @@ function initials(name: string) {
     .toUpperCase()
 }
 
-export function TeamMemberCard({ member }: { member: TeamMember }) {
+export function TeamMemberCard({ member, locale = 'es' }: { member: TeamMember; locale?: Locale }) {
   const name = member.name ?? ''
   const content = (
     <>
@@ -26,7 +28,12 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
         </span>
       )}
       <p className={styles.name}>{name}</p>
-      <p className={styles.role}>{member.role}</p>
+      {member.role && <p className={styles.role}>{member.role}</p>}
+      {member.country && (
+        <p className={styles.role}>
+          <Flag code={member.country} locale={locale} />
+        </p>
+      )}
     </>
   )
 

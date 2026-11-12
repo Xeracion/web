@@ -21,7 +21,7 @@ export function Equipo({ data, locale = 'es' }: { data: EquipoData; locale?: 'es
       {data.equipoIntro?.heading && <h2>{data.equipoIntro.heading}</h2>}
       <div className={styles.grid} data-reveal-stagger>
         {members.map((member, i) => (
-          <TeamMemberCard key={i} member={member} />
+          <TeamMemberCard key={i} member={member} locale={locale} />
         ))}
       </div>
       <ButtonLink href="/nosotros/equipo/" className={styles.more}>

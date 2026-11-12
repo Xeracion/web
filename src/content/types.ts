@@ -46,6 +46,8 @@ export interface HomeDoor {
 export interface TeamMember {
   name: string
   role?: string
+  /** País de origen (código ISO, ej. 'FR'). Se enseña solo como bandera; ver `Flag`. */
+  country?: string
   image?: string
   linkUrl?: string
   /** Bio corta (2–3 líneas) para /nosotros/equipo/. Solo textos reales, confirmados por la persona. */

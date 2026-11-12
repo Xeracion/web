@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ButtonPrimary } from '@/components/ButtonPrimary'
 import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { Container } from '@/components/Container'
+import { Flag } from '@/components/Flag'
 import { equipoGroupsEs, pageEquipoEs } from '@/content/equipo'
 import type { TeamMember } from '@/content/types'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -45,7 +46,10 @@ function PersonRow({ member }: { member: TeamMember }) {
       <Photo member={member} sizes="(min-width: 1024px) 280px, (min-width: 768px) 40vw, 100vw" />
       <div className={styles.rowText}>
         {member.role && <p className={styles.role}>{member.role}</p>}
-        <h3 className={styles.name}>{member.name}</h3>
+        <h3 className={styles.name}>
+          {member.name}
+          {member.country && <Flag code={member.country} className={styles.flag} />}
+        </h3>
         {member.linkUrl && (
           <a href={member.linkUrl} target="_blank" rel="noopener noreferrer" className={styles.extLink}>
             LinkedIn <span aria-hidden="true">↗</span>
@@ -62,7 +66,10 @@ function PersonTile({ member }: { member: TeamMember }) {
     <article className={styles.tile}>
       <Photo member={member} sizes="(min-width: 1024px) 180px, (min-width: 768px) 30vw, 50vw" />
       {member.role && <p className={styles.role}>{member.role}</p>}
-      <h3 className={styles.tileName}>{member.name}</h3>
+      <h3 className={styles.tileName}>
+        {member.name}
+        {member.country && <Flag code={member.country} className={styles.flag} />}
+      </h3>
       <Bio member={member} />
     </article>
   )
@@ -90,10 +97,14 @@ export default function EquipoPage() {
       {equipoGroupsEs
         .filter((group) => group.members.length > 0)
         .map((group) => (
-          <Container as="section" key={group.heading} className={styles.group}>
-            <h2 className={styles.groupHeading}>{group.heading}</h2>
-            {group.layout === 'row' ? (
-              <div className={styles.rows}>
+          <Container
+            as="section"
+            key={group.heading ?? group.layout}
+            className={group.heading ? styles.group : styles.groupCont}
+          >
+            {group.heading && <h2 className={styles.groupHeading}>{group.heading}</h2>}
+            {group.layout !== 'grid' ? (
+              <div className={group.layout === 'cards' ? styles.cards : styles.rows}>
                 {group.members.map((member) => (
                   <PersonRow key={member.name} member={member} />
                 ))}

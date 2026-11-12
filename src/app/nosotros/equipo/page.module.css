@@ -75,6 +75,32 @@
   }
 }
 
+/* Tarjetas con presentación: foto pequeña y el texto al lado. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg) var(--space-lg);
+}
+
+.cards .row {
+  grid-template-columns: 104px minmax(0, 1fr);
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.groupCont {
+  padding-block: 0 var(--space-xl);
+}
+
+.flag {
+  margin-left: 8px;
+  transform: translateY(-1px);
+}
+
 .rowText {
   display: flex;
   flex-direction: column;
