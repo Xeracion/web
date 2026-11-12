@@ -19,7 +19,7 @@ interface SiteShellProps {
   children: ReactNode
   locale?: Locale
   activeRoute?: RouteKey
-  /** Clase de acento de la ruta (route-ferrol, route-irse), ver CLAUDE.md punto 5. */
+  /** Clase de acento de la ruta (route-ferrol, route-irse), ver docs/diseno.md. */
   routeClass?: string
 }
 

@@ -291,7 +291,7 @@ ol {
   }
 }
 
-/* Clases de ruta — convención descrita en CLAUDE.md.
+/* Clases de ruta — convención descrita en docs/diseno.md.
    Se aplican en el elemento raíz del layout de cada sub-home, o localmente
    en un componente cuando varias rutas conviven en la misma página. */
 .route-ferrol {
