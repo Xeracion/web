@@ -13,7 +13,10 @@ export const homeGl = {
     { label: 'Quero ver experiencias', href: '#experiencias' },
     { label: 'Quero ver os proxectos', href: '#proxectos' },
   ],
-  agendaHeading: 'Esta semana en Xeración',
+  agendaHeading: 'Os próximos cinco días en Xeración',
+  institutionalLogos: homeEs.institutionalLogos.map((logo) =>
+    logo.caption ? { ...logo, name: 'Cofinanciado pola Unión Europea', caption: 'Cofinanciado pola Unión Europea' } : logo,
+  ),
   agendaLinkLabel: 'Quero ver toda a axenda',
   catalogIntro: {
     heading: 'Para saír distinto de como entraches.',

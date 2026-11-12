@@ -1,3 +1,5 @@
+import { localizeHref } from '@/lib/i18n'
+
 // El catálogo de experiencias vive aquí, en el código (antes estaba en
 // Sanity). Para añadir, cambiar o retirar una experiencia se edita este
 // archivo; el cambio sale publicado en el siguiente despliegue.
@@ -195,4 +197,26 @@ export function getConvocatoriasAbiertas(item: ExperienciaData, today = new Date
   return (item.convocatorias ?? [])
     .filter((convocatoria) => !convocatoria.fechaLimite || convocatoria.fechaLimite >= hoy)
     .sort((a, b) => (a.fechaLimite ?? '9999').localeCompare(b.fechaLimite ?? '9999'))
+}
+
+export interface FichaExperiencia {
+  titulo: string
+  href: string
+  external: boolean
+}
+
+/**
+ * Experiencias activas con a dónde lleva su ficha (propia, interna o web
+ * externa). La agenda de la portada las usa para enlazar los eventos cuyo
+ * nombre contiene el título de una experiencia.
+ */
+export function getFichasExperiencias(locale: 'es' | 'gl' = 'es'): FichaExperiencia[] {
+  return activas().map((item) => {
+    const localized = localizeExperiencia(item, locale)
+    return {
+      titulo: localized.titulo,
+      href: item.enlaceExterno ?? localizeHref(item.enlaceInterno ?? `/experiencias/${item.slug}/`, locale),
+      external: Boolean(item.enlaceExterno),
+    }
+  })
 }

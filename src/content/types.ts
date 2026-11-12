@@ -57,6 +57,8 @@ export interface TeamMember {
 export interface Partner {
   name: string
   image?: string
+  /** Texto junto a la imagen (ej. la bandera de la UE lleva «Cofinanciado por…»). */
+  caption?: string
 }
 
 export interface ValueItem {

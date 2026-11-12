@@ -17,7 +17,7 @@ export const homeEs = {
     { label: 'Quiero ver experiencias', href: '#experiencias' },
     { label: 'Quiero ver los proyectos', href: '#proyectos' },
   ],
-  agendaHeading: 'Esta semana en Xeración',
+  agendaHeading: 'Los próximos cinco días en Xeración',
   agendaLinkLabel: 'Quiero ver toda la agenda',
   catalogIntro: {
     heading: 'Para salir distinto de como entraste.',
@@ -75,7 +75,7 @@ export const homeEs = {
   institutionalLogos: [
     { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
     { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
-    { name: 'Erasmus+', image: '/img/logos/erasmus-plus.png' },
+    { name: 'Cofinanciado por la Unión Europea', image: '/img/logos/bandera-ue.svg', caption: 'Cofinanciado por la Unión Europea' },
     { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
   ] satisfies Partner[],
   doorsHeading: '¿Vienes de parte de una entidad?',

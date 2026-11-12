@@ -77,11 +77,20 @@ export async function getGoogleCalendarEvents(
 const WEEKDAY_INDEX: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }
 
 /**
- * Último instante (domingo, 23:59:59) de la semana natural en curso en hora
- * de Madrid. Sirve de `timeMax` para la agenda de la portada: «esta semana»
- * es de hoy al domingo, no los próximos siete días.
+ * Último instante (23:59:59, hora de Madrid) del día que queda `days` días
+ * después de hoy. Con `days = 4` cubre hoy y los cuatro días siguientes: es el
+ * `timeMax` de la agenda de la portada («los próximos 5 días»).
  */
+export function endOfDayMadrid(days: number, now: Date = new Date()): Date {
+  return endOfMadrid(now, () => days)
+}
+
+/** Último instante (domingo, 23:59:59) de la semana natural en curso, hora de Madrid. */
 export function endOfWeekMadrid(now: Date = new Date()): Date {
+  return endOfMadrid(now, (weekday) => 7 - (WEEKDAY_INDEX[weekday] ?? 7))
+}
+
+function endOfMadrid(now: Date, daysAhead: (weekday: string) => number): Date {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Europe/Madrid',
     weekday: 'short',
@@ -100,10 +109,9 @@ export function endOfWeekMadrid(now: Date = new Date()): Date {
   // instante real es el desfase horario vigente.
   const wallAsUtc = Date.UTC(num('year'), num('month') - 1, num('day'), num('hour'), num('minute'), num('second'))
   const offsetMs = wallAsUtc - Math.floor(now.getTime() / 1000) * 1000
-  const daysToSunday = 7 - (WEEKDAY_INDEX[get('weekday')] ?? 7)
-  const sundayEndWall = Date.UTC(num('year'), num('month') - 1, num('day') + daysToSunday, 23, 59, 59)
+  const endWall = Date.UTC(num('year'), num('month') - 1, num('day') + daysAhead(get('weekday')), 23, 59, 59)
 
-  return new Date(sundayEndWall - offsetMs)
+  return new Date(endWall - offsetMs)
 }
 
 /**

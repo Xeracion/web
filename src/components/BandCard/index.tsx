@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 
 import { Card } from '@/components/Card'
-import { EyebrowPill } from '@/components/EyebrowPill'
 import { cn } from '@/lib/cn'
 
 import styles from './BandCard.module.css'
@@ -10,8 +9,8 @@ interface BandCardProps {
   href: string
   external?: boolean
   bandColor: string
-  bandLabel: string
-  meta?: string
+  /** Dibujo decorativo de la banda (el color va en `bandColor`). */
+  art?: ReactNode
   title?: string
   text?: string
   reinforcement?: string
@@ -25,8 +24,7 @@ export function BandCard({
   href,
   external = false,
   bandColor,
-  bandLabel,
-  meta,
+  art,
   title,
   text,
   reinforcement,
@@ -42,11 +40,10 @@ export function BandCard({
       rel={external ? 'noopener noreferrer' : undefined}
       className={cn(styles.root, className)}
     >
-      <div className={styles.band} style={{ background: bandColor }}>
-        <EyebrowPill>{bandLabel}</EyebrowPill>
+      <div className={styles.band} style={{ background: bandColor }} aria-hidden="true">
+        {art}
       </div>
       <div className={styles.body}>
-        {meta && <p className={styles.meta}>{meta}</p>}
         {title && <h3 className={styles.title}>{title}</h3>}
         {text && <p className={styles.text}>{text}</p>}
         {reinforcement && <p className={styles.reinforcement}>{reinforcement}</p>}

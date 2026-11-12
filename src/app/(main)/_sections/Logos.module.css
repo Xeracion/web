@@ -20,9 +20,31 @@
   color: var(--color-text-tertiary);
 }
 
+/* Todos los logos caben en la misma caja, del tamaño del de Ferrol. */
 .logo {
-  height: 56px;
-  width: auto;
+  width: 160px;
+  height: 64px;
   object-fit: contain;
   mix-blend-mode: multiply;
+}
+
+/* Bandera de la UE con su leyenda, en la misma caja que los logos. */
+.flag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 220px;
+  height: 64px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+}
+
+.flag img {
+  flex-shrink: 0;
+  width: 56px;
+  height: auto;
 }

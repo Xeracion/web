@@ -4,10 +4,10 @@ import { Suspense } from 'react'
 import { ButtonLink } from '@/components/ButtonLink'
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
-import { getExperiencias, getExperienciasDestacadas } from '@/content/experiencias'
+import { getExperiencias, getExperienciasDestacadas, getFichasExperiencias } from '@/content/experiencias'
 import { homeEs } from '@/content/home'
 import { siteSettings } from '@/content/siteSettings'
-import { endOfWeekMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
+import { endOfDayMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
 
 import { Agenda } from './_sections/Agenda'
@@ -27,10 +27,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function HomePage() {
-  // «Esta semana» es la semana natural: de ahora al domingo, hora de Madrid.
+  // La agenda enseña hoy y los cuatro días siguientes (hora de Madrid).
   const events = await getGoogleCalendarEvents(siteSettings.googleCalendarId, {
-    timeMax: endOfWeekMadrid(),
-    maxResults: 5,
+    timeMax: endOfDayMadrid(4),
+    maxResults: 10,
   })
   // Si no hay ninguna marcada como destacada, la home enseña todas las
   // activas antes que quedarse sin catálogo.
@@ -40,7 +40,12 @@ export default async function HomePage() {
   return (
     <>
       <Hero data={homeEs} />
-      <Agenda heading={homeEs.agendaHeading} linkLabel={homeEs.agendaLinkLabel} events={events} />
+      <Agenda
+        heading={homeEs.agendaHeading}
+        linkLabel={homeEs.agendaLinkLabel}
+        events={events}
+        fichas={getFichasExperiencias()}
+      />
       <Suspense fallback={null}>
         <ExperienciasCatalog
           id="experiencias"

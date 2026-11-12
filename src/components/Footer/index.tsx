@@ -199,7 +199,6 @@ interface FooterProps {
 
 export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
   const copy = COPY[locale]
-  const address = siteSettings?.address ?? 'Casa da Xuventude, Rúa Almendra 9, 15402 Ferrol'
   const socialLinks = siteSettings?.socialLinks ?? []
   const contactLinks: FooterLink[] = [
     ...(siteSettings?.email ? [{ label: siteSettings.email, href: `mailto:${siteSettings.email}` }] : []),
@@ -258,7 +257,7 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.credits}>© 2026 Asociación Xeración · {address}</p>
+          <p className={styles.credits}>© 2026 Asociación Xeración</p>
           {socialLinks.length > 0 && (
             <ul className={styles.socialList} aria-label={copy.social}>
               {socialLinks.map((link) => (

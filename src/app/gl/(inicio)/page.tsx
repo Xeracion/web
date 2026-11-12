@@ -11,10 +11,15 @@ import { Projects } from '@/app/(main)/_sections/Projects'
 import { ButtonLink } from '@/components/ButtonLink'
 import { CatalogEmptyState } from '@/components/CatalogEmptyState'
 import { ExperienciasCatalog } from '@/components/ExperienciasCatalog'
-import { getExperiencias, getExperienciasDestacadas, localizeExperiencia } from '@/content/experiencias'
+import {
+  getExperiencias,
+  getExperienciasDestacadas,
+  getFichasExperiencias,
+  localizeExperiencia,
+} from '@/content/experiencias'
 import { homeGl } from '@/content/gl/home'
 import { siteSettingsGl } from '@/content/gl/siteSettings'
-import { endOfWeekMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
+import { endOfDayMadrid, getGoogleCalendarEvents } from '@/lib/googleCalendar'
 import { buildPageMetadata } from '@/lib/metadata'
 
 // Portada en galego: mesmas seccións que a de castelán (src/app/(main)/page.tsx).
@@ -25,9 +30,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function InicioGlPage() {
+  // La agenda enseña hoy y los cuatro días siguientes (hora de Madrid).
   const events = await getGoogleCalendarEvents(siteSettingsGl.googleCalendarId, {
-    timeMax: endOfWeekMadrid(),
-    maxResults: 5,
+    timeMax: endOfDayMadrid(4),
+    maxResults: 10,
   })
   const destacadas = getExperienciasDestacadas()
   const experiencias = (destacadas.length > 0 ? destacadas : getExperiencias()).map((item) =>
@@ -43,6 +49,7 @@ export default async function InicioGlPage() {
         events={events}
         agendaHref="/gl/axenda/#agenda"
         locale="gl"
+        fichas={getFichasExperiencias('gl')}
       />
       <Suspense fallback={null}>
         <ExperienciasCatalog

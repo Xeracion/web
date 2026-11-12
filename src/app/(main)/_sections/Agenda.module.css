@@ -47,6 +47,35 @@
   color: var(--color-text-primary);
 }
 
+.nameLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  width: fit-content;
+  font-family: var(--font-body), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-accent-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-border);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.nameLink:hover {
+  text-decoration-color: currentColor;
+}
+
+.arrow {
+  font-size: 13px;
+  transition: transform 0.15s ease;
+}
+
+.nameLink:hover .arrow {
+  transform: translateX(2px);
+}
+
 .place {
   font-family: var(--font-body), sans-serif;
   font-size: 13px;

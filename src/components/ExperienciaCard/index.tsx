@@ -1,6 +1,6 @@
 import { BandCard } from '@/components/BandCard'
+import { ExperienciaArt } from '@/components/ExperienciaArt'
 import type { ExperienciaData } from '@/content/experiencias'
-import { CATEGORIA_LABELS_BY_LOCALE } from '@/lib/experienciaCategorias'
 import type { Locale } from '@/lib/i18n'
 import { localizeHref } from '@/lib/i18n'
 
@@ -13,7 +13,6 @@ export function ExperienciaCard({ item, locale = 'es' }: { item: ExperienciaData
   const copy = COPY[locale]
   const external = Boolean(item.enlaceExterno)
   const href = item.enlaceExterno ?? localizeHref(item.enlaceInterno ?? `/experiencias/${item.slug}/`, locale)
-  const bandLabel = CATEGORIA_LABELS_BY_LOCALE[locale][item.categoria] ?? item.categoria
   const ediciones = item.ediciones ?? []
   const desde = ediciones.length > 0 ? Math.min(...ediciones.map((edicion) => edicion.anio)) : undefined
   const reinforcement =
@@ -26,8 +25,7 @@ export function ExperienciaCard({ item, locale = 'es' }: { item: ExperienciaData
       href={href}
       external={external}
       bandColor={item.colorBanda || 'var(--color-accent-grad-1)'}
-      bandLabel={bandLabel}
-      meta={item.lugar}
+      art={<ExperienciaArt categoria={item.categoria} />}
       title={item.titulo}
       text={item.resumen}
       reinforcement={reinforcement}

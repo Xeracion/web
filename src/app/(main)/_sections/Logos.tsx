@@ -13,7 +13,12 @@ export function Logos({ items }: { items?: Partner[] }) {
       <ul className={styles.list} data-reveal-stagger>
         {items.map((item, i) => (
           <li key={i} className={styles.item}>
-            {item.image ? (
+            {item.image && item.caption ? (
+              <span className={styles.flag}>
+                <Image src={item.image} alt="" width={56} height={37} unoptimized />
+                <span>{item.caption}</span>
+              </span>
+            ) : item.image ? (
               <Image src={item.image} alt={item.name} width={160} height={64} className={styles.logo} />
             ) : (
               item.name
