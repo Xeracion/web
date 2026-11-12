@@ -30,16 +30,19 @@ export function ScrollReveal() {
     const sections = document.querySelectorAll<HTMLElement>('main section:not([data-closing-band])')
     if (sections.length === 0) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          entry.target.classList.remove(HIDDEN_CLASS)
-          observer.unobserve(entry.target)
-        }
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 },
-    )
+    const onIntersect = (entries: IntersectionObserverEntry[], self: IntersectionObserver) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        entry.target.classList.remove(HIDDEN_CLASS)
+        self.unobserve(entry.target)
+      }
+    }
+    const options = { rootMargin: '0px 0px -10% 0px' }
+    const observer = new IntersectionObserver(onIntersect, { ...options, threshold: 0.1 })
+    // Una sección mucho más alta que la pantalla (la rejilla de personas de
+    // /nosotros/equipo/) nunca llega a enseñar el 10 % de su alto en móvil y
+    // se quedaba en blanco: esas aparecen en cuanto asoma su borde superior.
+    const tallObserver = new IntersectionObserver(onIntersect, { ...options, threshold: 0 })
 
     for (const section of sections) {
       const rect = section.getBoundingClientRect()
@@ -47,10 +50,14 @@ export function ScrollReveal() {
       if (alreadyVisible) continue
 
       section.classList.add(HIDDEN_CLASS)
-      observer.observe(section)
+      const isTall = rect.height > window.innerHeight * 3
+      ;(isTall ? tallObserver : observer).observe(section)
     }
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      tallObserver.disconnect()
+    }
   }, [pathname])
 
   return null
