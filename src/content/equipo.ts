@@ -8,7 +8,7 @@ import type { TeamMember } from './types'
 export const pageEquipoEs = {
   heading: 'Las personas detrás de Xeración.',
   intro:
-    'Somos una asociación pequeña: una persona coordina el día a día y un grupo de voluntarios europeos pasa unos meses con nosotros en Ferrol, montando actividades en la Casa da Xuventude. Desde 2013, más de 120 voluntarios de más de 15 países han pasado por este equipo.',
+    'Somos un grupo pequeño: una persona coordina el día a día y un grupo de voluntarios europeos pasa unos meses con nosotros en Ferrol, montando actividades en la Casa da Xuventude. Desde 2013, más de 120 voluntarios de más de 15 países han pasado por este equipo.',
   primaryLabel: 'Quiero saber más de Xeración',
   primaryHref: '/nosotros/',
   secondaryLabel: 'Quiero sumarme al equipo',

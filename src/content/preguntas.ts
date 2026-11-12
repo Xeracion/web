@@ -66,12 +66,12 @@ export const preguntasGroupsEs: FaqGroup[] = [
       {
         question: '¿Recibo algún tipo de apoyo?',
         answer:
-          'Irse a vivir fuera no es ninguna broma, así que te acompañamos en todo momento. Tendrás dos tutores (uno en la asociación de acogida y otro en Xeración), un curso de idiomas para desenvolverte en la lengua del país y encuentros gratuitos al principio y a mitad del proyecto para resolver dudas y conocer a otros voluntarios.',
+          'Irse a vivir fuera no es ninguna broma, así que te acompañamos en todo momento. Tendrás dos tutores (uno en la organización de acogida y otro en Xeración), un curso de idiomas para desenvolverte en la lengua del país y encuentros gratuitos al principio y a mitad del proyecto para resolver dudas y conocer a otros voluntarios.',
       },
       {
         question: '¿Qué tipo de tareas tendría que hacer?',
         answer:
-          'Hay muchísimas: desde enseñar idiomas a niños hasta cuidar animales en un refugio. Siempre se detallan en el acuerdo de actividades que firmas antes de empezar. Tu jornada no puede pasar de 35 horas semanales y también puedes desarrollar tus propios proyectos con el apoyo de la asociación de acogida.',
+          'Hay muchísimas: desde enseñar idiomas a niños hasta cuidar animales en un refugio. Siempre se detallan en el acuerdo de actividades que firmas antes de empezar. Tu jornada no puede pasar de 35 horas semanales y también puedes desarrollar tus propios proyectos con el apoyo de la organización de acogida.',
       },
       {
         question: '¿En qué países se puede hacer?',

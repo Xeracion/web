@@ -14,7 +14,7 @@ export const pageFerrolEs = {
   fixedProgramsIntro: { heading: 'Cuatro cosas que hacemos siempre.' } satisfies SectionIntro,
   agendaIntro: { heading: 'Qué hay esta semana y la que viene.' } satisfies SectionIntro,
   arrivalHeading: 'Casa da Xuventude',
-  // Horario confirmado por la asociación (noviembre de 2026).
+  // Horario confirmado por Xeración (noviembre de 2026).
   arrivalAddressText: [
     'Rúa Almendra 9, 15402 Ferrol. Planta baja y primera.',
     'Atención al público de lunes a viernes, de 10:00 a 14:00. Las actividades suelen ser martes, miércoles y jueves, normalmente a las 20:00, pero depende de la agenda.',

@@ -57,7 +57,7 @@ export const homeGl = {
   ] satisfies HomeProject[],
   figuresHeading: 'Un grupo pequeno cun historial longo.',
   figuresText:
-    'Somos unha asociación xuvenil sen ánimo de lucro. Levamos dende 2013 montando experiencias e proxectos, con xente de aquí e de fóra.',
+    'Somos un colectivo novo de Ferrol, sen ánimo de lucro. Levamos dende 2013 montando experiencias e proxectos, con xente de aquí e de fóra.',
   figures: [
     { value: '2013', label: 'ano no que comezamos' },
     { value: '+120', label: 'voluntarios internacionais acollidos' },
@@ -78,7 +78,7 @@ export const homeGl = {
     },
     {
       title: 'Traes un grupo?',
-      text: 'Camiños, cursos e estadías á medida para centros, asociacións e equipos. Dinos as datas e cantos sodes.',
+      text: 'Camiños, cursos e estadías á medida para centros, colectivos e equipos. Dinos as datas e cantos sodes.',
       ctaLabel: 'Quero un orzamento',
       href: 'mailto:info@xeracion.org?subject=Orzamento%20para%20un%20grupo',
     },

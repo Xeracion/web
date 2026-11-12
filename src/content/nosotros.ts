@@ -57,7 +57,7 @@ export const pageNosotrosEs = {
     { name: 'Sara Mauro', role: 'Voluntariado · Italia', image: '/img/equipo/sara-mauro.webp' },
     { name: 'Jose Pekkonen', role: 'Voluntariado · Finlandia', image: '/img/equipo/jose-pekkonen.webp' },
   ] satisfies TeamMember[],
-  // +120 lo confirmó la asociación (noviembre de 2026); el listado con foto
+  // +120 lo confirmó Xeración (noviembre de 2026); el listado con foto
   // solo recoge a una parte. Los países (+15) salen de ese listado.
   volunteersNumber: '+120',
   volunteersSubtitle: 'voluntarios europeos de más de 15 países han pasado por Xeración desde 2013.',

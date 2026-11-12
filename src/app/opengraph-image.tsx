@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Xeración — asociación xuvenil de Ferrol'
+export const alt = 'Xeración — colectivo xuvenil de Ferrol'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -45,7 +45,7 @@ export default function OpengraphImage() {
               maxWidth: 820,
             }}
           >
-            Asociación xuvenil de Ferrol · desde 2013
+            Colectivo xuvenil de Ferrol · desde 2013
           </div>
         </div>
         <div style={{ display: 'flex', height: 14, width: '100%' }}>

@@ -1,6 +1,6 @@
 # xeracion.org
 
-Web de **Xeración**, asociación juvenil de Ferrol (Casa da Xuventude, Rúa Almendra 9) desde 2013: experiencias para gente joven (unas de pago, otras financiadas por Europa) y proyectos para la comunidad. Contacto: `info@xeracion.org`.
+Web de **Xeración**, colectivo juvenil de Ferrol (Casa da Xuventude, Rúa Almendra 9) desde 2013: experiencias para gente joven (unas de pago, otras financiadas por Europa) y proyectos para la comunidad. Contacto: `info@xeracion.org`.
 
 Next.js 16 (App Router) + TypeScript + CSS Modules, desplegado en Vercel desde `Xeracion/web`. **Sin CMS**: todo el contenido vive en `src/content/*.ts`. Stack decidido; no reconsiderarlo sin que lo pida el usuario.
 
@@ -41,6 +41,7 @@ Varias sesiones trabajan a la vez, cada una con un cambio pequeño, directamente
 5. Punto medio `·` como separador de metadatos, nunca guiones ni barras.
 6. Sin jerga institucional («movilidad participativa», «empoderamiento juvenil»…). Tono directo y cercano.
 7. Erasmus+ y Cuerpo Europeo de Solidaridad no van en titulares ni nombres de sección: solo en etiquetas de coste, fichas de experiencia, la sección de cifras de la portada y los datos legales de `/nosotros/`.
+8. Sin «asociación» ni «asociacionismo» en textos de la web: ni en el copy propio ni al nombrar a otras entidades. Usar colectivo, grupo, equipo u organización, con tono de proyecto cuidado. Solo se mantiene en los textos legales (`legalName`) y en las citas literales de Paisanos.
 
 **Técnicas**
 - CSS Modules y variables de `src/app/globals.css`; nada de Tailwind ni frameworks CSS. Colores, radios y espacios siempre desde los tokens (ver `docs/diseno.md`).
