@@ -14,9 +14,8 @@ import type {
 // salen de contar el propio listado de voluntarios de esa página.
 export const pageNosotrosEs = {
   heroHeading: 'No somos una ONG más. Somos tu red en Europa.',
-  heroHeadingAccent: 'tu red en Europa',
   heroText:
-    'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo, sin papeleo interminable — con la experiencia de más de una década haciendo esto.',
+    'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo y sin papeleo interminable, con la experiencia de más de una década haciendo esto.',
   heroStats: [
     { value: '13', label: 'años activos' },
     { value: '+120', label: 'voluntarios europeos acogidos' },

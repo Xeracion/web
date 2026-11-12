@@ -25,7 +25,6 @@ function membersGl(members: TeamMember[]): TeamMember[] {
 export const pageNosotrosGl = {
   ...pageNosotrosEs,
   heroHeading: 'Non somos unha ONG máis. Somos a túa rede en Europa.',
-  heroHeadingAccent: 'a túa rede en Europa',
   heroText:
     'Somos xente nova que axuda a outra xente nova a vivir a súa aventura europea. Sen protocolo nin papelame interminable, e coa experiencia de máis dunha década facendo isto.',
   heroStats: [
