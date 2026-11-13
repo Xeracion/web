@@ -1,0 +1,68 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-2xl) var(--space-3xl);
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* El 404 gigante es solo decoración: un tinte verde de marca detrás del texto. */
+.code {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
+  font-size: clamp(160px, 38vw, 460px);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--xr-lime-100);
+  user-select: none;
+  margin-left: -0.04em;
+}
+
+.content {
+  position: relative;
+  margin-top: calc(-1 * clamp(40px, 9vw, 120px));
+  max-width: 640px;
+}
+
+.content h1 {
+  max-width: 560px;
+}
+
+.text {
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.help {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  font-size: 15px;
+  color: var(--color-text-tertiary);
+}
+
+.help a {
+  color: var(--xr-blue-700, var(--color-irse-text));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.help a:hover {
+  color: var(--color-irse-strong);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+}
