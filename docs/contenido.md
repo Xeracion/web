@@ -36,7 +36,7 @@ Castellano en la raíz y gallego bajo `/gl/`: `/gl/` (portada), `/gl/axenda/`, `
 Los eventos de la agenda destacada (portada) y de la agenda de próximas dos semanas (`/agenda/`) se leen en tiempo real de Google Calendar a través de `src/lib/googleCalendar.ts`. Configuración:
 
 - `GOOGLE_CALENDAR_API_KEY` (variable de entorno) — clave de la API de Google Calendar, restringida a "Calendar API" en Google Cloud Console.
-- `GOOGLE_PLACES_API_KEY` y `GOOGLE_PLACE_ID` (variables de entorno) — alimentan el feed de opiniones de Google (foto de perfil, estrellas y valoración media) de `/nosotros/` y `/gl/nos/`, vía Places API (New), con revalidación cada hora (`src/lib/googleReviews.ts`). Google devuelve como mucho 5 opiniones. Si faltan o la API falla, se muestran las citas de `nosotrosTestimonialsEs`.
+- `GOOGLE_PLACES_API_KEY` y `GOOGLE_PLACE_ID` (variables de entorno) — alimentan el feed de opiniones de Google (foto de perfil, estrellas y valoración media) de `/nosotros/` y `/gl/nos/`, vía Places API (New), con revalidación cada 24 horas (`src/lib/googleReviews.ts`). Google devuelve como mucho 5 opiniones. Si faltan o la API falla, se muestran las citas de `nosotrosTestimonialsEs`.
 - `googleCalendarId` (campo `siteSettings.googleCalendarId` en `src/content/siteSettings.ts`, ver 4.2) — el ID del calendario (Ajustes del calendario de Google → Integrar calendario → ID de calendario). El calendario debe estar marcado como público.
 
 Mientras falte cualquiera de los dos, la agenda no muestra eventos (no rompe la página). `getGoogleCalendarEvents` pide `singleEvents: true` a la API para que Google expanda los eventos recurrentes (ej. Offline Club cada martes) en instancias sueltas — no hay parseo de RRULE en el código.

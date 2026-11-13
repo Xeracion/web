@@ -31,7 +31,7 @@ interface PlacesResponse {
 
 // Opiniones de Google Business vía Places API (New). Devuelve como mucho las
 // 5 que da Google. Sin clave o sin ID de lugar (o si la API falla) devuelve
-// null y la web enseña las citas de siempre. Se refresca cada hora.
+// null y la web enseña las citas de siempre. Se refresca cada 24 horas (Google cobra por encima de 1.000 peticiones al mes).
 export async function getGoogleReviews(): Promise<GoogleReviews | null> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY
   const placeId = process.env.GOOGLE_PLACE_ID
@@ -43,7 +43,7 @@ export async function getGoogleReviews(): Promise<GoogleReviews | null> {
         'X-Goog-Api-Key': apiKey,
         'X-Goog-FieldMask': 'rating,userRatingCount,googleMapsUri,reviews',
       },
-      next: { revalidate: 3600 },
+      next: { revalidate: 86400 },
     })
     if (!res.ok) return null
     const data = (await res.json()) as PlacesResponse
