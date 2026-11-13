@@ -35,7 +35,10 @@ interface PlacesResponse {
 export async function getGoogleReviews(): Promise<GoogleReviews | null> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY
   const placeId = process.env.GOOGLE_PLACE_ID
-  if (!apiKey || !placeId) return null
+  if (!apiKey || !placeId) {
+    console.warn(`[googleReviews] Faltan variables de entorno: ${!apiKey ? 'GOOGLE_PLACES_API_KEY ' : ''}${!placeId ? 'GOOGLE_PLACE_ID' : ''}`.trim())
+    return null
+  }
 
   try {
     const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=es`, {
@@ -45,9 +48,16 @@ export async function getGoogleReviews(): Promise<GoogleReviews | null> {
       },
       next: { revalidate: 86400 },
     })
-    if (!res.ok) return null
+    if (!res.ok) {
+      const body = await res.text().catch(() => '')
+      console.error(`[googleReviews] Google respondió ${res.status}: ${body.slice(0, 300)}`)
+      return null
+    }
     const data = (await res.json()) as PlacesResponse
-    if (typeof data.rating !== 'number') return null
+    if (typeof data.rating !== 'number') {
+      console.error('[googleReviews] La respuesta de Google no trae valoración (rating)')
+      return null
+    }
 
     const reviews = (data.reviews ?? []).flatMap((r): GoogleReview[] => {
       const text = (r.originalText?.text ?? r.text?.text ?? '').trim()
@@ -65,7 +75,8 @@ export async function getGoogleReviews(): Promise<GoogleReviews | null> {
     })
 
     return { rating: data.rating, total: data.userRatingCount ?? reviews.length, mapsUrl: data.googleMapsUri, reviews }
-  } catch {
+  } catch (error) {
+    console.error('[googleReviews] Error al llamar a Google:', error instanceof Error ? error.message : error)
     return null
   }
 }
