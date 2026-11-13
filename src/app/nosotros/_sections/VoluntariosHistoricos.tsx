@@ -7,6 +7,7 @@ import { Stars } from '@/components/Stars'
 import type { Testimonial } from '@/content/types'
 import { getGoogleReviews } from '@/lib/googleReviews'
 
+import { ReviewsCarousel } from './ReviewsCarousel'
 import styles from './VoluntariosHistoricos.module.css'
 
 function attribution(testimonial: Testimonial) {
@@ -14,8 +15,8 @@ function attribution(testimonial: Testimonial) {
 }
 
 const COPY = {
-  es: { title: 'Opiniones en Google', all: 'Ver todas las opiniones', of: 'de 5', opinions: 'opiniones', rating: 'Valoración' },
-  gl: { title: 'Opinións en Google', all: 'Ver todas as opinións', of: 'de 5', opinions: 'opinións', rating: 'Valoración' },
+  es: { title: 'Opiniones en Google', all: 'Ver todas las opiniones', of: 'de 5', opinions: 'opiniones', rating: 'Valoración', prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
+  gl: { title: 'Opinións en Google', all: 'Ver todas as opinións', of: 'de 5', opinions: 'opinións', rating: 'Valoración', prev: 'Opinións anteriores', next: 'Opinións seguintes' },
 }
 
 const number = (n: number, locale: 'es' | 'gl') => n.toLocaleString(locale === 'gl' ? 'gl-ES' : 'es-ES', { maximumFractionDigits: 1 })
@@ -62,7 +63,7 @@ export async function VoluntariosHistoricos({
                 </a>
               )}
             </div>
-            <ul className={styles.track} tabIndex={0} aria-label={copy.title}>
+            <ReviewsCarousel label={copy.title} prevLabel={copy.prev} nextLabel={copy.next}>
               {feed.reviews.map((review, i) => (
                 <li key={i} className={styles.review}>
                   <div className={styles.author}>
@@ -88,7 +89,7 @@ export async function VoluntariosHistoricos({
                   <p className={styles.text}>{review.text}</p>
                 </li>
               ))}
-            </ul>
+            </ReviewsCarousel>
           </div>
         )}
 
