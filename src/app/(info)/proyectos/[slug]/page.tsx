@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { ButtonPrimary } from '@/components/ButtonPrimary'
@@ -149,9 +150,15 @@ export default async function ProyectoPage({ params }: PageProps) {
               <ul className={styles.links}>
                 {proyecto.enlaces.map((link) => (
                   <li key={link.href}>
-                    <a href={link.href} target="_blank" rel="noopener noreferrer">
-                      {link.label} <span aria-hidden="true">↗</span>
-                    </a>
+                    {link.href.startsWith('/') ? (
+                      <Link href={link.href}>
+                        {link.label} <span className="xr-arrow" aria-hidden="true">→</span>
+                      </Link>
+                    ) : (
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label} <span aria-hidden="true">↗</span>
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

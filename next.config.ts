@@ -34,6 +34,33 @@ const CONTENT_SECURITY_POLICY = [
 const PAISANOS_PAGES = ["luis", "montse", "sarath", "olga", "mbacke", "fran", "vanessa"];
 const PAISANOS_POSTS = ["luis", "montse", "sarath", "mbacke", "vanessa", "fran", "katia", "demba", "alberto", "maria", "juan"];
 
+// Fichas y convocatorias de proyectos del WordPress anterior → su ficha en
+// el archivo /proyectos/ (ver src/content/proyectos.ts, campo urlsAntiguas).
+const PROYECTOS_LEGACY: Array<[string, string]> = [
+  ["artbeat", "artbeat"],
+  ["buildingnature", "building-nature"],
+  ["city-hack-day", "city-hack-day"],
+  ["hackathon", "coimpact"],
+  ["creative-climate-activism", "creative-climate-activism"],
+  ["crossing-borders", "crossing-borders"],
+  ["intercambio-galicia", "crossing-borders"],
+  ["ecobubble", "ecobubble"],
+  ["eco-fashion", "ecofashion"],
+  ["enpact", "enpact"],
+  ["eurolibrary", "eurolibrary"],
+  ["feel-the-green-2", "feel-the-green"],
+  ["ferrall", "ferrall"],
+  ["cerrando-get-the-net", "get-the-net"],
+  ["going-rural", "going-rural"],
+  ["mad-you", "mad-you"],
+  ["comenzamos-peas-in-a-pod", "peas-in-a-pod"],
+  ["restaurando-la-naturaleza", "restaurando-la-naturaleza"],
+  ["trashoholics", "trashoholics"],
+  ["festival-de-la-democracia", "vozeu"],
+  ["x", "x-team"],
+  ["yeah", "yeah"],
+];
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
@@ -85,6 +112,7 @@ const nextConfig: NextConfig = {
         { source: `/${slug}`, destination: `/paisanos/${slug}/`, permanent: true },
         { source: `/${slug}-2`, destination: `/paisanos/${slug}/`, permanent: true },
       ]),
+      ...PROYECTOS_LEGACY.map(([slug, target]) => ({ source: `/${slug}`, destination: `/proyectos/${target}/`, permanent: true })),
       { source: "/en/:path*", destination: "/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
