@@ -73,7 +73,6 @@ const nextConfig: NextConfig = {
       ["/intercambios", "/experiencias/"],
       ["/cursos", "/experiencias/"],
       ["/oportunidades", "/experiencias/"],
-      ["/proyectos", "/experiencias/"],
       ["/condiciones-erasmus", "/preguntas/"],
       ["/calendario", "/agenda/"],
       ["/eventos", "/agenda/"],

@@ -49,6 +49,7 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
         { label: 'Stop Eucalipto', href: 'https://stopeucalipto.com' },
         { label: 'Retake', href: 'https://retake.es' },
         { label: 'Paisanos', href: '/paisanos/' },
+        { label: 'Proyectos anteriores', href: '/proyectos/' },
       ],
     },
     {
@@ -88,6 +89,7 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
         { label: 'Stop Eucalipto', href: 'https://stopeucalipto.com' },
         { label: 'Retake', href: 'https://retake.es' },
         { label: 'Paisanos', href: '/paisanos/' },
+        { label: 'Proxectos anteriores', href: '/proyectos/' },
       ],
     },
     {
