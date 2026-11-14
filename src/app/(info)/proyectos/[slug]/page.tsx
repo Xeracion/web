@@ -116,6 +116,36 @@ export default async function ProyectoPage({ params }: PageProps) {
         </Container>
       ) : null}
 
+      {proyecto.videos?.length ? (
+        <Container as="section" className={styles.videosWrap}>
+          <h2>En vídeo.</h2>
+          <ul className={styles.videos}>
+            {proyecto.videos.map((video) => (
+              <li key={video.id}>
+                <a
+                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.video}
+                >
+                  <span className={styles.play} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <path d="M8 5.5v13l11-6.5z" />
+                    </svg>
+                  </span>
+                  <span className={styles.videoText}>
+                    <span className={styles.videoTitle}>{video.titulo}</span>
+                    <span className={styles.videoMeta}>
+                      {video.fecha ? `${video.fecha} · ` : ''}Ver en YouTube <span aria-hidden="true">↗</span>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      ) : null}
+
       {proyecto.voces?.length ? (
         <Container as="section" className={styles.voices}>
           <h2>En sus propias palabras.</h2>

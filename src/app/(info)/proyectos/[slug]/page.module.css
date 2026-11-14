@@ -271,3 +271,72 @@
   height: 56px;
   object-fit: contain;
 }
+
+.videosWrap {
+  padding-block: var(--space-xl);
+}
+
+.videos {
+  margin-top: var(--space-lg);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .videos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.video {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  height: 100%;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: inherit;
+  transition: background-color var(--dur-base) ease;
+}
+
+.video:hover {
+  background: var(--surface-card-hover);
+  color: inherit;
+}
+
+.video:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-text-primary);
+  color: var(--surface-card);
+}
+
+.videoText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.videoTitle {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.videoMeta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
