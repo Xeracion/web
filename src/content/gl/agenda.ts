@@ -4,35 +4,37 @@ import type { Faq, FixedProgram, SectionIntro } from '../types'
 // Axenda en galego (/gl/axenda/). Mesma estrutura que pageFerrolEs.
 export const pageFerrolGl = {
   ...pageFerrolEs,
-  heroHeading: 'Plans na Almendra, cada semana do ano.',
+  heroHeading: 'Cada semana hai algo que facer na Almendra.',
   heroText:
-    'Nada de agardar a marchar de Erasmus para que pase algo: en Ferrol hai clubs, obradoiros e encontros case todas as semanas, a maioría de balde. Isto é o que temos entre mans agora mesmo.',
+    'Xogos sen móbil, arte, música en directo e noites con xente doutros países. Case sempre de martes a xoves ás 20:00 na Casa da Xuventude de Ferrol, e case todo de balde.',
   heroImageAlt: 'Obradoiro de Speak Factor na Casa da Xuventude de Ferrol',
-  heroCtaPrimaryLabel: 'Quero ver a axenda da semana',
-  heroCtaSecondaryLabel: 'Como chegar',
-  fixedProgramsIntro: { heading: 'Catro cousas que facemos sempre.' } satisfies SectionIntro,
+  heroCtaPrimaryLabel: 'Quero ver que hai',
+  heroCtaSecondaryLabel: 'Quero saber como chegar',
+  fixedProgramsIntro: { heading: 'O que facemos cada semana.' } satisfies SectionIntro,
   agendaIntro: { heading: 'Que hai esta semana e a seguinte.' } satisfies SectionIntro,
   arrivalHeading: 'Casa da Xuventude',
   arrivalAddressText: [
     'Rúa Almendra 9, 15402 Ferrol. Planta baixa e primeira.',
-    'Atención ao público de luns a venres, das 10:00 ás 14:00. As actividades adoitan ser martes, mércores e xoves, normalmente ás 20:00, pero depende da axenda.',
+    'A oficina abre de luns a venres, das 10:00 ás 14:00. Os plans son pola tarde, case sempre de martes a xoves ás 20:00: mira a axenda para confirmalo.',
   ],
-  arrivalTransportText: 'Estación de tren a 10 min a pé. Autobús urbano liñas 1, 5, 7 (parada Cantón).',
+  arrivalTransportText:
+    'En bus, con Liña, a nosa app de autobuses de Ferrol e de Galicia. Pon a Almendra 9 como destino e dirache que bus coller, en que parada e cando pasa, en tempo real. De balde e sen instalar nada.',
+  arrivalLinaLabel: 'Quero chegar con Liña',
   faqIntro: { heading: 'Preguntas rápidas' } satisfies SectionIntro,
   closingHeading: 'Ven ao próximo plan.',
-  closingText: 'Non fai falta avisar. Case sempre hai algo martes, mércores ou xoves ás 20:00 na Almendra 9: mira a axenda para confirmalo.',
+  closingText: 'Non fai falta avisar. Case sempre hai algo de martes a xoves ás 20:00 na Almendra 9: mira a axenda para confirmalo.',
 }
 
 export const fixedProgramsGl: FixedProgram[] = [
-  { name: 'Offline Club', schedule: 'Martes 20:00', description: 'Dúas horas sen móbil con xente nova.' },
-  { name: 'English club', schedule: 'Mércores 19:00', description: 'Conversa real, sen profe.' },
-  { name: 'Obradoiros Erasmus+', description: 'Como facer o currículo europeo, cartas de motivación, entrevistas.' },
-  { name: 'Conciertazo · djams', schedule: 'Sábados á noite cando toca', description: 'Grupos locais.' },
+  { name: 'Offline Club', schedule: 'Xoves 20:00', description: 'Prohibido o móbil, obrigatorio o pique: billar, futbolín e xogos de mesa.' },
+  { name: 'ARTholics', schedule: 'Mércores 20:00', description: 'Lapis, pinceis, gancho e boa compañía.' },
+  { name: 'Jam Session', schedule: 'Martes alternos, 20:00', description: 'Música en directo: trae o teu instrumento ou ven escoitar.' },
+  { name: 'Noites culturais', description: 'De cando en vez, unha noite para coñecer outro país coa xente que vén de fóra. Mira a axenda.' },
 ]
 
 export const ferrolFaqsGl: Faq[] = [
-  { question: 'Canto custa apuntarse?', answer: 'Nada. Case todas as actividades son de balde. Algunhas precisan inscrición polo aforo.' },
+  { question: 'Canto custa apuntarse?', answer: 'Nada. Case todas as actividades son de balde. Se algunha ten prazas limitadas, verás na axenda.' },
   { question: 'Hai que ser de Xeración?', answer: 'Non. Ven cando queiras. Se che gusta e queres implicarte, despois falamos.' },
   { question: 'Que idade hai que ter?', answer: 'Entre 14 e 30. A maioría da xente que vén ten entre 18 e 25.' },
-  { question: 'Podo propoñer unha actividade?', answer: 'Si. Pásate un martes polo Offline Club e coméntao, ou escríbenos por Instagram.' },
+  { question: 'Podo propoñer unha actividade?', answer: 'Si. Coméntao en calquera plan, escríbenos por WhatsApp ou Instagram, ou pásate pola oficina de luns a venres, das 10:00 ás 14:00.' },
 ]

@@ -11,6 +11,9 @@ interface HowToArriveData {
   arrivalHeading?: string
   arrivalAddressText?: string | string[]
   arrivalTransportText?: string | string[]
+  /** Botón a Liña, la app de autobuses de Xeración, para llegar en bus. */
+  arrivalLinaLabel?: string
+  arrivalLinaHref?: string
 }
 
 interface HowToArriveProps {
@@ -54,6 +57,13 @@ export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArrivePr
           <>
             <p className={styles.label}>{copy.gettingHere}</p>
             <Prose value={data.arrivalTransportText} className={styles.text} />
+            {data.arrivalLinaLabel && data.arrivalLinaHref && (
+              <div className={styles.contact}>
+                <ButtonLink accent href={data.arrivalLinaHref}>
+                  {data.arrivalLinaLabel}
+                </ButtonLink>
+              </div>
+            )}
           </>
         )}
         {(whatsappHref || emailHref) && (
