@@ -1,6 +1,6 @@
 import { Container } from '@/components/Container'
 import type { SectionIntro } from '@/content/types'
-import { formatEventDay, formatEventMonthShort, formatEventTime } from '@/lib/formatDate'
+import { formatEventDay, formatEventMonthShort, formatEventTime, formatEventWeekdayShort } from '@/lib/formatDate'
 import type { EventSummary } from '@/lib/googleCalendar'
 
 import styles from './AgendaTimeline.module.css'
@@ -12,8 +12,13 @@ interface AgendaTimelineProps {
 }
 
 const EMPTY_MESSAGE = {
-  es: 'No hay nada programado en los próximos catorce días todavía. Vuelve pronto o pásate un martes por Offline Club.',
-  gl: 'Aínda non hai nada programado nos próximos catorce días. Volve axiña ou pásate un martes polo Offline Club.',
+  es: 'Todavía no hay nada programado para los próximos catorce días. Escríbenos por WhatsApp y te contamos lo que viene.',
+  gl: 'Aínda non hai nada programado para os próximos catorce días. Escríbenos por WhatsApp e contámosche o que vén.',
+}
+
+// Casi todo es en la oficina: el lugar solo se enseña cuando es otro.
+function isOwnVenue(location?: string) {
+  return !location || /xeraci|almendra/i.test(location)
 }
 
 export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineProps) {
@@ -27,6 +32,9 @@ export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineP
           {events.map((event, i) => (
             <li key={i} className={styles.row}>
               <div className={styles.date}>
+                <span className={styles.weekday}>
+                  {event.dateTime && formatEventWeekdayShort(event.dateTime, locale)}
+                </span>
                 <span className={styles.day}>{event.dateTime && formatEventDay(event.dateTime)}</span>
                 <span className={styles.month}>
                   {event.dateTime && formatEventMonthShort(event.dateTime, locale)}
@@ -36,7 +44,7 @@ export function AgendaTimeline({ intro, events, locale = 'es' }: AgendaTimelineP
                 <p className={styles.title}>{event.title}</p>
                 <p className={styles.meta}>
                   {event.dateTime && formatEventTime(event.dateTime)}
-                  {event.location ? ` · ${event.location}` : ''}
+                  {isOwnVenue(event.location) ? '' : ` · ${event.location}`}
                 </p>
               </div>
             </li>

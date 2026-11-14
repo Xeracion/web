@@ -14,7 +14,7 @@ interface ClosingCtaProps {
   locale?: 'es' | 'gl'
 }
 
-const WHATSAPP_LABEL = { es: 'Hablar por WhatsApp', gl: 'Falar por WhatsApp' }
+const WHATSAPP_LABEL = { es: 'Quiero escribiros por WhatsApp', gl: 'Quero escribirvos por WhatsApp' }
 
 export function ClosingCta({ data, siteSettings, locale = 'es' }: ClosingCtaProps) {
   const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined

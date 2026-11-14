@@ -97,6 +97,8 @@ export interface FixedProgram {
   name: string
   schedule?: string
   description?: string
+  /** Página propia del plan, si la tiene (ej. /speakfactor/). */
+  href?: string
 }
 
 export interface Faq {

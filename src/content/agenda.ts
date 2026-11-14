@@ -11,12 +11,12 @@ export const pageFerrolEs = {
   heroImageCaption: 'foto editorial · Offline Club en la Almendra 9',
   heroCtaPrimaryLabel: 'Quiero ver qué hay',
   heroCtaSecondaryLabel: 'Quiero saber cómo llegar',
-  fixedProgramsIntro: { heading: 'Lo que hacemos cada semana.' } satisfies SectionIntro,
-  agendaIntro: { heading: 'Qué hay esta semana y la que viene.' } satisfies SectionIntro,
+  fixedProgramsIntro: { heading: 'Lo que se repite cada semana.' } satisfies SectionIntro,
+  agendaIntro: { heading: 'Qué hay en los próximos catorce días.' } satisfies SectionIntro,
   arrivalHeading: 'Casa da Xuventude',
   // Horario confirmado por Xeración (noviembre de 2026).
   arrivalAddressText: [
-    'Rúa Almendra 9, 15402 Ferrol. Planta baja y primera.',
+    'Rúa Almendra 9, 15402 Ferrol.',
     'La oficina abre de lunes a viernes, de 10:00 a 14:00. Los planes son por la tarde, casi siempre de martes a jueves a las 20:00: mira la agenda para confirmarlo.',
   ],
   arrivalMapEmbedUrl: 'https://www.google.com/maps?q=Xeraci%C3%B3n%2C%20R%C3%BAa%20Almendra%209%2C%2015402%20Ferrol&z=17&output=embed' as string | undefined,
@@ -26,7 +26,7 @@ export const pageFerrolEs = {
     'En bus, con Liña, nuestra app de autobuses de Ferrol y de Galicia. Pon la Almendra 9 como destino y te dice qué bus coger, en qué parada y cuándo pasa, en tiempo real. Gratis y sin instalar nada.',
   arrivalLinaLabel: 'Quiero llegar con Liña',
   arrivalLinaHref: 'https://xn--lia-8ma.com',
-  faqIntro: { heading: 'Preguntas rápidas' } satisfies SectionIntro,
+  faqIntro: { heading: 'Antes de venir.' } satisfies SectionIntro,
   closingHeading: 'Ven al próximo plan.',
   closingText: 'No hace falta avisar. Casi siempre hay algo de martes a jueves a las 20:00 en la Almendra 9: mira la agenda para confirmarlo.',
 }
@@ -34,15 +34,15 @@ export const pageFerrolEs = {
 // Días y horas tal como están en el Google Calendar (noviembre de 2026).
 export const fixedProgramsEs: FixedProgram[] = [
   // Los martes se alternan Speak Factor y Jam Session.
-  { name: 'Speak Factor', schedule: 'Martes alternos, 20:00', description: 'Oratoria e improvisación en inglés, con juegos y retos. De 18 a 30 años.' },
-  { name: 'Jam Session', schedule: 'Martes alternos, 20:00', description: 'Música en directo: trae tu instrumento o ven a escuchar.' },
-  { name: 'ARTholics', schedule: 'Miércoles 20:00', description: 'Lápices, pinceles, ganchillo y buena compañía.' },
-  { name: 'Offline Club', schedule: 'Jueves 20:00', description: 'Prohibido el móvil, obligatorio el pique: billar, futbolín y juegos de mesa.' },
-  { name: 'Noches culturales', description: 'De vez en cuando, una noche para conocer otro país con la gente que viene de fuera. Mira la agenda.' },
+  { name: 'Speak Factor', schedule: 'Martes alternos · 20:00', description: 'Oratoria e improvisación en inglés, con juegos y retos. De 18 a 30 años.', href: '/speakfactor/' },
+  { name: 'Jam Session', schedule: 'Martes alternos · 20:00', description: 'Música en directo: trae tu instrumento o ven a escuchar.' },
+  { name: 'ARTholics', schedule: 'Miércoles · 20:00', description: 'Lápices, pinceles, ganchillo y buena compañía.' },
+  { name: 'Offline Club', schedule: 'Jueves · 20:00', description: 'Prohibido el móvil, obligatorio el pique: billar, futbolín y juegos de mesa.' },
+  { name: 'Noches culturales', schedule: 'Fechas sueltas, en la agenda', description: 'Una noche para conocer otro país con la gente que viene de fuera.' },
 ]
 
 export const ferrolFaqsEs: Faq[] = [
-  { question: '¿Cuánto cuesta apuntarse?', answer: 'Nada. Casi todas las actividades son gratis. Si alguna tiene plazas limitadas, lo verás en la agenda.' },
+  { question: '¿Hay que apuntarse?', answer: 'No. Casi todo es gratis y basta con venir. Si algún plan tiene plazas limitadas, lo verás en la agenda.' },
   { question: '¿Hay que ser de Xeración?', answer: 'No. Ven cuando quieras. Si te gusta y quieres implicarte, luego hablamos.' },
   { question: '¿Qué edad hay que tener?', answer: 'Entre 18 y 30.' },
   { question: '¿Puedo proponer una actividad?', answer: 'Sí. Coméntalo en cualquier plan, escríbenos por WhatsApp o Instagram, o pásate por la oficina de lunes a viernes, de 10:00 a 14:00.' },

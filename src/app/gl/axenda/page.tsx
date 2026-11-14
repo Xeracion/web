@@ -30,8 +30,8 @@ export default async function AxendaPage() {
   return (
     <>
       <Hero data={pageFerrolGl} />
-      <FixedPrograms intro={pageFerrolGl.fixedProgramsIntro} items={fixedProgramsGl} />
       <AgendaTimeline intro={pageFerrolGl.agendaIntro} events={upcomingEvents} locale="gl" />
+      <FixedPrograms intro={pageFerrolGl.fixedProgramsIntro} items={fixedProgramsGl} moreLabel="Quero saber máis" />
       <HowToArrive data={pageFerrolGl} siteSettings={siteSettingsGl} locale="gl" />
       <FaqAccordionSection intro={pageFerrolGl.faqIntro} items={ferrolFaqsGl} />
       <MentoresCallout locale="gl" />

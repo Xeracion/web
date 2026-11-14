@@ -29,8 +29,8 @@ export default async function FerrolPage() {
   return (
     <>
       <Hero data={pageFerrolEs} />
-      <FixedPrograms intro={pageFerrolEs.fixedProgramsIntro} items={fixedProgramsEs} />
       <AgendaTimeline intro={pageFerrolEs.agendaIntro} events={upcomingEvents} />
+      <FixedPrograms intro={pageFerrolEs.fixedProgramsIntro} items={fixedProgramsEs} />
       <HowToArrive data={pageFerrolEs} siteSettings={siteSettings} />
       <FaqAccordionSection intro={pageFerrolEs.faqIntro} items={ferrolFaqsEs} />
       <MentoresCallout />
