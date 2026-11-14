@@ -4,7 +4,7 @@ import type { Faq, FixedProgram, SectionIntro } from '../types'
 // Axenda en galego (/gl/axenda/). Mesma estrutura que pageFerrolEs.
 export const pageFerrolGl = {
   ...pageFerrolEs,
-  heroHeading: 'Cada semana hai algo que facer na Almendra.',
+  heroHeading: 'Cada semana hai algo que facer en Xeración.',
   heroText:
     'Xogos sen móbil, arte, música en directo e noites con xente doutros países. Case sempre de martes a xoves ás 20:00 na Casa da Xuventude de Ferrol, e case todo de balde.',
   heroImageAlt: 'Obradoiro de Speak Factor na Casa da Xuventude de Ferrol',
@@ -26,15 +26,16 @@ export const pageFerrolGl = {
 }
 
 export const fixedProgramsGl: FixedProgram[] = [
-  { name: 'Offline Club', schedule: 'Xoves 20:00', description: 'Prohibido o móbil, obrigatorio o pique: billar, futbolín e xogos de mesa.' },
-  { name: 'ARTholics', schedule: 'Mércores 20:00', description: 'Lapis, pinceis, gancho e boa compañía.' },
+  { name: 'Speak Factor', schedule: 'Martes alternos, 20:00', description: 'Oratoria e improvisación en inglés, con xogos e retos. De 18 a 30 anos.' },
   { name: 'Jam Session', schedule: 'Martes alternos, 20:00', description: 'Música en directo: trae o teu instrumento ou ven escoitar.' },
+  { name: 'ARTholics', schedule: 'Mércores 20:00', description: 'Lapis, pinceis, gancho e boa compañía.' },
+  { name: 'Offline Club', schedule: 'Xoves 20:00', description: 'Prohibido o móbil, obrigatorio o pique: billar, futbolín e xogos de mesa.' },
   { name: 'Noites culturais', description: 'De cando en vez, unha noite para coñecer outro país coa xente que vén de fóra. Mira a axenda.' },
 ]
 
 export const ferrolFaqsGl: Faq[] = [
   { question: 'Canto custa apuntarse?', answer: 'Nada. Case todas as actividades son de balde. Se algunha ten prazas limitadas, verás na axenda.' },
   { question: 'Hai que ser de Xeración?', answer: 'Non. Ven cando queiras. Se che gusta e queres implicarte, despois falamos.' },
-  { question: 'Que idade hai que ter?', answer: 'Entre 14 e 30. A maioría da xente que vén ten entre 18 e 25.' },
+  { question: 'Que idade hai que ter?', answer: 'Entre 18 e 30.' },
   { question: 'Podo propoñer unha actividade?', answer: 'Si. Coméntao en calquera plan, escríbenos por WhatsApp ou Instagram, ou pásate pola oficina de luns a venres, das 10:00 ás 14:00.' },
 ]

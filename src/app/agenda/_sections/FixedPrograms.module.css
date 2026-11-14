@@ -21,6 +21,11 @@
   padding: 24px;
 }
 
+/* Si el número de planes es impar, el último ocupa toda la fila. */
+.card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .text {
   margin-top: var(--space-xs);
   font-family: var(--font-body), sans-serif;
