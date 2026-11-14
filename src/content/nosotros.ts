@@ -18,7 +18,7 @@ export const pageNosotrosEs = {
     'Somos jóvenes que ayudamos a otros jóvenes a vivir su aventura europea. Sin protocolo y sin papeleo interminable, con la experiencia de más de una década haciendo esto.',
   heroStats: [
     { value: '13', label: 'años activos' },
-    { value: '+120', label: 'voluntarios europeos acogidos' },
+    { value: '+120', label: 'voluntarios internacionales acogidos' },
     { value: '+15', label: 'países de origen' },
   ] satisfies StatItem[],
   // Equipo y voluntariado en la Casa da Xuventude.
@@ -59,7 +59,7 @@ export const pageNosotrosEs = {
   // +120 lo confirmó Xeración (noviembre de 2026); el listado con foto
   // solo recoge a una parte. Los países (+15) salen de ese listado.
   volunteersNumber: '+120',
-  volunteersSubtitle: 'voluntarios europeos de más de 15 países han pasado por Xeración desde 2013.',
+  volunteersSubtitle: 'voluntarios internacionales de más de 15 países han pasado por Xeración desde 2013.',
   volunteersCtaLabel: 'Quiero ser el próximo →',
   volunteersCtaUrl: '/experiencias/',
   pastVolunteersIntro: {
