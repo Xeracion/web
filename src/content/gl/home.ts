@@ -5,9 +5,9 @@ import type { HomeDoor, HomeProject, SectionIntro, StatItem } from '../types'
 // e as ligazóns externas son as mesmas.
 export const homeGl = {
   ...homeEs,
-  heading: 'Outros plans son posibles.',
+  heading: 'Construímos as oportunidades que nos gustaría ter tido.',
   intro:
-    'Xeración é unha organización xuvenil sen ánimo de lucro de Ferrol. Dende 2013 creamos experiencias para xente nova e proxectos que melloran a vida da comunidade, co apoio de institucións galegas e europeas.',
+    'Xeración é unha organización xuvenil sen ánimo de lucro de Ferrol. Dende 2013 deseñamos experiencias para xente nova e proxectos que facían falta na cidade, co apoio de institucións galegas e europeas.',
   heroImageAlt: 'Cinco mozos e mozas de Xeración celebran cos brazos en alto nun parque no outono',
   heroActions: [
     { label: 'Quero ver experiencias', href: '#experiencias' },
@@ -55,7 +55,7 @@ export const homeGl = {
       ctaLabel: 'Quero botar unha man',
     },
   ] satisfies HomeProject[],
-  figuresHeading: 'Dende 2013 facendo que pasen cousas.',
+  figuresHeading: 'O que levamos feito.',
   figuresText:
     'Acollemos xente de toda Europa, enviamos mozos e mozas de aquí a proxectos fóra e traballamos con empresas, centros e institucións de Ferrol e de Galicia.',
   figures: [

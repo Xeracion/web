@@ -6,9 +6,9 @@ export const homeEs = {
   // Posicionamiento (noviembre de 2026): Xeración se presenta como un grupo
   // que monta alternativas, con dos pilares de igual peso (experiencias y
   // proyectos para la comunidad). Europa y Ferrol quedan en segundo plano.
-  heading: 'Otros planes son posibles.',
+  heading: 'Construimos las oportunidades que nos habría gustado tener.',
   intro:
-    'Xeración es una organización juvenil sin ánimo de lucro de Ferrol. Desde 2013 creamos experiencias para gente joven y proyectos que mejoran la vida de la comunidad, con apoyo de instituciones gallegas y europeas.',
+    'Xeración es una organización juvenil sin ánimo de lucro de Ferrol. Desde 2013 diseñamos experiencias para gente joven y proyectos que hacían falta en la ciudad, con el apoyo de instituciones gallegas y europeas.',
   heroImage: '/img/fotos/portada-equipo.webp' as string | undefined,
   heroImageAlt: 'Cinco jóvenes de Xeración celebran con los brazos en alto en un parque en otoño',
   heroImageCaption: 'foto editorial · gente haciendo algo juntos al aire libre',
@@ -60,7 +60,7 @@ export const homeEs = {
   ] satisfies HomeProject[],
   // Va justo debajo del hero: es la prueba de trayectoria que busca quien
   // llega de parte de una institución.
-  figuresHeading: 'Desde 2013 haciendo que pasen cosas.',
+  figuresHeading: 'Lo que llevamos hecho.',
   figuresText:
     'Acogemos a gente de toda Europa, enviamos a jóvenes de aquí a proyectos fuera y trabajamos con empresas, centros e instituciones de Ferrol y de Galicia.',
   // +50 empresas sale de /empresas/ y +15 países de /nosotros/.
