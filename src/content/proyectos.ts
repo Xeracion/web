@@ -1,4 +1,4 @@
-import type { StatItem, Testimonial } from './types'
+import type { Partner, StatItem, Testimonial } from './types'
 
 // Archivo de proyectos ya realizados (/proyectos/ y /proyectos/[slug]/).
 // Cada ficha sale de la página que tenía el proyecto en el WordPress anterior
@@ -41,6 +41,8 @@ export interface ProyectoData {
   voces?: Testimonial[]
   vocesNota?: string
   enlaces?: { label: string; href: string }[]
+  /** Quién lo financió. Con `image` sale la bandera de la UE con su texto (`caption`); sin imagen, solo el nombre. */
+  apoyos?: Partner[]
   /** Si el proyecto ya tiene página propia en esta web, la tarjeta lleva allí. */
   enlaceInterno?: string
   /** URLs del WordPress anterior que redirigen a la ficha (en next.config.ts). */
@@ -72,6 +74,7 @@ export const proyectos: ProyectoData[] = [
     datos: [{"label": "Cuándo", "value": "11–18 de mayo de 2026"}, {"label": "Dónde", "value": "Panxón · Vigo"}, {"label": "Quiénes", "value": "21 participantes"}, {"label": "Formato", "value": "Curso de formación · Erasmus+"}],
     imagen: "/img/speakfactor-vi/gala-escenario.webp",
     imagenAlt: "Una participante da su discurso con micrófono en el escenario del café Vitrubia, en Vigo",
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     enlaceInterno: "/speak-factor-tc/",
   },
   {
@@ -94,6 +97,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "El grupo de voluntariado comparte una comida alrededor de una mesa larga en un restaurante con vigas de madera",
     galeria: [{"src": "/img/proyectos/building-nature/cocina-horno.webp", "alt": "Una voluntaria saca del horno una bandeja de zanahorias asadas en la cocina de Das Nest"}],
     enlaces: [{"label": "Parque Natural Fragas do Eume", "href": "https://www.turismo.gal/que-visitar/espazos-naturais/parques-naturais/fragas-do-eume?langId=en_US"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/buildingnature/"],
   },
   {
@@ -114,6 +118,7 @@ export const proyectos: ProyectoData[] = [
     paises: ["España", "Italia", "Grecia"],
     socios: ["Latte Creative (Italia, coordinador)", "HIGGS – Higher Incubator Giving Growth & Sustainability (Grecia)"],
     enlaces: [{"label": "Web del proyecto CoImpact", "href": "https://coimpact.eu/es/"}, {"label": "Mapa de colectivos ambientales", "href": "https://kumu.io/xeracion/co-impact"}, {"label": "Presentación del hackathon de Ferrol", "href": "https://pitch.com/v/co-impact-workshop-esp-zgxeiv"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/hackathon/"],
   },
   {
@@ -136,6 +141,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Un grupo de niñas y niños pequeños camina de espaldas por una pradera junto a voluntarios con chalecos amarillos el día de la plantación",
     galeria: [{"src": "/img/proyectos/enpact/plantando-arbol.webp", "alt": "Una voluntaria con chaleco reflectante cava con una pala junto a un árbol joven recién plantado"}, {"src": "/img/proyectos/enpact/plantacion-monte.webp", "alt": "Varias personas colocan protectores verdes a árboles recién plantados en un monte de tojo"}, {"src": "/img/proyectos/enpact/juegos-porche.webp", "alt": "Niñas y niños de espaldas, con botas de agua, juegan con aros bajo un porche mientras esperan a que pare la lluvia"}, {"src": "/img/proyectos/enpact/doninos-dron.webp", "alt": "Vista aérea de la playa de Doniños con una carpa verde, mesas y grupos de escolares en el paseo durante la TrashUre Hunt"}, {"src": "/img/proyectos/enpact/doninos-dron-playa.webp", "alt": "Vista aérea del aparcamiento, el paseo y las dunas de Doniños con los grupos repartidos durante la recogida"}],
     enlaces: [{"label": "Noticia en Diario de Ferrol", "href": "https://www.diariodeferrol.com/articulo/ferrol/plantan-bosque-120-arboles-entorno-skate-park-malata-4721324"}, {"label": "Noticia del Concello de Ferrol", "href": "https://www.ferrol.gal/Concello/NovasAmpliar/7969"}, {"label": "Noticia en COPE", "href": "https://www.cope.es/emisoras/galicia/a-coruna-provincia/ferrol/noticias/pequenos-piratas-limpiaran-perlas-blancas-playa-doninos-20240321_3210264"}, {"label": "EU TEENS4Green", "href": "https://euteens4green.org/"}],
+    apoyos: [{"name": "EU TEENS4Green", "image": "/img/logos/bandera-ue.svg", "caption": "Con el apoyo de la Unión Europea (EU TEENS4Green)"}],
     urlsAntiguas: ["/enpact/"],
   },
   {
@@ -158,6 +164,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/feel-the-green/grupo-limpieza.webp",
     imagenAlt: "Grupo de jóvenes con petos azules y pinzas en alto junto a una docena de bolsas de basura llenas, con la ría al fondo",
     galeria: [{"src": "/img/proyectos/feel-the-green/limpieza-camino.webp", "alt": "Dos participantes de espaldas recogen basura con pinzas y bolsas en un camino entre árboles"}, {"src": "/img/proyectos/feel-the-green/mural-residuos.webp", "alt": "Mural en el suelo hecho con agujas de pino, tela azul a modo de río, botellas de plástico y bolsas negras como nubes"}, {"src": "/img/proyectos/feel-the-green/arte-residuos.webp", "alt": "Composición sobre papel con latas, envases y bolsas de plástico junto a erizos de castaña y hojas secas"}, {"src": "/img/proyectos/feel-the-green/papeleras.webp", "alt": "Tres papeleras de reciclaje hechas con cajas de cartón pintadas, una para vidrio y otra para papel y cartón"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/feel-the-green-2/"],
   },
   {
@@ -176,6 +183,7 @@ export const proyectos: ProyectoData[] = [
     actividades: ["Paseo socrático por Ferrol y picnic en el Centro Cívico de Canido", "Yincana de acertijos por los murales de Meninas de Canido", "Cena intercultural y «noche bicultural» con países inventados por parejas", "Excursión a Pontedeume y a la playa de Cabanas", "Talleres de improvisación, voz, lenguaje corporal y confianza en grupo", "Talleres de storytelling, escritura creativa y poetry slam", "Escritura colectiva del guion y ensayos diarios"],
     resultados: ["Una obra de teatro escrita entre todo el grupo: «Clownversation»", "15 participantes con certificado Youthpass"],
     paises: ["España", "Portugal", "Polonia", "Grecia", "Bulgaria", "Rumanía", "Alemania", "Italia", "Francia"],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/ferrall/"],
   },
   {
@@ -198,6 +206,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Un formador de Xeración habla ante un círculo de estudiantes junto a una pantalla con el lema «¿Qué puedes hacer con Europa?»",
     galeria: [{"src": "/img/proyectos/get-the-net/world-cafe.webp", "alt": "Pequeño grupo de estudiantes sentados en círculo conversando en una de las mesas del world café"}, {"src": "/img/proyectos/get-the-net/taller-cv.webp", "alt": "Personas con portátiles alrededor de una mesa durante el taller de CV, con una pizarra digital al fondo"}, {"src": "/img/proyectos/get-the-net/cena-intercultural.webp", "alt": "Mesa redonda llena de platos caseros de distintos países durante la cena intercultural, con gente sirviéndose alrededor"}],
     enlaces: [{"label": "Mesas redondas de las municipales de 2023", "href": "/mesaredonda/"}, {"label": "Podcast Paisanos en Spotify", "href": "https://open.spotify.com/show/3csJv7gS92mOxZT8zTdfOM"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}, {"name": "Get The Net", "image": "/img/logos/get-the-net.png"}],
     urlsAntiguas: ["/cerrando-get-the-net/"],
   },
   {
@@ -219,6 +228,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/going-rural/taller-jovenes.webp",
     imagenAlt: "Jóvenes alrededor de una mesa en la oficina de Xeración conversan con una dinamizadora; al fondo, un papelógrafo con palabras como juventud, conexión y participación",
     galeria: [{"src": "/img/proyectos/going-rural/taller-jovenes-2.webp", "alt": "Un grupo de jóvenes charla y ríe en torno a una mesa con café y bollería durante un taller"}, {"src": "/img/proyectos/going-rural/reunion-arranque.webp", "alt": "Representantes de las organizaciones socias trabajan con documentos en la primera reunión del proyecto en Ferrol"}, {"src": "/img/proyectos/going-rural/ferrol-letras.webp", "alt": "Letras gigantes de Ferrol en el paseo del puerto bajo un cielo azul"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/going-rural/"],
   },
   {
@@ -244,6 +254,7 @@ export const proyectos: ProyectoData[] = [
     voces: [{"quote": "It was a super cool experience during which I connected with a lot of international people, over something we were all passionate about : music ! I would definitely do a project like this again : )", "name": "Lieve"}, {"quote": "I learnt that music will always bring people together, that exiting my comfort zone will help me grow and that you don't have to be a great musician to write and sing something from your heart!", "name": "Participante"}, {"quote": "The moment when the gentleman in the studio gave us thumbs up behind his studio window, after we sang our song! […] I'll probably never experience that again", "name": "Participante"}],
     vocesNota: 'Respuestas del cuestionario final, anónimas y en su idioma original.',
     enlaces: [{"label": "Escuchar las canciones", "href": "https://soundcloud.com/xeracion/sets/art-beat"}, {"label": "Noticias de Xeración de abril de 2022 (vídeo)", "href": "https://www.youtube.com/watch?v=oXZCRYLlTZc"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/artbeat/"],
   },
   {
@@ -267,6 +278,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Foto de grupo de los participantes sentados en la escalinata de un edificio con arcos",
     galeria: [{"src": "/img/proyectos/creative-climate-activism/accion-palmera.webp", "alt": "Participantes trabajando con troncos y hojas de una palmera cortada en el jardín del albergue"}, {"src": "/img/proyectos/creative-climate-activism/creando-escultura.webp", "alt": "Una participante arrodillada en el césped montando piezas hechas con restos de palmera"}, {"src": "/img/proyectos/creative-climate-activism/escultura-final.webp", "alt": "Figura hecha con fibras y restos de palmera colocada sobre una silla azul"}, {"src": "/img/proyectos/creative-climate-activism/circulo-sesion.webp", "alt": "Participantes sentados en círculo en una sala de paredes verdes durante una sesión"}, {"src": "/img/proyectos/creative-climate-activism/trabajo-grupo.webp", "alt": "Cuatro participantes inclinados sobre una mesa preparando una actividad en grupo"}, {"src": "/img/proyectos/creative-climate-activism/dinamica-exterior.webp", "alt": "Participantes entrelazando los brazos en una dinámica de grupo en el jardín"}, {"src": "/img/proyectos/creative-climate-activism/roleplay.webp", "alt": "Dos participantes con gafas de sol y gorra representan una escena ante el grupo sentado"}],
     enlaces: [{"label": "Álbum de fotos", "href": "https://photos.app.goo.gl/to2eK2r2YGKQyuDr7"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/creative-climate-activism/"],
   },
   {
@@ -290,6 +302,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Cuatro participantes conversan alrededor de una mesa de madera durante una sesión de trabajo",
     galeria: [{"src": "/img/proyectos/ecobubble/presentacion.webp", "alt": "Un participante presenta su proyecto ante el grupo con una pantalla al fondo"}],
     enlaces: [{"label": "Álbum de fotos", "href": "https://photos.app.goo.gl/KLMjCrP9wmp7sG8V9"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/ecobubble/"],
   },
   {
@@ -312,6 +325,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/eurolibrary/plaza-autocaravanas.webp",
     imagenAlt: "Participantes hacen una dinámica de movimiento en una plaza con las autocaravanas aparcadas detrás",
     galeria: [{"src": "/img/proyectos/eurolibrary/santiago-calle.webp", "alt": "Un participante conversa con una vecina en una calle de piedra de Santiago durante el reto de intercambio"}, {"src": "/img/proyectos/eurolibrary/autocaravana.webp", "alt": "Un participante sonríe al volante de una de las autocaravanas del viaje"}, {"src": "/img/proyectos/eurolibrary/pontedeume.webp", "alt": "Vista de la ría de Pontedeume con barcas fondeadas y tejados rojos en primer plano"}, {"src": "/img/proyectos/eurolibrary/mural-ferrol.webp", "alt": "Gran mural de un titiritero y su marioneta en una fachada de Ferrol"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/eurolibrary/"],
   },
   {
@@ -334,6 +348,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/mad-you/huerto-cavando.webp",
     imagenAlt: "Un voluntario con guantes y una azada descansa mientras cava la tierra del huerto urbano",
     galeria: [{"src": "/img/proyectos/mad-you/huerto-azada.webp", "alt": "Una voluntaria con guantes de trabajo y azada en el huerto urbano de Canido, con la ría al fondo"}, {"src": "/img/proyectos/mad-you/noche-cultural.webp", "alt": "Cuatro voluntarios ríen juntos en una sala decorada con banderines de colores"}, {"src": "/img/proyectos/mad-you/canido-ria.webp", "alt": "Una voluntaria sonríe a la cámara en lo alto de Canido, con la ría de Ferrol y el monte al fondo"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/mad-you/"],
   },
   {
@@ -357,6 +372,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Tres jóvenes sonríen mientras trabajan con un portátil en una mesa del hackathon",
     galeria: [{"src": "/img/proyectos/city-hack-day/conversaciones.webp", "alt": "Asistentes charlando de pie en una sala durante el City Hack Day"}, {"src": "/img/proyectos/city-hack-day/auditorio-afundacion.webp", "alt": "Auditorio de Afundación en Ferrol con las butacas vacías antes del evento"}],
     enlaces: [{"label": "Noticia en La Voz de Galicia", "href": "https://www.lavozdegalicia.es/noticia/ferrol/2021/12/12/25-entidades-tomaron-parte-feira-do-voluntariado/0003_202112F12C2991.htm"}],
+    apoyos: [{"name": "Comisión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Con el apoyo de la Comisión Europea"}],
     urlsAntiguas: ["/city-hack-day/"],
   },
   {
@@ -378,6 +394,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/restaurando-la-naturaleza/plantacion-costa.webp",
     imagenAlt: "Voluntarios plantando árboles protegidos con tubos en una ladera junto al mar",
     galeria: [{"src": "/img/proyectos/restaurando-la-naturaleza/plantando-arboles.webp", "alt": "Dos personas cavando para plantar un arbolito en un terreno desbrozado de la costa"}, {"src": "/img/proyectos/restaurando-la-naturaleza/retirada-plumero.webp", "alt": "Voluntario con chaleco azul arrancando plumeros de la Pampa entre la maleza"}, {"src": "/img/proyectos/restaurando-la-naturaleza/composteras.webp", "alt": "Tres chicas con guantes posan junto a dos composteras recién montadas en una huerta"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/restaurando-la-naturaleza/"],
   },
   {
@@ -401,6 +418,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Grupo del X-team con chalecos azules junto a las bolsas de basura recogidas en una playa",
     galeria: [{"src": "/img/proyectos/x-team/sesion-formacion.webp", "alt": "Jóvenes sentados en una sala atendiendo a una presentación proyectada"}, {"src": "/img/proyectos/x-team/taller-grupo.webp", "alt": "Jóvenes presentando un cartel durante un taller en la oficina de Xeración"}, {"src": "/img/proyectos/x-team/circulo-exterior.webp", "alt": "Grupo de jóvenes formando un círculo al aire libre al atardecer"}, {"src": "/img/proyectos/x-team/sesion-circulo.webp", "alt": "Una facilitadora habla a un grupo sentado en círculo en una sala amplia"}, {"src": "/img/proyectos/x-team/trabajo-grupos.webp", "alt": "Cuatro jóvenes trabajando en grupo con papeles sobre las rodillas"}, {"src": "/img/proyectos/x-team/ideas-post-it.webp", "alt": "Notas adhesivas verdes con ideas pegadas en un corcho bajo el dibujo de una bombilla"}],
     enlaces: [{"label": "Álbum de fotos", "href": "https://photos.app.goo.gl/zMwF3FakCvKEhgNt6"}],
+    apoyos: [{"name": "Fundación Europea de la Juventud (Consejo de Europa)"}],
     urlsAntiguas: ["/x/"],
   },
   {
@@ -424,6 +442,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Voluntarios con chalecos azules retirando plantas invasoras en una duna junto a un cañaveral",
     galeria: [{"src": "/img/proyectos/yeah/limpieza-calle.webp", "alt": "Cuatro voluntarios con pinzas y bolsas recogiendo basura en una acera arbolada de Ferrol"}, {"src": "/img/proyectos/yeah/limpieza-lavadero.webp", "alt": "Voluntaria con chaleco azul y pinza recogiendo basura en un lavadero de piedra"}, {"src": "/img/proyectos/yeah/charla-cabo-prior.webp", "alt": "Grupo de voluntarios escuchando una explicación en lo alto de Cabo Prior, con la costa al fondo"}, {"src": "/img/proyectos/yeah/ruta-playa.webp", "alt": "Grupo de jóvenes en una pasarela de madera frente a una playa escuchando a un guía"}, {"src": "/img/proyectos/yeah/dinamica-grupo.webp", "alt": "Jóvenes riendo durante un juego con papeles de colores en el suelo de una terraza"}, {"src": "/img/proyectos/yeah/noche-cultural.webp", "alt": "Dos voluntarias presentando platos típicos de su país en una noche cultural"}],
     enlaces: [{"label": "Vídeo promocional", "href": "https://www.youtube.com/watch?v=Y47Jj035LME"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/yeah/"],
   },
   {
@@ -447,6 +466,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Grupo de jóvenes sentados en círculo en una plaza de Ferrol riéndose durante un juego con una sábana blanca",
     galeria: [{"src": "/img/proyectos/crossing-borders/dinamica-tela.webp", "alt": "Dos chicas sostienen una sábana blanca como telón mientras el grupo, agachado delante, espera su turno en un juego de nombres"}, {"src": "/img/proyectos/crossing-borders/diarios-camino.webp", "alt": "Participantes decorando sus diarios del Camino en una mesa llena de papeles de colores, cintas adhesivas y tijeras"}, {"src": "/img/proyectos/crossing-borders/sesion-collages.webp", "alt": "Jóvenes sentados en fila aplaudiendo durante una sesión, con collages sobre el futuro extendidos en el suelo"}, {"src": "/img/proyectos/crossing-borders/ronda-grupo.webp", "alt": "Seis jóvenes sentados en sillas de colores escuchan a una compañera que habla gesticulando"}, {"src": "/img/proyectos/crossing-borders/reunion-trabajo.webp", "alt": "Cinco personas trabajando alrededor de unas mesas con papeles, notas adhesivas y lápices de colores"}],
     enlaces: [{"label": "Álbum de fotos", "href": "https://photos.google.com/share/AF1QipNSYbO0Tptojaj8RWs-eacrqCBx_GryBOT-yxRWRIFLkHmAkYpCJySG84Ik78oMzQ?key=bUhWaG1HRVlTMXBuQnBPbjJHNFJGV0dEVl9IX3ZB"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}, {"name": "Xacobeo · Xunta de Galicia (documental «Pilgrants»)"}],
     urlsAntiguas: ["/crossing-borders/", "/intercambio-galicia/"],
   },
   {
@@ -469,6 +489,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "El grupo Superglú tocando en el patio porticado del Torrente Ballester, con un tablero gigante de juego en el suelo",
     galeria: [{"src": "/img/proyectos/vozeu/desayuno-politicos.webp", "alt": "Mesas redondas con café donde vecinos y vecinas conversan con políticos durante el desayuno"}, {"src": "/img/proyectos/vozeu/juego-oca.webp", "alt": "Personas de pie alrededor de un tablero gigante del juego de la oca de Europa extendido en el suelo del patio"}, {"src": "/img/proyectos/vozeu/rincon-artistico.webp", "alt": "Varias personas sentadas a una mesa con papeles de colores escribiendo y doblando sobres de origami"}, {"src": "/img/proyectos/vozeu/infomarket.webp", "alt": "Voluntarias y voluntarios de una organización de estudiantes Erasmus en su stand del InfoMarket"}, {"src": "/img/proyectos/vozeu/comida-internacional.webp", "alt": "Gente sirviéndose platos caseros de una mesa durante el concurso de comida internacional"}],
     enlaces: [{"label": "Mesas redondas de las municipales de 2023", "href": "/mesaredonda/"}, {"label": "Vídeo de presentación", "href": "https://www.youtube.com/watch?v=gwJoy1wHqkg"}],
+    apoyos: [{"name": "Citizens for Europe"}],
     urlsAntiguas: ["/festival-de-la-democracia/"],
   },
   {
@@ -491,6 +512,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/trashoholics/grupo-camisetas.webp",
     imagenAlt: "Foto de grupo de jóvenes con camisetas del proyecto, sentados y de pie en una sala con pufs de colores y paneles informativos al fondo",
     enlaces: [{"label": "Vídeo del intercambio", "href": "https://www.youtube.com/watch?v=lVN9AN88MoY"}, {"label": "Vídeo sobre economía circular", "href": "https://www.youtube.com/watch?v=1lxDTvp_V4w"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/trashoholics/"],
   },
   {
@@ -513,6 +535,7 @@ export const proyectos: ProyectoData[] = [
     imagen: "/img/proyectos/ecofashion/grupo-final.webp",
     imagenAlt: "Grupo numeroso de jóvenes posando con los brazos en alto en las escaleras de un edificio moderno",
     enlaces: [{"label": "Álbum de fotos", "href": "https://goo.gl/photos/qk131fV264Phn1jE9"}, {"label": "Reportaje de la TVG", "href": "http://www.crtvg.es/informativos/a-eco-fashion-show-unha-pasarela-benefica-de-roupa-reciclada"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/eco-fashion/"],
   },
   {
@@ -536,6 +559,7 @@ export const proyectos: ProyectoData[] = [
     imagenAlt: "Ocho personas del proyecto posando frente a la entrada de la Casa da Mocidade de Narón",
     galeria: [{"src": "/img/proyectos/peas-in-a-pod/taller-naron.webp", "alt": "Un formador explica con papeles en la mano mientras dos participantes toman notas con un portátil delante"}, {"src": "/img/proyectos/peas-in-a-pod/taller-liberec.webp", "alt": "Grupo sonriente sujetando sus certificados delante de una pila de leña en Liberec"}, {"src": "/img/proyectos/peas-in-a-pod/reunion-evaluacion.webp", "alt": "Seis personas trabajando con portátiles en una mesa larga frente a una pizarra digital durante la reunión de evaluación"}, {"src": "/img/proyectos/peas-in-a-pod/taller-local.webp", "alt": "Sala abuhardillada llena de jóvenes atendiendo a una presentación proyectada sobre emprendimiento"}, {"src": "/img/proyectos/peas-in-a-pod/dinamica-exterior.webp", "alt": "Grupo de participantes de pie en una plaza durante una dinámica al aire libre"}],
     enlaces: [{"label": "Web del proyecto", "href": "http://peasinapod.eu/en/2018/09/27/evaluation-meeting-in-spain/"}],
+    apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/comenzamos-peas-in-a-pod/"],
   },
 ]

@@ -231,3 +231,43 @@
   color: var(--color-accent-text);
   font-weight: 500;
 }
+
+.support {
+  padding-block: var(--space-xl) var(--space-2xl);
+  border-top: 1px solid var(--color-border-strong);
+}
+
+.supportTitle {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}
+
+.supportList {
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-xl);
+}
+
+.supportItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.supportFlag {
+  width: 60px;
+  height: 40px;
+}
+
+.supportLogo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}

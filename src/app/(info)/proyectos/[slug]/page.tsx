@@ -100,9 +100,16 @@ export default async function ProyectoPage({ params }: PageProps) {
         <Container as="section" className={styles.galleryWrap}>
           <h2>Así fue.</h2>
           <div className={styles.gallery}>
-            {proyecto.galeria.map((photo) => (
+            {proyecto.galeria.map((photo, i) => (
               <div key={photo.src} className={styles.photo}>
-                <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" />
+                {/* La primera de cada cinco ocupa dos columnas: se pide al doble de ancho. */}
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  quality={90}
+                  sizes={i % 5 === 0 ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 25vw, 50vw'}
+                />
               </div>
             ))}
           </div>
@@ -164,6 +171,30 @@ export default async function ProyectoPage({ params }: PageProps) {
               </ul>
             </div>
           ) : null}
+        </Container>
+      ) : null}
+
+      {proyecto.apoyos?.length ? (
+        <Container as="section" className={styles.support} aria-labelledby="apoyos">
+          <h2 id="apoyos" className={styles.supportTitle}>
+            Con el apoyo de
+          </h2>
+          <ul className={styles.supportList}>
+            {proyecto.apoyos.map((apoyo) => (
+              <li key={apoyo.name} className={styles.supportItem}>
+                {apoyo.image ? (
+                  <Image
+                    src={apoyo.image}
+                    alt={apoyo.caption ? '' : apoyo.name}
+                    width={apoyo.caption ? 60 : 56}
+                    height={apoyo.caption ? 40 : 56}
+                    className={apoyo.caption ? styles.supportFlag : styles.supportLogo}
+                  />
+                ) : null}
+                {apoyo.caption ? <span>{apoyo.caption}</span> : apoyo.image ? null : <span>{apoyo.name}</span>}
+              </li>
+            ))}
+          </ul>
         </Container>
       ) : null}
 
