@@ -5,9 +5,9 @@ import type { HomeDoor, HomeProject, SectionIntro, StatItem } from '../types'
 // e as ligazóns externas son as mesmas.
 export const homeGl = {
   ...homeEs,
-  heading: 'Construímos as oportunidades que nos gustaría ter tido.',
+  heading: 'Outros plans son posibles.',
   intro:
-    'Xeración é unha organización xuvenil sen ánimo de lucro de Ferrol. Dende 2013 deseñamos experiencias para xente nova e proxectos que facían falta na cidade, co apoio de institucións galegas e europeas.',
+    'Somos un grupo de xente que monta alternativas: experiencias para medrar, sobre todo se es xove, e proxectos que melloran a vida da comunidade. Dende 2013.',
   heroImageAlt: 'Cinco mozos e mozas de Xeración celebran cos brazos en alto nun parque no outono',
   heroActions: [
     { label: 'Quero ver experiencias', href: '#experiencias' },
@@ -55,14 +55,14 @@ export const homeGl = {
       ctaLabel: 'Quero botar unha man',
     },
   ] satisfies HomeProject[],
-  figuresHeading: 'O que levamos feito.',
+  figuresHeading: 'Un grupo pequeno cun historial longo.',
   figuresText:
-    'Acollemos xente de toda Europa, enviamos mozos e mozas de aquí a proxectos fóra e traballamos con empresas, centros e institucións de Ferrol e de Galicia.',
+    'Somos un colectivo novo de Ferrol, sen ánimo de lucro. Levamos dende 2013 montando experiencias e proxectos, con xente de aquí e de fóra.',
   figures: [
+    { value: '2013', label: 'ano no que comezamos' },
     { value: '+120', label: 'voluntarios internacionais acollidos' },
     { value: '+50', label: 'mozos e mozas enviados a proxectos fóra' },
-    { value: '+50', label: 'empresas colaboradoras' },
-    { value: '+15', label: 'países de orixe de quen acollemos' },
+    { value: '57', label: 'persoas socias' },
   ] satisfies StatItem[],
   figuresBacking:
     'Parte do que facemos finánciao Europa. Estamos acreditados por Erasmus+ e o Corpo Europeo de Solidariedade e formamos parte da rede Eurodesk.',
@@ -71,9 +71,9 @@ export const homeGl = {
   doorsHeading: 'Vés de parte dunha entidade?',
   doors: [
     {
-      title: 'Tes unha empresa?',
-      text: 'Acolle en prácticas a xente nova doutros países. Ocupámonos de toda a xestión, sen custo para ti.',
-      ctaLabel: 'Quero acoller a alguén',
+      title: 'Fagamos algo xuntos.',
+      text: 'Para institucións e empresas: que facemos, con quen e con que resultados. E unha persoa coa que falar.',
+      ctaLabel: 'Quero coñecervos',
       href: '/empresas/',
     },
     {
@@ -82,19 +82,10 @@ export const homeGl = {
       ctaLabel: 'Quero un orzamento',
       href: 'mailto:info@xeracion.org?subject=Orzamento%20para%20un%20grupo',
     },
-    {
-      title: 'Fagamos algo xuntos.',
-      text: 'Para administracións e organizacións: proxectos para a comunidade, actividades para xente nova e colaboracións á medida. Cunha persoa ao outro lado.',
-      ctaLabel: 'Quero falar convosco',
-      href: 'mailto:info@xeracion.org?subject=Colaboraci%C3%B3n%20con%20Xeraci%C3%B3n',
-    },
   ] satisfies HomeDoor[],
   closingHeading: 'Se dubidas, escríbenos.',
   closingText:
-    'Sen formularios longos. Se es novo ou nova, escríbenos por WhatsApp. Se vés dunha entidade, mellor por correo. E sempre podes pasarte pola Almendra 9 de luns a venres, das 10:00 ás 14:00.',
-  closingWhatsappLabel: 'Quero escribirvos por WhatsApp',
-  closingEmailLabel: 'Veño dunha entidade',
-  closingEmailSubject: 'Colaboración con Xeración',
+    'Sen formularios longos. WhatsApp, correo ou pásate pola Almendra 9 de luns a venres, das 10:00 ás 14:00.',
 }
 
 export const catalogEmptyGl = {

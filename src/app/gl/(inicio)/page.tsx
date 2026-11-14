@@ -43,15 +43,14 @@ export default async function InicioGlPage() {
   return (
     <>
       <Hero data={homeGl} />
-      <Figures
-        heading={homeGl.figuresHeading}
-        text={homeGl.figuresText}
-        items={homeGl.figures}
-        backing={homeGl.figuresBacking}
-        linkLabel={homeGl.figuresLinkLabel}
-        linkHref={homeGl.figuresLinkHref}
+      <Agenda
+        heading={homeGl.agendaHeading}
+        linkLabel={homeGl.agendaLinkLabel}
+        events={events}
+        agendaHref="/gl/axenda/#agenda"
+        locale="gl"
+        fichas={getFichasExperiencias('gl')}
       />
-      <Logos items={homeGl.institutionalLogos} />
       <Suspense fallback={null}>
         <ExperienciasCatalog
           id="experiencias"
@@ -64,15 +63,16 @@ export default async function InicioGlPage() {
         />
       </Suspense>
       <Projects id="proxectos" heading={homeGl.projectsHeading} text={homeGl.projectsText} items={homeGl.projects} />
-      <Doors heading={homeGl.doorsHeading} items={homeGl.doors} />
-      <Agenda
-        heading={homeGl.agendaHeading}
-        linkLabel={homeGl.agendaLinkLabel}
-        events={events}
-        agendaHref="/gl/axenda/#agenda"
-        locale="gl"
-        fichas={getFichasExperiencias('gl')}
+      <Figures
+        heading={homeGl.figuresHeading}
+        text={homeGl.figuresText}
+        items={homeGl.figures}
+        backing={homeGl.figuresBacking}
+        linkLabel={homeGl.figuresLinkLabel}
+        linkHref={homeGl.figuresLinkHref}
       />
+      <Logos items={homeGl.institutionalLogos} />
+      <Doors heading={homeGl.doorsHeading} items={homeGl.doors} />
       <ClosingCta home={homeGl} siteSettings={siteSettingsGl} locale="gl" />
     </>
   )

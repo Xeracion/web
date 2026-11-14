@@ -6,11 +6,6 @@ import type { SiteSettings } from '@/content/siteSettings'
 interface ClosingCtaHomeData {
   closingHeading?: string
   closingText?: string | string[]
-  /** Botón de WhatsApp (sobre todo para gente joven). */
-  closingWhatsappLabel?: string
-  /** Botón de correo para entidades; sin él se enseña la dirección. */
-  closingEmailLabel?: string
-  closingEmailSubject?: string
 }
 
 interface ClosingCtaProps {
@@ -23,13 +18,12 @@ const WHATSAPP_LABEL = { es: 'Hablar por WhatsApp', gl: 'Falar por WhatsApp' }
 
 export function ClosingCta({ home, siteSettings, locale = 'es' }: ClosingCtaProps) {
   const whatsappHref = siteSettings.whatsapp ? `https://wa.me/${siteSettings.whatsapp}` : undefined
-  const emailSubject = home.closingEmailSubject ? `?subject=${encodeURIComponent(home.closingEmailSubject)}` : ''
-  const emailHref = siteSettings.email ? `mailto:${siteSettings.email}${emailSubject}` : undefined
+  const emailHref = siteSettings.email ? `mailto:${siteSettings.email}` : undefined
 
   return (
     <ClosingCtaSection heading={home.closingHeading} text={home.closingText}>
-      {whatsappHref && <ButtonPrimary href={whatsappHref}>{home.closingWhatsappLabel ?? WHATSAPP_LABEL[locale]}</ButtonPrimary>}
-      {emailHref && <ButtonSecondary href={emailHref}>{home.closingEmailLabel ?? siteSettings.email}</ButtonSecondary>}
+      {whatsappHref && <ButtonPrimary href={whatsappHref}>{WHATSAPP_LABEL[locale]}</ButtonPrimary>}
+      {emailHref && <ButtonSecondary href={emailHref}>{siteSettings.email}</ButtonSecondary>}
     </ClosingCtaSection>
   )
 }

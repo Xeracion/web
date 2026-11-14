@@ -40,15 +40,12 @@ export default async function HomePage() {
   return (
     <>
       <Hero data={homeEs} />
-      <Figures
-        heading={homeEs.figuresHeading}
-        text={homeEs.figuresText}
-        items={homeEs.figures}
-        backing={homeEs.figuresBacking}
-        linkLabel={homeEs.figuresLinkLabel}
-        linkHref={homeEs.figuresLinkHref}
+      <Agenda
+        heading={homeEs.agendaHeading}
+        linkLabel={homeEs.agendaLinkLabel}
+        events={events}
+        fichas={getFichasExperiencias()}
       />
-      <Logos items={homeEs.institutionalLogos} />
       <Suspense fallback={null}>
         <ExperienciasCatalog
           id="experiencias"
@@ -65,13 +62,16 @@ export default async function HomePage() {
         text={homeEs.projectsText}
         items={homeEs.projects}
       />
-      <Doors heading={homeEs.doorsHeading} items={homeEs.doors} />
-      <Agenda
-        heading={homeEs.agendaHeading}
-        linkLabel={homeEs.agendaLinkLabel}
-        events={events}
-        fichas={getFichasExperiencias()}
+      <Figures
+        heading={homeEs.figuresHeading}
+        text={homeEs.figuresText}
+        items={homeEs.figures}
+        backing={homeEs.figuresBacking}
+        linkLabel={homeEs.figuresLinkLabel}
+        linkHref={homeEs.figuresLinkHref}
       />
+      <Logos items={homeEs.institutionalLogos} />
+      <Doors heading={homeEs.doorsHeading} items={homeEs.doors} />
       <ClosingCta home={homeEs} siteSettings={siteSettings} />
     </>
   )
