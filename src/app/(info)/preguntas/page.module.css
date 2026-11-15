@@ -1,0 +1,26 @@
+.quote {
+  max-width: 760px;
+  margin-bottom: var(--space-2xl);
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--color-border-strong);
+}
+
+.quoteText {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-quote-sm);
+  line-height: 1.4;
+}
+
+.quoteText::before {
+  content: '\201C';
+}
+
+.quoteText::after {
+  content: '\201D';
+}
+
+.quoteName {
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}

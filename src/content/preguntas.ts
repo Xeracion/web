@@ -1,4 +1,4 @@
-import type { Faq, SectionIntro } from './types'
+import type { Faq, SectionIntro, Testimonial } from './types'
 
 // Transferido de xeracion.org/condiciones-erasmus/, /voluntariado-europeo/ y
 // /cursos/, reorganizado por temas.
@@ -15,6 +15,8 @@ export const pagePreguntasEs = {
 export interface FaqGroup {
   intro: SectionIntro
   items: Faq[]
+  /** Cita real bajo el grupo (literal, como se publicó). */
+  testimonial?: Testimonial
 }
 
 export const preguntasGroupsEs: FaqGroup[] = [
@@ -51,6 +53,13 @@ export const preguntasGroupsEs: FaqGroup[] = [
   },
   {
     intro: { heading: 'Irte unos meses fuera.' },
+    // Cita literal de la antigua /voluntariado-europeo/ del WordPress.
+    testimonial: {
+      quote:
+        'Decidí venir a Cracovia con el CES para pasar seis meses trabajando en proyectos de movilidad juvenil y está siendo una experiencia increíble. No solo es una oportunidad de aportar algo a la comunidad que me acoge, sino un proceso de aprendizaje enriquecedor',
+      name: 'Nicolas',
+      originCity: 'Ferrolano en Cracovia',
+    },
     items: [
       {
         question: '¿Quién puede apuntarse?',
