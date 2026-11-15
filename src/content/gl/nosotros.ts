@@ -55,7 +55,7 @@ export const pageNosotrosGl = {
   // Iniciativas locais (2021–2022): tradución de iniciativasLocales de nosotros.ts.
   iniciativasLocalesIntro: {
     heading: 'O que fomos montando en Ferrol.',
-    text: 'Ademais dos proxectos grandes, o voluntariado europeo e a xente de aquí foron poñendo en marcha cousas pequenas na cidade. Isto é o que faciamos en 2021 e 2022.',
+    text: 'Ademais dos proxectos grandes, o voluntariado europeo e a xente de aquí foron poñendo en marcha cousas pequenas na cidade.',
   } satisfies SectionIntro,
   iniciativasLocales: [
     {

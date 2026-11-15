@@ -71,7 +71,7 @@ export const pageNosotrosEs = {
   // con el mismo horario sin confirmarlo.
   iniciativasLocalesIntro: {
     heading: 'Lo que hemos ido montando en Ferrol.',
-    text: 'Además de los proyectos grandes, el voluntariado europeo y la gente de aquí fueron poniendo en marcha cosas pequeñas en la ciudad. Esto es lo que hacíamos en 2021 y 2022.',
+    text: 'Además de los proyectos grandes, el voluntariado europeo y la gente de aquí fueron poniendo en marcha cosas pequeñas en la ciudad.',
   } satisfies SectionIntro,
   iniciativasLocales: [
     {
