@@ -55,13 +55,14 @@ export const NAV_ITEMS_ES: NavItem[] = withBlog('es', [
     children: [
       { name: 'Quiénes somos', link: '/nosotros/' },
       { name: 'Equipo', link: '/nosotros/equipo/' },
+      { name: 'Proyectos', link: '/proyectos/' },
       { name: 'Paisanos', link: '/paisanos/' },
       { name: 'Para empresas', link: '/empresas/' },
     ],
   },
 ])
 
-// Speak Factor, mentores, preguntas, Paisanos, equipo y empresas solo existen
+// Speak Factor, mentores, preguntas, Paisanos, equipo, proyectos y empresas solo existen
 // en castellano: desde la versión gallega enlazan a esa versión.
 export const NAV_ITEMS_GL: NavItem[] = withBlog('gl', [
   { name: 'Inicio', link: '/gl/', key: 'home' },
@@ -93,6 +94,7 @@ export const NAV_ITEMS_GL: NavItem[] = withBlog('gl', [
     children: [
       { name: 'Quen somos', link: '/gl/nos/' },
       { name: 'Equipo', link: '/nosotros/equipo/' },
+      { name: 'Proxectos', link: '/proyectos/' },
       { name: 'Paisanos', link: '/paisanos/' },
       { name: 'Para empresas', link: '/empresas/' },
     ],
