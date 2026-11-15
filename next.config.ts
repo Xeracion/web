@@ -61,6 +61,20 @@ const PROYECTOS_LEGACY: Array<[string, string]> = [
   ["yeah", "yeah"],
 ];
 
+// Páginas del WordPress que vivían bajo /en/ (las fichas de algunos proyectos
+// solo existían en inglés, y las versiones inglesas de Paisanos). Van antes de
+// la regla general /en/* → /.
+const EN_LEGACY: Array<[string, string]> = [
+  ["artbeat", "/proyectos/artbeat/"],
+  ["buildingnature", "/proyectos/building-nature/"],
+  ["ecobubble", "/proyectos/ecobubble/"],
+  ["ferrall", "/proyectos/ferrall/"],
+  ["paisanos-en", "/paisanos/"],
+  ...["luis", "montse", "sarath", "olga", "mbacke"].map((slug): [string, string] => [`${slug}-en`, `/paisanos/${slug}/`]),
+  ...["luis", "montse", "sarath", "mbacke", "fran", "katia", "demba", "alberto", "maria"].map((slug): [string, string] => [`${slug}-2`, `/paisanos/${slug}/`]),
+  ["juan-english", "/paisanos/juan/"],
+];
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
@@ -113,6 +127,7 @@ const nextConfig: NextConfig = {
         { source: `/${slug}-2`, destination: `/paisanos/${slug}/`, permanent: true },
       ]),
       ...PROYECTOS_LEGACY.map(([slug, target]) => ({ source: `/${slug}`, destination: `/proyectos/${target}/`, permanent: true })),
+      ...EN_LEGACY.map(([slug, destination]) => ({ source: `/en/${slug}`, destination, permanent: true })),
       { source: "/en/:path*", destination: "/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
