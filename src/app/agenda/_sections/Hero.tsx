@@ -25,6 +25,7 @@ export function Hero({ data }: { data: HeroData }) {
       imageAlt={data.heroImageAlt}
       imageLabel={data.heroImageCaption ?? ''}
       imageVariant="ferrol"
+      imageFocus="center 75%"
       below={
         (data.heroCtaPrimaryLabel || data.heroCtaSecondaryLabel) && (
           <div className={styles.buttons}>

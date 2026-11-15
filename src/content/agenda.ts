@@ -6,9 +6,9 @@ export const pageFerrolEs = {
   heroHeading: 'Cada semana hay algo que hacer en Xeración.',
   heroText:
     'Juegos sin móvil, arte, música en directo y noches con gente de otros países. Casi siempre de martes a jueves a las 20:00 en la Casa da Xuventude de Ferrol, y casi todo gratis.',
-  heroImage: '/img/fotos/speak-factor-taller.webp' as string | undefined,
-  heroImageAlt: 'Taller de Speak Factor en la Casa da Xuventude de Ferrol',
-  heroImageCaption: 'foto editorial · Offline Club en la Almendra 9',
+  heroImage: '/img/fotos/agenda-futbolin.webp' as string | undefined,
+  heroImageAlt: 'Gente joven jugando al futbolín mientras otra chica mira, en una sala con banderines de colores',
+  heroImageCaption: 'foto editorial · Plan de futbolín',
   heroCtaPrimaryLabel: 'Quiero ver qué hay',
   heroCtaSecondaryLabel: 'Quiero saber cómo llegar',
   fixedProgramsIntro: { heading: 'Lo que se repite cada semana.' } satisfies SectionIntro,

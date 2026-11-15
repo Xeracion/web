@@ -7,7 +7,7 @@ export const pageFerrolGl = {
   heroHeading: 'Cada semana hai algo que facer en Xeración.',
   heroText:
     'Xogos sen móbil, arte, música en directo e noites con xente doutros países. Case sempre de martes a xoves ás 20:00 na Casa da Xuventude de Ferrol, e case todo de balde.',
-  heroImageAlt: 'Obradoiro de Speak Factor na Casa da Xuventude de Ferrol',
+  heroImageAlt: 'Xente nova xogando ao futbolín mentres outra rapaza mira, nunha sala con bandeirolas de cores',
   heroCtaPrimaryLabel: 'Quero ver que hai',
   heroCtaSecondaryLabel: 'Quero saber como chegar',
   fixedProgramsIntro: { heading: 'O que se repite cada semana.' } satisfies SectionIntro,
