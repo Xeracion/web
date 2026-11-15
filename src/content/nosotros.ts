@@ -193,10 +193,12 @@ export const pageNosotrosEs = {
   partnersGroups: [
     {
       items: [
-        { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
-        { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
-        { name: 'Erasmus+', image: '/img/logos/erasmus-plus.png' },
-        { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
+        // Copias recortadas al contenido (sin márgenes blancos) para que todos
+        // pesen lo mismo. El de la UE es el oficial de la Comisión Europea.
+        { name: 'Concello de Ferrol', image: '/img/logos/apoyos/concello-ferrol.png' },
+        { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/apoyos/xunta.png' },
+        { name: 'Cofinanciado por la Unión Europea', image: '/img/logos/apoyos/cofinanciado-ue.png' },
+        { name: 'Eurodesk', image: '/img/logos/apoyos/eurodesk.png' },
       ] satisfies Partner[],
     },
   ],

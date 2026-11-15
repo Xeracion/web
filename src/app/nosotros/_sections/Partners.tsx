@@ -33,8 +33,8 @@ export function Partners({ data }: { data: PartnersData }) {
                     <Image
                       src={partner.image}
                       alt={partner.name ?? ''}
-                      width={240}
-                      height={80}
+                      width={260}
+                      height={56}
                       className={styles.logo}
                     />
                   ) : (
