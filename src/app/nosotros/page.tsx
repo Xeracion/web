@@ -15,6 +15,7 @@ import { Historia } from './_sections/Historia'
 import { Iniciativas } from './_sections/Iniciativas'
 import { Partners } from './_sections/Partners'
 import { QueHacemos } from './_sections/QueHacemos'
+import { Testimonios } from './_sections/Testimonios'
 import { Valores } from './_sections/Valores'
 import { VoluntariosHistoricos } from './_sections/VoluntariosHistoricos'
 
@@ -35,6 +36,7 @@ export default function NosotrosPage() {
       <Valores data={page} />
       <Equipo data={page} />
       <VoluntariosHistoricos testimonials={nosotrosTestimonialsEs} />
+      <Testimonios />
       <Iniciativas data={page} />
       <Doors heading={page.puertasHeading} items={page.puertas} />
       <Partners data={page} />
