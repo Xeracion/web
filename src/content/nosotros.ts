@@ -66,6 +66,46 @@ export const pageNosotrosEs = {
     { title: 'Proyectos para la comunidad', text: 'Liña, Cousateca, Stop Eucalipto y Retake: cosas que hacían falta y no existían.', ctaLabel: 'Quiero ver los proyectos', href: '/#proyectos' },
     { title: 'Un punto de encuentro en Ferrol', text: 'Cursos gratuitos, talleres y planes cada semana en la Casa da Xuventude.', ctaLabel: 'Quiero ver la agenda', href: '/agenda/' },
   ] satisfies HomeDoor[],
+  // Iniciativas locales: de la página «Iniciativas locales» del WordPress
+  // (2022). Contenido de esa época, contado en pasado: no afirmar que sigue
+  // con el mismo horario sin confirmarlo.
+  iniciativasLocalesIntro: {
+    heading: 'Lo que hemos ido montando en Ferrol.',
+    text: 'Además de los proyectos grandes, el voluntariado europeo y la gente de aquí fueron poniendo en marcha cosas pequeñas en la ciudad. Esto es lo que hacíamos en 2021 y 2022.',
+  } satisfies SectionIntro,
+  iniciativasLocales: [
+    {
+      title: 'Cultura',
+      items: [
+        { name: 'Noches culturales', text: 'Cada persona voluntaria que llegaba presentaba su país con juegos, bailes, concursos y comida: un mercado navideño alemán, una noche estonia de juegos de mesa, una cena austriaca…' },
+        { name: 'Cine con debate', text: 'Cada dos semanas, una película elegida por el voluntariado y una charla después.' },
+      ],
+    },
+    {
+      title: 'Medio ambiente',
+      items: [
+        { name: 'Huerto urbano de Canido', text: 'Junto al centro cívico y con los vecinos del barrio: muebles con palés, macetas nuevas, plantar y recoger verduras.' },
+        { name: 'Lavadeiro de Canido', text: 'En la primavera de 2021 pintamos el lavadero y limpiamos la zona para plantar un bosque comestible.' },
+        { name: 'Retake', text: 'Limpiezas de playas, retirada de plantas invasoras y plantación de árboles autóctonos.', href: 'https://retake.es' },
+      ],
+    },
+    {
+      title: 'Con la gente de Ferrol',
+      items: [
+        { name: 'Idiomas para mayores', text: 'Clases semanales de inglés y francés para personas mayores, con Afundación.' },
+        { name: 'Clubs de conversación', text: 'Grupos de cinco a ocho personas para practicar inglés o francés hablando de cualquier tema, una hora a la semana en la oficina.' },
+        { name: 'Speak Factor', text: 'Trucos para hablar en público en inglés y en castellano, para gente joven. Sigue en marcha.', href: '/speakfactor/' },
+      ],
+    },
+    {
+      title: 'Ideas del voluntariado',
+      items: [
+        { name: 'Talleres de habilidades', text: 'Percusión, meditación, crepes, costura, upcycling…' },
+        { name: 'Actividades puntuales', text: '«Gallego!», una noche para dar a conocer la cultura gallega; planes por San Valentín; «El Barrio», una exposición de fotografía.' },
+        { name: 'Ferrol, más bonito', text: 'Murales nuevos en el campus y la capilla de Caranza pintada de blanco.' },
+      ],
+    },
+  ],
   historiaIntro: { heading: 'De dónde venimos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol. Antes estábamos en Narón; desde 2017, la Casa da Xuventude es nuestro campamento base.',

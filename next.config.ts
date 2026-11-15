@@ -74,6 +74,7 @@ const EN_LEGACY: Array<[string, string]> = [
   ...["luis", "montse", "sarath", "olga", "mbacke"].map((slug): [string, string] => [`${slug}-en`, `/paisanos/${slug}/`]),
   ...["luis", "montse", "sarath", "mbacke", "fran", "katia", "demba", "alberto", "maria"].map((slug): [string, string] => [`${slug}-2`, `/paisanos/${slug}/`]),
   ["juan-english", "/paisanos/juan/"],
+  ["inicitivas-locales", "/nosotros/#iniciativas-locales"],
 ];
 
 // Entradas del blog del WordPress con convocatorias de proyectos de otras
@@ -157,6 +158,7 @@ const LEGACY_VARIOS: Array<[string, string]> = [
   ["my-account", "/"],
   ["get-in-touch-sp", "/"],
   ["elementor-32411", "/"],
+  ["inicitivas-locales", "/nosotros/#iniciativas-locales"],
   ["categoria/cursos", "/experiencias/"],
   ["categoria/intercambios", "/experiencias/"],
   ["categoria/experiencias", "/experiencias/"],

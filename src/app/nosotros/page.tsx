@@ -13,6 +13,7 @@ import { Equipo } from './_sections/Equipo'
 import { Hero } from './_sections/Hero'
 import { Historia } from './_sections/Historia'
 import { Iniciativas } from './_sections/Iniciativas'
+import { IniciativasLocales } from './_sections/IniciativasLocales'
 import { Partners } from './_sections/Partners'
 import { QueHacemos } from './_sections/QueHacemos'
 import { Testimonios } from './_sections/Testimonios'
@@ -32,6 +33,7 @@ export default function NosotrosPage() {
       <Cifras data={page} />
       <EnResumen data={page} />
       <QueHacemos data={page} />
+      <IniciativasLocales data={page} />
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} />
