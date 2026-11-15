@@ -73,10 +73,11 @@ export const homeEs = {
   figuresLinkLabel: 'Quiero saber quiénes sois',
   figuresLinkHref: '/nosotros/',
   institutionalLogos: [
-    { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
-    { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
-    { name: 'Cofinanciado por la Unión Europea', image: '/img/logos/bandera-ue.svg', caption: 'Cofinanciado por la Unión Europea' },
-    { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
+    // Los mismos logos (recortados, y el oficial de la UE) que en /nosotros/.
+    { name: 'Concello de Ferrol', image: '/img/logos/apoyos/concello-ferrol.png' },
+    { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/apoyos/xunta.png' },
+    { name: 'Cofinanciado por la Unión Europea', image: '/img/logos/apoyos/cofinanciado-ue.png' },
+    { name: 'Eurodesk', image: '/img/logos/apoyos/eurodesk.png' },
   ] satisfies Partner[],
   doorsHeading: '¿Vienes de parte de una entidad?',
   doors: [
