@@ -6,7 +6,7 @@ import type { Partner, SectionIntro } from '@/content/types'
 import styles from './Partners.module.css'
 
 interface PartnersGroup {
-  heading: string
+  heading?: string
   items: Partner[]
 }
 
@@ -23,9 +23,9 @@ export function Partners({ data }: { data: PartnersData }) {
     <Container as="section" className={styles.section}>
       {data.partnersIntro?.heading && <h2 className={styles.heading}>{data.partnersIntro.heading}</h2>}
       <div className={styles.groups}>
-        {groups.map((group) => (
-          <div key={group.heading} className={styles.group}>
-            <h3 className={styles.groupHeading}>{group.heading}</h3>
+        {groups.map((group, i) => (
+          <div key={group.heading ?? i} className={styles.group}>
+            {group.heading && <h3 className={styles.groupHeading}>{group.heading}</h3>}
             <ul className={styles.list}>
               {group.items.map((partner, i) => (
                 <li key={i} className={styles.partner}>

@@ -68,16 +68,19 @@ export const pageNosotrosEs = {
   ] satisfies HomeDoor[],
   historiaIntro: { heading: 'De dónde venimos.' } satisfies SectionIntro,
   historiaParagraphs: [
-    'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol, y desde entonces la Casa da Xuventude es nuestro campamento base.',
+    'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol. Antes estábamos en Narón; desde 2017, la Casa da Xuventude es nuestro campamento base.',
     'Montamos iniciativas culturales, medioambientales y de voluntariado, y formamos a gente joven con talleres y cursos **accesibles y gratuitos**: oratoria, idiomas, vídeo, teatro.',
     'Organizamos proyectos internacionales, de una semana a un año, para salir, conocer gente de todo el continente y volver con otra mirada sobre los retos sociales y ecológicos de nuestro tiempo.',
     'Y cuando vemos que a la comunidad le falta algo, intentamos construirlo: así nacieron una app de buses, una biblioteca de objetos y varios proyectos para cuidar el monte y la costa.',
   ],
   timeline: [
     { year: '2013', title: 'Fundación', description: 'Un grupo de jóvenes de Ferrol pone en marcha Xeración.' },
-    { year: '2017', title: 'Speak Factor', description: 'Arranca el curso gratuito de oratoria en inglés en la Casa da Xuventude.' },
+    { year: '2014', title: 'Primer proyecto internacional' },
+    { year: '2015', title: 'Llega nuestro primer voluntario' },
+    { year: '2017', title: 'La Casa da Xuventude', description: 'Nos instalamos en la Casa da Xuventude de Ferrol. Antes estábamos en Narón.' },
+    { year: '2017', title: 'Speak Factor', description: 'Arranca el curso gratuito de oratoria en inglés en la Casa da Xuventude.', href: '/speakfactor/' },
     { year: '2018', title: 'Primer curso internacional', description: 'Speak Factor se convierte en un curso con participantes de toda Europa en Ferrol.' },
-    { year: '2020', title: 'Paisanos', description: 'Retratos y podcast con las historias de vecinos y vecinas de Ferrol.' },
+    { year: '2020', title: 'Paisanos', description: 'Retratos y podcast con las historias de vecinos y vecinas de Ferrol.', href: '/paisanos/' },
     { year: '2022', title: 'Eurolibrary', description: '24 creativos de 4 países recorren el Camino Inglés en autocaravana montando bibliotecas humanas.' },
     { year: '2023', title: 'Get The Net', description: 'Cerramos un año de trabajo con 11 entidades europeas sobre participación juvenil.' },
   ] satisfies TimelineMilestone[],
@@ -100,12 +103,6 @@ export const pageNosotrosEs = {
     { name: 'Sara Mauro', country: 'IT', image: '/img/equipo/sara-mauro.webp' },
     { name: 'Jose Pekkonen', country: 'FI', image: '/img/equipo/jose-pekkonen.webp' },
   ] satisfies TeamMember[],
-  // +120 lo confirmó Xeración (noviembre de 2026); el listado con foto
-  // solo recoge a una parte. Los países (+15) salen de ese listado.
-  volunteersNumber: '+120',
-  volunteersSubtitle: 'voluntarios europeos de más de 15 países han pasado por Xeración desde 2013.',
-  volunteersCtaLabel: 'Quiero ser el próximo →',
-  volunteersCtaUrl: '/experiencias/',
   pastVolunteersIntro: {
     heading: 'Gente de toda Europa que ya ha pasado por aquí.',
   } as SectionIntro | undefined,
@@ -182,7 +179,7 @@ export const pageNosotrosEs = {
   ] as TeamMember[],
   iniciativasIntro: { heading: 'Otros proyectos nuestros.' } satisfies SectionIntro,
   iniciativas: [
-    { icon: '🏡', name: 'Das Nest', description: 'Nuestro espacio de alojamiento para voluntariado en Ferrol, pensado y gestionado por quienes ya pasaron por aquí.', colorScheme: 'blue' },
+    { icon: '🏡', name: 'Das Nest', description: 'Nuestro espacio de alojamiento para voluntariado en Ferrol, pensado y gestionado por quienes ya pasaron por aquí.', url: 'https://dasnest.es', colorScheme: 'blue' },
     { icon: '🌿', name: 'Building Nature', description: 'Voluntariado ambiental en la comarca de Ferrol: limpiezas, restauración de naturaleza y sensibilización.', colorScheme: 'green' },
     { icon: '🎤', name: 'Speak Factor', description: 'Curso gratuito de oratoria en inglés desde 2017. Martes alternos a las 19:00 en la Casa da Xuventude.', url: '/speakfactor/', colorScheme: 'orange' },
     { icon: '🎙️', name: 'Paisanos', description: 'Historias de vecinos y vecinas de Ferrol, en retratos y en podcast. Gente de a pie con sueños y luchas que seguro te suenan.', url: '/paisanos/', colorScheme: 'blue' },
@@ -193,11 +190,8 @@ export const pageNosotrosEs = {
     { title: 'Vengo de parte de una entidad.', text: 'Instituciones, centros educativos, empresas y colectivos: qué hacemos, con quién y con qué resultados. Y una persona con la que hablar.', ctaLabel: 'Quiero conoceros', href: '/empresas/' },
   ] satisfies HomeDoor[],
   partnersIntro: { heading: 'Con el apoyo de' } satisfies SectionIntro,
-  // Separados a propósito: quien nos respalda institucionalmente no es lo
-  // mismo que las herramientas que nos ceden gratis por ser una ONG.
   partnersGroups: [
     {
-      heading: 'Respaldo institucional',
       items: [
         { name: 'Concello de Ferrol', image: '/img/logos/concello-ferrol.png' },
         { name: 'Xunta de Galicia · Cultura, Lingua e Xuventude', image: '/img/logos/xunta-cultura-lingua-xuventude.png' },
@@ -205,11 +199,9 @@ export const pageNosotrosEs = {
         { name: 'Eurodesk', image: '/img/logos/eurodesk.png' },
       ] satisfies Partner[],
     },
-    {
-      heading: 'Herramientas donadas',
-      items: [{ name: 'Canva' }, { name: 'Google for Nonprofits' }] satisfies Partner[],
-    },
   ],
+  // Datos legales y acreditaciones: ya no se muestran en /nosotros/, pero se
+  // conservan aquí (son datos reales, no tocar sin confirmación).
   legalName: 'Asociación Xeración',
   legalCif: 'G70385091',
   legalAddress: 'Rúa Almendra 9, 15402 Ferrol',

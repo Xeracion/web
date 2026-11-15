@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { Stars } from '@/components/Stars'
@@ -15,25 +14,16 @@ function attribution(testimonial: Testimonial) {
 }
 
 const COPY = {
-  es: { title: 'Opiniones en Google', all: 'Ver todas las opiniones', of: 'de 5', opinions: 'opiniones', rating: 'Valoración', prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
-  gl: { title: 'Opinións en Google', all: 'Ver todas as opinións', of: 'de 5', opinions: 'opinións', rating: 'Valoración', prev: 'Opinións anteriores', next: 'Opinións seguintes' },
+  es: { title: 'Opiniones en Google', heading: 'Lo que dice la gente.', all: 'Ver todas las opiniones', of: 'de 5', opinions: 'opiniones', rating: 'Valoración', prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
+  gl: { title: 'Opinións en Google', heading: 'O que di a xente.', all: 'Ver todas as opinións', of: 'de 5', opinions: 'opinións', rating: 'Valoración', prev: 'Opinións anteriores', next: 'Opinións seguintes' },
 }
 
 const number = (n: number, locale: 'es' | 'gl') => n.toLocaleString(locale === 'gl' ? 'gl-ES' : 'es-ES', { maximumFractionDigits: 1 })
 
-interface VoluntariosHistoricosData {
-  volunteersNumber?: string
-  volunteersSubtitle?: string
-  volunteersCtaLabel?: string
-  volunteersCtaUrl?: string
-}
-
 export async function VoluntariosHistoricos({
-  data,
   testimonials,
   locale = 'es',
 }: {
-  data: VoluntariosHistoricosData
   testimonials: Testimonial[]
   locale?: 'es' | 'gl'
 }) {
@@ -44,8 +34,7 @@ export async function VoluntariosHistoricos({
   return (
     <div className={styles.wrapper}>
       <Container as="section" className={styles.section}>
-        <AnimatedNumber as="h2" value={data.volunteersNumber ?? ''} className={styles.number} />
-        {data.volunteersSubtitle && <p className={styles.subtitle}>{data.volunteersSubtitle}</p>}
+        <h2 className={styles.heading}>{copy.heading}</h2>
 
         {feed && (
           <div className={styles.feed}>
@@ -113,13 +102,6 @@ export async function VoluntariosHistoricos({
           </div>
         )}
 
-        {data.volunteersCtaLabel && (
-          <div className={styles.cta}>
-            <a href={data.volunteersCtaUrl || '/experiencias/'} className={styles.ctaButton}>
-              {data.volunteersCtaLabel}
-            </a>
-          </div>
-        )}
       </Container>
     </div>
   )

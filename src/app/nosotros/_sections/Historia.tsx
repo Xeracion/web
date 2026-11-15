@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import type { SectionIntro, TimelineMilestone } from '@/content/types'
@@ -29,7 +31,15 @@ export function Historia({ data }: { data: HistoriaData }) {
             {timeline.map((milestone, i) => (
               <li key={i} className={styles.milestone}>
                 <span className={styles.year}>{milestone.year}</span>
-                <h4 className={styles.milestoneTitle}>{milestone.title}</h4>
+                <h4 className={styles.milestoneTitle}>
+                  {milestone.href ? (
+                    <Link href={milestone.href} className={styles.milestoneLink}>
+                      {milestone.title} <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : (
+                    milestone.title
+                  )}
+                </h4>
                 {milestone.description && (
                   <p className={styles.milestoneText}>{milestone.description}</p>
                 )}

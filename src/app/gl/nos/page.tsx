@@ -8,7 +8,6 @@ import { Equipo } from '@/app/nosotros/_sections/Equipo'
 import { Hero } from '@/app/nosotros/_sections/Hero'
 import { Historia } from '@/app/nosotros/_sections/Historia'
 import { Iniciativas } from '@/app/nosotros/_sections/Iniciativas'
-import { Legal } from '@/app/nosotros/_sections/Legal'
 import { Partners } from '@/app/nosotros/_sections/Partners'
 import { QueHacemos } from '@/app/nosotros/_sections/QueHacemos'
 import { Valores } from '@/app/nosotros/_sections/Valores'
@@ -35,11 +34,10 @@ export default function NosPage() {
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} locale="gl" />
-      <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} locale="gl" />
+      <VoluntariosHistoricos testimonials={nosotrosTestimonialsEs} locale="gl" />
       <Iniciativas data={page} />
       <Doors heading={page.puertasHeading} items={page.puertas} />
       <Partners data={page} />
-      <Legal data={page} locale="gl" />
       <ClosingCta data={page} siteSettings={siteSettingsGl} locale="gl" />
     </>
   )

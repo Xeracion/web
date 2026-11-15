@@ -13,7 +13,6 @@ import { Equipo } from './_sections/Equipo'
 import { Hero } from './_sections/Hero'
 import { Historia } from './_sections/Historia'
 import { Iniciativas } from './_sections/Iniciativas'
-import { Legal } from './_sections/Legal'
 import { Partners } from './_sections/Partners'
 import { QueHacemos } from './_sections/QueHacemos'
 import { Valores } from './_sections/Valores'
@@ -35,11 +34,10 @@ export default function NosotrosPage() {
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} />
-      <VoluntariosHistoricos data={page} testimonials={nosotrosTestimonialsEs} />
+      <VoluntariosHistoricos testimonials={nosotrosTestimonialsEs} />
       <Iniciativas data={page} />
       <Doors heading={page.puertasHeading} items={page.puertas} />
       <Partners data={page} />
-      <Legal data={page} />
       <ClosingCta data={page} siteSettings={siteSettings} />
     </>
   )

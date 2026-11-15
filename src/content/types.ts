@@ -87,6 +87,8 @@ export interface TimelineMilestone {
   year: string
   title: string
   description?: string
+  /** Si hay más información (en la web o fuera), el título es un enlace. */
+  href?: string
 }
 
 export interface Testimonial {
