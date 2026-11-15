@@ -5,6 +5,8 @@ export const pageMentoresContent = {
   heroHeading: 'Viaja sin salir de casa: hazte mentor de un voluntario europeo en Ferrol.',
   heroText:
     'Durante todo el año recibimos voluntarios europeos en Ferrol, gente joven que se queda entre 2 y 10 meses desarrollando su Voluntariado Europeo. Adaptarse a una ciudad y una cultura nuevas no es fácil — hasta ir al banco se convierte en una aventura. Queremos que ese proceso sea lo más sencillo posible, y para eso hace falta gente de aquí.',
+  heroImage: '/img/fotos/mentores-puente.webp' as string | undefined,
+  heroImageAlt: 'Siete jóvenes sonríen sentados en un puente de madera sobre un río, en medio del bosque',
   heroImageCaption: 'foto editorial · mentor y voluntaria paseando por Ferrol Vello',
   heroCtaLabel: 'Apúntame',
   heroCtaHref: 'https://xeracion.typeform.com/mentores',
