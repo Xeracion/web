@@ -1,5 +1,5 @@
 import { pageNosotrosEs } from '../nosotros'
-import type { Initiative, Partner, SectionIntro, StatItem, TeamMember, TimelineMilestone, ValueItem } from '../types'
+import type { HomeDoor, Initiative, Partner, ResumenItem, SectionIntro, StatItem, TeamMember, TimelineMilestone, ValueItem } from '../types'
 
 // Nós en galego (/gl/nos/). As persoas, fotos e datos legais son os mesmos
 // que en castelán; só se traducen os textos, os cargos e os países.
@@ -24,19 +24,40 @@ function membersGl(members: TeamMember[]): TeamMember[] {
 
 export const pageNosotrosGl = {
   ...pageNosotrosEs,
-  heroHeading: 'Non somos unha ONG máis. Somos a túa rede en Europa.',
+  heroHeading: 'Somos Xeración, un colectivo novo de Ferrol que monta outros plans.',
   heroText:
-    'Somos xente nova que axuda a outra xente nova a vivir a súa aventura europea. Sen protocolo nin papelame interminable, e coa experiencia de máis dunha década facendo isto.',
+    'Dende 2013 preparamos experiencias para que a xente nova saia, aprenda e coñeza outra xente, e poñemos en marcha proxectos que lle fan falta á comunidade. Sen ánimo de lucro, dende a Casa da Xuventude e con xente de aquí e de media Europa.',
   heroStats: [
-    { value: '13', label: 'anos en activo' },
-    { value: '+120', label: 'voluntarios europeos acollidos' },
-    { value: '+15', label: 'países de orixe' },
+    { value: '13', label: 'anos en marcha' },
+    { value: '+120', label: 'voluntarios internacionais acollidos' },
+    { value: '+50', label: 'mozos e mozas enviados a proxectos fóra' },
+    { value: '57', label: 'persoas socias' },
   ] satisfies StatItem[],
-  historiaIntro: { heading: 'Soñamos proxectos, despois creámolos.' } satisfies SectionIntro,
+  resumenIntro: { heading: 'Xeración, en poucas palabras.' } satisfies SectionIntro,
+  resumen: [
+    { label: 'Que somos', text: 'Un colectivo xuvenil sen ánimo de lucro. Púxoo en marcha un grupo de mozos e mozas de Ferrol en 2013.' },
+    { label: 'Onde estamos', text: 'Na Casa da Xuventude de Ferrol, Rúa Almendra 9. A oficina abre de luns a venres, das 10:00 ás 14:00.' },
+    { label: 'Para quen', text: 'Sobre todo para xente nova, de Ferrol e de fóra. Tamén traballamos con centros educativos, institucións, empresas e outros colectivos.' },
+    { label: 'Quen o fai', text: 'Un equipo de coordinación, voluntarios doutros países que pasan uns meses en Ferrol e 57 persoas socias.' },
+    { label: 'Como se financia', text: 'Unhas experiencias págaas quen participa, co prezo claro dende o principio; outras finánciannas programas europeos. Temos o respaldo do Concello de Ferrol e da Xunta de Galicia.' },
+    { label: 'Como falar connosco', text: 'Por WhatsApp, escribindo a info@xeracion.org ou pasando pola oficina pola mañá.' },
+  ] satisfies ResumenItem[],
+  queHacemosIntro: {
+    heading: 'O que facemos.',
+    text: 'Catro frontes cunha mesma idea: se algo fai falta e non existe, montámolo.',
+  } satisfies SectionIntro,
+  queHacemos: [
+    { title: 'Experiencias para medrar', text: 'Camiños, aventuras ao aire libre, intercambios, cursos e voluntariados, en Galicia e por Europa, dunha semana a un ano. Unhas págalas ti e outras están financiadas.', ctaLabel: 'Quero ver experiencias', href: '/gl/experiencias/' },
+    { title: 'Proxectos para a comunidade', text: 'Liña, os buses de Galicia nunha soa app. Cousateca, unha biblioteca de obxectos. Stop Eucalipto, para devolver o bosque autóctono ao monte. E Retake, mañás de voluntariado ambiental.', ctaLabel: 'Quero ver os proxectos', href: '/gl/#proxectos' },
+    { title: 'Un punto de encontro en Ferrol', text: 'Cada semana pasa algo na Casa da Xuventude: cursos gratuítos como Speak Factor, obradoiros e plans abertos a quen queira vir.', ctaLabel: 'Quero ver a axenda', href: '/gl/axenda/' },
+    { title: 'Casa para xente nova de toda Europa', text: 'Acollemos voluntarios doutros países que viven uns meses en Ferrol, botan unha man nos nosos proxectos e súmanse á vida da cidade. Xa van máis de 120.', ctaLabel: 'Quero coñecer o equipo', href: '/nosotros/equipo/' },
+  ] satisfies HomeDoor[],
+  historiaIntro: { heading: 'De onde vimos.' } satisfies SectionIntro,
   historiaParagraphs: [
-    'Somos unha rede de entidades que dende 2013 traballa en Galicia e Valencia. Montamos iniciativas culturais, ambientais e de voluntariado, case sempre coa Casa da Xuventude de Ferrol como campamento base.',
-    'Formamos a xente nova con obradoiros e cursos de educación non formal **accesibles e gratuítos**: oratoria, idiomas, vídeo, teatro.',
-    'E organizamos proxectos internacionais dunha semana a un ano para saír, coñecer xente de todo o continente e volver con outra mirada sobre os retos sociais e ecolóxicos do noso tempo.',
+    'Xeración nace en 2013 da man dun grupo de mozos e mozas de Ferrol. Hoxe somos unha rede de entidades que traballa en Galicia e Valencia, case sempre coa Casa da Xuventude de Ferrol como campamento base.',
+    'Montamos iniciativas culturais, ambientais e de voluntariado, e formamos a xente nova con obradoiros e cursos **accesibles e gratuítos**: oratoria, idiomas, vídeo, teatro.',
+    'Organizamos proxectos internacionais, dunha semana a un ano, para saír, coñecer xente de todo o continente e volver con outra mirada sobre os retos sociais e ecolóxicos do noso tempo.',
+    'E cando vemos que á comunidade lle falta algo, tentamos construílo: así naceron unha app de buses, unha biblioteca de obxectos e varios proxectos para coidar o monte e a costa.',
   ],
   timeline: [
     { year: '2013', title: 'Fundación', description: 'Un grupo de mozos e mozas de Ferrol pon en marcha Xeración.' },
@@ -64,13 +85,18 @@ export const pageNosotrosGl = {
     heading: 'Xente de toda Europa que xa pasou por aquí.',
   } as SectionIntro | undefined,
   pastVolunteers: membersGl(pageNosotrosEs.pastVolunteers),
-  iniciativasIntro: { heading: 'Catro proxectos propios.' } satisfies SectionIntro,
+  iniciativasIntro: { heading: 'Outros proxectos nosos.' } satisfies SectionIntro,
   iniciativas: [
     { icon: '🏡', name: 'Das Nest', description: 'O noso espazo de aloxamento para o voluntariado en Ferrol, pensado e xestionado por quen xa pasou por aquí.', colorScheme: 'blue' },
     { icon: '🌿', name: 'Building Nature', description: 'Voluntariado ambiental na comarca de Ferrol: limpezas, restauración da natureza e sensibilización.', colorScheme: 'green' },
     { icon: '🎤', name: 'Speak Factor', description: 'Curso gratuíto de oratoria en inglés dende 2017. Martes alternos ás 19:00 na Casa da Xuventude.', url: '/speakfactor/', colorScheme: 'orange' },
     { icon: '🎙️', name: 'Paisanos', description: 'Historias de veciños e veciñas de Ferrol, en retratos e en podcast. Xente do común con soños e loitas que seguro che soan.', url: '/paisanos/', colorScheme: 'blue' },
   ] satisfies Initiative[],
+  puertasHeading: 'Por onde queres comezar?',
+  puertas: [
+    { title: 'Son novo ou nova e quero facer algo.', text: 'Mira o catálogo de experiencias ou a axenda desta semana. Non fai falta experiencia previa, só ganas.', ctaLabel: 'Quero ver experiencias', href: '/gl/experiencias/' },
+    { title: 'Veño de parte dunha entidade.', text: 'Institucións, centros educativos, empresas e colectivos: que facemos, con quen e con que resultados. E unha persoa coa que falar.', ctaLabel: 'Quero coñecervos', href: '/empresas/' },
+  ] satisfies HomeDoor[],
   partnersIntro: { heading: 'Co apoio de' } satisfies SectionIntro,
   partnersGroups: [
     { heading: 'Respaldo institucional', items: pageNosotrosEs.partnersGroups[0].items },
@@ -80,7 +106,7 @@ export const pageNosotrosGl = {
     { name: 'Acreditación Erasmus+ (envío, acollida e coordinación)' },
     { name: 'Acreditación Corpo Europeo de Solidariedade' },
   ] satisfies Partner[],
-  closingHeading: 'Tes ganas de vivir a túa aventura europea?',
+  closingHeading: 'Coñecémonos en persoa?',
   closingText:
-    'A maioría das nosas experiencias están financiadas, e as que non, contámolas claras dende o principio. O único requisito é querer.',
+    'Pasa pola Casa da Xuventude (Rúa Almendra 9, Ferrol) de luns a venres, das 10:00 ás 14:00, ou escríbenos por WhatsApp. Contámosche o que hai sen compromiso, veñas pola túa conta ou de parte dunha entidade.',
 }

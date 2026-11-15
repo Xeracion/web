@@ -9,6 +9,12 @@ export interface StatItem {
   label: string
 }
 
+/** Un dato de la ficha «en pocas palabras» de /nosotros/. */
+export interface ResumenItem {
+  label: string
+  text: string
+}
+
 export interface SectionIntro {
   heading?: string
   text?: string
