@@ -114,6 +114,7 @@ const PLATFORM_LABELS: Record<string, string> = {
   facebook: 'Facebook',
   linkedin: 'LinkedIn',
   youtube: 'YouTube',
+  spotify: 'Spotify',
 }
 
 const isExternal = (href: string) => /^(https?:|mailto:)/.test(href)
@@ -159,6 +160,26 @@ function SocialIcon({ platform }: { platform: string }) {
           <rect x="6.2" y="10" width="2.6" height="8" style={{ fill: hole }} />
           <circle cx="7.5" cy="7.3" r="1.5" style={{ fill: hole }} />
           <path d="M10.8 10h2.5v1.1c.4-.75 1.35-1.3 2.6-1.3 2.1 0 2.9 1.3 2.9 3.4V18h-2.6v-4.3c0-1-.3-1.75-1.3-1.75s-1.5.75-1.5 1.75V18h-2.6z" style={{ fill: hole }} />
+        </svg>
+      )
+    case 'youtube':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor" />
+          <path d="M10 8.6v6.8l5.8-3.4z" style={{ fill: hole }} />
+        </svg>
+      )
+    case 'spotify':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="currentColor" />
+          <path
+            d="M6.4 9.3c3.7-1.1 8.2-.8 11.3 1M7 12.4c3.1-.9 6.8-.6 9.4.9M7.6 15.3c2.5-.7 5.3-.5 7.4.7"
+            fill="none"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            style={{ stroke: hole }}
+          />
         </svg>
       )
     default:

@@ -23,6 +23,9 @@ export const siteSettings = {
     { platform: 'tiktok', url: 'https://tiktok.com/@xeracion' },
     { platform: 'facebook', url: 'https://facebook.com/xeracion.org' },
     { platform: 'linkedin', url: 'https://www.linkedin.com/company/xeracion' },
+    { platform: 'youtube', url: 'https://www.youtube.com/@xeracion' },
+    // Spotify: el podcast Paisanos.
+    { platform: 'spotify', url: 'https://open.spotify.com/show/3csJv7gS92mOxZT8zTdfOM' },
   ] satisfies SocialLink[],
   googleCalendarId: 'c_e9943f07c92d8902864e3723d7f48e627f3ec6a71276d26e8d9c8f78c22c46c3@group.calendar.google.com' as string | undefined,
 }
