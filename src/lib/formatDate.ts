@@ -3,16 +3,19 @@ import type { Locale } from './i18n'
 const WEEKDAY_SHORT: Record<Locale, string[]> = {
   es: ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'],
   gl: ['DOM', 'LUN', 'MAR', 'MÉR', 'XOV', 'VEN', 'SÁB'],
+  en: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
 }
 
 const WEEKDAY_LONG: Record<Locale, string[]> = {
   es: ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'],
   gl: ['DOMINGO', 'LUNS', 'MARTES', 'MÉRCORES', 'XOVES', 'VENRES', 'SÁBADO'],
+  en: ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'],
 }
 
 const MONTH_SHORT: Record<Locale, string[]> = {
   es: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
   gl: ['XAN', 'FEB', 'MAR', 'ABR', 'MAI', 'XUÑ', 'XUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEC'],
+  en: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
 }
 
 function pad(value: number) {

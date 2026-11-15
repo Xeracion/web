@@ -1,6 +1,6 @@
 import type { Locale } from './i18n'
 
-export type RouteKey = 'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'blog'
+export type RouteKey = 'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'blog' | 'volunteering' | 'internships'
 
 export interface NavLink {
   name: string
@@ -20,6 +20,7 @@ export const BLOG_ENABLED = false
 const BLOG_ITEM: Record<Locale, NavItem> = {
   es: { name: 'Blog', link: '/blog/', key: 'blog' },
   gl: { name: 'Blog', link: '/gl/blog/', key: 'blog' },
+  en: { name: 'Blog', link: '/blog/', key: 'blog' },
 }
 
 const withBlog = (locale: Locale, items: NavItem[]): NavItem[] =>
@@ -101,7 +102,16 @@ export const NAV_ITEMS_GL: NavItem[] = withBlog('gl', [
   },
 ])
 
+// Inglés: solo las páginas para socios, instituciones y voluntarios europeos.
+export const NAV_ITEMS_EN: NavItem[] = [
+  { name: 'Home', link: '/en/', key: 'home' },
+  { name: 'Volunteering', link: '/volunteering/', key: 'volunteering' },
+  { name: 'Internships', link: '/internships/', key: 'internships' },
+  { name: 'Projects', link: '/en/#projects', key: 'nosotros' },
+]
+
 export const NAV_ITEMS: Record<Locale, NavItem[]> = {
   es: NAV_ITEMS_ES,
   gl: NAV_ITEMS_GL,
+  en: NAV_ITEMS_EN,
 }

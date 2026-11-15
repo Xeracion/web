@@ -13,7 +13,7 @@ import {
 
 import { LogoMark } from '@/components/LogoMark'
 import { cn } from '@/lib/cn'
-import { alternateHref, LOCALE_NAMES, LOCALES, localeFromPath } from '@/lib/i18n'
+import { alternateHref, HOME_HREF, LOCALE_NAMES, LOCALES, localeFromPath } from '@/lib/i18n'
 import type { NavItem, RouteKey } from '@/lib/nav'
 
 import styles from './ResizableNavbar.module.css'
@@ -44,6 +44,15 @@ const NAV_COPY = {
     expand: 'despregar',
     collapse: 'pregar',
   },
+  en: {
+    primaryNav: 'Main navigation',
+    mobileNav: 'Mobile navigation',
+    open: 'Open menu',
+    close: 'Close menu',
+    language: 'Language',
+    expand: 'expand',
+    collapse: 'collapse',
+  },
 }
 
 interface ResizableNavbarProps {
@@ -68,7 +77,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
   const pathname = usePathname() ?? '/'
   const locale = localeFromPath(pathname)
   const copy = NAV_COPY[locale]
-  const homeHref = locale === 'gl' ? '/gl/' : '/'
+  const homeHref = HOME_HREF[locale]
 
   // Línea inferior en cuanto hay scroll; el logo se comprime a la X un poco
   // más abajo, para que no parpadee con un toque de rueda.

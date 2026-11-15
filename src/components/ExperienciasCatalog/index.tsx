@@ -54,6 +54,21 @@ const COPY = {
     searchLabel: 'Buscar experiencias',
     filterLabel: 'Filtrar experiencias',
   },
+  en: {
+    chips: {
+      todas: 'All',
+      galicia: 'In Galicia',
+      europa: 'Around Europe',
+      finde: 'A weekend',
+      semana: 'A week',
+      meses: 'Months',
+      gratis: 'Free',
+    } satisfies Record<ChipKey, string>,
+    empty: 'No experiences with this filter yet.',
+    searchPlaceholder: 'Search by name...',
+    searchLabel: 'Search experiences',
+    filterLabel: 'Filter experiences',
+  },
 }
 
 function matchesChip(item: ExperienciaData, chip: ChipKey) {

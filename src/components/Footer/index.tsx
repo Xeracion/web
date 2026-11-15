@@ -61,6 +61,25 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
       ],
     },
   ],
+  // Inglés: solo las páginas para socios, instituciones y voluntarios.
+  en: [
+    {
+      heading: 'For organisations',
+      links: [
+        { label: 'Who we are', href: '/en/' },
+        { label: 'Past projects', href: '/en/#projects' },
+        { label: 'Partner details', href: '/en/#partner-details' },
+        { label: 'Hosting internships', href: '/internships/' },
+      ],
+    },
+    {
+      heading: 'For volunteers',
+      links: [
+        { label: 'Volunteering in Ferrol', href: '/volunteering/' },
+        { label: 'European Youth Portal', href: 'https://youth.europa.eu/solidarity/young-people/volunteering_en' },
+      ],
+    },
+  ],
   // Speak Factor, mentores, preguntas, Paisanos, equipo y empresas solo
   // existen en castellano.
   gl: [
@@ -106,6 +125,7 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
 const COPY = {
   es: { who: 'Quiénes somos', write: 'Escríbenos', home: '/', social: 'Redes sociales', link: 'Enlace' },
   gl: { who: 'Quen somos', write: 'Escríbenos', home: '/gl/', social: 'Redes sociais', link: 'Ligazón' },
+  en: { who: 'Who we are', write: 'Write to us', home: '/en/', social: 'Social media', link: 'Link' },
 }
 
 const PLATFORM_LABELS: Record<string, string> = {

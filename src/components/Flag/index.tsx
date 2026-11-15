@@ -89,21 +89,21 @@ const FLAGS: Record<string, ReactNode> = {
 }
 
 const NAMES: Record<string, Record<Locale, string>> = {
-  FR: { es: 'Francia', gl: 'Francia' },
-  IT: { es: 'Italia', gl: 'Italia' },
-  DE: { es: 'Alemania', gl: 'Alemaña' },
-  NL: { es: 'Países Bajos', gl: 'Países Baixos' },
-  AT: { es: 'Austria', gl: 'Austria' },
-  EE: { es: 'Estonia', gl: 'Estonia' },
-  LV: { es: 'Letonia', gl: 'Letonia' },
-  PL: { es: 'Polonia', gl: 'Polonia' },
-  CZ: { es: 'República Checa', gl: 'República Checa' },
-  SK: { es: 'Eslovaquia', gl: 'Eslovaquia' },
-  RO: { es: 'Rumanía', gl: 'Romanía' },
-  FI: { es: 'Finlandia', gl: 'Finlandia' },
-  PT: { es: 'Portugal', gl: 'Portugal' },
-  GR: { es: 'Grecia', gl: 'Grecia' },
-  TR: { es: 'Turquía', gl: 'Turquía' },
+  FR: { es: 'Francia', gl: 'Francia', en: 'France' },
+  IT: { es: 'Italia', gl: 'Italia', en: 'Italy' },
+  DE: { es: 'Alemania', gl: 'Alemaña', en: 'Germany' },
+  NL: { es: 'Países Bajos', gl: 'Países Baixos', en: 'Netherlands' },
+  AT: { es: 'Austria', gl: 'Austria', en: 'Austria' },
+  EE: { es: 'Estonia', gl: 'Estonia', en: 'Estonia' },
+  LV: { es: 'Letonia', gl: 'Letonia', en: 'Latvia' },
+  PL: { es: 'Polonia', gl: 'Polonia', en: 'Poland' },
+  CZ: { es: 'República Checa', gl: 'República Checa', en: 'Czech Republic' },
+  SK: { es: 'Eslovaquia', gl: 'Eslovaquia', en: 'Slovakia' },
+  RO: { es: 'Rumanía', gl: 'Romanía', en: 'Romania' },
+  FI: { es: 'Finlandia', gl: 'Finlandia', en: 'Finland' },
+  PT: { es: 'Portugal', gl: 'Portugal', en: 'Portugal' },
+  GR: { es: 'Grecia', gl: 'Grecia', en: 'Greece' },
+  TR: { es: 'Turquía', gl: 'Turquía', en: 'Turkey' },
 }
 
 export function countryName(code: string, locale: Locale = 'es') {

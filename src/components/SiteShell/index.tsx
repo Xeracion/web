@@ -4,6 +4,7 @@ import { Footer } from '@/components/Footer'
 import { ResizableNavbar } from '@/components/ResizableNavbar'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { SkipLink } from '@/components/SkipLink'
+import { siteSettingsEn } from '@/content/en/siteSettings'
 import { siteSettingsGl } from '@/content/gl/siteSettings'
 import { siteSettings } from '@/content/siteSettings'
 import { cn } from '@/lib/cn'
@@ -13,6 +14,7 @@ import { NAV_ITEMS, type RouteKey } from '@/lib/nav'
 const SKIP_LABEL: Record<Locale, string> = {
   es: 'Saltar al contenido principal',
   gl: 'Saltar ao contido principal',
+  en: 'Skip to main content',
 }
 
 interface SiteShellProps {
@@ -24,10 +26,10 @@ interface SiteShellProps {
 }
 
 // Esqueleto común de página: salto al contenido, menú, contenido y pie. Las
-// páginas en gallego marcan su contenedor con lang="gl" (el <html> de la
+// páginas en gallego e inglés marcan su contenedor con lang="gl"/"en" (el <html> de la
 // raíz es común a toda la web y va en castellano).
 export function SiteShell({ children, locale = 'es', activeRoute, routeClass }: SiteShellProps) {
-  const settings = locale === 'gl' ? siteSettingsGl : siteSettings
+  const settings = locale === 'gl' ? siteSettingsGl : locale === 'en' ? siteSettingsEn : siteSettings
 
   return (
     <div className={cn(routeClass, 'site-shell')} lang={locale === 'es' ? undefined : locale}>

@@ -157,8 +157,6 @@ const LEGACY_VARIOS: Array<[string, string]> = [
   ["my-account", "/"],
   ["get-in-touch-sp", "/"],
   ["elementor-32411", "/"],
-  ["volunteering", "/experiencias/"],
-  ["internships", "/empresas/"],
   ["categoria/cursos", "/experiencias/"],
   ["categoria/intercambios", "/experiencias/"],
   ["categoria/experiencias", "/experiencias/"],
@@ -212,7 +210,7 @@ const nextConfig: NextConfig = {
       ["/condiciones-erasmus", "/preguntas/"],
       ["/calendario", "/agenda/"],
       ["/eventos", "/agenda/"],
-      ["/english", "/"],
+      ["/english", "/en/"],
     ];
     return [
       ...legacy.map(([source, destination]) => ({ source, destination, permanent: true })),
@@ -228,7 +226,8 @@ const nextConfig: NextConfig = {
       // Into the Wild tiene su propia web.
       { source: "/intothewild", destination: "https://intothewildproject.com", permanent: true },
       { source: "/into-the-wild", destination: "https://intothewildproject.com", permanent: true },
-      { source: "/en/:path*", destination: "/", permanent: true },
+      // /en/ es la portada en inglés; el resto de páginas antiguas bajo /en/ van a ella.
+      { source: "/en/:path+", destination: "/en/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },
       { source: "/irse", destination: "/experiencias/", permanent: true },

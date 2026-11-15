@@ -21,6 +21,7 @@ export const CATEGORIA_LABELS_GL: Record<string, string> = {
 export const CATEGORIA_LABELS_BY_LOCALE: Record<Locale, Record<string, string>> = {
   es: CATEGORIA_LABELS,
   gl: CATEGORIA_LABELS_GL,
+  en: { camino: 'Camino', aventura: 'Adventure', vivirFuera: 'Living abroad', intercambio: 'Exchange', local: 'Local', naturaleza: 'Nature' },
 }
 
 export const AMBITO_LABELS_GL: Record<string, string> = {

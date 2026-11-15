@@ -7,6 +7,7 @@ import { localizeHref } from '@/lib/i18n'
 const COPY = {
   es: { cta: 'Quiero saber más', edition: 'edición', editions: 'ediciones', since: 'desde' },
   gl: { cta: 'Quero saber máis', edition: 'edición', editions: 'edicións', since: 'dende' },
+  en: { cta: 'Find out more', edition: 'edition', editions: 'editions', since: 'since' },
 }
 
 export function ExperienciaCard({ item, locale = 'es' }: { item: ExperienciaData; locale?: Locale }) {
