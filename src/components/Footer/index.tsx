@@ -123,9 +123,28 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
 }
 
 const COPY = {
-  es: { who: 'Quiénes somos', write: 'Escríbenos', home: '/', social: 'Redes sociales', link: 'Enlace' },
-  gl: { who: 'Quen somos', write: 'Escríbenos', home: '/gl/', social: 'Redes sociais', link: 'Ligazón' },
-  en: { who: 'Who we are', write: 'Write to us', home: '/en/', social: 'Social media', link: 'Link' },
+  es: { who: 'Quiénes somos', write: 'Escríbenos', home: '/', social: 'Redes sociales', link: 'Enlace', legal: 'Textos legales' },
+  gl: { who: 'Quen somos', write: 'Escríbenos', home: '/gl/', social: 'Redes sociais', link: 'Ligazón', legal: 'Textos legais' },
+  en: { who: 'Who we are', write: 'Write to us', home: '/en/', social: 'Social media', link: 'Link', legal: 'Legal' },
+}
+
+// Textos legales: solo existen en castellano (ver src/content/legal.ts).
+const LEGAL_LINKS: Record<Locale, FooterLink[]> = {
+  es: [
+    { label: 'Aviso legal', href: '/aviso-legal/' },
+    { label: 'Privacidad', href: '/privacidad/' },
+    { label: 'Cookies', href: '/cookies/' },
+  ],
+  gl: [
+    { label: 'Aviso legal', href: '/aviso-legal/' },
+    { label: 'Privacidade', href: '/privacidad/' },
+    { label: 'Cookies', href: '/cookies/' },
+  ],
+  en: [
+    { label: 'Legal notice (ES)', href: '/aviso-legal/' },
+    { label: 'Privacy (ES)', href: '/privacidad/' },
+    { label: 'Cookies (ES)', href: '/cookies/' },
+  ],
 }
 
 const PLATFORM_LABELS: Record<string, string> = {
@@ -320,6 +339,15 @@ export function Footer({ siteSettings, locale = 'es' }: FooterProps) {
               ))}
             </ul>
           )}
+          <ul className={styles.legalList} aria-label={copy.legal}>
+            {LEGAL_LINKS[locale].map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={styles.legalLink}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </footer>

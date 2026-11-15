@@ -229,6 +229,11 @@ const nextConfig: NextConfig = {
       { source: "/intothewild", destination: "https://intothewildproject.com", permanent: true },
       { source: "/into-the-wild", destination: "https://intothewildproject.com", permanent: true },
       // /en/ es la portada en inglés; el resto de páginas antiguas bajo /en/ van a ella.
+      // Sitemaps del WordPress (Rank Math), por si siguen en Search Console.
+      { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/page-sitemap.xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/post-sitemap.xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/wp-sitemap.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/en/:path+", destination: "/en/", permanent: true },
       { source: "/ferrol", destination: "/agenda/", permanent: true },
       { source: "/ferrol/:path*", destination: "/agenda/:path*", permanent: true },

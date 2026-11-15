@@ -1,4 +1,5 @@
 import { ButtonLink } from '@/components/ButtonLink'
+import { ConsentMap } from '@/components/ConsentMap'
 import { Container } from '@/components/Container'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { Prose } from '@/components/Prose'
@@ -35,14 +36,11 @@ export function HowToArrive({ data, siteSettings, locale = 'es' }: HowToArrivePr
   return (
     <Container as="section" id="visitanos" className={styles.section}>
       {data.arrivalMapEmbedUrl ? (
-        <div className={styles.map}>
-          <iframe
-            src={data.arrivalMapEmbedUrl}
-            title={`${copy.map} · ${data.arrivalHeading ?? 'Ferrol'}`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
+        <ConsentMap
+          embedUrl={data.arrivalMapEmbedUrl}
+          title={`${copy.map} · ${data.arrivalHeading ?? 'Ferrol'}`}
+          locale={locale}
+        />
       ) : (
         <PhotoPlaceholder
           variant="ferrol"

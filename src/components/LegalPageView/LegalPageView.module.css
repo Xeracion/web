@@ -1,0 +1,37 @@
+.body {
+  max-width: 760px;
+  padding-bottom: var(--space-3xl);
+}
+
+.section {
+  padding-block: var(--space-md);
+  border-top: var(--border-hair) solid var(--color-border);
+}
+
+.heading {
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+}
+
+.paragraph {
+  margin-top: var(--space-xs);
+  color: var(--color-text-secondary);
+}
+
+.updated {
+  margin-top: var(--space-lg);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.nav a {
+  color: var(--color-accent-text);
+  font-weight: 500;
+}
