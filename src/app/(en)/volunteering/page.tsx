@@ -146,16 +146,14 @@ export default function VolunteeringPage() {
         </div>
       </Container>
 
-      <div id="call">
-        <ClosingCtaSection heading={page.callHeading} text={page.callText}>
-          <ButtonPrimary href={whatsapp} target="_blank" rel="noopener noreferrer">
-            {page.callPrimaryLabel}
-          </ButtonPrimary>
-          <ButtonSecondary href={page.callSecondaryUrl} target="_blank" rel="noopener noreferrer">
-            {page.callSecondaryLabel}
-          </ButtonSecondary>
-        </ClosingCtaSection>
-      </div>
+      <ClosingCtaSection id="call" heading={page.callHeading} text={page.callText}>
+        <ButtonPrimary href={whatsapp} target="_blank" rel="noopener noreferrer">
+          {page.callPrimaryLabel}
+        </ButtonPrimary>
+        <ButtonSecondary href={page.callSecondaryUrl} target="_blank" rel="noopener noreferrer">
+          {page.callSecondaryLabel}
+        </ButtonSecondary>
+      </ClosingCtaSection>
     </>
   )
 }
