@@ -8,6 +8,7 @@ import { Equipo } from '@/app/nosotros/_sections/Equipo'
 import { Hero } from '@/app/nosotros/_sections/Hero'
 import { Historia } from '@/app/nosotros/_sections/Historia'
 import { Iniciativas } from '@/app/nosotros/_sections/Iniciativas'
+import { IniciativasLocales } from '@/app/nosotros/_sections/IniciativasLocales'
 import { Partners } from '@/app/nosotros/_sections/Partners'
 import { QueHacemos } from '@/app/nosotros/_sections/QueHacemos'
 import { Valores } from '@/app/nosotros/_sections/Valores'
@@ -31,6 +32,7 @@ export default function NosPage() {
       <Cifras data={page} />
       <EnResumen data={page} />
       <QueHacemos data={page} />
+      <IniciativasLocales data={page} />
       <Historia data={page} />
       <Valores data={page} />
       <Equipo data={page} locale="gl" />

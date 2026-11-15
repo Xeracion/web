@@ -52,6 +52,44 @@ export const pageNosotrosGl = {
     { title: 'Proxectos para a comunidade', text: 'Liña, Cousateca, Stop Eucalipto e Retake: cousas que facían falta e non existían.', ctaLabel: 'Quero ver os proxectos', href: '/gl/#proxectos' },
     { title: 'Un punto de encontro en Ferrol', text: 'Cursos gratuítos, obradoiros e plans cada semana na Casa da Xuventude.', ctaLabel: 'Quero ver a axenda', href: '/gl/axenda/' },
   ] satisfies HomeDoor[],
+  // Iniciativas locais (2021–2022): tradución de iniciativasLocales de nosotros.ts.
+  iniciativasLocalesIntro: {
+    heading: 'O que fomos montando en Ferrol.',
+    text: 'Ademais dos proxectos grandes, o voluntariado europeo e a xente de aquí foron poñendo en marcha cousas pequenas na cidade. Isto é o que faciamos en 2021 e 2022.',
+  } satisfies SectionIntro,
+  iniciativasLocales: [
+    {
+      title: 'Cultura',
+      items: [
+        { name: 'Noites culturais', text: 'Cada persoa voluntaria que chegaba presentaba o seu país con xogos, bailes, concursos e comida: un mercado de Nadal alemán, unha noite estoniana de xogos de mesa, unha cea austríaca…' },
+        { name: 'Cine con debate', text: 'Cada dúas semanas, unha película escollida polo voluntariado e unha conversa despois.' },
+      ],
+    },
+    {
+      title: 'Medio ambiente',
+      items: [
+        { name: 'Horta urbana de Canido', text: 'Xunto ao centro cívico e cos veciños do barrio: mobles con palés, macetas novas, plantar e recoller verduras.' },
+        { name: 'Lavadoiro de Canido', text: 'Na primavera de 2021 pintamos o lavadoiro e limpamos a zona para plantar un bosque comestible.' },
+        { name: 'Retake', text: 'Limpezas de praias, retirada de plantas invasoras e plantación de árbores autóctonas.', href: 'https://retake.es' },
+      ],
+    },
+    {
+      title: 'Coa xente de Ferrol',
+      items: [
+        { name: 'Idiomas para maiores', text: 'Clases semanais de inglés e francés para persoas maiores, con Afundación.' },
+        { name: 'Clubs de conversa', text: 'Grupos de cinco a oito persoas para practicar inglés ou francés falando de calquera tema, unha hora á semana na oficina.' },
+        { name: 'Speak Factor', text: 'Trucos para falar en público en inglés e en castelán, para xente nova. Segue en marcha.', href: '/speakfactor/' },
+      ],
+    },
+    {
+      title: 'Ideas do voluntariado',
+      items: [
+        { name: 'Obradoiros de habilidades', text: 'Percusión, meditación, crepes, costura, upcycling…' },
+        { name: 'Actividades puntuais', text: '«Gallego!», unha noite para dar a coñecer a cultura galega; plans por San Valentín; «El Barrio», unha exposición de fotografía.' },
+        { name: 'Ferrol, máis bonito', text: 'Murais novos no campus e a capela de Caranza pintada de branco.' },
+      ],
+    },
+  ],
   historiaIntro: { heading: 'De onde vimos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Xeración nace en 2013 da man dun grupo de mozos e mozas de Ferrol. Antes estabamos en Narón; dende 2017, a Casa da Xuventude é o noso campamento base.',
