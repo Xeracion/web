@@ -60,6 +60,8 @@ const PROYECTOS_LEGACY: Array<[string, string]> = [
   ["x", "x-team"],
   ["yeah", "yeah"],
   ["nohate-mp4", "nohate-mp4"],
+  ["meninas-esc-de-corto-plazo", "meninas"],
+  ["call-creation-social-inclusion", "creation-for-social-inclusion"],
 ];
 
 // Páginas del WordPress que vivían bajo /en/ (las fichas de algunos proyectos
@@ -83,7 +85,6 @@ const BLOG_CONVOCATORIAS = [
   "volunteering-opportunity-in-poland",
   "voluntariado-rybnik",
   "voluntariado-myslowice",
-  "call-creation-social-inclusion",
   "proyecto-voluntario-en-polonia",
   "curso-en-alemania-y-portugal",
   "voluntariado-en-francia",
@@ -94,7 +95,6 @@ const BLOG_CONVOCATORIAS = [
   "leading-ladder",
   "voluntariado-en-turquia-mad-you-you-can-make-a-difference",
   "eu-volunteers-wanted",
-  "meninas-esc-de-corto-plazo",
   "aventura-en-el-parque-nacional-borjomi-en-georgia",
   "entrena-tu-voz-en-polonia-con-erasmus",
   "intercambio-bratislava",
