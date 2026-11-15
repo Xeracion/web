@@ -67,8 +67,8 @@ export const pageNosotrosEs = {
     { title: 'Un punto de encuentro en Ferrol', text: 'Cursos gratuitos, talleres y planes cada semana en la Casa da Xuventude.', ctaLabel: 'Quiero ver la agenda', href: '/agenda/' },
   ] satisfies HomeDoor[],
   // Iniciativas locales: de la página «Iniciativas locales» del WordPress
-  // (2022). Contenido de esa época, contado en pasado: no afirmar que sigue
-  // con el mismo horario sin confirmarlo.
+  // (2022). Siguen en marcha (confirmado en noviembre de 2026): noches
+  // culturales, Retake y Speak Factor. El resto se cuenta en pasado.
   iniciativasLocalesIntro: {
     heading: 'Lo que hemos ido montando en Ferrol.',
     text: 'Además de los proyectos grandes, el voluntariado europeo y la gente de aquí fueron poniendo en marcha cosas pequeñas en la ciudad.',
@@ -77,7 +77,7 @@ export const pageNosotrosEs = {
     {
       title: 'Cultura',
       items: [
-        { name: 'Noches culturales', text: 'Cada persona voluntaria que llegaba presentaba su país con juegos, bailes, concursos y comida: un mercado navideño alemán, una noche estonia de juegos de mesa, una cena austriaca…' },
+        { name: 'Noches culturales', text: 'Cada persona voluntaria que llega presenta su país con juegos, bailes, concursos y comida. Ha habido un mercado navideño alemán, una noche estonia de juegos de mesa, una cena austriaca… Siguen en marcha.' },
         { name: 'Cine con debate', text: 'Cada dos semanas, una película elegida por el voluntariado y una charla después.' },
       ],
     },
@@ -86,7 +86,7 @@ export const pageNosotrosEs = {
       items: [
         { name: 'Huerto urbano de Canido', text: 'Junto al centro cívico y con los vecinos del barrio: muebles con palés, macetas nuevas, plantar y recoger verduras.' },
         { name: 'Lavadeiro de Canido', text: 'En la primavera de 2021 pintamos el lavadero y limpiamos la zona para plantar un bosque comestible.' },
-        { name: 'Retake', text: 'Limpiezas de playas, retirada de plantas invasoras y plantación de árboles autóctonos.', href: 'https://retake.es' },
+        { name: 'Retake', text: 'Limpiezas de playas, retirada de plantas invasoras y plantación de árboles autóctonos. Sigue en marcha.', href: 'https://retake.es' },
       ],
     },
     {

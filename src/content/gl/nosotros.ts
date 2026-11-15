@@ -61,7 +61,7 @@ export const pageNosotrosGl = {
     {
       title: 'Cultura',
       items: [
-        { name: 'Noites culturais', text: 'Cada persoa voluntaria que chegaba presentaba o seu país con xogos, bailes, concursos e comida: un mercado de Nadal alemán, unha noite estoniana de xogos de mesa, unha cea austríaca…' },
+        { name: 'Noites culturais', text: 'Cada persoa voluntaria que chega presenta o seu país con xogos, bailes, concursos e comida. Houbo un mercado de Nadal alemán, unha noite estoniana de xogos de mesa, unha cea austríaca… Seguen en marcha.' },
         { name: 'Cine con debate', text: 'Cada dúas semanas, unha película escollida polo voluntariado e unha conversa despois.' },
       ],
     },
@@ -70,7 +70,7 @@ export const pageNosotrosGl = {
       items: [
         { name: 'Horta urbana de Canido', text: 'Xunto ao centro cívico e cos veciños do barrio: mobles con palés, macetas novas, plantar e recoller verduras.' },
         { name: 'Lavadoiro de Canido', text: 'Na primavera de 2021 pintamos o lavadoiro e limpamos a zona para plantar un bosque comestible.' },
-        { name: 'Retake', text: 'Limpezas de praias, retirada de plantas invasoras e plantación de árbores autóctonas.', href: 'https://retake.es' },
+        { name: 'Retake', text: 'Limpezas de praias, retirada de plantas invasoras e plantación de árbores autóctonas. Segue en marcha.', href: 'https://retake.es' },
       ],
     },
     {
