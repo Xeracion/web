@@ -9,7 +9,7 @@ export interface NavLink {
 
 export interface NavItem extends NavLink {
   key: RouteKey
-  /** Enlaces secundarios: solo los enseña el menú móvil, como acordeón bajo el principal. */
+  /** Enlaces secundarios: en escritorio, desplegable bajo la pastilla; en móvil, acordeón bajo el principal. */
   children?: NavLink[]
 }
 

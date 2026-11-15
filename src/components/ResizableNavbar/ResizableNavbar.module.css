@@ -76,6 +76,104 @@
   color: var(--color-accent-strong);
 }
 
+/* Desplegables de escritorio */
+.dropdown {
+  position: relative;
+}
+
+.chipTrigger {
+  gap: 4px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.chipChevron {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.chipChevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Abierto: pastilla en tinta, como anthropic.com. */
+.chipOpen,
+.chipOpen:hover,
+.chipActive.chipOpen {
+  border-color: var(--color-text-primary);
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 2;
+  min-width: 220px;
+  padding: 8px;
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
+}
+
+/* Puente invisible entre la pastilla y el panel para que el ratón no lo
+   cierre al bajar. */
+.panel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 8px;
+}
+
+.panelEnd {
+  left: auto;
+  right: 0;
+}
+
+.panelOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+}
+
+.panelLink {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.panelLink:hover,
+.panelLink:focus-visible {
+  background: var(--color-bg-warm);
+  color: var(--color-text-primary);
+}
+
+.panelLinkCurrent {
+  color: var(--color-accent-text);
+  font-weight: 500;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -269,6 +367,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panelOpen,
+  .chipChevron {
+    transition: none;
+  }
+
   .toggleLine,
   .chip,
   .wrapper,
@@ -368,6 +472,7 @@
   background: var(--surface-dark);
   border-bottom: var(--border-hair) solid var(--color-border);
   clip-path: inset(100% 0 0 0);
+  z-index: 1;
 }
 
 .dark .logo > span {

@@ -58,6 +58,8 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
   const [compact, setCompact] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [expanded, setExpanded] = useState<RouteKey | null>(null)
+  const [openKey, setOpenKey] = useState<RouteKey | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const prefersReducedMotion = useReducedMotion()
   const toggleRef = useRef<HTMLButtonElement>(null)
   const darkRef = useRef<HTMLDivElement>(null)
@@ -135,6 +137,39 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [mobileOpen])
 
+  // Desplegable de escritorio: Escape (devuelve el foco a su pastilla) y
+  // clic fuera lo cierran.
+  useEffect(() => {
+    if (!openKey) return
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== 'Escape') return
+      const trigger = document.querySelector<HTMLButtonElement>(`[data-dropdown="${openKey}"] button`)
+      setOpenKey(null)
+      trigger?.focus()
+    }
+    function onPointerDown(event: PointerEvent) {
+      const target = event.target as Element | null
+      if (!target?.closest(`[data-dropdown="${openKey}"]`)) setOpenKey(null)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [openKey])
+
+  // Al cambiar de página, el desplegable se cierra.
+  const [lastPath, setLastPath] = useState(pathname)
+  if (lastPath !== pathname) {
+    setLastPath(pathname)
+    setOpenKey(null)
+  }
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+  }, [])
+
   function closeMenu() {
     setMobileOpen(false)
     setExpanded(null)
@@ -144,19 +179,91 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
   const half = Math.ceil(items.length / 2)
   const groups = [items.slice(0, half), items.slice(half)]
 
-  function renderLinks(list: NavItem[], inverted = false) {
+  // Desplegables de escritorio (como los de anthropic.com): la pastilla con
+  // subenlaces es un botón con flecha que abre un panel debajo. Se abre al
+  // pasar el ratón (solo con ratón, para que en tablet no choque con el
+  // toque) y con clic o teclado; Escape, clic fuera o cambiar de página lo
+  // cierran.
+  function openDropdown(key: RouteKey) {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setOpenKey(key)
+  }
+
+  function scheduleClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setOpenKey(null), 140)
+  }
+
+  function renderLinks(list: NavItem[], inverted = false, alignEnd = false) {
     return list.map((item) => {
       const isActive = activeRoute === item.key
+      if (!item.children) {
+        return (
+          <li key={item.link}>
+            <Link
+              href={item.link}
+              className={cn(styles.chip, isActive && styles.chipActive)}
+              aria-current={isActive ? 'page' : undefined}
+              tabIndex={inverted ? -1 : undefined}
+            >
+              {item.name}
+            </Link>
+          </li>
+        )
+      }
+
+      const isOpen = openKey === item.key
+      const panelId = `site-nav-${item.key}`
       return (
-        <li key={item.link}>
-          <Link
-            href={item.link}
-            className={cn(styles.chip, isActive && styles.chipActive)}
-            aria-current={isActive ? 'page' : undefined}
+        <li
+          key={item.link}
+          className={styles.dropdown}
+          data-dropdown={inverted ? undefined : item.key}
+          onPointerEnter={(event) => event.pointerType === 'mouse' && openDropdown(item.key)}
+          onPointerLeave={(event) => event.pointerType === 'mouse' && scheduleClose()}
+          onBlur={
+            inverted
+              ? undefined
+              : (event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenKey(null)
+                }
+          }
+        >
+          <button
+            type="button"
+            className={cn(styles.chip, styles.chipTrigger, isActive && styles.chipActive, isOpen && styles.chipOpen)}
+            aria-haspopup="true"
+            aria-expanded={inverted ? undefined : isOpen}
+            aria-controls={inverted ? undefined : panelId}
             tabIndex={inverted ? -1 : undefined}
+            onClick={() => (isOpen ? setOpenKey(null) : openDropdown(item.key))}
           >
             {item.name}
-          </Link>
+            <svg viewBox="0 0 16 16" className={cn(styles.chipChevron, isOpen && styles.chipChevronOpen)} aria-hidden="true">
+              <path d="M4 6.5l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.3" />
+            </svg>
+          </button>
+          {!inverted && (
+            <div id={panelId} className={cn(styles.panel, alignEnd && styles.panelEnd, isOpen && styles.panelOpen)} inert={!isOpen}>
+              <ul className={styles.panelList}>
+                {item.children.map((child) => {
+                  const isCurrent = child.link.split(/[?#]/)[0] === pathname && !/[?#]/.test(child.link)
+                  return (
+                    <li key={child.link}>
+                      <Link
+                        href={child.link}
+                        className={cn(styles.panelLink, isCurrent && styles.panelLinkCurrent)}
+                        aria-current={isCurrent ? 'page' : undefined}
+                        onClick={() => setOpenKey(null)}
+                      >
+                        {child.name}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
         </li>
       )
     })
@@ -198,7 +305,7 @@ export function ResizableNavbar({ siteName, items, activeRoute }: ResizableNavba
             <LogoMark collapsed={compact} />
           </Link>
           <div className={styles.endGroup}>
-            <ul className={cn(styles.list, styles.listEnd)}>{renderLinks(groups[1], inverted)}</ul>
+            <ul className={cn(styles.list, styles.listEnd)}>{renderLinks(groups[1], inverted, true)}</ul>
             {renderLanguages(styles.langs, inverted)}
           </div>
         </nav>
