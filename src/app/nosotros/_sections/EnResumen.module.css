@@ -1,5 +1,5 @@
 .section {
-  padding-block: var(--space-3xl) var(--space-xl);
+  padding-block: var(--space-3xl) var(--space-lg);
 }
 
 .lead {
@@ -11,8 +11,8 @@
 .facts {
   margin: var(--space-xl) 0 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-lg) var(--space-xl);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
 }
 
 @media (max-width: 1024px) {

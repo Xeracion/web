@@ -1,4 +1,4 @@
-import { pageNosotrosEs } from '../nosotros'
+import { archivo, pageNosotrosEs } from '../nosotros'
 import type { HomeDoor, Initiative, Partner, ResumenItem, SectionIntro, StatItem, TeamMember, TimelineMilestone, ValueItem } from '../types'
 
 // Nós en galego (/gl/nos/). As persoas, fotos e datos legais son os mesmos
@@ -22,39 +22,39 @@ function membersGl(members: TeamMember[]): TeamMember[] {
   return members.map((member) => ({ ...member, role: roleGl(member.role) }))
 }
 
+// Mesmas cifras ca en castelán (as do arquivo de proxectos calcúlanse das súas fichas).
+const CIFRAS_GL = [
+  'anos montando plans en Ferrol',
+  'voluntarios doutros países acollidos',
+  'mozos e mozas de aquí enviados a proxectos fóra',
+  'persoas socias',
+  `proxectos no noso arquivo dende ${archivo.desde}`,
+  `participantes de ${archivo.paises} países neses proxectos`,
+]
+
 export const pageNosotrosGl = {
   ...pageNosotrosEs,
   heroHeading: 'Somos Xeración, un colectivo novo de Ferrol que monta outros plans.',
   heroText:
     'Dende 2013 preparamos experiencias para que a xente nova saia, aprenda e coñeza outra xente, e poñemos en marcha proxectos que lle fan falta á comunidade. Sen ánimo de lucro, dende a Casa da Xuventude e con xente de aquí e de media Europa.',
-  heroStats: [
-    { value: '13', label: 'anos en marcha' },
-    { value: '+120', label: 'voluntarios internacionais acollidos' },
-    { value: '+50', label: 'mozos e mozas enviados a proxectos fóra' },
-    { value: '57', label: 'persoas socias' },
-  ] satisfies StatItem[],
+  cifrasIntro: { heading: 'Xeración en cifras.' } satisfies SectionIntro,
+  cifras: pageNosotrosEs.cifras.map((cifra, i) => ({ ...cifra, label: CIFRAS_GL[i] })) satisfies StatItem[],
   resumenIntro: { heading: 'Xeración, en poucas palabras.' } satisfies SectionIntro,
   resumen: [
-    { label: 'Que somos', text: 'Un colectivo xuvenil sen ánimo de lucro. Púxoo en marcha un grupo de mozos e mozas de Ferrol en 2013.' },
-    { label: 'Onde estamos', text: 'Na Casa da Xuventude de Ferrol, Rúa Almendra 9. A oficina abre de luns a venres, das 10:00 ás 14:00.' },
-    { label: 'Para quen', text: 'Sobre todo para xente nova, de Ferrol e de fóra. Tamén traballamos con centros educativos, institucións, empresas e outros colectivos.' },
-    { label: 'Quen o fai', text: 'Un equipo de coordinación, voluntarios doutros países que pasan uns meses en Ferrol e 57 persoas socias.' },
-    { label: 'Como se financia', text: 'Unhas experiencias págaas quen participa, co prezo claro dende o principio; outras finánciannas programas europeos. Temos o respaldo do Concello de Ferrol e da Xunta de Galicia.' },
-    { label: 'Como falar connosco', text: 'Por WhatsApp, escribindo a info@xeracion.org ou pasando pola oficina pola mañá.' },
+    { label: 'Que somos', text: 'Un colectivo xuvenil sen ánimo de lucro, nado en Ferrol en 2013.' },
+    { label: 'Onde estamos', text: 'Na Casa da Xuventude, Rúa Almendra 9. Oficina de luns a venres, das 10:00 ás 14:00.' },
+    { label: 'Para quen', text: 'Sobre todo xente nova. Tamén centros educativos, institucións, empresas e colectivos.' },
+    { label: 'Como se financia', text: 'Unhas experiencias págaas quen participa e outras finánciannas programas europeos.' },
   ] satisfies ResumenItem[],
-  queHacemosIntro: {
-    heading: 'O que facemos.',
-    text: 'Catro frontes cunha mesma idea: se algo fai falta e non existe, montámolo.',
-  } satisfies SectionIntro,
+  queHacemosIntro: { heading: 'O que facemos.' } satisfies SectionIntro,
   queHacemos: [
-    { title: 'Experiencias para medrar', text: 'Camiños, aventuras ao aire libre, intercambios, cursos e voluntariados, en Galicia e por Europa, dunha semana a un ano. Unhas págalas ti e outras están financiadas.', ctaLabel: 'Quero ver experiencias', href: '/gl/experiencias/' },
-    { title: 'Proxectos para a comunidade', text: 'Liña, os buses de Galicia nunha soa app. Cousateca, unha biblioteca de obxectos. Stop Eucalipto, para devolver o bosque autóctono ao monte. E Retake, mañás de voluntariado ambiental.', ctaLabel: 'Quero ver os proxectos', href: '/gl/#proxectos' },
-    { title: 'Un punto de encontro en Ferrol', text: 'Cada semana pasa algo na Casa da Xuventude: cursos gratuítos como Speak Factor, obradoiros e plans abertos a quen queira vir.', ctaLabel: 'Quero ver a axenda', href: '/gl/axenda/' },
-    { title: 'Casa para xente nova de toda Europa', text: 'Acollemos voluntarios doutros países que viven uns meses en Ferrol, botan unha man nos nosos proxectos e súmanse á vida da cidade. Xa van máis de 120.', ctaLabel: 'Quero coñecer o equipo', href: '/nosotros/equipo/' },
+    { title: 'Experiencias para medrar', text: 'Camiños, intercambios, cursos e voluntariados, dunha semana a un ano.', ctaLabel: 'Quero ver experiencias', href: '/gl/experiencias/' },
+    { title: 'Proxectos para a comunidade', text: 'Liña, Cousateca, Stop Eucalipto e Retake: cousas que facían falta e non existían.', ctaLabel: 'Quero ver os proxectos', href: '/gl/#proxectos' },
+    { title: 'Un punto de encontro en Ferrol', text: 'Cursos gratuítos, obradoiros e plans cada semana na Casa da Xuventude.', ctaLabel: 'Quero ver a axenda', href: '/gl/axenda/' },
   ] satisfies HomeDoor[],
   historiaIntro: { heading: 'De onde vimos.' } satisfies SectionIntro,
   historiaParagraphs: [
-    'Xeración nace en 2013 da man dun grupo de mozos e mozas de Ferrol. Hoxe somos unha rede de entidades que traballa en Galicia e Valencia, case sempre coa Casa da Xuventude de Ferrol como campamento base.',
+    'Xeración nace en 2013 da man dun grupo de mozos e mozas de Ferrol, e dende entón a Casa da Xuventude é o noso campamento base.',
     'Montamos iniciativas culturais, ambientais e de voluntariado, e formamos a xente nova con obradoiros e cursos **accesibles e gratuítos**: oratoria, idiomas, vídeo, teatro.',
     'Organizamos proxectos internacionais, dunha semana a un ano, para saír, coñecer xente de todo o continente e volver con outra mirada sobre os retos sociais e ecolóxicos do noso tempo.',
     'E cando vemos que á comunidade lle falta algo, tentamos construílo: así naceron unha app de buses, unha biblioteca de obxectos e varios proxectos para coidar o monte e a costa.',

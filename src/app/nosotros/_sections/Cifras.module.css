@@ -1,0 +1,57 @@
+.wrapper {
+  background: var(--color-bg-warm);
+}
+
+.section {
+  padding-block: var(--space-3xl);
+}
+
+.grid {
+  margin: var(--space-xl) 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl) var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--space-md);
+  }
+}
+
+/* El número va primero a la vista aunque en el HTML el rótulo (dt) va antes. */
+.item {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: 0.5px solid var(--color-border-strong);
+}
+
+.value {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-display);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.label {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .value {
+    font-size: var(--text-stat);
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}

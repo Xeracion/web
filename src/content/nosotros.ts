@@ -10,46 +10,65 @@ import type {
   TimelineMilestone,
   ValueItem,
 } from './types'
+import { proyectos } from './proyectos'
+
+// Cifras del archivo de proyectos (/proyectos/), calculadas a partir de sus
+// fichas para que no se queden viejas: cuántos hay, desde qué año, cuántos
+// participantes suman (redondeado hacia abajo a la decena) y de cuántos países.
+export const archivo = (() => {
+  let participantes = 0
+  const paises = new Set<string>()
+  for (const p of proyectos) {
+    for (const d of p.datos) {
+      const m = d.label === 'Quiénes' ? d.value.match(/(\d+) participantes/) : null
+      if (m) participantes += Number(m[1])
+    }
+    p.paises?.forEach((pais) => paises.add(pais))
+  }
+  return {
+    proyectos: proyectos.length,
+    desde: Math.min(...proyectos.map((p) => p.anio)),
+    participantes: Math.floor(participantes / 10) * 10,
+    paises: paises.size,
+  }
+})()
 
 // Contenido transferido de xeracion.org/nosotros/ (WordPress): equipo,
 // voluntarios, valores, "¿Qué es Xeración?", apoyos y memoria. Las cifras
 // salen de contar el propio listado de voluntarios de esa página.
 export const pageNosotrosEs = {
   // Pensado para quien no nos conoce de nada: una persona joven o una
-  // institución. Las cifras son las mismas que confirmó Xeración para la portada.
+  // institución. Las cifras van en su propia sección (cifrasEs, abajo).
   heroHeading: 'Somos Xeración, un colectivo joven de Ferrol que monta otros planes.',
   heroText:
     'Desde 2013 preparamos experiencias para que la gente joven salga, aprenda y conozca a otra gente, y ponemos en marcha proyectos que le hacen falta a la comunidad. Sin ánimo de lucro, desde la Casa da Xuventude y con gente de aquí y de media Europa.',
-  heroStats: [
-    { value: '13', label: 'años en marcha' },
-    { value: '+120', label: 'voluntarios internacionales acogidos' },
-    { value: '+50', label: 'jóvenes enviados a proyectos fuera' },
-    { value: '57', label: 'personas socias' },
-  ] satisfies StatItem[],
   // Equipo y voluntariado en la Casa da Xuventude.
   heroBackgroundImage: '/img/fotos/equipo-casa-xuventude.webp' as string | undefined,
+  cifrasIntro: { heading: 'Xeración en cifras.' } satisfies SectionIntro,
+  cifras: [
+    { value: '13', label: 'años montando planes en Ferrol' },
+    { value: '+120', label: 'voluntarios de otros países acogidos' },
+    { value: '+50', label: 'jóvenes de aquí enviados a proyectos fuera' },
+    { value: '57', label: 'personas socias' },
+    { value: String(archivo.proyectos), label: `proyectos en nuestro archivo desde ${archivo.desde}` },
+    { value: `+${archivo.participantes}`, label: `participantes de ${archivo.paises} países en esos proyectos` },
+  ] satisfies StatItem[],
   resumenIntro: { heading: 'Xeración, en pocas palabras.' } satisfies SectionIntro,
   resumen: [
-    { label: 'Qué somos', text: 'Un colectivo juvenil sin ánimo de lucro. Lo puso en marcha un grupo de jóvenes de Ferrol en 2013.' },
-    { label: 'Dónde estamos', text: 'En la Casa da Xuventude de Ferrol, Rúa Almendra 9. La oficina abre de lunes a viernes, de 10:00 a 14:00.' },
-    { label: 'Para quién', text: 'Sobre todo para gente joven, de Ferrol y de fuera. También trabajamos con centros educativos, instituciones, empresas y otros colectivos.' },
-    { label: 'Quién lo hace', text: 'Un equipo de coordinación, voluntarios de otros países que pasan unos meses en Ferrol y 57 personas socias.' },
-    { label: 'Cómo se financia', text: 'Unas experiencias las paga quien participa, con el precio claro desde el principio; otras las financian programas europeos. Tenemos el respaldo del Concello de Ferrol y de la Xunta de Galicia.' },
-    { label: 'Cómo hablar con nosotros', text: 'Por WhatsApp, escribiendo a info@xeracion.org o pasándote por la oficina por la mañana.' },
+    { label: 'Qué somos', text: 'Un colectivo juvenil sin ánimo de lucro, nacido en Ferrol en 2013.' },
+    { label: 'Dónde estamos', text: 'En la Casa da Xuventude, Rúa Almendra 9. Oficina de lunes a viernes, de 10:00 a 14:00.' },
+    { label: 'Para quién', text: 'Sobre todo gente joven. También centros educativos, instituciones, empresas y colectivos.' },
+    { label: 'Cómo se financia', text: 'Unas experiencias las paga quien participa y otras las financian programas europeos.' },
   ] satisfies ResumenItem[],
-  queHacemosIntro: {
-    heading: 'Lo que hacemos.',
-    text: 'Cuatro frentes con una misma idea: si algo hace falta y no existe, lo montamos.',
-  } satisfies SectionIntro,
+  queHacemosIntro: { heading: 'Lo que hacemos.' } satisfies SectionIntro,
   queHacemos: [
-    { title: 'Experiencias para crecer', text: 'Caminos, aventuras al aire libre, intercambios, cursos y voluntariados, en Galicia y por Europa, de una semana a un año. Unas las pagas tú y otras están financiadas.', ctaLabel: 'Quiero ver experiencias', href: '/experiencias/' },
-    { title: 'Proyectos para la comunidad', text: 'Liña, los buses de Galicia en una sola app. Cousateca, una biblioteca de objetos. Stop Eucalipto, para devolver el bosque autóctono al monte. Y Retake, mañanas de voluntariado ambiental.', ctaLabel: 'Quiero ver los proyectos', href: '/#proyectos' },
-    { title: 'Un punto de encuentro en Ferrol', text: 'Cada semana pasa algo en la Casa da Xuventude: cursos gratuitos como Speak Factor, talleres y planes abiertos a quien quiera venir.', ctaLabel: 'Quiero ver la agenda', href: '/agenda/' },
-    { title: 'Casa para jóvenes de toda Europa', text: 'Acogemos a voluntarios de otros países que viven unos meses en Ferrol, echan una mano en nuestros proyectos y se suman a la vida de la ciudad. Ya van más de 120.', ctaLabel: 'Quiero conocer al equipo', href: '/nosotros/equipo/' },
+    { title: 'Experiencias para crecer', text: 'Caminos, intercambios, cursos y voluntariados, de una semana a un año.', ctaLabel: 'Quiero ver experiencias', href: '/experiencias/' },
+    { title: 'Proyectos para la comunidad', text: 'Liña, Cousateca, Stop Eucalipto y Retake: cosas que hacían falta y no existían.', ctaLabel: 'Quiero ver los proyectos', href: '/#proyectos' },
+    { title: 'Un punto de encuentro en Ferrol', text: 'Cursos gratuitos, talleres y planes cada semana en la Casa da Xuventude.', ctaLabel: 'Quiero ver la agenda', href: '/agenda/' },
   ] satisfies HomeDoor[],
   historiaIntro: { heading: 'De dónde venimos.' } satisfies SectionIntro,
   historiaParagraphs: [
-    'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol. Hoy somos una red de entidades que trabaja en Galicia y Valencia, casi siempre con la Casa da Xuventude de Ferrol como campamento base.',
+    'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol, y desde entonces la Casa da Xuventude es nuestro campamento base.',
     'Montamos iniciativas culturales, medioambientales y de voluntariado, y formamos a gente joven con talleres y cursos **accesibles y gratuitos**: oratoria, idiomas, vídeo, teatro.',
     'Organizamos proyectos internacionales, de una semana a un año, para salir, conocer gente de todo el continente y volver con otra mirada sobre los retos sociales y ecológicos de nuestro tiempo.',
     'Y cuando vemos que a la comunidad le falta algo, intentamos construirlo: así nacieron una app de buses, una biblioteca de objetos y varios proyectos para cuidar el monte y la costa.',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Cifras } from '@/app/nosotros/_sections/Cifras'
 import { ClosingCta } from '@/app/nosotros/_sections/ClosingCta'
 import { Doors } from '@/app/(main)/_sections/Doors'
 import { EnResumen } from '@/app/nosotros/_sections/EnResumen'
@@ -28,6 +29,7 @@ export default function NosPage() {
   return (
     <>
       <Hero data={page} />
+      <Cifras data={page} />
       <EnResumen data={page} />
       <QueHacemos data={page} />
       <Historia data={page} />

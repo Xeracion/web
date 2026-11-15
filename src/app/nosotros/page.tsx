@@ -6,6 +6,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 
 import { Doors } from '@/app/(main)/_sections/Doors'
 
+import { Cifras } from './_sections/Cifras'
 import { ClosingCta } from './_sections/ClosingCta'
 import { EnResumen } from './_sections/EnResumen'
 import { Equipo } from './_sections/Equipo'
@@ -28,6 +29,7 @@ export default function NosotrosPage() {
   return (
     <>
       <Hero data={page} />
+      <Cifras data={page} />
       <EnResumen data={page} />
       <QueHacemos data={page} />
       <Historia data={page} />
