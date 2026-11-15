@@ -646,6 +646,22 @@ export const proyectos: ProyectoData[] = [
     apoyos: [{"name": "Unión Europea", "image": "/img/logos/bandera-ue.svg", "caption": "Cofinanciado por la Unión Europea"}],
     urlsAntiguas: ["/comenzamos-peas-in-a-pod/"],
   },
+  {
+    slug: "project-writing-meetup",
+    titulo: "Project Writing #Meetup 1.0",
+    heroHeading: "Project Writing #Meetup: cinco días para escribir proyectos europeos en la Serra do Xurés.",
+    anio: 2014,
+    fechas: "Julio de 2014",
+    lugar: "Senderiz (Ourense)",
+    formato: "Evento",
+    rol: "Organizadores, con Sende",
+    resumen: "Cinco días en la Serra do Xurés aprendiendo a escribir proyectos internacionales con tutoría, junto al equipo de Sende.",
+    descripcion: ["Project Writing #Meetup 1.0 fue un encuentro de cinco días en Senderiz (Lobeira, Ourense), en plena Serra do Xurés, en julio de 2014. Lo organizamos con el equipo de Sende para gente que quería aprender a escribir proyectos internacionales, desde principiantes hasta personas con experiencia.", "Seguimos la metodología Sharp, creada por la organización JUMP: tiempo tutorizado para completar cada parte de la solicitud y cambios de espacio de trabajo para mantener la concentración. Hubo presentación de Erasmus+ y del European Youth Forum, búsqueda de socios internacionales y revisión de cada proyecto por facilitadores con experiencia.", "Era un encuentro de pago, sin financiación europea: 99 € con alojamiento en dos casas restauradas y pensión completa."],
+    datos: [{"label": "Cuándo", "value": "Julio de 2014"}, {"label": "Dónde", "value": "Senderiz (Ourense)"}, {"label": "Formato", "value": "Evento"}],
+    actividades: ["Presentación de Erasmus+ y del European Youth Forum", "Redacción tutorizada de proyectos con la metodología Sharp", "Búsqueda de socios internacionales para los proyectos", "Revisión de los proyectos por facilitadores con experiencia"],
+    socios: ["Sende"],
+    urlsAntiguas: ["/project-writing-meetup-10/"],
+  },
 ]
 
 /** Más recientes primero. */

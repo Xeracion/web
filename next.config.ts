@@ -60,6 +60,7 @@ const PROYECTOS_LEGACY: Array<[string, string]> = [
   ["x", "x-team"],
   ["yeah", "yeah"],
   ["nohate-mp4", "nohate-mp4"],
+  ["project-writing-meetup-10", "project-writing-meetup"],
   ["meninas-esc-de-corto-plazo", "meninas"],
   ["call-creation-social-inclusion", "creation-for-social-inclusion"],
 ];
@@ -143,7 +144,6 @@ const BLOG_CONVOCATORIAS = [
   "back2values1",
   "vete-a-estonia-en-agosto-con-xeracion",
   "practicas-remuneradas-en-el-comite-economico-y-social-de-la-ue",
-  "project-writing-meetup-10",
   "curso-subvencionado-en-rumania-european-tools-for-adult-literacy-in-democracy",
   "proyecto-sve-en-alemania-para-2015",
 ];
