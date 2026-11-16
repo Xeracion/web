@@ -34,7 +34,7 @@ export const homeGl = {
     {
       name: 'Cousateca',
       text: 'Unha biblioteca de obxectos con préstamo veciñal. Para que mercar unha furadeira que vas usar dúas veces.',
-      logo: { src: '/img/logos/proyectos/cousateca-icono.png', width: 32, height: 32, wordmark: 'Cousateca', wordmarkColor: '#1d3fba' },
+      logo: { src: '/img/logos/proyectos/cousateca.svg', width: 32, height: 32, wordmark: 'Cousateca', wordmarkColor: '#0056D2' },
       href: 'https://cousateca.com',
       ctaLabel: 'Quero ver que hai',
     },
