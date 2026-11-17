@@ -15,7 +15,7 @@ const CARGOS_GL: Record<string, string> = {
   'Asistente de proyectos': 'Asistente de proxectos',
 }
 
-function roleGl(role?: string) {
+export function roleGl(role?: string) {
   if (!role) return role
   return role
     .split(' · ')

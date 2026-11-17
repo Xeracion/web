@@ -7,10 +7,11 @@ import type { TeamMember } from '@/content/types'
 
 import styles from './TeamGroups.module.css'
 
-type TeamLocale = 'es' | 'en'
+type TeamLocale = 'es' | 'gl' | 'en'
 
 const LABELS: Record<TeamLocale, { portrait: string; more: string }> = {
   es: { portrait: 'Retrato de', more: 'Leer más' },
+  gl: { portrait: 'Retrato de', more: 'Ler máis' },
   en: { portrait: 'Portrait of', more: 'Read more' },
 }
 

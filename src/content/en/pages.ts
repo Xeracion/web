@@ -1,5 +1,5 @@
 import type { EquipoGroup } from '../equipo'
-import { equipoGroupsEs } from '../equipo'
+import { equipoGroupsOriginal } from '../equipo'
 import type { StatItem, Testimonial } from '../types'
 import { archivo, pageNosotrosEs } from '../nosotros'
 
@@ -247,8 +247,9 @@ export const pageInternshipsEn = {
   closingCtaLabel: 'I want to send participants',
 }
 
-// Equipo en inglés: las mismas personas y presentaciones (ya están en inglés)
-// que /nosotros/equipo/; solo se traducen los títulos de grupo y los cargos.
+// Equipo en inglés: las mismas personas que /nosotros/equipo/ con sus
+// presentaciones originales (las escribieron en inglés); se traducen los
+// títulos de grupo y los cargos.
 const GRUPOS_EN: Record<string, string> = {
   Coordinación: 'Coordination',
   'El equipo ahora mismo': 'The team right now',
@@ -264,7 +265,7 @@ const CARGOS_EN: Record<string, string> = {
   'Coordinadora de eventos': 'Events coordinator',
 }
 
-export const equipoGroupsEn: EquipoGroup[] = equipoGroupsEs.map((group) => ({
+export const equipoGroupsEn: EquipoGroup[] = equipoGroupsOriginal.map((group) => ({
   ...group,
   heading: group.heading && (GRUPOS_EN[group.heading] ?? group.heading),
   members: group.members.map((member) => ({

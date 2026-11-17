@@ -31,6 +31,7 @@ const PAGE_PAIRS: Array<Record<'es' | 'gl', string>> = [
   { es: '/agenda/', gl: '/gl/axenda/' },
   { es: '/experiencias/', gl: '/gl/experiencias/' },
   { es: '/nosotros/', gl: '/gl/nos/' },
+  { es: '/nosotros/equipo/', gl: '/gl/nos/equipo/' },
 ]
 
 /** Páginas en inglés. Su equivalente en castellano, si lo hay, para el selector. */

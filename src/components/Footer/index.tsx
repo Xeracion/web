@@ -115,7 +115,7 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
       heading: 'Nós',
       links: [
         { label: 'Quen somos', href: '/gl/nos/' },
-        { label: 'Equipo', href: '/nosotros/equipo/' },
+        { label: 'Equipo', href: '/gl/nos/equipo/' },
         { label: 'Para empresas', href: '/empresas/' },
       ],
     },

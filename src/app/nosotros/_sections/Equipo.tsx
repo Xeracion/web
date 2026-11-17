@@ -12,7 +12,7 @@ interface EquipoData {
 }
 
 const MORE_LABEL = { es: 'Quiero conocer al equipo', gl: 'Quero coñecer o equipo' }
-const HREF = { es: '/nosotros/equipo/', gl: '/nosotros/equipo/' }
+const HREF = { es: '/nosotros/equipo/', gl: '/gl/nos/equipo/' }
 
 // La sección es un único enlace hacia la página del equipo: titular, las
 // caras de quienes están ahora mismo y una flecha. Las fotos son decorativas
