@@ -115,6 +115,15 @@
   color: var(--color-text-secondary);
 }
 
+/* Al abrir «Leer más» desaparece el «[…]» y el resto del texto sigue debajo. */
+.bioWrap:has(.more[open]) .ellipsis {
+  display: none;
+}
+
+.more[open] summary {
+  display: none;
+}
+
 .more {
   font-size: var(--text-sm);
   line-height: 1.55;
@@ -143,7 +152,7 @@
 }
 
 .more p {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-2xs);
 }
 
 /* Rejilla compacta del último grupo. */

@@ -24,20 +24,32 @@ function Photo({ member, sizes, locale }: { member: TeamMember; sizes: string; l
   )
 }
 
+// La presentación corta termina en «[…]» y «Leer más» despliega solo lo que
+// falta (bioLong es el texto completo: no se repite lo ya leído).
 function Bio({ member, locale }: { member: TeamMember; locale: TeamLocale }) {
-  const long = typeof member.bioLong === 'string' ? [member.bioLong] : member.bioLong
+  const long = typeof member.bioLong === 'string' ? [member.bioLong] : (member.bioLong ?? [])
+  const short = member.bio?.replace(/\s*\[…\]\s*$/, '') ?? ''
+  const rest =
+    long.length > 0 && long[0].startsWith(short)
+      ? [long[0].slice(short.length).trim(), ...long.slice(1)].filter(Boolean)
+      : long
+
+  if (!member.bio) return null
+  if (rest.length === 0) return <p className={styles.bio}>{member.bio}</p>
+
   return (
-    <>
-      {member.bio && <p className={styles.bio}>{member.bio}</p>}
-      {long && long.length > 0 && (
-        <details className={styles.more}>
-          <summary>{LABELS[locale].more}</summary>
-          {long.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </details>
-      )}
-    </>
+    <div className={styles.bioWrap}>
+      <p className={styles.bio}>
+        {short}
+        <span className={styles.ellipsis}> […]</span>
+      </p>
+      <details className={styles.more}>
+        <summary>{LABELS[locale].more}</summary>
+        {rest.map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
+      </details>
+    </div>
   )
 }
 
