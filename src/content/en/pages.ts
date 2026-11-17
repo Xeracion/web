@@ -269,6 +269,6 @@ export const equipoGroupsEn: EquipoGroup[] = equipoGroupsEs.map((group) => ({
   heading: group.heading && (GRUPOS_EN[group.heading] ?? group.heading),
   members: group.members.map((member) => ({
     ...member,
-    role: member.role && (CARGOS_EN[member.role] ?? member.role),
+    role: member.role && member.role.split(' · ').map((part) => CARGOS_EN[part] ?? part).join(' · '),
   })),
 }))
