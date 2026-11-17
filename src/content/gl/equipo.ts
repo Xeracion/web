@@ -7,7 +7,7 @@ import { roleGl } from './nosotros'
 export const pageEquipoGl = {
   heading: 'As persoas detrás de Xeración.',
   intro:
-    'Dende 2013, máis de 120 persoas de máis de 15 países fixeron Xeración. Cada ano chega xente nova de toda Europa que se instala en Ferrol, enche de ideas a Casa da Xuventude e convérteas en plans para a mocidade de aquí. Un equipo que cambia e unha maneira de facer as cousas que fica.',
+    'Dende 2013, máis de 120 persoas de máis de 15 países fixeron Xeración. Cada ano chega xente nova de toda Europa que se instala en Ferrol, enche de ideas a Casa da Xuventude e convérteas en plans para a mocidade de aquí.',
   primaryLabel: 'Quero saber máis de Xeración',
   primaryHref: '/gl/nos/',
   secondaryLabel: 'Quero sumarme ao equipo',

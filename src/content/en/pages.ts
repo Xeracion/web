@@ -57,7 +57,7 @@ export const pageHomeEn = {
   ],
   teamHeading: 'The people behind Xeración.',
   teamText:
-    'Since 2013, more than 120 people from more than 15 countries have made Xeración what it is. Every year new people from all over Europe settle in Ferrol, fill the Casa da Xuventude with ideas and turn them into plans for young people here. A team that keeps changing, and a way of doing things that stays.',
+    'Since 2013, more than 120 people from more than 15 countries have made Xeración what it is. Every year new people from all over Europe settle in Ferrol, fill the Casa da Xuventude with ideas and turn them into plans for young people here.',
   projectsHeading: 'Projects we have already done.',
   projectsText: 'Exchanges, training courses, volunteering teams and local projects since 2016. Each project page is in Spanish, with dates, partners, photos and videos.',
   partnerHeading: 'Partner details.',

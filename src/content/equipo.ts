@@ -8,7 +8,7 @@ import type { TeamMember } from './types'
 export const pageEquipoEs = {
   heading: 'Las personas detrás de Xeración.',
   intro:
-    'Desde 2013, más de 120 personas de más de 15 países han hecho Xeración. Cada año llega gente nueva de toda Europa que se instala en Ferrol, llena de ideas la Casa da Xuventude y las convierte en planes para la gente joven de aquí. Un equipo que cambia y una manera de hacer las cosas que se queda.',
+    'Desde 2013, más de 120 personas de más de 15 países han hecho Xeración. Cada año llega gente nueva de toda Europa que se instala en Ferrol, llena de ideas la Casa da Xuventude y las convierte en planes para la gente joven de aquí.',
   primaryLabel: 'Quiero saber más de Xeración',
   primaryHref: '/nosotros/',
   secondaryLabel: 'Quiero sumarme al equipo',
