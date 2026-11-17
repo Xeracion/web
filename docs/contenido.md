@@ -37,6 +37,8 @@ Textos en `src/content/en/` (`pages.ts`, `siteSettings.ts`). El selector ES · G
 
 Castellano en la raíz y gallego bajo `/gl/` (el inglés es aparte, ver arriba): `/gl/` (portada), `/gl/axenda/`, `/gl/experiencias/` y `/gl/nos/`. El resto de páginas solo existen en castellano y desde el gallego se enlazan tal cual. El selector ES · GL del menú (`ResizableNavbar`, deduce el idioma de la URL) lleva a la página equivalente o, si no la hay, a la portada del otro idioma. Las parejas de páginas y las utilidades (`localizeHref`, `alternateHref`, hreflang) viven en `src/lib/i18n.ts`; los textos en gallego, en `src/content/gl/`, y cada experiencia lleva su campo `gl`. Las secciones compartidas reciben `locale`; los layouts en gallego usan `SiteShell` con `locale="gl"`. Las citas de personas reales no se traducen.
 
+**Idioma automático** (`src/proxy.ts`): quien llega desde fuera (buscador, enlace, URL escrita) a una página en castellano con versión en otro idioma va a esa versión si su navegador la prefiere (gallego → su pareja de `PAGE_PAIRS`; inglés u otro idioma que no sea castellano ni gallego → `/en/`, solo desde la portada). Sin cookies ni almacenamiento, porque los textos legales dicen que no hay: al navegar dentro de la web (referer propio) no se redirige nunca, así que el selector de idioma manda. Los buscadores y bots no se redirigen.
+
 ## 4.1 Agenda de eventos vía Google Calendar
 
 Los eventos de la agenda destacada (portada) y de la agenda de próximas dos semanas (`/agenda/`) se leen en tiempo real de Google Calendar a través de `src/lib/googleCalendar.ts`. Configuración:

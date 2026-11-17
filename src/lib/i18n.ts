@@ -26,7 +26,7 @@ export const OG_LOCALES: Record<Locale, string> = {
 }
 
 /** Páginas equivalentes en los dos idiomas. */
-const PAGE_PAIRS: Array<Record<'es' | 'gl', string>> = [
+export const PAGE_PAIRS: Array<Record<'es' | 'gl', string>> = [
   { es: '/', gl: '/gl/' },
   { es: '/agenda/', gl: '/gl/axenda/' },
   { es: '/experiencias/', gl: '/gl/experiencias/' },
