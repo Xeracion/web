@@ -6,7 +6,8 @@ import { ButtonSecondary } from '@/components/ButtonSecondary'
 import { ClosingCtaSection } from '@/components/ClosingCtaSection'
 import { Container } from '@/components/Container'
 import { HeroSplit } from '@/components/HeroSplit'
-import { FORMATO_EN, lugarEn, pageHomeEn } from '@/content/en/pages'
+import { TeamGroups } from '@/components/TeamGroups'
+import { equipoGroupsEn, FORMATO_EN, lugarEn, pageHomeEn } from '@/content/en/pages'
 import { siteSettingsEn } from '@/content/en/siteSettings'
 import { getProyectoHref, getProyectos } from '@/content/proyectos'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -74,6 +75,14 @@ export default function HomeEnPage() {
           })}
         </ul>
       </Container>
+
+      <Container as="section" id="team" className={`${styles.section} ${styles.sectionTight}`} aria-labelledby="team-title">
+        <div className={styles.sectionHead}>
+          <h2 id="team-title">{page.teamHeading}</h2>
+          <p className={styles.sectionText}>{page.teamText}</p>
+        </div>
+      </Container>
+      <TeamGroups groups={equipoGroupsEn} locale="en" />
 
       <Container as="section" id="projects" className={styles.section} aria-labelledby="projects-title">
         <div className={styles.sectionHead}>

@@ -1,3 +1,5 @@
+import type { EquipoGroup } from '../equipo'
+import { equipoGroupsEs } from '../equipo'
 import type { StatItem, Testimonial } from '../types'
 import { archivo, pageNosotrosEs } from '../nosotros'
 
@@ -53,6 +55,9 @@ export const pageHomeEn = {
       href: 'https://retake.es',
     },
   ],
+  teamHeading: 'The people behind Xeración.',
+  teamText:
+    'We are a small group: one person coordinates the day to day and people from all over Europe spend a few months with us in Ferrol, running activities at the Casa da Xuventude. Since 2013, more than 120 people from more than 15 countries have been part of this team.',
   projectsHeading: 'Projects we have already done.',
   projectsText: 'Exchanges, training courses, volunteering teams and local projects since 2016. Each project page is in Spanish, with dates, partners, photos and videos.',
   partnerHeading: 'Partner details.',
@@ -241,3 +246,29 @@ export const pageInternshipsEn = {
   closingText: 'Tell us about your group, the dates and the profiles of your participants.',
   closingCtaLabel: 'I want to send participants',
 }
+
+// Equipo en inglés: las mismas personas y presentaciones (ya están en inglés)
+// que /nosotros/equipo/; solo se traducen los títulos de grupo y los cargos.
+const GRUPOS_EN: Record<string, string> = {
+  Coordinación: 'Coordination',
+  'El equipo ahora mismo': 'The team right now',
+  'Han estado con nosotros': 'They have been with us',
+}
+
+const CARGOS_EN: Record<string, string> = {
+  Coordinación: 'Coordinator',
+  'Asistente de proyectos': 'Project assistant',
+  'Community manager': 'Community manager',
+  'Directora creativa': 'Creative director',
+  'Coordinador de eventos': 'Events coordinator',
+  'Coordinadora de eventos': 'Events coordinator',
+}
+
+export const equipoGroupsEn: EquipoGroup[] = equipoGroupsEs.map((group) => ({
+  ...group,
+  heading: group.heading && (GRUPOS_EN[group.heading] ?? group.heading),
+  members: group.members.map((member) => ({
+    ...member,
+    role: member.role && (CARGOS_EN[member.role] ?? member.role),
+  })),
+}))
