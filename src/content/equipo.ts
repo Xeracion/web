@@ -30,11 +30,15 @@ export interface EquipoGroup {
 const [coordinacion, ...equipoActual] = pageNosotrosEs.teamMembers as TeamMember[]
 const pasados = pageNosotrosEs.pastVolunteers as TeamMember[]
 
-// Quien se ha presentado (bio) va en tarjetas con su texto; el resto, en la
-// rejilla compacta debajo.
+// El equipo actual va en tarjetas con su cargo y su presentación; quienes ya
+// han pasado por aquí, en la rejilla compacta, solo con foto, nombre y bandera
+// (pastVolunteers ya está ordenado de más reciente a más antiguo).
 export const equipoGroupsEs: EquipoGroup[] = [
   { heading: 'Coordinación', layout: 'row', members: [coordinacion] },
   { heading: 'El equipo ahora mismo', layout: 'row', members: equipoActual },
-  { heading: 'Han estado con nosotros', layout: 'cards', members: pasados.filter((m) => m.bio) },
-  { layout: 'grid', members: pasados.filter((m) => !m.bio) },
+  {
+    heading: 'Han estado con nosotros',
+    layout: 'grid',
+    members: pasados.map(({ name, country, image }) => ({ name, country, image })),
+  },
 ]

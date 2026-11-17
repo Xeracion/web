@@ -10,11 +10,16 @@ const PAISES_GL: Record<string, string> = {
   Rumanía: 'Romanía',
 }
 
+// Cargos que cambian en galego (os que coinciden, como «Directora creativa», non fan falta).
+const CARGOS_GL: Record<string, string> = {
+  'Asistente de proyectos': 'Asistente de proxectos',
+}
+
 function roleGl(role?: string) {
   if (!role) return role
   return role
     .split(' · ')
-    .map((part) => PAISES_GL[part] ?? part)
+    .map((part) => CARGOS_GL[part] ?? PAISES_GL[part] ?? part)
     .join(' · ')
 }
 

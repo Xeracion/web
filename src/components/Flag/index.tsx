@@ -66,6 +66,11 @@ const FLAGS: Record<string, ReactNode> = {
       <rect x="0.000" width="10.050" height="20" fill="#002B7F"/><rect x="10.000" width="10.050" height="20" fill="#FCD116"/><rect x="20.000" width="10.050" height="20" fill="#CE1126"/>
     </>
   ),
+  SE: (
+    <>
+      <rect width="30" height="20" fill="#006AA7"/><rect x="9.375" width="3.75" height="20" fill="#FECC00"/><rect y="8.125" width="30" height="3.75" fill="#FECC00"/>
+    </>
+  ),
   FI: (
     <>
       <rect width="30" height="20" fill="#FFFFFF"/><rect x="8" width="4.4" height="20" fill="#003580"/><rect y="7.8" width="30" height="4.4" fill="#003580"/>
@@ -104,6 +109,7 @@ const NAMES: Record<string, Record<Locale, string>> = {
   PT: { es: 'Portugal', gl: 'Portugal', en: 'Portugal' },
   GR: { es: 'Grecia', gl: 'Grecia', en: 'Greece' },
   TR: { es: 'Turquía', gl: 'Turquía', en: 'Turkey' },
+  SE: { es: 'Suecia', gl: 'Suecia', en: 'Sweden' },
 }
 
 export function countryName(code: string, locale: Locale = 'es') {
