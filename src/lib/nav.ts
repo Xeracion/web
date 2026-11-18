@@ -1,6 +1,6 @@
 import type { Locale } from './i18n'
 
-export type RouteKey = 'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'blog' | 'volunteering' | 'internships'
+export type RouteKey = 'home' | 'ferrol' | 'experiencias' | 'nosotros' | 'blog' | 'volunteering' | 'internships' | 'team'
 
 export interface NavLink {
   name: string
@@ -107,6 +107,7 @@ export const NAV_ITEMS_EN: NavItem[] = [
   { name: 'Home', link: '/en/', key: 'home' },
   { name: 'Volunteering', link: '/volunteering/', key: 'volunteering' },
   { name: 'Internships', link: '/internships/', key: 'internships' },
+  { name: 'Team', link: '/team/', key: 'team' },
   { name: 'Projects', link: '/en/#projects', key: 'nosotros' },
 ]
 

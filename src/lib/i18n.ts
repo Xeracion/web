@@ -35,8 +35,10 @@ export const PAGE_PAIRS: Array<Record<'es' | 'gl', string>> = [
 ]
 
 /** Páginas en inglés. Su equivalente en castellano, si lo hay, para el selector. */
-export const EN_PAGES: Array<{ en: string; es: string }> = [
+export const EN_PAGES: Array<{ en: string; es: string; traduccion?: true }> = [
   { en: '/en/', es: '/' },
+  // La única traducción de verdad: el equipo (también lleva hreflang).
+  { en: '/team/', es: '/nosotros/equipo/', traduccion: true },
   { en: '/volunteering/', es: '/experiencias/' },
   { en: '/internships/', es: '/empresas/' },
 ]
@@ -98,8 +100,10 @@ export function localizeHref(href: string, locale: Locale): string {
  * como alternativas para que Google no las intercambie en los resultados.
  */
 export function languageAlternates(pathname: string): Record<string, string> | undefined {
-  if (localeFromPath(pathname) === 'en') return undefined
-  const { es, gl } = versions(pathname)
+  const path = withTrailingSlash(pathname)
+  const { es, gl } = versions(path)
+  const en = EN_PAGES.find((page) => page.traduccion && (page.en === path || page.es === es))?.en
+  if (localeFromPath(path) === 'en' && !en) return undefined
   if (!es || !gl) return undefined
-  return { es, gl, 'x-default': es }
+  return en ? { es, gl, en, 'x-default': es } : { es, gl, 'x-default': es }
 }

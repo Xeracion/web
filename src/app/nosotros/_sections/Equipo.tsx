@@ -11,13 +11,13 @@ interface EquipoData {
   teamMembers?: TeamMember[]
 }
 
-const MORE_LABEL = { es: 'Quiero conocer al equipo', gl: 'Quero coñecer o equipo' }
-const HREF = { es: '/nosotros/equipo/', gl: '/gl/nos/equipo/' }
+const MORE_LABEL = { es: 'Quiero conocer al equipo', gl: 'Quero coñecer o equipo', en: 'I want to meet the team' }
+const HREF = { es: '/nosotros/equipo/', gl: '/gl/nos/equipo/', en: '/team/' }
 
 // La sección es un único enlace hacia la página del equipo: titular, las
 // caras de quienes están ahora mismo y una flecha. Las fotos son decorativas
 // (los nombres están en la página de destino).
-export function Equipo({ data, locale = 'es' }: { data: EquipoData; locale?: 'es' | 'gl' }) {
+export function Equipo({ data, locale = 'es' }: { data: EquipoData; locale?: 'es' | 'gl' | 'en' }) {
   const members = data.teamMembers ?? []
   if (members.length === 0) return null
 

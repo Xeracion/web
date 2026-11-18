@@ -9,10 +9,6 @@
   padding-block: var(--space-2xl);
 }
 
-.sectionTight {
-  padding-bottom: 0;
-}
-
 .sectionHead {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);

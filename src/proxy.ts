@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import { PAGE_PAIRS } from '@/lib/i18n'
+import { EN_PAGES, PAGE_PAIRS } from '@/lib/i18n'
 
 // Idioma automático: quien entra desde fuera (buscador, enlace, URL escrita)
 // en una página en castellano que tiene versión en gallego o en inglés va a
@@ -34,8 +34,8 @@ function idiomaPreferido(acceptLanguage: string | null): Idioma | null {
 
 function destino(path: string, idioma: Idioma): string | null {
   if (idioma === 'gl') return PAGE_PAIRS.find((pair) => pair.es === path)?.gl ?? null
-  // El inglés no traduce la web: solo la portada tiene equivalente directo.
-  if (idioma === 'en' && path === '/') return '/en/'
+  // El inglés no traduce la web: solo la portada y el equipo tienen equivalente.
+  if (idioma === 'en') return path === '/' ? '/en/' : (EN_PAGES.find((page) => page.traduccion && page.es === path)?.en ?? null)
   return null
 }
 

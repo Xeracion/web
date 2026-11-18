@@ -55,9 +55,8 @@ export const pageHomeEn = {
       href: 'https://retake.es',
     },
   ],
-  teamHeading: 'The people behind Xeración.',
-  teamText:
-    'Since 2013, more than 120 people from more than 15 countries have made Xeración what it is. Every year new people from all over Europe settle in Ferrol, fill the Casa da Xuventude with ideas and turn them into plans for young people here.',
+  equipoIntro: { heading: 'The team right now.' },
+  teamMembers: pageNosotrosEs.teamMembers,
   projectsHeading: 'Projects we have already done.',
   projectsText: 'Exchanges, training courses, volunteering teams and local projects since 2016. Each project page is in Spanish, with dates, partners, photos and videos.',
   partnerHeading: 'Partner details.',
@@ -247,9 +246,19 @@ export const pageInternshipsEn = {
   closingCtaLabel: 'I want to send participants',
 }
 
-// Equipo en inglés: las mismas personas que /nosotros/equipo/ con sus
-// presentaciones originales (las escribieron en inglés); se traducen los
-// títulos de grupo y los cargos.
+// /team/: traducción de /nosotros/equipo/ y /gl/nos/equipo/. Las mismas
+// personas con sus presentaciones originales (las escribieron en inglés);
+// se traducen la cabecera, los títulos de grupo y los cargos.
+export const pageTeamEn = {
+  heading: 'The people behind Xeración.',
+  intro:
+    'Since 2013, more than 120 people from more than 15 countries have made Xeración what it is. Every year new people from all over Europe settle in Ferrol, fill the Casa da Xuventude with ideas and turn them into plans for young people here.',
+  primaryLabel: 'I want to know more about Xeración',
+  primaryHref: '/en/',
+  secondaryLabel: 'I want to join the team',
+  secondaryHref: '/volunteering/',
+}
+
 const GRUPOS_EN: Record<string, string> = {
   Coordinación: 'Coordination',
   'El equipo ahora mismo': 'The team right now',
