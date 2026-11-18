@@ -15,17 +15,19 @@ function attribution(testimonial: Testimonial) {
 
 const COPY = {
   es: { title: 'Opiniones en Google', heading: 'Lo que dice la gente.', all: 'Ver todas las opiniones', of: 'de 5', opinions: 'opiniones', rating: 'Valoración', prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
+  en: { title: 'Google reviews', heading: 'What people say.', all: 'See all reviews', of: 'out of 5', opinions: 'reviews', rating: 'Rating', prev: 'Previous reviews', next: 'Next reviews' },
   gl: { title: 'Opinións en Google', heading: 'O que di a xente.', all: 'Ver todas as opinións', of: 'de 5', opinions: 'opinións', rating: 'Valoración', prev: 'Opinións anteriores', next: 'Opinións seguintes' },
 }
 
-const number = (n: number, locale: 'es' | 'gl') => n.toLocaleString(locale === 'gl' ? 'gl-ES' : 'es-ES', { maximumFractionDigits: 1 })
+const LOCALE_TAG = { es: 'es-ES', gl: 'gl-ES', en: 'en-GB' }
+const number = (n: number, locale: 'es' | 'gl' | 'en') => n.toLocaleString(LOCALE_TAG[locale], { maximumFractionDigits: 1 })
 
 export async function VoluntariosHistoricos({
   testimonials,
   locale = 'es',
 }: {
   testimonials: Testimonial[]
-  locale?: 'es' | 'gl'
+  locale?: 'es' | 'gl' | 'en'
 }) {
   const google = await getGoogleReviews()
   const copy = COPY[locale]

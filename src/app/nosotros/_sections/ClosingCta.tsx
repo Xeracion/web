@@ -12,12 +12,13 @@ interface ClosingCtaData {
 interface ClosingCtaProps {
   data: ClosingCtaData
   siteSettings: SiteSettings
-  locale?: 'es' | 'gl'
+  locale?: 'es' | 'gl' | 'en'
 }
 
 const COPY = {
   es: { primary: 'Quiero ver experiencias', primaryHref: '/experiencias/', whatsapp: 'Escríbenos →' },
   gl: { primary: 'Quero ver experiencias', primaryHref: '/gl/experiencias/', whatsapp: 'Escríbenos →' },
+  en: { primary: 'I want to volunteer in Ferrol', primaryHref: '/volunteering/', whatsapp: 'Write to us →' },
 }
 
 export function ClosingCta({ data, siteSettings, locale = 'es' }: ClosingCtaProps) {

@@ -26,10 +26,11 @@ El sitio no tiene una home única: tiene varias sub-homes según quién es el vi
 
 ## Versión en inglés (noviembre de 2026)
 
-El sitio fue bilingüe es/en, se retiró entero y en noviembre de 2026 volvió **solo para socios, instituciones y voluntarios europeos**; no es una traducción de la web (salvo el equipo). Son cuatro páginas, en el grupo `src/app/(en)/` con `SiteShell locale="en"`:
+El sitio fue bilingüe es/en, se retiró entero y en noviembre de 2026 volvió **solo para socios, instituciones y voluntarios europeos**; no es una traducción de la web (salvo nosotros y el equipo). Son cinco páginas, en el grupo `src/app/(en)/` con `SiteShell locale="en"`:
 
 - `/en/`: quiénes somos para socios (cifras, qué podemos hacer juntos, lista del archivo de proyectos enlazada a las fichas en castellano, datos para solicitudes: nombre legal, OID, PIC, CIF, acreditaciones y memoria).
-- `/team/`: el equipo, **traducción** de `/nosotros/equipo/` y `/gl/nos/equipo/` (mismas personas y componente `TeamGroups`; presentaciones originales en inglés, cargos y títulos traducidos). Es la única página inglesa con `hreflang` es/gl/en. La portada `/en/` enlaza a ella con la tira de caras (`Equipo`).
+- `/about/`: **traducción** de `/nosotros/` (`src/content/en/nosotros.ts`, mismas secciones que `/gl/nos/`; las citas en su idioma original). Las páginas que solo existen en castellano se enlazan tal cual, avisando «(in Spanish)» cuando hace falta.
+- `/team/`: el equipo, **traducción** de `/nosotros/equipo/` y `/gl/nos/equipo/` (mismas personas y componente `TeamGroups`; presentaciones originales en inglés, cargos y títulos traducidos). Con `/about/`, son las únicas páginas inglesas con `hreflang` es/gl/en (`traduccion: true` en `EN_PAGES`). La portada `/en/` enlaza a ella con la tira de caras (`Equipo`).
 - `/volunteering/` e `/internships/`: en **su URL del WordPress**, para no perder el SEO. Salen de las páginas inglesas del WordPress (Volunteering, actualizada en agosto de 2026, e Internships) y de `/empresas/`.
 
 Textos en `src/content/en/` (`pages.ts`, `siteSettings.ts`). El selector ES · GL · EN lleva a la página más parecida (`/experiencias/` ↔ `/volunteering/`, `/empresas/` ↔ `/internships/`, cualquier otra → `/en/`), pero los `hreflang` solo declaran las traducciones de verdad (es/gl): las páginas inglesas no son traducción de las castellanas. Las URLs antiguas bajo `/en/` van a su ficha (`EN_LEGACY`) o a `/en/`.
@@ -38,7 +39,7 @@ Textos en `src/content/en/` (`pages.ts`, `siteSettings.ts`). El selector ES · G
 
 Castellano en la raíz y gallego bajo `/gl/` (el inglés es aparte, ver arriba): `/gl/` (portada), `/gl/axenda/`, `/gl/experiencias/` y `/gl/nos/`. El resto de páginas solo existen en castellano y desde el gallego se enlazan tal cual. El selector ES · GL del menú (`ResizableNavbar`, deduce el idioma de la URL) lleva a la página equivalente o, si no la hay, a la portada del otro idioma. Las parejas de páginas y las utilidades (`localizeHref`, `alternateHref`, hreflang) viven en `src/lib/i18n.ts`; los textos en gallego, en `src/content/gl/`, y cada experiencia lleva su campo `gl`. Las secciones compartidas reciben `locale`; los layouts en gallego usan `SiteShell` con `locale="gl"`. Las citas de personas reales no se traducen.
 
-**Idioma automático** (`src/proxy.ts`): quien llega desde fuera (buscador, enlace, URL escrita) a una página en castellano con versión en otro idioma va a esa versión si su navegador la prefiere (gallego → su pareja de `PAGE_PAIRS`; inglés u otro idioma que no sea castellano ni gallego → `/en/` desde la portada y `/team/` desde el equipo). Sin cookies ni almacenamiento, porque los textos legales dicen que no hay: al navegar dentro de la web (referer propio) no se redirige nunca, así que el selector de idioma manda. Los buscadores y bots no se redirigen.
+**Idioma automático** (`src/proxy.ts`): quien llega desde fuera (buscador, enlace, URL escrita) a una página en castellano con versión en otro idioma va a esa versión si su navegador la prefiere (gallego → su pareja de `PAGE_PAIRS`; inglés u otro idioma que no sea castellano ni gallego → `/en/` desde la portada, `/about/` desde nosotros y `/team/` desde el equipo). Sin cookies ni almacenamiento, porque los textos legales dicen que no hay: al navegar dentro de la web (referer propio) no se redirige nunca, así que el selector de idioma manda. Los buscadores y bots no se redirigen.
 
 ## 4.1 Agenda de eventos vía Google Calendar
 

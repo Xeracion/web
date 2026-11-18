@@ -37,7 +37,8 @@ export const PAGE_PAIRS: Array<Record<'es' | 'gl', string>> = [
 /** Páginas en inglés. Su equivalente en castellano, si lo hay, para el selector. */
 export const EN_PAGES: Array<{ en: string; es: string; traduccion?: true }> = [
   { en: '/en/', es: '/' },
-  // La única traducción de verdad: el equipo (también lleva hreflang).
+  // Traducciones de verdad (también llevan hreflang): nosotros y el equipo.
+  { en: '/about/', es: '/nosotros/', traduccion: true },
   { en: '/team/', es: '/nosotros/equipo/', traduccion: true },
   { en: '/volunteering/', es: '/experiencias/' },
   { en: '/internships/', es: '/empresas/' },

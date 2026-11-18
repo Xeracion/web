@@ -34,7 +34,7 @@ function idiomaPreferido(acceptLanguage: string | null): Idioma | null {
 
 function destino(path: string, idioma: Idioma): string | null {
   if (idioma === 'gl') return PAGE_PAIRS.find((pair) => pair.es === path)?.gl ?? null
-  // El inglés no traduce la web: solo la portada y el equipo tienen equivalente.
+  // El inglés no traduce toda la web: la portada y las traducciones de EN_PAGES.
   if (idioma === 'en') return path === '/' ? '/en/' : (EN_PAGES.find((page) => page.traduccion && page.es === path)?.en ?? null)
   return null
 }

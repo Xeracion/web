@@ -9,6 +9,7 @@ interface HeroData {
   heroText?: string | string[]
   heroStats?: StatItem[]
   heroBackgroundImage?: string
+  heroImageAlt?: string
 }
 
 export function Hero({ data }: { data: HeroData }) {
@@ -17,7 +18,7 @@ export function Hero({ data }: { data: HeroData }) {
       heading={data.heroHeading}
       text={data.heroText}
       image={data.heroBackgroundImage}
-      imageAlt="El equipo de Xeración y el voluntariado europeo en la Casa da Xuventude de Ferrol"
+      imageAlt={data.heroImageAlt ?? 'El equipo de Xeración y el voluntariado europeo en la Casa da Xuventude de Ferrol'}
       imageLabel="foto editorial · equipo en la Casa da Xuventude"
       imageVariant="neutral"
       below={
