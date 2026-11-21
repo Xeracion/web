@@ -11,7 +11,7 @@ import { ProyectoCard } from './_components/ProyectoCard'
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Proyectos anteriores', description: pageProyectosEs.intro })
+  return buildPageMetadata({ title: 'Proyectos anteriores', description: pageProyectosEs.intro, path: '/proyectos/' })
 }
 
 /** Agrupa por año, del más reciente al más antiguo. */

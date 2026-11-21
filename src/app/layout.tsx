@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
+import { JsonLd } from "@/components/JsonLd";
 import { siteSettings } from "@/content/siteSettings";
+import { siteGraph } from "@/lib/schema";
 
 const manrope = Manrope({
   variable: "--font-heading",
@@ -53,7 +55,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" data-scroll-behavior="smooth" className={`${manrope.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <JsonLd data={siteGraph()} />
+        {children}
+      </body>
     </html>
   );
 }

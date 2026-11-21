@@ -28,7 +28,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const historia = getHistoria((await params).historia)
   if (!historia) return {}
-  return buildPageMetadata({ title: historia.titulo, description: historia.lead })
+  return buildPageMetadata({ title: historia.titulo, description: historia.lead, path: `/${historia.slug}/` })
 }
 
 function moreStories(slug: string): Historia[] {

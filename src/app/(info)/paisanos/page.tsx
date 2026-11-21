@@ -12,7 +12,7 @@ import { Podcast } from './_components/Podcast'
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Paisanos', description: pagePaisanosEs.intro })
+  return buildPageMetadata({ title: 'Paisanos', description: pagePaisanosEs.intro, path: '/paisanos/' })
 }
 
 export default function PaisanosPage() {

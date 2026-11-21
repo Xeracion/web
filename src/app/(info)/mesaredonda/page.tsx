@@ -13,7 +13,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Mesas redondas', description: pageMesaRedondaEs.heroText })
+  return buildPageMetadata({ title: 'Mesas redondas', description: pageMesaRedondaEs.heroText, path: '/mesaredonda/' })
 }
 
 export default function MesaRedondaPage() {

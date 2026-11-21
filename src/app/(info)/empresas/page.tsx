@@ -9,12 +9,18 @@ import { PageHeader } from '@/components/PageHeader'
 import { Prose } from '@/components/Prose'
 import { empresasFaqsEs, pageEmpresasEs } from '@/content/empresas'
 import { siteSettings } from '@/content/siteSettings'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { faqNode, pageGraph, serviceNode } from '@/lib/schema'
 
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Empresas', description: pageEmpresasEs.intro })
+  return buildPageMetadata({
+    title: 'Empresas de acogida para prácticas internacionales en Ferrol',
+    description: pageEmpresasEs.intro,
+    path: '/empresas/',
+  })
 }
 
 export default function EmpresasPage() {
@@ -22,6 +28,24 @@ export default function EmpresasPage() {
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: '/empresas/',
+          name: 'Empresas de acogida para prácticas internacionales en Ferrol',
+          description: page.intro,
+          breadcrumbs: [['Empresas', '/empresas/']],
+          extra: [
+            serviceNode({
+              path: '/empresas/',
+              name: 'Prácticas internacionales en empresas de Ferrol',
+              serviceType: 'Entidad de acogida de prácticas Erasmus+ en España',
+              description: page.whyText,
+              audience: 'Empresas de Ferrol y comarca',
+            }),
+            faqNode('/empresas/', empresasFaqsEs),
+          ],
+        })}
+      />
       <PageHeader heading={page.heading} text={page.intro} />
 
       <Container as="section" className={styles.why}>

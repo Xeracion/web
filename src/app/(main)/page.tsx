@@ -23,7 +23,7 @@ import { Projects } from './_sections/Projects'
 export const revalidate = 300
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ description: homeEs.intro, path: '/' })
+  return buildPageMetadata({ title: 'Xeración · Colectivo juvenil en Ferrol', absoluteTitle: true, description: homeEs.intro, path: '/' })
 }
 
 export default async function HomePage() {

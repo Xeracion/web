@@ -9,7 +9,9 @@ import { Prose } from '@/components/Prose'
 import { pagePaisanosEs, paisanosEs } from '@/content/paisanos'
 import type { Paisano } from '@/content/types'
 import { cn } from '@/lib/cn'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { pageGraph } from '@/lib/schema'
 
 import { PaisanoCard } from '../_components/PaisanoCard'
 import { Podcast } from '../_components/Podcast'
@@ -34,7 +36,7 @@ function findPaisano(slug: string): Paisano | undefined {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const paisano = findPaisano((await params).slug)
   if (!paisano) return {}
-  return buildPageMetadata({ title: `La historia de ${paisano.name}`, description: paisano.summary })
+  return buildPageMetadata({ title: `La historia de ${paisano.name}`, description: paisano.summary, path: `/paisanos/${paisano.slug}/` })
 }
 
 function moreStories(slug: string): Paisano[] {
@@ -73,6 +75,17 @@ export default async function PaisanoPage({ params }: PageProps) {
 
   return (
     <article>
+      <JsonLd
+        data={pageGraph({
+          path: `/paisanos/${paisano.slug}/`,
+          name: `La historia de ${paisano.name}`,
+          description: paisano.summary,
+          breadcrumbs: [
+            ['Paisanos', '/paisanos/'],
+            [paisano.name, `/paisanos/${paisano.slug}/`],
+          ],
+        })}
+      />
       <Container className={styles.header}>
         <div className={styles.column}>
           <Link href="/paisanos/" className={styles.back}>

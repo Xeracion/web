@@ -12,6 +12,10 @@ import { archivo, pageNosotrosEs } from '../nosotros'
 // pisos, idiomas del equipo, años de experiencia) se ha dejado fuera.
 
 export const pageHomeEn = {
+  // <title> y descripción para Google (los socios buscan «partner in Spain» y el OID).
+  metaTitle: 'Erasmus+ and ESC partner in Spain · Xeración, youth organisation in Ferrol',
+  metaDescription:
+    `Youth organisation in Ferrol, Galicia, since 2013. Erasmus+ accredited for sending, hosting and coordination, with the ESC accreditation. OID ${pageNosotrosEs.legalOid} · PIC ${pageNosotrosEs.legalPic}.`,
   heroHeading: 'We are Xeración, a youth organisation in Ferrol that hosts and sends young Europeans.',
   heroText:
     'Since 2013 we have been organising volunteering, youth exchanges, training courses and internships, and running projects our community needed. Non-profit, based at the Casa da Xuventude in Ferrol, on the Atlantic coast of Galicia (Spain).',
@@ -105,6 +109,9 @@ export const FORMATO_EN: Record<string, string> = {
 }
 
 export const pageVolunteeringEn = {
+  metaTitle: 'ESC volunteering in Spain · Hosting organisation in Ferrol, Galicia',
+  metaDescription:
+    'European Solidarity Corps volunteering in Ferrol, Galicia (Spain). Accommodation, meals and travel covered, with mentoring and volunteers from all over Europe.',
   heroHeading: 'Volunteering at Xeración: the adventure that will change your life.',
   heroText: [
     'Join Xeración through the European Solidarity Corps and help us with language workshops, cultural events, presentations and all the international projects we run in Ferrol.',
@@ -184,6 +191,9 @@ export const volunteeringVoicesEn: Testimonial[] = [
 ]
 
 export const pageInternshipsEn = {
+  metaTitle: 'Internships in Spain · Erasmus+ hosting partner in Ferrol',
+  metaDescription:
+    'Erasmus+ accredited hosting partner in Ferrol, Spain. Placements in over 50 companies, flats in the city centre and support before, during and after the mobility.',
   heroHeading: 'Internships in Spain: we are the hosting partner you were looking for.',
   heroText: [
     'Looking for an active and reliable hosting partner in Spain? We have been working with European mobility programmes since 2013 and we hold the Erasmus+ accreditation.',

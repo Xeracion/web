@@ -13,7 +13,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Speak Factor VI', description: pageSpeakFactorViEs.heroText })
+  return buildPageMetadata({ title: 'Speak Factor VI', description: pageSpeakFactorViEs.heroText, path: '/speak-factor-tc/' })
 }
 
 export default function SpeakFactorViPage() {

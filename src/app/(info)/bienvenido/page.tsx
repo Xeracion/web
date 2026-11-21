@@ -9,7 +9,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 
 export function generateMetadata(): Metadata {
   return {
-    ...buildPageMetadata({ title: 'Bienvenida', description: pageBienvenidoEs.intro }),
+    ...buildPageMetadata({ title: 'Bienvenida', description: pageBienvenidoEs.intro, path: '/bienvenido/' }),
     robots: { index: false },
   }
 }

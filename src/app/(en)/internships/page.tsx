@@ -6,14 +6,16 @@ import { Container } from '@/components/Container'
 import { HeroSplit } from '@/components/HeroSplit'
 import { pageInternshipsEn } from '@/content/en/pages'
 import { siteSettingsEn } from '@/content/en/siteSettings'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { pageGraph, serviceNode } from '@/lib/schema'
 
 import styles from '../en.module.css'
 
 export function generateMetadata(): Metadata {
   return buildPageMetadata({
-    title: 'Internships in Spain · Hosting partner in Ferrol',
-    description: pageInternshipsEn.heroText,
+    title: pageInternshipsEn.metaTitle,
+    description: pageInternshipsEn.metaDescription,
     locale: 'en_GB',
     path: '/internships/',
   })
@@ -25,6 +27,24 @@ export default function InternshipsPage() {
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: '/internships/',
+          name: page.metaTitle,
+          description: page.metaDescription,
+          locale: 'en',
+          breadcrumbs: [['Internships', '/internships/']],
+          extra: [
+            serviceNode({
+              path: '/internships/',
+              name: 'Hosting partner for Erasmus+ internships in Spain',
+              serviceType: 'Erasmus+ internship hosting organisation',
+              description: page.heroText,
+              audience: 'European sending organisations, schools and VET providers',
+            }),
+          ],
+        })}
+      />
       <HeroSplit
         heading={page.heroHeading}
         text={page.heroText}

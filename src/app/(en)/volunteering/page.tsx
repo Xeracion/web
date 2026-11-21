@@ -8,14 +8,16 @@ import { Container } from '@/components/Container'
 import { HeroSplit } from '@/components/HeroSplit'
 import { pageVolunteeringEn, volunteeringVoicesEn } from '@/content/en/pages'
 import { siteSettingsEn } from '@/content/en/siteSettings'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { pageGraph, serviceNode } from '@/lib/schema'
 
 import styles from '../en.module.css'
 
 export function generateMetadata(): Metadata {
   return buildPageMetadata({
-    title: 'Volunteering in Ferrol, Spain · European Solidarity Corps',
-    description: pageVolunteeringEn.heroText,
+    title: pageVolunteeringEn.metaTitle,
+    description: pageVolunteeringEn.metaDescription,
     locale: 'en_GB',
     path: '/volunteering/',
   })
@@ -29,6 +31,24 @@ export default function VolunteeringPage() {
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: '/volunteering/',
+          name: page.metaTitle,
+          description: page.metaDescription,
+          locale: 'en',
+          breadcrumbs: [['Volunteering', '/volunteering/']],
+          extra: [
+            serviceNode({
+              path: '/volunteering/',
+              name: 'European Solidarity Corps volunteering in Ferrol, Spain',
+              serviceType: 'European Solidarity Corps hosting organisation',
+              description: page.heroText,
+              audience: 'Young people aged 18 to 30 resident in the EU, and their sending organisations',
+            }),
+          ],
+        })}
+      />
       <HeroSplit
         heading={page.heroHeading}
         text={page.heroText}

@@ -12,7 +12,9 @@ import { getConvocatoriasAbiertas, getExperienciaBySlug, getExperienciaSlugs } f
 import { siteSettings } from '@/content/siteSettings'
 import { formatDateShort } from '@/lib/formatDate'
 import { AMBITO_LABELS, DURACION_LABELS } from '@/lib/experienciaCategorias'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { pageGraph } from '@/lib/schema'
 
 import styles from './page.module.css'
 
@@ -32,7 +34,7 @@ export async function generateMetadata({
   const { slug } = await params
   const item = getExperienciaBySlug(slug)
   if (!item) return {}
-  return buildPageMetadata({ title: item.titulo, description: item.resumen })
+  return buildPageMetadata({ title: item.titulo, description: item.resumen, path: `/experiencias/${item.slug}/` })
 }
 
 export default async function ExperienciaPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -51,6 +53,17 @@ export default async function ExperienciaPage({ params }: { params: Promise<{ sl
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: `/experiencias/${item.slug}/`,
+          name: item.titulo,
+          description: item.resumen,
+          breadcrumbs: [
+            ['Experiencias', '/experiencias/'],
+            [item.titulo, `/experiencias/${item.slug}/`],
+          ],
+        })}
+      />
       <Container as="section" className={styles.hero}>
         <div className={styles.heroText}>
           <h1>{item.titulo}</h1>

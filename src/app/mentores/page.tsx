@@ -12,7 +12,7 @@ import { Testimonios } from './_sections/Testimonios'
 import { Why } from './_sections/Why'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildPageMetadata({ title: 'Mentores', description: pageMentoresContent.heroText })
+  return buildPageMetadata({ title: 'Mentores', description: pageMentoresContent.heroText, path: '/mentores/' })
 }
 
 export default function MentoresPage() {

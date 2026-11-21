@@ -11,7 +11,9 @@ import { EyebrowPill } from '@/components/EyebrowPill'
 import { HeroSplit } from '@/components/HeroSplit'
 import { Prose } from '@/components/Prose'
 import { getProyectoBySlug, getProyectoSlugs, pageProyectosEs } from '@/content/proyectos'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { pageGraph } from '@/lib/schema'
 
 import styles from './page.module.css'
 
@@ -28,7 +30,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const proyecto = getProyectoBySlug((await params).slug)
   if (!proyecto) return {}
-  return buildPageMetadata({ title: proyecto.titulo, description: proyecto.resumen })
+  return buildPageMetadata({ title: proyecto.titulo, description: proyecto.resumen, path: `/proyectos/${proyecto.slug}/` })
 }
 
 export default async function ProyectoPage({ params }: PageProps) {
@@ -41,6 +43,17 @@ export default async function ProyectoPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: `/proyectos/${proyecto.slug}/`,
+          name: proyecto.titulo,
+          description: proyecto.resumen,
+          breadcrumbs: [
+            ['Proyectos anteriores', '/proyectos/'],
+            [proyecto.titulo, `/proyectos/${proyecto.slug}/`],
+          ],
+        })}
+      />
       <HeroSplit
         heading={proyecto.heroHeading}
         text={proyecto.resumen}

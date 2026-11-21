@@ -8,12 +8,14 @@ import { FaqAccordionSection } from '@/components/FaqAccordionSection'
 import { PageHeader } from '@/components/PageHeader'
 import { pagePreguntasEs, preguntasGroupsEs } from '@/content/preguntas'
 import { siteSettings } from '@/content/siteSettings'
+import { JsonLd } from '@/components/JsonLd'
 import { buildPageMetadata } from '@/lib/metadata'
+import { faqNode, pageGraph } from '@/lib/schema'
 
 import styles from './page.module.css'
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ title: 'Preguntas frecuentes', description: pagePreguntasEs.intro })
+  return buildPageMetadata({ title: 'Preguntas frecuentes', description: pagePreguntasEs.intro, path: '/preguntas/' })
 }
 
 export default function PreguntasPage() {
@@ -21,6 +23,15 @@ export default function PreguntasPage() {
 
   return (
     <>
+      <JsonLd
+        data={pageGraph({
+          path: '/preguntas/',
+          name: 'Preguntas frecuentes',
+          description: page.intro,
+          breadcrumbs: [['Preguntas frecuentes', '/preguntas/']],
+          extra: [faqNode('/preguntas/', preguntasGroupsEs.flatMap((group) => group.items))],
+        })}
+      />
       <PageHeader heading={page.heading} text={page.intro} />
       {preguntasGroupsEs.map((group) => (
         <div key={group.intro.heading}>

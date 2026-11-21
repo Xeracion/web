@@ -26,7 +26,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const revalidate = 300
 
 export function generateMetadata(): Metadata {
-  return buildPageMetadata({ description: homeGl.intro, locale: 'gl_ES', path: '/gl/' })
+  return buildPageMetadata({ title: 'Xeración · Colectivo xuvenil en Ferrol', absoluteTitle: true, description: homeGl.intro, locale: 'gl_ES', path: '/gl/' })
 }
 
 export default async function InicioGlPage() {
