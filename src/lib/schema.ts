@@ -167,3 +167,55 @@ export function faqNode(path: string, items: Faq[]) {
     })),
   }
 }
+
+/** Un curso con su primera edición (CourseInstance) y su tasa (Offer). */
+export function courseNode(input: {
+  path: string
+  name: string
+  description: string | string[]
+  audience: string[]
+  outcomes: string[]
+  fee: number
+  days: number
+  startDate: string
+  endDate: string
+  place: string
+  instructor: string
+}) {
+  const url = absoluteUrl(input.path)
+  return {
+    '@type': 'Course',
+    '@id': `${url}#course`,
+    name: input.name,
+    description: plain(input.description),
+    url,
+    inLanguage: 'en',
+    provider: { '@id': ORG_ID },
+    educationalCredentialAwarded: 'Certificate of attendance with learning outcomes and Europass Mobility',
+    teaches: input.outcomes,
+    audience: { '@type': 'EducationalAudience', educationalRole: 'teacher', audienceType: input.audience.join(', ') },
+    timeRequired: `P${input.days}D`,
+    offers: {
+      '@type': 'Offer',
+      category: 'Paid',
+      price: input.fee,
+      priceCurrency: 'EUR',
+      url,
+      availability: 'https://schema.org/PreOrder',
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'Onsite',
+      startDate: input.startDate,
+      endDate: input.endDate,
+      inLanguage: 'en',
+      courseSchedule: { '@type': 'Schedule', duration: 'PT5H', repeatFrequency: 'Daily', repeatCount: input.days },
+      location: {
+        '@type': 'Place',
+        name: input.place,
+        address: { '@type': 'PostalAddress', addressLocality: 'Ferrol', addressRegion: 'Galicia', addressCountry: 'ES' },
+      },
+      instructor: { '@type': 'Person', name: input.instructor },
+    },
+  }
+}

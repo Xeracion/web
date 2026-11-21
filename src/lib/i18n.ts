@@ -42,7 +42,11 @@ export const EN_PAGES: Array<{ en: string; es: string; traduccion?: true }> = [
   { en: '/team/', es: '/nosotros/equipo/', traduccion: true },
   { en: '/volunteering/', es: '/experiencias/' },
   { en: '/internships/', es: '/empresas/' },
+  { en: '/teacher-training/', es: '/' },
 ]
+
+/** Secciones enteras en inglés (el índice y sus fichas). */
+const EN_SECTIONS = ['/teacher-training/']
 
 /** Portada de cada idioma. */
 export const HOME_HREF: Record<Locale, string> = { es: '/', gl: '/gl/', en: '/en/' }
@@ -54,7 +58,7 @@ function withTrailingSlash(path: string) {
 export function localeFromPath(pathname: string): Locale {
   const path = withTrailingSlash(pathname)
   if (path.startsWith('/gl/')) return 'gl'
-  if (path.startsWith('/en/') || EN_PAGES.some((page) => page.en === path)) return 'en'
+  if (path.startsWith('/en/') || EN_PAGES.some((page) => page.en === path) || EN_SECTIONS.some((s) => path.startsWith(s))) return 'en'
   return 'es'
 }
 

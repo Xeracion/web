@@ -4,6 +4,7 @@ import { paisanosEs } from '@/content/paisanos'
 import { getExperienciaSlugs } from '@/content/experiencias'
 import { historiasEs } from '@/content/historias'
 import { getProyectoSlugs } from '@/content/proyectos'
+import { teacherCourses } from '@/content/en/teacherTraining'
 import { languageAlternates } from '@/lib/i18n'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
@@ -18,6 +19,7 @@ const PRIORITY: Record<string, number> = {
   '/internships/': 0.9,
   '/volunteering/': 0.9,
   '/experiencias/': 0.9,
+  '/teacher-training/': 0.9,
   '/about/': 0.8,
   '/nosotros/': 0.8,
   '/empresas/': 0.8,
@@ -27,6 +29,7 @@ const PRIORITY: Record<string, number> = {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     '/', '/en/', '/internships/', '/volunteering/', '/about/', '/team/',
+    '/teacher-training/', ...teacherCourses.map((course) => `/teacher-training/${course.slug}/`),
     '/agenda/', '/experiencias/', '/nosotros/', '/nosotros/equipo/', '/empresas/', '/preguntas/',
     '/gl/', '/gl/axenda/', '/gl/experiencias/', '/gl/nos/', '/gl/nos/equipo/',
     '/mentores/', '/mesaredonda/', '/speakfactor/', '/speak-factor-tc/',
