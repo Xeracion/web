@@ -129,3 +129,8 @@
   font-size: var(--text-sm);
   color: var(--color-text-tertiary);
 }
+
+/* Envoltorio con el lang de la página: no altera la maqueta. */
+.root {
+  display: contents;
+}

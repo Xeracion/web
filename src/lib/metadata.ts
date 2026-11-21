@@ -13,6 +13,8 @@ interface PageMetadataInput {
   locale?: string
   /** Ruta de la página (ej. '/gl/axenda/'): añade canonical, og:url y los hreflang si tiene pareja. */
   path?: string
+  /** hreflang propios (sustituyen a los de PAGE_PAIRS): { en: '/…/', de: '/de/…/', 'x-default': … }. */
+  languages?: Record<string, string>
 }
 
 /** Google corta la descripción hacia los 160 caracteres: se recorta en una palabra. */
@@ -22,7 +24,7 @@ function trimDescription(text: string, max = 160): string {
   return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:·\s]+$/, '')}…`
 }
 
-export function buildPageMetadata({ title, absoluteTitle, description: rawDescription, locale, path }: PageMetadataInput): Metadata {
+export function buildPageMetadata({ title, absoluteTitle, description: rawDescription, locale, path, languages }: PageMetadataInput): Metadata {
   const fullDescription = (Array.isArray(rawDescription) ? rawDescription.join(' ') : rawDescription)?.replace(/\*\*/g, '')
   const description = fullDescription && trimDescription(fullDescription)
   // openGraph y twitter de la página sustituyen enteros a los del layout:
@@ -50,7 +52,7 @@ export function buildPageMetadata({ title, absoluteTitle, description: rawDescri
 
   if (path) {
     openGraph.url = path
-    metadata.alternates = { canonical: path, languages: languageAlternates(path) }
+    metadata.alternates = { canonical: path, languages: languages ?? languageAlternates(path) }
   }
 
   return metadata

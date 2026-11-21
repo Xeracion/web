@@ -1,3 +1,5 @@
+import { teacherTrainingRoutes } from '@/content/teacherTraining/paths'
+
 // Idiomas de la web: castellano en la raíz, gallego bajo /gl/ e inglés.
 //
 // Solo tienen versión en gallego las páginas del menú principal (portada,
@@ -45,8 +47,14 @@ export const EN_PAGES: Array<{ en: string; es: string; traduccion?: true }> = [
   { en: '/teacher-training/', es: '/' },
 ]
 
-/** Secciones enteras en inglés (el índice y sus fichas). */
-const EN_SECTIONS = ['/teacher-training/']
+/**
+ * Cursos para profesorado: /teacher-training/ en inglés y sus traducciones a
+ * alemán, neerlandés y francés (landing pages fuera del menú). Todas usan la
+ * cabecera y el pie en inglés; desde las traducciones, «EN» lleva a la
+ * versión inglesa de la misma página.
+ */
+const TEACHER_ROUTES = teacherTrainingRoutes()
+const TEACHER_PATHS = new Set(TEACHER_ROUTES.map((route) => route.path))
 
 /** Portada de cada idioma. */
 export const HOME_HREF: Record<Locale, string> = { es: '/', gl: '/gl/', en: '/en/' }
@@ -58,7 +66,7 @@ function withTrailingSlash(path: string) {
 export function localeFromPath(pathname: string): Locale {
   const path = withTrailingSlash(pathname)
   if (path.startsWith('/gl/')) return 'gl'
-  if (path.startsWith('/en/') || EN_PAGES.some((page) => page.en === path) || EN_SECTIONS.some((s) => path.startsWith(s))) return 'en'
+  if (path.startsWith('/en/') || EN_PAGES.some((page) => page.en === path) || TEACHER_PATHS.has(path)) return 'en'
   return 'es'
 }
 
@@ -79,6 +87,10 @@ function versions(pathname: string): Partial<Record<Locale, string>> {
 /** La misma página en otro idioma, o la portada de ese idioma si no existe. */
 export function alternateHref(pathname: string, target: Locale): string {
   const path = withTrailingSlash(pathname)
+  if (target === 'en') {
+    const teacher = TEACHER_ROUTES.find((route) => route.path === path)
+    if (teacher) return teacher.alternates.en
+  }
   if (localeFromPath(path) === target) return path
   return versions(path)[target] ?? HOME_HREF[target]
 }

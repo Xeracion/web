@@ -10,7 +10,10 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:30
 export const ORG_ID = `${SITE_URL}/#organization`
 const WEBSITE_ID = `${SITE_URL}/#website`
 
-const IN_LANGUAGE: Record<'es' | 'gl' | 'en', string> = { es: 'es-ES', gl: 'gl-ES', en: 'en-GB' }
+type SchemaLang = 'es' | 'gl' | 'en' | 'de' | 'nl' | 'fr'
+const IN_LANGUAGE: Record<SchemaLang, string> = { es: 'es-ES', gl: 'gl-ES', en: 'en-GB', de: 'de-DE', nl: 'nl-NL', fr: 'fr-FR' }
+/** Idiomas de la web en sí (los de de/nl/fr son solo landing pages de cursos). */
+const SITE_LANGS: SchemaLang[] = ['es', 'gl', 'en']
 
 export function absoluteUrl(path: string): string {
   return path.startsWith('http') ? path : `${SITE_URL}${path}`
@@ -85,7 +88,7 @@ export function siteGraph() {
     '@id': WEBSITE_ID,
     url: `${SITE_URL}/`,
     name: siteSettings.title,
-    inLanguage: Object.values(IN_LANGUAGE),
+    inLanguage: SITE_LANGS.map((lang) => IN_LANGUAGE[lang]),
     publisher: { '@id': ORG_ID },
   }
 
@@ -96,7 +99,7 @@ interface WebPageInput {
   path: string
   name: string
   description?: string | string[]
-  locale?: 'es' | 'gl' | 'en'
+  locale?: SchemaLang
   /** Ruta de migas: [['Experiencias', '/experiencias/'], ['Camino', '/experiencias/camino/']]. */
   breadcrumbs?: Array<[string, string]>
   /** Nodos extra (Service, FAQPage…) que cuelgan de esta página. */
@@ -120,7 +123,7 @@ export function pageGraph({ path, name, description, locale = 'es', breadcrumbs,
   const graph: object[] = [page, ...extra]
 
   if (breadcrumbs?.length) {
-    const home = locale === 'en' ? ['Home', '/en/'] : locale === 'gl' ? ['Inicio', '/gl/'] : ['Inicio', '/']
+    const home = locale === 'gl' ? ['Inicio', '/gl/'] : locale === 'es' ? ['Inicio', '/'] : locale === 'en' ? ['Home', '/en/'] : ['Xeración', '/en/']
     const items = [home, ...breadcrumbs]
     const id = `${url}#breadcrumb`
     page.breadcrumb = { '@id': id }

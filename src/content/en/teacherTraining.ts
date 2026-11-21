@@ -1,68 +1,20 @@
-import type { Faq } from '../types'
+import type { TeacherCourse, TeacherTrainingContent, TeacherTrainingUi } from '../teacherTraining/types'
+import { TEACHER_TRAINING_PATHS } from '../teacherTraining/paths'
 
 // Cursos para personal educativo europeo con beca Erasmus+ KA1 (/teacher-training/).
 // Fuente: «Cursos KA1 de Xeración: diseño de los tres primeros» (5 de noviembre
 // de 2026). Todo dato nuevo (fechas, precios, formadores, sede) sale de ese
 // documento; lo que allí está pendiente (bios de formadores, accesibilidad de
 // la sede, precio del alojamiento, condiciones de cancelación) no se publica.
+// Las versiones en alemán, neerlandés y francés (src/content/teacherTraining/)
+// traducen este archivo: cualquier cambio de datos hay que llevarlo a las cuatro.
 
-export interface CourseDay {
-  day: number
-  /** Lugar o etapa del día. */
-  place: string
-  /** Contenido principal del día. */
-  focus: string
-  /** Segunda parte del día (tarde o sesión de cierre). */
-  then: string
-}
-
-export interface TeacherCourse {
-  slug: string
-  /** Nombre oficial del curso. */
-  name: string
-  /** Frase corta para la tarjeta del índice. */
-  summary: string
-  metaTitle: string
-  metaDescription: string
-  /** H1: frase completa terminada en punto. */
-  heroHeading: string
-  heroText: string[]
-  heroImage: string
-  heroImageAlt: string
-  days: number
-  fee: number
-  groupMin: number
-  groupMax: number
-  /** Fechas de la primera edición (propuestas). */
-  datesLabel: string
-  /** Fechas en corto para la tarjeta del índice. */
-  shortDates: string
-  startDate: string
-  endDate: string
-  place: string
-  audience: string[]
-  requirements: string
-  trainers: string
-  outcomes: string[]
-  programmeNote?: string
-  /** Rótulos de las dos columnas del programa. */
-  programmeColumns: [string, string, string]
-  programme: CourseDay[]
-  method: string
-  includes: string
-  faqs: Faq[]
-}
-
-const EMAIL = 'info@xeracion.org'
-
-export function preRegisterHref(course?: TeacherCourse): string {
-  const subject = course ? `Pre-registration: ${course.name}` : 'Teacher training courses in Ferrol'
-  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`
-}
+const PATHS = TEACHER_TRAINING_PATHS.en
 
 export const teacherCourses: TeacherCourse[] = [
   {
-    slug: 'outdoor-learning-camino-de-santiago',
+    id: 'camino',
+    slug: PATHS.camino,
     name: 'Walking classroom: outdoor learning on the English Way',
     summary:
       'Seven days walking from Ferrol to Santiago de Compostela. Each stage is a lesson in outdoor learning that you take home ready to use.',
@@ -134,7 +86,8 @@ export const teacherCourses: TeacherCourse[] = [
     ],
   },
   {
-    slug: 'environmental-education-forest-restoration',
+    id: 'forest',
+    slug: PATHS.forest,
     name: 'Bringing the forest back: hands-on environmental education',
     summary:
       'Five days between Ferrol, the Fragas do Eume and A Capela to turn the restoration of a forest into a project for your school.',
@@ -200,7 +153,8 @@ export const teacherCourses: TeacherCourse[] = [
     ],
   },
   {
-    slug: 'ai-tools-erasmus-project-coordinators',
+    id: 'ai',
+    slug: PATHS.ai,
     name: 'Erasmus+ without the paperwork: AI and digital tools for project coordinators',
     summary:
       'Five days in Ferrol to leave with your own project management system set up and working: budget, receipts, reports and AI.',
@@ -268,11 +222,7 @@ export const teacherCourses: TeacherCourse[] = [
   },
 ]
 
-export function getTeacherCourse(slug: string): TeacherCourse | undefined {
-  return teacherCourses.find((course) => course.slug === slug)
-}
-
-export const pageTeacherTrainingEn = {
+export const pageTeacherTrainingEn: TeacherTrainingContent['hub'] = {
   metaTitle: 'Erasmus+ KA1 courses for teachers in Spain · Galicia',
   metaDescription:
     'Erasmus+ KA1 structured courses for teachers and school staff in Ferrol, Galicia: outdoor learning on the Camino de Santiago, environmental education and AI tools for coordinators.',
@@ -349,9 +299,48 @@ export const pageTeacherTrainingEn = {
       answer:
         'In Ferrol, Galicia, with field days in the Fragas do Eume natural park and A Capela. The Camino course walks from Ferrol to Santiago de Compostela. A Coruña airport is 50 km away, and Santiago de Compostela is an hour’s drive.',
     },
-  ] satisfies Faq[],
+  ],
   closingHeading: 'Shall we save you a place?',
   closingText: 'Tell us which course, how many people and when you plan to travel. We answer personally.',
   ctaLabel: 'I want to pre-register',
   ctaDetailsLabel: 'See the courses',
+}
+
+const uiEn: TeacherTrainingUi = {
+  breadcrumb: 'Teacher training',
+  seeProgramme: 'See the programme',
+  seeProgrammeArrow: 'See the programme →',
+  essentials: 'The essentials.',
+  costTag: 'Fully fundable with Erasmus+ KA1',
+  feeSentence: (fee, days) => `${fee} € course fee for ${days} days, the exact amount the grant pays.`,
+  factDates: 'Dates',
+  factDuration: 'Duration',
+  factFee: 'Course fee',
+  factGroup: 'Group',
+  factPlace: 'Place',
+  days: (n) => `${n} days`,
+  group: (min, max) => `${min} to ${max} people`,
+  whoFor: 'Who it is for.',
+  takeHome: 'What you take home.',
+  dayByDay: 'Day by day.',
+  day: 'Day',
+  feeCovers: 'What the fee covers.',
+  included: 'Included',
+  whoTeaches: 'Who teaches',
+  addShadowing: 'Add job shadowing',
+  beforeBook: 'Before you book.',
+  otherCourses: 'Other courses.',
+  howItWorks: 'How funding and booking work →',
+  photo: 'photo',
+  emailSubjectHub: 'Teacher training courses in Ferrol',
+  emailSubjectCourse: 'Pre-registration',
+}
+
+export const teacherTrainingEn: TeacherTrainingContent = {
+  lang: 'en',
+  ogLocale: 'en_GB',
+  basePath: PATHS.base,
+  hub: pageTeacherTrainingEn,
+  ui: uiEn,
+  courses: teacherCourses,
 }
