@@ -71,6 +71,8 @@ export function siteGraph() {
       'European volunteering',
       'Hosting organisation in Spain',
       'Erasmus+ internships in Spain',
+      'ALMA initiative (Aim, Learn, Master, Achieve)',
+      'ALMA host organisation in Spain',
       'Youth work',
       'Intercambios juveniles',
       'Voluntariado europeo',

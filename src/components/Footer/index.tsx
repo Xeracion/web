@@ -72,6 +72,7 @@ const GROUPS: Record<Locale, FooterGroup[]> = {
         { label: 'Past projects', href: '/en/#projects' },
         { label: 'Partner details', href: '/en/#partner-details' },
         { label: 'Hosting internships', href: '/internships/' },
+        { label: 'ALMA hosting in Spain', href: '/alma-spain/' },
         { label: 'Courses for teachers', href: '/teacher-training/' },
       ],
     },

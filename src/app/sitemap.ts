@@ -17,6 +17,7 @@ const PRIORITY: Record<string, number> = {
   '/': 1,
   '/en/': 0.9,
   '/internships/': 0.9,
+  '/alma-spain/': 0.9,
   '/volunteering/': 0.9,
   '/experiencias/': 0.9,
   '/about/': 0.8,
@@ -27,7 +28,7 @@ const PRIORITY: Record<string, number> = {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
-    '/', '/en/', '/internships/', '/volunteering/', '/about/', '/team/',
+    '/', '/en/', '/internships/', '/alma-spain/', '/volunteering/', '/about/', '/team/',
     '/agenda/', '/experiencias/', '/nosotros/', '/nosotros/equipo/', '/empresas/', '/preguntas/',
     '/gl/', '/gl/axenda/', '/gl/experiencias/', '/gl/nos/', '/gl/nos/equipo/',
     '/mentores/', '/mesaredonda/', '/speakfactor/', '/speak-factor-tc/',
