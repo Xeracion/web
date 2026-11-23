@@ -1,17 +1,19 @@
 import { teacherTrainingEn } from '../en/teacherTraining'
 import { teacherTrainingDe } from './de'
 import { teacherTrainingFr } from './fr'
+import { teacherTrainingIt } from './it'
 import { teacherTrainingNl } from './nl'
 import type { TeacherCourse, TeacherTrainingContent, TeacherTrainingLang } from './types'
 
 export type { TeacherCourse, TeacherTrainingContent, TeacherTrainingLang } from './types'
 
-/** Las cuatro versiones de los cursos para profesorado. La inglesa es la de referencia (x-default). */
+/** Las cinco versiones de los cursos para profesorado. La inglesa es la de referencia (x-default). */
 export const TEACHER_TRAINING: Record<TeacherTrainingLang, TeacherTrainingContent> = {
   en: teacherTrainingEn,
   de: teacherTrainingDe,
   nl: teacherTrainingNl,
   fr: teacherTrainingFr,
+  it: teacherTrainingIt,
 }
 
 export function coursePath(content: TeacherTrainingContent, course: TeacherCourse): string {

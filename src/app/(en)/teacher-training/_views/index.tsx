@@ -1,5 +1,5 @@
 // Vistas compartidas de los cursos para profesorado: el índice y la ficha de
-// cada curso, en cualquiera de sus idiomas (en, de, nl, fr). Las rutas solo
+// cada curso, en cualquiera de sus idiomas (en, de, nl, fr, it). Las rutas solo
 // eligen el contenido; aquí está la maqueta, los metadatos y el schema.
 import type { Metadata } from 'next'
 import Link from 'next/link'

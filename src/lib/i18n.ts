@@ -49,7 +49,7 @@ export const EN_PAGES: Array<{ en: string; es: string; traduccion?: true }> = [
 
 /**
  * Cursos para profesorado: /teacher-training/ en inglés y sus traducciones a
- * alemán, neerlandés y francés (landing pages fuera del menú). Todas usan la
+ * alemán, neerlandés, francés e italiano (landing pages fuera del menú). Todas usan la
  * cabecera y el pie en inglés; desde las traducciones, «EN» lleva a la
  * versión inglesa de la misma página.
  */

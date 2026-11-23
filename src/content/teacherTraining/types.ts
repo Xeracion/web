@@ -1,10 +1,10 @@
 import type { Faq } from '../types'
 
 // Cursos para profesorado (KA1): tipos comunes a las versiones en inglés,
-// alemán, neerlandés y francés. Cada idioma rellena la misma forma; el `id`
+// alemán, neerlandés, francés e italiano. Cada idioma rellena la misma forma; el `id`
 // de cada curso enlaza las traducciones entre sí (hreflang).
 
-export type TeacherTrainingLang = 'en' | 'de' | 'nl' | 'fr'
+export type TeacherTrainingLang = 'en' | 'de' | 'nl' | 'fr' | 'it'
 export type TeacherCourseId = 'camino' | 'forest' | 'ai'
 
 export interface CourseDay {

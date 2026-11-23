@@ -6,8 +6,8 @@ import { TEACHER_TRAINING_PATHS } from '../teacherTraining/paths'
 // de 2026). Todo dato nuevo (fechas, precios, formadores, sede) sale de ese
 // documento; lo que allí está pendiente (bios de formadores, accesibilidad de
 // la sede, precio del alojamiento, condiciones de cancelación) no se publica.
-// Las versiones en alemán, neerlandés y francés (src/content/teacherTraining/)
-// traducen este archivo: cualquier cambio de datos hay que llevarlo a las cuatro.
+// Las versiones en alemán, neerlandés, francés e italiano (src/content/teacherTraining/)
+// traducen este archivo: cualquier cambio de datos hay que llevarlo a las cinco.
 
 const PATHS = TEACHER_TRAINING_PATHS.en
 

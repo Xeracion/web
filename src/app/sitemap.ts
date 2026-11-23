@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Sin lastModified: la web no guarda fechas de edición, y una fecha que
   // cambia en cada despliegue hace que Google deje de fiarse del campo.
-  // Cursos para profesorado: cuatro idiomas enlazados entre sí con hreflang.
+  // Cursos para profesorado: cinco idiomas enlazados entre sí con hreflang.
   const teacher = teacherTrainingRoutes().map(({ path, lang, alternates }) => ({
     url: `${SITE_URL}${path}`,
     priority: lang === 'en' && path === '/teacher-training/' ? 0.9 : 0.7,

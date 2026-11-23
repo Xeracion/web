@@ -2,7 +2,7 @@ import type { TeacherCourseId, TeacherTrainingLang } from './types'
 
 // Rutas de los cursos para profesorado en cada idioma. Archivo aparte y sin
 // textos: lo usa también el selector de idioma (código de cliente), que así no
-// carga el contenido de las cuatro versiones.
+// carga el contenido de las cinco versiones.
 
 export const TEACHER_TRAINING_PATHS: Record<TeacherTrainingLang, { base: string } & Record<TeacherCourseId, string>> = {
   en: {
@@ -29,12 +29,18 @@ export const TEACHER_TRAINING_PATHS: Record<TeacherTrainingLang, { base: string 
     forest: 'education-environnement-restauration-foret',
     ai: 'outils-ia-coordinateurs-erasmus',
   },
+  it: {
+    base: '/it/formazione-docenti/',
+    camino: 'apprendimento-all-aperto-cammino-di-santiago',
+    forest: 'educazione-ambientale-ripristino-foresta',
+    ai: 'strumenti-ia-coordinatori-erasmus',
+  },
 }
 
 const LANGS = Object.keys(TEACHER_TRAINING_PATHS) as TeacherTrainingLang[]
 const IDS: TeacherCourseId[] = ['camino', 'forest', 'ai']
 
-/** hreflang del índice (id undefined) o de una ficha: las cuatro versiones y el inglés por defecto. */
+/** hreflang del índice (id undefined) o de una ficha: las cinco versiones y el inglés por defecto. */
 export function teacherTrainingAlternates(id?: TeacherCourseId): Record<string, string> {
   const languages: Record<string, string> = {}
   for (const lang of LANGS) {

@@ -10,9 +10,9 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:30
 export const ORG_ID = `${SITE_URL}/#organization`
 const WEBSITE_ID = `${SITE_URL}/#website`
 
-type SchemaLang = 'es' | 'gl' | 'en' | 'de' | 'nl' | 'fr'
-const IN_LANGUAGE: Record<SchemaLang, string> = { es: 'es-ES', gl: 'gl-ES', en: 'en-GB', de: 'de-DE', nl: 'nl-NL', fr: 'fr-FR' }
-/** Idiomas de la web en sí (los de de/nl/fr son solo landing pages de cursos). */
+type SchemaLang = 'es' | 'gl' | 'en' | 'de' | 'nl' | 'fr' | 'it'
+const IN_LANGUAGE: Record<SchemaLang, string> = { es: 'es-ES', gl: 'gl-ES', en: 'en-GB', de: 'de-DE', nl: 'nl-NL', fr: 'fr-FR', it: 'it-IT' }
+/** Idiomas de la web en sí (los de de/nl/fr/it son solo landing pages de cursos). */
 const SITE_LANGS: SchemaLang[] = ['es', 'gl', 'en']
 
 export function absoluteUrl(path: string): string {
