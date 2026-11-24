@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Anuarios } from '@/app/nosotros/_sections/Anuarios'
 import { Cifras } from '@/app/nosotros/_sections/Cifras'
 import { ClosingCta } from '@/app/nosotros/_sections/ClosingCta'
 import { Doors } from '@/app/(main)/_sections/Doors'
@@ -34,6 +35,7 @@ export default function NosPage() {
       <QueHacemos data={page} />
       <IniciativasLocales data={page} />
       <Historia data={page} />
+      <Anuarios data={page} />
       <Valores data={page} />
       <Equipo data={page} locale="gl" />
       <VoluntariosHistoricos testimonials={nosotrosTestimonialsEs} locale="gl" />

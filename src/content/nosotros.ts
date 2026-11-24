@@ -1,4 +1,5 @@
 import type {
+  Anuario,
   HomeDoor,
   Initiative,
   Partner,
@@ -106,6 +107,16 @@ export const pageNosotrosEs = {
       ],
     },
   ],
+  // Anuarios en PDF (en gallego), en public/docs/. Solo actividades
+  // documentadas; testimonios literales y anónimos de las encuestas finales.
+  anuariosIntro: {
+    heading: 'Lo que hicimos cada año.',
+    text: 'Nuestros anuarios recogen las experiencias, los proyectos y los planes en Ferrol de cada año, con fotos y lo que nos contó la gente que participó. Están en gallego.',
+  } satisfies SectionIntro,
+  anuarios: [
+    { year: '2026', title: 'Así fue nuestro 2026.', href: '/docs/xeracion-anuario-2026.pdf', image: '/img/anuarios/portada-2026.webp', meta: 'PDF · 10 páginas · 1,8 MB', ctaLabel: 'Quiero descargarlo' },
+    { year: '2025', title: 'Así fue nuestro 2025.', href: '/docs/xeracion-anuario-2025.pdf', image: '/img/anuarios/portada-2025.webp', meta: 'PDF · 9 páginas · 0,8 MB', ctaLabel: 'Quiero descargarlo' },
+  ] satisfies Anuario[],
   historiaIntro: { heading: 'De dónde venimos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Xeración nace en 2013 de la mano de un grupo de jóvenes de Ferrol. Antes estábamos en Narón; desde 2017, la Casa da Xuventude es nuestro campamento base.',

@@ -95,6 +95,16 @@ export const pageNosotrosGl = {
       ],
     },
   ],
+  anuariosIntro: {
+    heading: 'O que fixemos cada ano.',
+    text: 'Os nosos anuarios recollen as experiencias, os proxectos e os plans en Ferrol de cada ano, con fotos e co que nos contou a xente que participou.',
+  } satisfies SectionIntro,
+  anuarios: pageNosotrosEs.anuarios.map((item) => ({
+    ...item,
+    title: `Así foi o noso ${item.year}.`,
+    meta: item.meta.replace('páginas', 'páxinas'),
+    ctaLabel: 'Quero descargalo',
+  })),
   historiaIntro: { heading: 'De onde vimos.' } satisfies SectionIntro,
   historiaParagraphs: [
     'Xeración nace en 2013 da man dun grupo de mozos e mozas de Ferrol. Antes estabamos en Narón; dende 2017, a Casa da Xuventude é o noso campamento base.',

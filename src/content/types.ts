@@ -135,3 +135,14 @@ export interface Paisano {
   imageFocus: string
   body: PaisanoBlock[]
 }
+
+/** Anuario descargable en PDF (sección «Anuarios» de /nosotros/). */
+export interface Anuario {
+  year: string
+  title: string
+  href: string
+  image: string
+  /** Formato, páginas y peso, separados por «·». */
+  meta: string
+  ctaLabel: string
+}
